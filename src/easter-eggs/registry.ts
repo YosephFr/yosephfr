@@ -93,6 +93,9 @@ const eggs: EasterEgg[] = [
   { id: "egg-94", name: "Coleccionista x50", category: "achievement", hint: "La mitad del camino esta completa" },
   { id: "egg-95", name: "Leyenda x100", category: "achievement", hint: "Solo los mas dedicados llegan a 100" },
 
+  { id: "egg-104", name: "Probando el Idioma", category: "click", hint: "Cambiar de idioma muchas veces revela algo" },
+  { id: "egg-105", name: "Jugando con las Luces", category: "click", hint: "El boton de tema tiene un limite de paciencia" },
+
   { id: "egg-96", name: "Fondo en Movimiento", category: "visual", hint: "El fondo tiene capas que se mueven contigo" },
   { id: "egg-97", name: "Cursor Transformado", category: "visual", hint: "Tu cursor no siempre es una flecha" },
   { id: "egg-98", name: "Textura al Tacto", category: "visual", hint: "El hover revela granulado en las superficies" },

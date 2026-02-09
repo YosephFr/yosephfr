@@ -91,7 +91,7 @@ function SingleToast({
           </motion.div>
           <div className="flex-1 min-w-0">
             <motion.p
-              className="text-sm font-semibold text-text-primary truncate"
+              className="text-sm font-semibold text-text-primary"
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
@@ -99,7 +99,7 @@ function SingleToast({
               {toast.eggName}
             </motion.p>
             <motion.p
-              className="text-xs text-text-muted mt-0.5 truncate"
+              className="text-xs text-text-muted mt-0.5 line-clamp-2"
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}

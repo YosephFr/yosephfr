@@ -3,10 +3,11 @@
 import { useLocale, type Locale } from "@/i18n"
 import { useTheme } from "@/providers/ThemeProvider"
 import { useModals } from "@/providers/ModalProvider"
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Home, Briefcase, Layers, Search, Mail, Sun, Moon, Monitor } from "lucide-react"
+import { engine } from "@/easter-eggs/engine"
 
 type Theme = "dark" | "light" | "auto"
 
@@ -118,12 +119,27 @@ export default function Navbar() {
   const currentTheme = theme as Theme
   const ThemeIcon = THEME_ICONS[currentTheme]
 
+  const localeClicksRef = useRef<number[]>([])
+  const themeClicksRef = useRef<number[]>([])
+
+  const trackRapidClicks = useCallback((ref: React.RefObject<number[]>, eggId: string, threshold: number) => {
+    const now = Date.now()
+    const recent = [...(ref.current || []), now].filter((t) => now - t < 4000)
+    ref.current = recent
+    if (recent.length >= threshold) {
+      engine.discover(eggId)
+      ref.current = []
+    }
+  }, [])
+
   const cycleTheme = () => {
     setTheme(THEME_CYCLE[currentTheme])
+    trackRapidClicks(themeClicksRef, "egg-105", 6)
   }
 
   const toggleLocale = () => {
     setLocale(locale === "es" ? "en" : "es" as Locale)
+    trackRapidClicks(localeClicksRef, "egg-104", 5)
   }
 
   return (
