@@ -47,7 +47,7 @@ const eggs: EasterEgg[] = [
   { id: "egg-51", name: "Susurro Verde", category: "hover", hint: "El icono de WhatsApp tiene algo que decir" },
   { id: "egg-53", name: "Resplandor Teal", category: "hover", hint: "El hover prolongado ilumina de teal" },
   { id: "egg-54", name: "Atraccion Magnetica", category: "hover", hint: "Algunos elementos siguen tu cursor" },
-  { id: "egg-55", name: "Viajero del Tiempo", category: "hover", hint: "Los anos de experiencia esconden historias" },
+  { id: "egg-55", name: "Viajero del Tiempo", category: "hover", hint: "Los años de experiencia esconden historias" },
 
   { id: "egg-56", name: "Pagina Secreta", category: "hidden", hint: "Existe una URL que no esta en el menu" },
   { id: "egg-57", name: "Creditos Finales", category: "hidden", hint: "Como en las peliculas, hay creditos ocultos" },

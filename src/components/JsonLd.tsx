@@ -32,7 +32,7 @@ export default function JsonLd() {
       "SEO",
     ],
     description:
-      "Full Stack Developer con +6 anos de experiencia. Especializado en React, Next.js, Node.js, TypeScript e inteligencia artificial. Capaz de crear productos digitales completos de forma autonoma -- desde la arquitectura del backend hasta el diseno de interfaces, pasando por infraestructura cloud y estrategia de marketing digital. Un profesional multidisciplinario que reemplaza equipos de +10 personas.",
+      "Full Stack Developer con +6 años de experiencia. Especializado en React, Next.js, Node.js, TypeScript e inteligencia artificial. Capaz de crear productos digitales completos de forma autonoma -- desde la arquitectura del backend hasta el diseno de interfaces, pasando por infraestructura cloud y estrategia de marketing digital. Un profesional multidisciplinario que reemplaza equipos de +10 personas.",
   }
 
   const websiteSchema = {

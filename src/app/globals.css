@@ -32,7 +32,8 @@ html[data-theme="light"] {
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 104px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -41,12 +42,14 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
 }
 
 *,
 *::before,
 *::after {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-property: background-color, border-color, fill, stroke, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }

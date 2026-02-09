@@ -156,17 +156,22 @@ export default function MemoryGame({ onComplete }: MemoryGameProps) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex items-center justify-between w-full max-w-[360px]">
-        <span className="text-sm text-text-secondary">
-          Intentos: <span className="text-text-primary tabular-nums">{attempts}</span>
+    <div className="flex flex-col items-center gap-3 w-full px-4">
+      <div className="flex items-center justify-between w-full max-w-[400px]">
+        <span className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
+          Memory
         </span>
-        <span className="text-sm text-text-secondary">
-          Tiempo: <span className="text-text-primary tabular-nums">{formatTime(elapsed)}</span>
-        </span>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-text-secondary">
+            Intentos: <span className="text-accent font-semibold tabular-nums">{attempts}</span>
+          </span>
+          <span className="text-sm text-text-secondary tabular-nums">
+            {formatTime(elapsed)}
+          </span>
+        </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-2.5 w-full max-w-[360px]">
+      <div className="grid grid-cols-4 gap-3 w-full max-w-[400px]">
         {cards.map((card) => (
           <button
             key={card.id}
@@ -212,7 +217,7 @@ export default function MemoryGame({ onComplete }: MemoryGameProps) {
       </div>
 
       {completed && (
-        <div className="flex flex-col items-center gap-3 mt-2 p-5 bg-surface-raised border border-surface-border rounded-xl w-full max-w-[360px]">
+        <div className="flex flex-col items-center gap-3 mt-2 p-5 bg-surface-raised border border-surface-border rounded-xl w-full max-w-[400px]">
           <p className="text-accent font-semibold text-lg">Completado</p>
           <p className="text-text-secondary text-sm">
             {attempts} intentos en {formatTime(elapsed)}

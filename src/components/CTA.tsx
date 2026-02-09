@@ -9,7 +9,7 @@ export default function CTA() {
   const { t } = useLocale()
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-10 px-4">
       <motion.div
         className="max-w-[640px] mx-auto text-center"
         initial={{ opacity: 0, y: 20 }}

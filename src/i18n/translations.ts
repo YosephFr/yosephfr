@@ -210,7 +210,7 @@ export const translations = {
       subtitle: "Algunas cosas que no aparecen en el CV.",
       facts: [
         { title: "Cafe antes que codigo", description: "Ningun proyecto arranca sin una taza de cafe. Es parte del proceso creativo, no solo un habito." },
-        { title: "Formacion mixta", description: "Estudie electronica, me forme en Platzi y perfeccione todo en la trinchera. Anos de desarrollo profesional y proyectos reales son el mejor diploma que tengo." },
+        { title: "Formacion mixta", description: "Estudie electronica, me forme en Platzi y perfeccione todo en la trinchera. Años de desarrollo profesional y proyectos reales son el mejor diploma que tengo." },
         { title: "Obsesion por la velocidad", description: "Si un sitio tarda mas de 3 segundos en cargar, ya perdi interes. Aplico el mismo estandar a todo lo que construyo." },
         { title: "Fanatico del dark mode", description: "Toda herramienta, editor y app que uso esta en modo oscuro. Los ojos agradecen despues de 12 horas de pantalla." },
         { title: "De Venezuela a Argentina", description: "Naci en Venezuela y vivo en Buenos Aires. El cambio de pais me enseno a adaptarme rapido a cualquier contexto." },

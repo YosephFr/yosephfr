@@ -9,7 +9,7 @@ export default function Hero() {
   const { t } = useLocale()
 
   return (
-    <section id="inicio" className="pt-28 pb-8 px-4">
+    <section id="inicio" className="pt-28 pb-4 px-4">
       <div className="max-w-[640px] mx-auto">
         <motion.div
           className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10"
@@ -17,23 +17,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <div className="flex items-center justify-between mb-8">
-            <div
-              className="flex items-center gap-2 text-text-secondary"
-              data-egg-click="logo"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
-              <span className="text-sm tracking-[-0.2px]">{t.hero.role}</span>
-            </div>
-            <div
-              className="flex items-center gap-2 bg-accent-soft rounded-full px-4 py-1.5"
-              data-egg-click="disponible"
-            >
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-xs font-medium text-accent uppercase tracking-wider">
-                {t.hero.available}
-              </span>
-            </div>
+          <div
+            className="flex items-center gap-2 text-text-secondary mb-8"
+            data-egg-click="logo"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
+            <span className="text-sm tracking-[-0.2px]">{t.hero.role}</span>
           </div>
 
           <div className="flex items-center gap-4 mb-4">
@@ -43,7 +32,7 @@ export default function Hero() {
               </div>
             </div>
             <h1
-              className="text-[28px] md:text-[32px] font-bold tracking-[-0.03em] leading-[1.2]"
+              className="text-[28px] md:text-[32px] font-bold tracking-[-0.03em] leading-[1.2] text-text-primary"
               style={{ fontFamily: "var(--font-heading)" }}
               data-egg-click="name"
             >

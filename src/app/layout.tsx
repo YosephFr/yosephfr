@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Yoseph Franco",
   },
   description:
-    "Full Stack Developer especializado en React, Next.js, Node.js, TypeScript e inteligencia artificial. Creo productos digitales completos, desde landing pages de alto rendimiento hasta sistemas complejos con IA. +6 anos de experiencia liderando proyectos en Latinoamerica y Espana.",
+    "Full Stack Developer especializado en React, Next.js, Node.js, TypeScript e inteligencia artificial. Creo productos digitales completos, desde landing pages de alto rendimiento hasta sistemas complejos con IA. +6 años de experiencia liderando proyectos en Latinoamerica y Espana.",
   keywords: [
     "Full Stack Developer",
     "React Developer",

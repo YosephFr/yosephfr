@@ -46,6 +46,12 @@ function useActiveSection(pathname: string) {
           ratioMap.current[entry.target.id] = entry.intersectionRatio
         }
 
+        const scrollY = window.scrollY
+        if (scrollY < 100) {
+          setActive("inicio")
+          return
+        }
+
         let maxId: string | null = null
         let maxRatio = 0
 

@@ -40,6 +40,8 @@ export default function SnakeGame() {
   const [score, setScore] = useState(0)
   const [gameOver, setGameOver] = useState(false)
   const [started, setStarted] = useState(false)
+  const [highScore, setHighScore] = useState(0)
+  const [gameKey, setGameKey] = useState(0)
 
   const stateRef = useRef({
     snake: [{ x: 10, y: 10 }] as Position[],
@@ -48,6 +50,7 @@ export default function SnakeGame() {
     nextDirection: { x: 1, y: 0 },
     score: 0,
     gameOver: false,
+    started: false,
     lastTime: 0,
   })
 
@@ -60,11 +63,25 @@ export default function SnakeGame() {
       nextDirection: { x: 1, y: 0 },
       score: 0,
       gameOver: false,
+      started: true,
       lastTime: 0,
     }
     setScore(0)
     setGameOver(false)
     setStarted(true)
+    setGameKey((k) => k + 1)
+  }, [])
+
+  const handleStart = useCallback(() => {
+    stateRef.current.started = true
+    setStarted(true)
+  }, [])
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("yc-snake-high")
+      if (saved) setHighScore(parseInt(saved, 10))
+    } catch {}
   }, [])
 
   const [isTouchDevice, setIsTouchDevice] = useState(false)
@@ -73,20 +90,14 @@ export default function SnakeGame() {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0)
   }, [])
 
-  const changeDirection = useCallback(
-    (newDir: { x: number; y: number }) => {
-      const state = stateRef.current
-      const isOpposite =
-        newDir.x === -state.direction.x && newDir.y === -state.direction.y
-      if (!isOpposite) {
-        state.nextDirection = newDir
-      }
-      if (!started && !state.gameOver) {
-        setStarted(true)
-      }
-    },
-    [started]
-  )
+  const changeDirection = useCallback((newDir: { x: number; y: number }) => {
+    const state = stateRef.current
+    const isOpposite =
+      newDir.x === -state.direction.x && newDir.y === -state.direction.y
+    if (!isOpposite) {
+      state.nextDirection = newDir
+    }
+  }, [])
 
   const draw = useCallback((ctx: CanvasRenderingContext2D) => {
     const { snake, food } = stateRef.current
@@ -168,12 +179,15 @@ export default function SnakeGame() {
       if (!newDir) return
 
       e.preventDefault()
+      if (!state.started && !state.gameOver) {
+        handleStart()
+      }
       changeDirection(newDir)
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [resetGame, changeDirection])
+  }, [resetGame, changeDirection, handleStart])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -188,6 +202,12 @@ export default function SnakeGame() {
 
       if (state.gameOver) {
         draw(ctx)
+        return
+      }
+
+      if (!state.started) {
+        draw(ctx)
+        animationId = requestAnimationFrame(gameLoop)
         return
       }
 
@@ -216,6 +236,12 @@ export default function SnakeGame() {
         if (hitWall || hitSelf) {
           state.gameOver = true
           setGameOver(true)
+          if (state.score > highScore) {
+            setHighScore(state.score)
+            try {
+              localStorage.setItem("yc-snake-high", String(state.score))
+            } catch {}
+          }
           draw(ctx)
           return
         }
@@ -238,15 +264,24 @@ export default function SnakeGame() {
 
     animationId = requestAnimationFrame(gameLoop)
     return () => cancelAnimationFrame(animationId)
-  }, [draw, started])
+  }, [draw, started, highScore, gameKey])
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full px-4">
+    <div className="flex flex-col items-center gap-3 w-full px-4">
       <div className="flex items-center justify-between w-full max-w-[400px]">
-        <span className="text-sm text-text-secondary">Puntuacion</span>
-        <span className="text-lg font-semibold text-accent tabular-nums">
-          {score}
+        <span className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
+          Snake
         </span>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-text-secondary">
+            Puntuacion: <span className="text-accent font-semibold tabular-nums">{score}</span>
+          </span>
+          {highScore > 0 && (
+            <span className="text-xs text-text-muted tabular-nums">
+              Max: {highScore}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="relative rounded-xl overflow-hidden border border-surface-border w-full max-w-[400px]">
@@ -259,12 +294,11 @@ export default function SnakeGame() {
 
         {!started && !gameOver && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface/80 backdrop-blur-sm">
-            <p className="text-text-primary font-medium text-lg">Snake</p>
-            <p className="text-text-muted text-sm mt-2 mb-4">
+            <p className="text-text-muted text-sm mb-4">
               {isTouchDevice ? "Controla con las flechas" : "Usa las flechas o WASD"}
             </p>
             <button
-              onClick={() => setStarted(true)}
+              onClick={handleStart}
               className="px-6 py-3 rounded-xl bg-accent text-surface font-medium hover:bg-accent-hover active:bg-accent-hover transition-colors"
             >
               Jugar
@@ -289,11 +323,12 @@ export default function SnakeGame() {
       </div>
 
       {isTouchDevice && (
-        <div className="grid grid-cols-3 gap-2 w-[180px] mt-4">
+        <div className="grid grid-cols-3 gap-2 w-[180px]">
           <div />
           <button
             onTouchStart={(e) => {
               e.preventDefault()
+              if (!started && !gameOver) handleStart()
               changeDirection({ x: 0, y: -1 })
             }}
             className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
@@ -304,6 +339,7 @@ export default function SnakeGame() {
           <button
             onTouchStart={(e) => {
               e.preventDefault()
+              if (!started && !gameOver) handleStart()
               changeDirection({ x: -1, y: 0 })
             }}
             className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
@@ -314,6 +350,7 @@ export default function SnakeGame() {
           <button
             onTouchStart={(e) => {
               e.preventDefault()
+              if (!started && !gameOver) handleStart()
               changeDirection({ x: 1, y: 0 })
             }}
             className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
@@ -324,6 +361,7 @@ export default function SnakeGame() {
           <button
             onTouchStart={(e) => {
               e.preventDefault()
+              if (!started && !gameOver) handleStart()
               changeDirection({ x: 0, y: 1 })
             }}
             className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"

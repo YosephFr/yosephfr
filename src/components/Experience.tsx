@@ -10,12 +10,17 @@ export default function Experience() {
   const { t } = useLocale()
 
   return (
-    <section id="experiencia" className="py-8 px-4 scroll-mt-28">
+    <section id="experiencia" className="px-4">
       <div className="max-w-[640px] mx-auto">
-        <div className="flex items-center gap-2 text-text-secondary mb-6">
+        <motion.div
+          className="flex items-center gap-2 text-text-secondary mb-4"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
           <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
           <span className="text-sm tracking-[-0.2px]">{t.experience.label}</span>
-        </div>
+        </motion.div>
 
         <motion.div
           className="flex flex-col gap-3"

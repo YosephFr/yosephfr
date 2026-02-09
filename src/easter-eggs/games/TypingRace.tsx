@@ -19,17 +19,30 @@ const PHRASES = [
   "Menos dependencias significa mejor rendimiento y seguridad",
 ]
 
-function pickRandomPhrase(): string {
-  return PHRASES[Math.floor(Math.random() * PHRASES.length)]
+const TOTAL_ROUNDS = 5
+
+interface RoundResult {
+  wpm: number
+  accuracy: number
+  phrase: string
+}
+
+function pickUniquePhrases(count: number): string[] {
+  const shuffled = [...PHRASES].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count)
 }
 
 export default function TypingRace({ onComplete }: TypingRaceProps) {
-  const [phrase] = useState(() => pickRandomPhrase())
+  const [phrases] = useState(() => pickUniquePhrases(TOTAL_ROUNDS))
+  const [currentRound, setCurrentRound] = useState(0)
   const [typed, setTyped] = useState("")
   const [startTime, setStartTime] = useState<number | null>(null)
-  const [wpm, setWpm] = useState<number | null>(null)
-  const [finished, setFinished] = useState(false)
+  const [liveWpm, setLiveWpm] = useState<number | null>(null)
+  const [results, setResults] = useState<RoundResult[]>([])
+  const [gameFinished, setGameFinished] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const phrase = phrases[currentRound]
 
   const calculateWpm = useCallback(
     (typedLength: number, start: number) => {
@@ -41,9 +54,41 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
     [phrase]
   )
 
+  const calculateAccuracy = useCallback(
+    (typedText: string) => {
+      if (typedText.length === 0) return 100
+      const correct = typedText
+        .split("")
+        .filter((char, i) => char === phrase[i]).length
+      return Math.round((correct / typedText.length) * 100)
+    },
+    [phrase]
+  )
+
+  const advanceRound = useCallback(
+    (finalWpm: number) => {
+      const accuracy = calculateAccuracy(phrase)
+      const roundResult: RoundResult = { wpm: finalWpm, accuracy, phrase }
+      const updatedResults = [...results, roundResult]
+      setResults(updatedResults)
+
+      if (currentRound + 1 >= TOTAL_ROUNDS) {
+        setGameFinished(true)
+        onComplete?.()
+      } else {
+        setCurrentRound((prev) => prev + 1)
+        setTyped("")
+        setStartTime(null)
+        setLiveWpm(null)
+        setTimeout(() => inputRef.current?.focus(), 50)
+      }
+    },
+    [results, currentRound, phrase, calculateAccuracy, onComplete]
+  )
+
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (finished) return
+      if (gameFinished) return
 
       const value = e.target.value
 
@@ -59,28 +104,28 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
 
       if (value === phrase) {
         const finalWpm = calculateWpm(phrase.length, currentStart)
-        setWpm(finalWpm)
-        setFinished(true)
-        onComplete?.()
+        advanceRound(finalWpm)
       }
     },
-    [finished, startTime, phrase, calculateWpm, onComplete]
+    [gameFinished, startTime, phrase, calculateWpm, advanceRound]
   )
 
   useEffect(() => {
-    if (!finished && startTime) {
+    if (!gameFinished && startTime) {
       const interval = setInterval(() => {
-        setWpm(calculateWpm(typed.length, startTime))
+        setLiveWpm(calculateWpm(typed.length, startTime))
       }, 500)
       return () => clearInterval(interval)
     }
-  }, [startTime, typed.length, finished, calculateWpm])
+  }, [startTime, typed.length, gameFinished, calculateWpm])
 
   const handleRestart = () => {
+    setCurrentRound(0)
     setTyped("")
     setStartTime(null)
-    setWpm(null)
-    setFinished(false)
+    setLiveWpm(null)
+    setResults([])
+    setGameFinished(false)
     inputRef.current?.focus()
   }
 
@@ -109,27 +154,91 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
     })
   }
 
-  const correctChars = typed
-    .split("")
-    .filter((char, i) => char === phrase[i]).length
-  const accuracy =
-    typed.length > 0 ? Math.round((correctChars / typed.length) * 100) : 100
+  const currentAccuracy = calculateAccuracy(typed)
+
+  const avgWpm =
+    results.length > 0
+      ? Math.round(results.reduce((sum, r) => sum + r.wpm, 0) / results.length)
+      : 0
+
+  const avgAccuracy =
+    results.length > 0
+      ? Math.round(results.reduce((sum, r) => sum + r.accuracy, 0) / results.length)
+      : 0
+
+  if (gameFinished) {
+    return (
+      <div className="flex flex-col items-center gap-5 w-full max-w-[480px]">
+        <div className="flex flex-col items-center gap-3 p-6 bg-surface-raised border border-surface-border rounded-xl w-full">
+          <p className="text-accent font-semibold text-lg">Resultados</p>
+          <div className="flex items-center gap-8">
+            <div className="text-center">
+              <p className="text-text-primary text-3xl font-bold tabular-nums">
+                {avgWpm}
+              </p>
+              <p className="text-text-muted text-xs">WPM promedio</p>
+            </div>
+            <div className="w-px h-10 bg-surface-border" />
+            <div className="text-center">
+              <p className="text-text-primary text-3xl font-bold tabular-nums">
+                {avgAccuracy}%
+              </p>
+              <p className="text-text-muted text-xs">Precision promedio</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2 w-full">
+          {results.map((result, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between px-4 py-2.5 bg-surface-raised border border-surface-border rounded-lg"
+            >
+              <span className="text-xs text-text-muted">
+                Ronda {index + 1}
+              </span>
+              <div className="flex items-center gap-4">
+                <span className="text-xs text-text-secondary tabular-nums">
+                  {result.wpm} WPM
+                </span>
+                <span className="text-xs text-text-secondary tabular-nums">
+                  {result.accuracy}%
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={handleRestart}
+          className="px-5 py-2.5 bg-accent text-surface text-sm font-medium rounded-full hover:bg-accent-hover transition-colors"
+        >
+          Intentar de nuevo
+        </button>
+      </div>
+    )
+  }
 
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-4 w-full">
       <div className="flex items-center justify-between w-full max-w-[480px]">
-        <span className="text-sm text-text-secondary">
-          WPM:{" "}
-          <span className="text-text-primary font-semibold tabular-nums">
-            {wpm !== null ? wpm : "--"}
-          </span>
+        <span className="text-xs text-text-muted">
+          Ronda {currentRound + 1}/{TOTAL_ROUNDS}
         </span>
-        <span className="text-sm text-text-secondary">
-          Precision:{" "}
-          <span className="text-text-primary font-semibold tabular-nums">
-            {accuracy}%
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-text-secondary">
+            WPM:{" "}
+            <span className="text-text-primary font-semibold tabular-nums">
+              {liveWpm !== null ? liveWpm : "--"}
+            </span>
           </span>
-        </span>
+          <span className="text-sm text-text-secondary">
+            Precision:{" "}
+            <span className="text-text-primary font-semibold tabular-nums">
+              {currentAccuracy}%
+            </span>
+          </span>
+        </div>
       </div>
 
       <div
@@ -146,7 +255,7 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
         type="text"
         value={typed}
         onChange={handleInput}
-        disabled={finished}
+        disabled={gameFinished}
         className="sr-only"
         autoComplete="off"
         autoCorrect="off"
@@ -154,37 +263,10 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
         spellCheck={false}
       />
 
-      {!startTime && !finished && (
+      {!startTime && !gameFinished && (
         <p className="text-text-muted text-sm">
           Haz clic arriba y empieza a escribir
         </p>
-      )}
-
-      {finished && (
-        <div className="flex flex-col items-center gap-3 p-5 bg-surface-raised border border-surface-border rounded-xl w-full max-w-[480px]">
-          <p className="text-accent font-semibold text-lg">Completado</p>
-          <div className="flex items-center gap-6">
-            <div className="text-center">
-              <p className="text-text-primary text-2xl font-bold tabular-nums">
-                {wpm}
-              </p>
-              <p className="text-text-muted text-xs">WPM</p>
-            </div>
-            <div className="w-px h-8 bg-surface-border" />
-            <div className="text-center">
-              <p className="text-text-primary text-2xl font-bold tabular-nums">
-                {accuracy}%
-              </p>
-              <p className="text-text-muted text-xs">Precision</p>
-            </div>
-          </div>
-          <button
-            onClick={handleRestart}
-            className="mt-1 px-5 py-2 bg-accent text-surface text-sm font-medium rounded-full hover:bg-accent-hover transition-colors"
-          >
-            Intentar de nuevo
-          </button>
-        </div>
       )}
     </div>
   )

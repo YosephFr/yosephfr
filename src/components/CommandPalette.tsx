@@ -238,7 +238,13 @@ export default function CommandPalette() {
     if (commandPaletteOpen) {
       setQuery("")
       setSelectedIndex(0)
+      document.body.style.overflow = "hidden"
       setTimeout(() => inputRef.current?.focus(), 0)
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
     }
   }, [commandPaletteOpen])
 

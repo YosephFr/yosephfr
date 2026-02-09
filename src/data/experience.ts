@@ -16,7 +16,7 @@ export const EXPERIENCE: ExperienceRole[] = [
     slug: "automatizacion-ia-hernandez",
     title: "Automatizacion con IA & Desarrollo Full Stack",
     company: "Soc. Profesionales de Peluqueria Hernandez",
-    period: "2024 - Presente",
+    period: "2025 - act",
     badge: "Full Stack",
     shortDescription:
       "Desarrollo de sistemas de automatizacion con inteligencia artificial, plataforma web con React y Next.js, academia online, y sistema de reservas integrado.",
