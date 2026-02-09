@@ -1,8 +1,9 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, useCallback, useRef, type ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, useLayoutEffect, useCallback, type ReactNode } from "react"
 import { useEasterEggs } from "@/hooks/useEasterEggs"
-import AchievementToast from "@/components/AchievementToast"
+import { engine } from "@/easter-eggs/engine"
+import AchievementToastStack, { type ToastData } from "@/components/AchievementToast"
 import useKeyboardTriggers from "@/easter-eggs/triggers/useKeyboardTriggers"
 import useClickTriggers from "@/easter-eggs/triggers/useClickTriggers"
 import useScrollTriggers from "@/easter-eggs/triggers/useScrollTriggers"
@@ -43,38 +44,30 @@ function EasterEggTriggers() {
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const easterEggs = useEasterEggs()
-  const [latestDiscovery, setLatestDiscovery] = useState<string | null>(null)
-  const prevDiscoveries = useRef<string[]>(easterEggs.discoveries)
+  const [activeToasts, setActiveToasts] = useState<ToastData[]>([])
 
-  useEffect(() => {
-    const current = easterEggs.discoveries
-    const prev = prevDiscoveries.current
+  useLayoutEffect(() => {
+    const unsubscribe = engine.onDiscover((egg) => {
+      setActiveToasts((existing) => [
+        ...existing,
+        { id: egg.id, eggName: egg.name, category: egg.category, hint: egg.hint },
+      ])
+    })
+    return unsubscribe
+  }, [])
 
-    if (current.length > prev.length) {
-      const newEggId = current.find((id) => !prev.includes(id))
-      if (newEggId) {
-        setLatestDiscovery(newEggId)
-      }
-    }
-
-    prevDiscoveries.current = current
-  }, [easterEggs.discoveries])
-
-  const handleCloseToast = useCallback(() => setLatestDiscovery(null), [])
-
-  const latestEgg = latestDiscovery ? easterEggs.getEgg(latestDiscovery) : undefined
+  const handleDismiss = useCallback((toastId: string) => {
+    setActiveToasts((prev) => prev.filter((t) => t.id !== toastId))
+  }, [])
 
   return (
     <EasterEggContext.Provider value={easterEggs}>
       <EasterEggTriggers />
       {children}
-      <AchievementToast
-        eggName={latestEgg?.name ?? ""}
-        category={latestEgg?.category ?? ""}
-        hint={latestEgg?.hint ?? ""}
+      <AchievementToastStack
+        toasts={activeToasts}
         progress={easterEggs.progress}
-        visible={!!latestEgg}
-        onClose={handleCloseToast}
+        onDismiss={handleDismiss}
       />
     </EasterEggContext.Provider>
   )

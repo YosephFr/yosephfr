@@ -4,17 +4,12 @@ import { useEffect, useRef, useCallback } from "react"
 import { engine } from "../engine"
 
 const IDLE_TIMEOUT = 30000
-const SHAKE_THRESHOLD = 5
-const SHAKE_WINDOW = 500
 const CORNER_THRESHOLD = 20
 const THROTTLE_MS = 50
 
 export default function useMouseTriggers(): void {
   const discoveredRef = useRef<Set<string>>(new Set())
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const directionChangesRef = useRef<number[]>([])
-  const lastDirectionRef = useRef<{ x: number; y: number } | null>(null)
-  const lastPositionRef = useRef<{ x: number; y: number } | null>(null)
   const lastThrottleRef = useRef(0)
 
   const markDiscovered = useCallback((eggId: string) => {
@@ -42,39 +37,6 @@ export default function useMouseTriggers(): void {
       lastThrottleRef.current = now
 
       resetIdleTimer()
-
-      const currentPosition = { x: e.clientX, y: e.clientY }
-
-      if (lastPositionRef.current) {
-        const dx = currentPosition.x - lastPositionRef.current.x
-        const dy = currentPosition.y - lastPositionRef.current.y
-        const currentDirection = {
-          x: dx > 0 ? 1 : dx < 0 ? -1 : 0,
-          y: dy > 0 ? 1 : dy < 0 ? -1 : 0,
-        }
-
-        if (
-          lastDirectionRef.current &&
-          (currentDirection.x !== lastDirectionRef.current.x ||
-            currentDirection.y !== lastDirectionRef.current.y)
-        ) {
-          directionChangesRef.current = [
-            ...directionChangesRef.current.filter(
-              (t) => now - t < SHAKE_WINDOW
-            ),
-            now,
-          ]
-
-          if (directionChangesRef.current.length >= SHAKE_THRESHOLD) {
-            markDiscovered("egg-52")
-            directionChangesRef.current = []
-          }
-        }
-
-        lastDirectionRef.current = currentDirection
-      }
-
-      lastPositionRef.current = currentPosition
 
       const windowWidth = window.innerWidth
       const windowHeight = window.innerHeight

@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter, Outfit } from "next/font/google"
 import { LocaleProvider } from "@/i18n"
 import { ThemeProvider } from "@/providers/ThemeProvider"
@@ -94,6 +94,13 @@ export const metadata: Metadata = {
   },
   verification: {},
   category: "technology",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({

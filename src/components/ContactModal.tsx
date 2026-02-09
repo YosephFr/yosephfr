@@ -103,7 +103,7 @@ export default function ContactModal() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Tu nombre"
               required
-              className="bg-surface-overlay border border-surface-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
+              className="bg-surface-overlay border border-surface-border rounded-xl px-4 py-3 text-base text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors"
             />
           </div>
 
@@ -117,7 +117,7 @@ export default function ContactModal() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="tu@email.com"
               required
-              className={`bg-surface-overlay rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors border ${emailBorderClass}`}
+              className={`bg-surface-overlay rounded-xl px-4 py-3 text-base text-text-primary placeholder:text-text-muted focus:outline-none transition-colors border ${emailBorderClass}`}
             />
           </div>
 
@@ -130,7 +130,7 @@ export default function ContactModal() {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Contame sobre tu proyecto..."
               required
-              className="bg-surface-overlay border border-surface-border rounded-xl px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors min-h-[120px] resize-none"
+              className="bg-surface-overlay border border-surface-border rounded-xl px-4 py-3 text-base text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors min-h-[120px] resize-none"
             />
           </div>
 

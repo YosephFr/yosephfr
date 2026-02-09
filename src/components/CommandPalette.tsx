@@ -90,7 +90,7 @@ export default function CommandPalette() {
         icon: <Gamepad2 size={16} strokeWidth={1.5} />,
         title: "Snake",
         section: t.search.games,
-        keywords: GAME_KEYWORDS,
+        keywords: [...GAME_KEYWORDS, "snake", "serpiente", "vibora"],
         action: () => navigate("/snake"),
       },
       {
@@ -98,7 +98,7 @@ export default function CommandPalette() {
         icon: <Gamepad2 size={16} strokeWidth={1.5} />,
         title: "Memory",
         section: t.search.games,
-        keywords: GAME_KEYWORDS,
+        keywords: [...GAME_KEYWORDS, "memory", "memoria", "pares"],
         action: () => navigate("/memory"),
       },
       {
@@ -106,7 +106,7 @@ export default function CommandPalette() {
         icon: <Gamepad2 size={16} strokeWidth={1.5} />,
         title: "Typing Race",
         section: t.search.games,
-        keywords: GAME_KEYWORDS,
+        keywords: [...GAME_KEYWORDS, "typing", "tipeo", "escritura", "velocidad"],
         action: () => navigate("/typing"),
       },
       {
@@ -114,7 +114,7 @@ export default function CommandPalette() {
         icon: <Gamepad2 size={16} strokeWidth={1.5} />,
         title: "Click Challenge",
         section: t.search.games,
-        keywords: GAME_KEYWORDS,
+        keywords: [...GAME_KEYWORDS, "click", "clic", "clics", "rapido"],
         action: () => navigate("/click"),
       },
     ],
@@ -189,28 +189,21 @@ export default function CommandPalette() {
         section: t.search.actions,
         action: () => navigate("/credits"),
       },
+      ...gameItems,
     ],
-    [navigate, handleContact, t]
+    [navigate, handleContact, t, gameItems]
   )
 
-  const queryMatchesGameKeyword = useMemo(() => {
-    if (!query.trim()) return false
-    const lower = query.toLowerCase()
-    return GAME_KEYWORDS.some((kw) => lower.includes(kw))
-  }, [query])
-
   const filtered = useMemo(() => {
-    const base = queryMatchesGameKeyword ? [...allItems, ...gameItems] : allItems
-
-    if (!query.trim()) return base
+    if (!query.trim()) return allItems
     const lower = query.toLowerCase()
-    return base.filter(
+    return allItems.filter(
       (item) =>
         item.title.toLowerCase().includes(lower) ||
         (item.subtitle && item.subtitle.toLowerCase().includes(lower)) ||
         (item.keywords && item.keywords.some((kw) => lower.includes(kw)))
     )
-  }, [query, allItems, gameItems, queryMatchesGameKeyword])
+  }, [query, allItems])
 
   const { sections, orderedSections, flatItems } = useMemo(() => {
     const sectionMap = filtered.reduce<Record<string, CommandItem[]>>((acc, item) => {
@@ -314,7 +307,7 @@ export default function CommandPalette() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.search.placeholder}
-            className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-muted outline-none"
+            className="flex-1 bg-transparent text-text-primary text-base placeholder:text-text-muted outline-none"
           />
           <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium text-text-muted bg-surface-overlay border border-surface-border rounded">
             ESC

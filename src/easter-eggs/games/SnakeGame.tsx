@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useEffect, useState, useCallback } from "react"
+import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
 import { getSurfaceRaised, getSurfaceOverlay, getAccent, getAccentHover } from "@/easter-eggs/themeColors"
 
 function parseHexToRgb(hex: string): { r: number; g: number; b: number } {
@@ -65,6 +66,27 @@ export default function SnakeGame() {
     setGameOver(false)
     setStarted(true)
   }, [])
+
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0)
+  }, [])
+
+  const changeDirection = useCallback(
+    (newDir: { x: number; y: number }) => {
+      const state = stateRef.current
+      const isOpposite =
+        newDir.x === -state.direction.x && newDir.y === -state.direction.y
+      if (!isOpposite) {
+        state.nextDirection = newDir
+      }
+      if (!started && !state.gameOver) {
+        setStarted(true)
+      }
+    },
+    [started]
+  )
 
   const draw = useCallback((ctx: CanvasRenderingContext2D) => {
     const { snake, food } = stateRef.current
@@ -146,21 +168,12 @@ export default function SnakeGame() {
       if (!newDir) return
 
       e.preventDefault()
-
-      const isOpposite =
-        newDir.x === -state.direction.x && newDir.y === -state.direction.y
-      if (!isOpposite) {
-        state.nextDirection = newDir
-      }
-
-      if (!started && !state.gameOver) {
-        setStarted(true)
-      }
+      changeDirection(newDir)
     }
 
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [resetGame, started])
+  }, [resetGame, changeDirection])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -228,7 +241,7 @@ export default function SnakeGame() {
   }, [draw, started])
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 w-full px-4">
       <div className="flex items-center justify-between w-full max-w-[400px]">
         <span className="text-sm text-text-secondary">Puntuacion</span>
         <span className="text-lg font-semibold text-accent tabular-nums">
@@ -236,20 +249,26 @@ export default function SnakeGame() {
         </span>
       </div>
 
-      <div className="relative rounded-xl overflow-hidden border border-surface-border">
+      <div className="relative rounded-xl overflow-hidden border border-surface-border w-full max-w-[400px]">
         <canvas
           ref={canvasRef}
           width={CANVAS_SIZE}
           height={CANVAS_SIZE}
-          className="block"
+          className="block w-full h-auto"
         />
 
         {!started && !gameOver && (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface/80 backdrop-blur-sm">
             <p className="text-text-primary font-medium text-lg">Snake</p>
-            <p className="text-text-muted text-sm mt-2">
-              Usa las flechas o WASD para mover
+            <p className="text-text-muted text-sm mt-2 mb-4">
+              {isTouchDevice ? "Controla con las flechas" : "Usa las flechas o WASD"}
             </p>
+            <button
+              onClick={() => setStarted(true)}
+              className="px-6 py-3 rounded-xl bg-accent text-surface font-medium hover:bg-accent-hover active:bg-accent-hover transition-colors"
+            >
+              Jugar
+            </button>
           </div>
         )}
 
@@ -259,12 +278,61 @@ export default function SnakeGame() {
             <p className="text-accent text-2xl font-bold mt-2 tabular-nums">
               {score}
             </p>
-            <p className="text-text-muted text-sm mt-4">
-              Pulsa Space para reiniciar
-            </p>
+            <button
+              onClick={resetGame}
+              className="mt-4 px-6 py-3 rounded-xl bg-accent text-surface font-medium hover:bg-accent-hover active:bg-accent-hover transition-colors"
+            >
+              Reiniciar
+            </button>
           </div>
         )}
       </div>
+
+      {isTouchDevice && (
+        <div className="grid grid-cols-3 gap-2 w-[180px] mt-4">
+          <div />
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault()
+              changeDirection({ x: 0, y: -1 })
+            }}
+            className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
+          >
+            <ChevronUp size={24} strokeWidth={2} />
+          </button>
+          <div />
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault()
+              changeDirection({ x: -1, y: 0 })
+            }}
+            className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
+          >
+            <ChevronLeft size={24} strokeWidth={2} />
+          </button>
+          <div />
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault()
+              changeDirection({ x: 1, y: 0 })
+            }}
+            className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
+          >
+            <ChevronRight size={24} strokeWidth={2} />
+          </button>
+          <div />
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault()
+              changeDirection({ x: 0, y: 1 })
+            }}
+            className="flex items-center justify-center w-14 h-14 rounded-xl bg-surface-overlay/80 border border-surface-border text-text-secondary active:bg-accent active:text-surface"
+          >
+            <ChevronDown size={24} strokeWidth={2} />
+          </button>
+          <div />
+        </div>
+      )}
     </div>
   )
 }

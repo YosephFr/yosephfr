@@ -10,7 +10,7 @@ export default function Skills() {
   const { t } = useLocale()
 
   return (
-    <section id="skills" className="py-8 px-4">
+    <section id="skills" className="py-8 px-4 scroll-mt-28">
       <div className="max-w-[640px] mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2 text-text-secondary">

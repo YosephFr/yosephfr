@@ -121,7 +121,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[640px] px-4">
+    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-[640px] px-4">
       <div className="flex items-center justify-between bg-surface-raised/80 backdrop-blur-xl border border-surface-border rounded-full px-3 py-2">
         <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
           {NAV_ITEMS.map(({ key, icon: Icon, href }) => (

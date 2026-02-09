@@ -4,9 +4,25 @@ import { useEffect, useRef, useCallback } from "react"
 import { engine } from "../engine"
 
 const FIRST_VISIT_KEY = "yc-first-visit"
+const VISIT_CHECKED_KEY = "yc-visit-checked"
 const CHECK_INTERVAL = 60000
 const FIVE_MINUTES = 5
 const TEN_MINUTES = 10
+
+function checkVisitOnce(): string | null {
+  try {
+    if (sessionStorage.getItem(VISIT_CHECKED_KEY)) return null
+    sessionStorage.setItem(VISIT_CHECKED_KEY, "1")
+    const isFirstVisit = !localStorage.getItem(FIRST_VISIT_KEY)
+    if (isFirstVisit) {
+      localStorage.setItem(FIRST_VISIT_KEY, new Date().toISOString())
+      return "egg-40"
+    }
+    return "egg-41"
+  } catch {
+    return null
+  }
+}
 
 export default function useTimeTriggers(): void {
   const discoveredRef = useRef<Set<string>>(new Set(engine.getDiscoveries()))
@@ -20,12 +36,9 @@ export default function useTimeTriggers(): void {
   }, [])
 
   useEffect(() => {
-    const firstVisit = localStorage.getItem(FIRST_VISIT_KEY)
-    if (!firstVisit) {
-      localStorage.setItem(FIRST_VISIT_KEY, new Date().toISOString())
-      markDiscovered("egg-40")
-    } else {
-      markDiscovered("egg-41")
+    const visitEgg = checkVisitOnce()
+    if (visitEgg) {
+      markDiscovered(visitEgg)
     }
 
     const now = new Date()
@@ -92,5 +105,5 @@ export default function useTimeTriggers(): void {
     return () => {
       clearInterval(interval)
     }
-  }, [markDiscovered])
+  }, [])
 }

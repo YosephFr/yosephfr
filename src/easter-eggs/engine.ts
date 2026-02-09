@@ -16,6 +16,7 @@ export interface EasterEgg {
 }
 
 type Listener = () => void
+type DiscoveryCallback = (egg: EasterEgg) => void
 
 const STORAGE_KEY = "yc-eggs"
 
@@ -23,11 +24,13 @@ export class EasterEggEngine {
   private discovered: Set<string>
   private eggs: Map<string, EasterEgg>
   private listeners: Set<Listener>
+  private discoveryCallbacks: Set<DiscoveryCallback>
 
   constructor() {
     this.discovered = this.load()
     this.eggs = new Map()
     this.listeners = new Set()
+    this.discoveryCallbacks = new Set()
   }
 
   register(egg: EasterEgg): void {
@@ -40,10 +43,19 @@ export class EasterEggEngine {
 
   discover(id: string): boolean {
     if (this.discovered.has(id) || !this.eggs.has(id)) return false
+    const egg = this.eggs.get(id)!
     this.discovered = new Set([...this.discovered, id])
     this.persist()
     this.listeners.forEach((listener) => listener())
+    this.discoveryCallbacks.forEach((cb) => cb(egg))
     return true
+  }
+
+  onDiscover(callback: DiscoveryCallback): () => void {
+    this.discoveryCallbacks.add(callback)
+    return () => {
+      this.discoveryCallbacks.delete(callback)
+    }
   }
 
   isDiscovered(id: string): boolean {
