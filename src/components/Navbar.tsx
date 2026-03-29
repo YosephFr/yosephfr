@@ -6,7 +6,7 @@ import { useModals } from "@/providers/ModalProvider"
 import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Briefcase, Layers, Search, Mail, Sun, Moon, Monitor } from "lucide-react"
+import { Home, Briefcase, Layers, Search, Mail, Sun, Moon, Monitor, Github, Linkedin } from "lucide-react"
 import { engine } from "@/easter-eggs/engine"
 
 type Theme = "dark" | "light" | "auto"
@@ -176,6 +176,26 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-1.5 shrink-0">
+          <a
+            href="https://github.com/yosephfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-surface-overlay border border-surface-border text-text-secondary hover:text-text-primary transition-all duration-200"
+          >
+            <Github size={14} strokeWidth={1.5} />
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/yosephfr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-surface-overlay border border-surface-border text-text-secondary hover:text-text-primary transition-all duration-200"
+          >
+            <Linkedin size={14} strokeWidth={1.5} />
+          </a>
+
           <button
             onClick={toggleLocale}
             aria-label={t.nav.home}

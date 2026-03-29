@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
+import { useTheme } from "@/providers/ThemeProvider"
 
 interface AvatarProps {
   size?: number
@@ -10,6 +11,9 @@ interface AvatarProps {
 
 export default function Avatar({ size = 100, className = "" }: AvatarProps) {
   const [hasError, setHasError] = useState(false)
+  const { resolved } = useTheme()
+
+  const src = resolved === "dark" ? "/avatar-light.png" : "/avatar-dark.png"
 
   if (hasError) {
     return (
@@ -24,7 +28,8 @@ export default function Avatar({ size = 100, className = "" }: AvatarProps) {
 
   return (
     <Image
-      src="/avatar.jpg"
+      key={src}
+      src={src}
       alt="Yoseph Franco"
       width={size}
       height={size}

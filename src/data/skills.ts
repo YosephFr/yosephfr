@@ -17,6 +17,48 @@ export interface SkillCategory {
 
 export const SKILLS: SkillCategory[] = [
   {
+    slug: "ai-agents",
+    icon: "AI",
+    name: "AI & Agents",
+    color: "bg-emerald-500/15 text-emerald-400",
+    description: "OpenAI API, Anthropic Claude, Function Calling, MCP",
+    badge: "AI",
+    items: [
+      { name: "OpenAI API", level: "expert" },
+      { name: "Anthropic Claude", level: "expert" },
+      { name: "Function Calling", level: "expert" },
+      { name: "MCP (Model Context Protocol)", level: "expert" },
+      { name: "Agentic AI", level: "expert" },
+      { name: "Multi-Agent Orchestration", level: "advanced" },
+      { name: "Prompt Engineering", level: "expert" },
+      { name: "LLM Integration", level: "expert" },
+    ],
+    tools: ["OpenAI Platform", "Anthropic Console", "LangChain", "Playwright", "tmux", "Docker"],
+    fullDescription:
+      "Agentes inteligentes con modelos de lenguaje, function calling, MCP y orquestacion multi-agente. Diseno sistemas autonomos que gestionan procesos de negocio reales en produccion: ventas conversacionales, soporte, reservas, clasificacion de consultas y operaciones internas.",
+  },
+  {
+    slug: "backend-apis",
+    icon: "{}",
+    name: "Backend & APIs",
+    color: "bg-orange-500/15 text-orange-400",
+    description: "Node.js, TypeScript, Fastify, PostgreSQL, Redis",
+    badge: "BACKEND",
+    items: [
+      { name: "Node.js", level: "expert" },
+      { name: "TypeScript", level: "expert" },
+      { name: "Fastify", level: "expert" },
+      { name: "Express", level: "expert" },
+      { name: "REST APIs", level: "expert" },
+      { name: "PostgreSQL", level: "expert" },
+      { name: "Redis", level: "advanced" },
+      { name: "BullMQ", level: "advanced" },
+    ],
+    tools: ["Docker", "PM2", "Drizzle", "Postman", "Insomnia", "GitHub Actions"],
+    fullDescription:
+      "APIs de alto rendimiento con Node.js y TypeScript. Integracion de modelos de lenguaje con function tools, colas de mensajes, bases de datos y servicios externos. Arquitectura orientada a microservicios con Docker para entornos escalables y reproducibles.",
+  },
+  {
     slug: "frontend-react",
     icon: "<>",
     name: "Frontend & React",
@@ -38,48 +80,6 @@ export const SKILLS: SkillCategory[] = [
       "Arquitectura de interfaces modernas con React y Next.js. Componentes reutilizables, state management avanzado, Server Components, y animaciones fluidas con Framer Motion. TypeScript como estandar en cada proyecto para garantizar calidad y mantenibilidad del codigo.",
   },
   {
-    slug: "backend-apis",
-    icon: "{}",
-    name: "Backend & APIs",
-    color: "bg-orange-500/15 text-orange-400",
-    description: "Node.js, Express, REST APIs, OpenAI API",
-    badge: "BACKEND",
-    items: [
-      { name: "Node.js", level: "expert" },
-      { name: "Express", level: "expert" },
-      { name: "REST APIs", level: "expert" },
-      { name: "OpenAI API", level: "advanced" },
-      { name: "PHP", level: "expert" },
-      { name: "MySQL", level: "advanced" },
-      { name: "PostgreSQL", level: "advanced" },
-      { name: "Redis", level: "advanced" },
-    ],
-    tools: ["Postman", "Docker", "PM2", "Prisma", "Supabase", "Insomnia"],
-    fullDescription:
-      "Desarrollo de APIs robustas con Node.js y Express. Integracion de servicios de IA con OpenAI API, bases de datos relacionales y cache con Redis. Arquitectura orientada a microservicios y despliegue con Docker para entornos reproducibles.",
-  },
-  {
-    slug: "wordpress-cms",
-    icon: "W",
-    name: "WordPress & CMS",
-    color: "bg-sky-500/15 text-sky-400",
-    description: "Temas, plugins, hooks, ACF, WooCommerce",
-    badge: "CMS",
-    items: [
-      { name: "WordPress Core", level: "expert" },
-      { name: "Elementor Pro", level: "expert" },
-      { name: "WooCommerce", level: "advanced" },
-      { name: "ACF Pro", level: "expert" },
-      { name: "Custom Themes", level: "expert" },
-      { name: "Plugin Development", level: "advanced" },
-      { name: "WordPress Hooks", level: "expert" },
-      { name: "Custom Post Types", level: "expert" },
-    ],
-    tools: ["WordPress", "Elementor", "WooCommerce", "ACF", "WPML", "Yoast SEO", "WP Rocket"],
-    fullDescription:
-      "Dominio completo del ecosistema WordPress. Desde instalaciones vanilla hasta arquitecturas complejas con custom post types, taxonomias avanzadas, y plugins desarrollados a medida. Elementor para landing pages de alto impacto con widgets personalizados y templates reutilizables.",
-  },
-  {
     slug: "cloud-devops",
     icon: "A",
     name: "Cloud & DevOps",
@@ -99,27 +99,6 @@ export const SKILLS: SkillCategory[] = [
     tools: ["AWS Console", "Docker", "SSH", "WHM", "Let's Encrypt", "Certbot", "GitHub Actions"],
     fullDescription:
       "Infraestructura cloud que escala. AWS para produccion, Docker para entornos reproducibles, CI/CD con GitHub Actions, y administracion de servidores Linux. Migraciones sin downtime, backups automatizados y certificados SSL renovados automaticamente.",
-  },
-  {
-    slug: "marketing-analytics",
-    icon: "M",
-    name: "Marketing & Analytics",
-    color: "bg-violet-500/15 text-violet-400",
-    description: "Google Ads, Meta Ads, GTM, Analytics",
-    badge: "GROWTH",
-    items: [
-      { name: "Google Ads", level: "advanced" },
-      { name: "Facebook / Meta Ads", level: "advanced" },
-      { name: "Google Tag Manager", level: "expert" },
-      { name: "Google Analytics 4", level: "expert" },
-      { name: "Hotjar / Clarity", level: "advanced" },
-      { name: "Adobe Photoshop", level: "intermediate" },
-      { name: "Adobe Illustrator", level: "intermediate" },
-      { name: "UX/UI Basics", level: "intermediate" },
-    ],
-    tools: ["Google Ads", "Meta Business Suite", "GTM", "GA4", "Hotjar", "Clarity", "Photoshop"],
-    fullDescription:
-      "El marketing digital conecta productos con usuarios reales. Campañas paid con tracking granular usando GTM, analisis de comportamiento con mapas de calor y grabaciones de sesion, y optimizacion continua de cada paso del embudo para maximizar conversiones. Cada decision respaldada por datos.",
   },
 ]
 

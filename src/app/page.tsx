@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero"
 import Experience from "@/components/Experience"
 import Skills from "@/components/Skills"
+import Education from "@/components/Education"
 import CTA from "@/components/CTA"
 import Footer from "@/components/Footer"
 
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <Experience />
       <Skills />
+      <Education />
       <CTA />
       <Footer />
     </main>

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Github, Linkedin } from "lucide-react"
 import { useLocale } from "@/i18n"
 
 export default function Footer() {
@@ -9,7 +10,25 @@ export default function Footer() {
   return (
     <footer className="py-8 px-4 border-t border-surface-border">
       <div className="max-w-[640px] mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-8">
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <a
+            href="https://github.com/yosephfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"
+            aria-label="GitHub"
+          >
+            <Github size={18} strokeWidth={1.5} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/yosephfr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} strokeWidth={1.5} />
+          </a>
           <a
             href="mailto:contacto@yosephfr.com"
             className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"

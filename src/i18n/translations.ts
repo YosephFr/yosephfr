@@ -14,125 +14,91 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "Full Stack Developer",
+      role: "AI Engineer",
       available: "Disponible",
       name: "Yoseph Franco",
       tagline:
-        "Diseño y construyo productos digitales de principio a fin. Frontend, backend, infraestructura cloud e inteligencia artificial — con la versatilidad de cubrir todo el ciclo de desarrollo y la obsesion por los detalles que marca la diferencia.",
+        "Construyo agentes inteligentes y plataformas con IA que operan en producción real. Desde arquitecturas multi-agente y flujos conversacionales autónomos hasta plataformas SaaS multi-tenant con motor de IA integrado. Todo el ciclo: diseño, desarrollo, infraestructura y deploy.",
       cta: "Trabajemos juntos",
       copyEmail: "Copiar Email",
       copied: "Copiado",
-      location: "Ciudad Autonoma de Buenos Aires, Argentina",
+      location: "Ciudad Autónoma de Buenos Aires, Argentina",
       experience: "+6 años de experiencia",
     },
     experience: {
       label: "Experiencia",
       roles: {
-        "desarrollo-web-wordpress": {
-          title: "Desarrollo Web & WordPress",
+        "ai-engineering": {
+          title: "AI Engineering & Multi-Agent Systems",
+          badge: "AI Engineer",
+          shortDescription:
+            "Agentes conversacionales autónomos con function calling, plataforma SaaS multi-tenant con motor de workflows de IA, sistema de reservas inteligente e integraciones bidireccionales con CRMs. 2,800+ contactos y 40,000+ mensajes procesados en producción.",
+          fullDescription:
+            "Diseño y construcción de sistemas de IA en producción real. Agentes conversacionales autónomos con function calling que gestionan ventas, soporte y operaciones vía WhatsApp y web. Plataforma SaaS multi-tenant con motor de workflows de IA, ecommerce SSR, sistema de reservas inteligente e integraciones bidireccionales con CRMs. Orquestación de múltiples agentes especializados que ejecutan tareas de forma autónoma conectados a APIs internas y externas.",
+          achievements: [
+            "Agentes conversacionales autónomos con OpenAI API y function calling para ciclo completo de interacción",
+            "Plataforma SaaS multi-tenant whitelabel con motor de workflows de IA, ecommerce SSR y panel admin",
+            "Sistema de reservas con agente inteligente conectado a API externa de gestión de citas",
+            "Integración bidireccional con GoHighLevel (CRM) vía OAuth multi-tenant y webhooks",
+            "Integración con Meta e Instagram para mensajería automatizada",
+            "Orquestación multi-agente: agentes especializados que programan, deployean y ejecutan tareas de forma autónoma",
+            "Arquitectura de microservicios con Docker (6 containers: engine, frontend, ecommerce, booking, PostgreSQL, Redis)",
+            "Academia online y sitio institucional con React, Next.js y SSR",
+          ],
+        },
+        "fullstack-cloud": {
+          title: "Full Stack Development & Cloud Infrastructure",
           badge: "Freelance",
           shortDescription:
-            "Mas de 50 sitios web construidos desde cero. Landing pages que cargan en menos de 2 segundos y convierten hasta 3x mas que el promedio de la industria.",
+            "+50 proyectos web para clientes en Latinoamérica y Europa. Desarrollo full stack, infraestructura cloud en AWS con 30+ servidores, y estrategias de conversión basadas en datos.",
           fullDescription:
-            "Lidere el desarrollo integral de proyectos web para clientes en toda Latinoamerica y España. Cada sitio fue diseñado con un enfoque obsesivo en rendimiento, conversion y escalabilidad. Desde landing pages de una sola pagina hasta ecosistemas WordPress complejos con WooCommerce, ACF y plugins custom. Mi trabajo no es solo construir sitios — es construir maquinas de conversion que generan resultados reales para el negocio.",
+            "+50 proyectos web para clientes en Latinoamérica y Europa. Desarrollo full stack, infraestructura cloud en AWS con 30+ servidores y zero downtime en migraciones, y estrategias de conversión basadas en datos. Esta etapa construyó la base de ingeniería y la visión de negocio que hoy aplico a sistemas con IA.",
           achievements: [
-            "Construi +50 sitios web desde cero, cada uno optimizado para conversion y rendimiento",
-            "Landing pages con tiempos de carga inferiores a 2 segundos en mobile",
-            "Consistentemente logre scores de PageSpeed Insights superiores al 90% en mobile y desktop",
-            "Desarrolle temas WordPress completamente personalizados usando PHP, hooks y custom post types",
-            "Cree una libreria de plantillas Elementor reutilizables que redujo tiempos de desarrollo en un 40%",
-            "Implementacion rigurosa de mobile-first y responsive design en todos los proyectos",
-            "Optimizacion SEO tecnica que posiciono multiples clientes en el top 3 de resultados de Google",
-            "Tecnicas avanzadas de rendimiento: WebP, lazy load, compresion de imagenes, minificacion de assets",
-          ],
-        },
-        "infraestructura-devops": {
-          title: "Infraestructura & DevOps",
-          badge: "Infraestructura",
-          shortDescription:
-            "Arquitectura cloud en AWS para proyectos de alto trafico. 30+ servidores administrados con zero downtime en migraciones criticas.",
-          fullDescription:
-            "Gestion completa de infraestructura cloud y servidores dedicados. Desde la configuracion inicial hasta el monitoreo continuo, asegurando que cada proyecto tenga la base tecnica solida que necesita para escalar. Migraciones complejas sin caidas, backups automatizados, y politicas de seguridad que protegen tanto los datos como la reputacion del cliente.",
-          achievements: [
-            "Configuracion y administracion de entornos de produccion en AWS (EC2, RDS, CloudFront, Route53)",
-            "Gestion de +30 cuentas activas en servidores Linux con WHM/cPanel",
-            "Implementacion de politicas de escalabilidad automatica y balanceo de carga",
-            "Migraciones de sitios web criticos con zero downtime — sin perdida de datos",
-            "Sistema de backups automaticos con rotacion y verificacion de integridad",
-            "Certificados SSL automatizados y renovacion sin intervencion manual",
-            "Monitoreo 24/7 de recursos del servidor con alertas proactivas",
-          ],
-        },
-        "marketing-digital-cro": {
-          title: "Marketing Digital & CRO",
-          badge: "Marketing",
-          shortDescription:
-            "Estrategias de adquisicion y conversion que generan resultados medibles. Tracking avanzado, automatizacion de leads y optimizacion continua de embudos.",
-          fullDescription:
-            "No basta con construir un sitio bonito — tiene que generar negocio. Me especialice en el ciclo completo: desde la adquisicion de trafico con campañas paid, pasando por el tracking granular de cada interaccion, hasta la optimizacion obsesiva de cada paso del embudo. Cada decision basada en datos, cada cambio medido, cada resultado documentado.",
-          achievements: [
-            "Diseño y ejecucion de campañas en Google Ads y Facebook Ads con ROAS positivo",
-            "Configuracion avanzada de tracking con Google Tag Manager y eventos custom",
-            "Implementacion de Google Analytics 4 con funnels y conversion tracking",
-            "Mapas de calor y grabaciones de sesion con Microsoft Clarity y Hotjar",
-            "Automatizacion de flujos de leads via Webhooks hacia CRMs (Zoho, HubSpot)",
-            "A/B testing continuo en landing pages para maximizar conversion",
-            "Reportes ejecutivos mensuales con metricas de impacto real",
-          ],
-        },
-        "automatizacion-ia-hernandez": {
-          title: "Automatizacion con IA & Desarrollo Full Stack",
-          badge: "Full Stack",
-          shortDescription:
-            "Desarrollo de sistemas de automatizacion con inteligencia artificial, plataforma web con React y Next.js, academia online, y sistema de reservas integrado.",
-          fullDescription:
-            "Liderazgo tecnico completo en la transformacion digital de la organizacion. Diseñe e implemente un ecosistema de herramientas interconectadas: desde chatbots inteligentes con OpenAI API hasta una plataforma de cursos online y un sistema de reservas en tiempo real. Cada solucion fue construida con stack moderno — React, Next.js, Node.js, Express — priorizando escalabilidad y experiencia de usuario.",
-          achievements: [
-            "Diseño y desarrollo de sistema de automatizacion inteligente con Node.js y OpenAI API para atencion al cliente",
-            "Sitio web institucional construido con React y Next.js, con SSR y optimizacion SEO",
-            "Plataforma de academia online con sistema de cursos, progreso de estudiantes y contenido multimedia",
-            "Sistema de reservas en tiempo real integrado con calendario y notificaciones automaticas",
-            "Automatizacion de procesos internos que redujo carga operativa significativamente",
-            "Integracion de multiples APIs de IA para generacion de contenido y atencion personalizada",
-            "Arquitectura de microservicios con Docker para despliegue independiente de cada modulo",
+            "Landing pages con carga sub-2 segundos y PageSpeed >90 en mobile y desktop",
+            "Infraestructura AWS completa: EC2, RDS, CloudFront, Route53, zero downtime en migraciones",
+            "30+ servidores Linux administrados con backups automáticos y monitoreo continuo",
+            "Temas WordPress custom con PHP, hooks avanzados y WooCommerce",
+            "Tracking avanzado con GTM, GA4, mapas de calor (Clarity, Hotjar)",
+            "Campañas Google Ads y Meta Ads con optimización continua de embudos",
+            "SEO técnico que posicionó clientes en top 3 de Google",
           ],
         },
       },
     },
     skills: {
-      label: "Stack Tecnico",
+      label: "Stack Técnico",
       categories: {
+        "ai-agents": {
+          name: "AI & Agents",
+          description: "OpenAI API, Anthropic Claude, Function Calling, MCP",
+          badge: "AI",
+        },
+        "backend-apis": {
+          name: "Backend & APIs",
+          description: "Node.js, TypeScript, Fastify, PostgreSQL, Redis",
+          badge: "BACKEND",
+        },
         "frontend-react": {
           name: "Frontend & React",
           description: "React, Next.js, TypeScript, Tailwind CSS",
           badge: "FRONTEND",
-        },
-        "backend-apis": {
-          name: "Backend & APIs",
-          description: "Node.js, Express, OpenAI API, bases de datos",
-          badge: "BACKEND",
-        },
-        "wordpress-cms": {
-          name: "WordPress & CMS",
-          description: "Temas, plugins, hooks, ACF, WooCommerce",
-          badge: "CMS",
         },
         "cloud-devops": {
           name: "Cloud & DevOps",
           description: "AWS, Docker, Linux, CI/CD",
           badge: "INFRASTRUCTURE",
         },
-        "marketing-analytics": {
-          name: "Marketing & Analytics",
-          description: "Google Ads, Meta Ads, GTM, Analytics",
-          badge: "GROWTH",
-        },
       },
     },
+    education: {
+      label: "Educación",
+      certLabel: "Licencias y certificaciones",
+      showCredential: "Mostrar credencial",
+    },
     cta: {
-      title: "Hagamos algo increible.",
+      title: "Hagamos algo increíble.",
       subtitle:
-        "Tu proximo proyecto merece rendimiento, diseño y estrategia. Hablemos de como puedo ayudarte a crecer.",
+        "Sistemas inteligentes que operan solos. Hablemos de cómo la IA puede transformar tu operación.",
     },
     contact: {
       title: "Trabajemos juntos",
@@ -145,7 +111,7 @@ export const translations = {
       send: "Enviar mensaje",
       sent: "Enviado",
       subtitle:
-        "Tu proximo proyecto merece rendimiento, diseño y estrategia. Hablemos de como puedo ayudarte a crecer.",
+        "Sistemas inteligentes que operan solos. Hablemos de cómo la IA puede transformar tu operación.",
     },
     footer: {
       label: "Contacto",
@@ -154,7 +120,7 @@ export const translations = {
     search: {
       placeholder: "Buscar o navegar...",
       noResults: "No se encontraron resultados",
-      navigation: "Navegacion",
+      navigation: "Navegación",
       actions: "Acciones",
       games: "Juegos",
       openContact: "Abrir formulario de contacto",
@@ -172,7 +138,7 @@ export const translations = {
     detail: {
       back: "Volver",
       achievements: "Logros",
-      metrics: "Metricas",
+      metrics: "Métricas",
       tools: "Herramientas",
       skillsLabel: "Habilidades",
       expert: "Experto",
@@ -180,25 +146,30 @@ export const translations = {
       intermediate: "Intermedio",
       sitesBuilt: "Sitios construidos",
       avgPageSpeed: "PageSpeed promedio",
-      loadReduction: "Reduccion de carga",
-      countriesServed: "Paises atendidos",
+      loadReduction: "Reducción de carga",
+      countriesServed: "Países atendidos",
       serversManaged: "Servidores gestionados",
       avgUptime: "Uptime promedio",
       successMigrations: "Migraciones exitosas",
       activeAccounts: "Cuentas activas",
       campaignsManaged: "Campañas gestionadas",
-      conversionImprovement: "Mejora en conversion",
+      conversionImprovement: "Mejora en conversión",
       automatedLeads: "Leads automatizados",
       avgROAS: "ROAS promedio",
       systemsAutomated: "Sistemas automatizados",
-      operationalReduction: "Reduccion operativa",
+      operationalReduction: "Reducción operativa",
       platformsDeveloped: "Plataformas desarrolladas",
       aiIntegrations: "Integraciones IA",
       keyAchievements: "Logros clave",
+      contactsManaged: "Contactos gestionados por IA",
+      messagesProcessed: "Mensajes procesados",
+      brandsSaaS: "Marcas en producción SaaS",
+      activeDomains: "Dominios activos",
+      awsServers: "Servidores AWS",
     },
     notFound: {
-      title: "Pagina no encontrada",
-      description: "La pagina que buscas no existe o fue movida.",
+      title: "Página no encontrada",
+      description: "La página que buscas no existe o fue movida.",
       backHome: "Volver al inicio",
     },
     lang: {
@@ -209,20 +180,20 @@ export const translations = {
       title: "Datos curiosos",
       subtitle: "Algunas cosas que no aparecen en el CV.",
       facts: [
-        { title: "Cafe antes que codigo", description: "Ningun proyecto arranca sin una taza de cafe. Es parte del proceso creativo, no solo un habito." },
-        { title: "Formacion mixta", description: "Estudie electronica, me forme en Platzi y perfeccione todo en la trinchera. Años de desarrollo profesional y proyectos reales son el mejor diploma que tengo." },
-        { title: "Obsesion por la velocidad", description: "Si un sitio tarda mas de 3 segundos en cargar, ya perdi interes. Aplico el mismo estandar a todo lo que construyo." },
-        { title: "Fanatico del dark mode", description: "Toda herramienta, editor y app que uso esta en modo oscuro. Los ojos agradecen despues de 12 horas de pantalla." },
-        { title: "De Venezuela a Argentina", description: "Naci en Venezuela y vivo en Buenos Aires. El cambio de pais me enseno a adaptarme rapido a cualquier contexto." },
+        { title: "Café antes que código", description: "Ningún proyecto arranca sin una taza de café. Es parte del proceso creativo, no solo un hábito." },
+        { title: "Formación mixta", description: "Estudié electrónica, me formé en Platzi y perfeccioné todo en la trinchera. Años de desarrollo profesional y proyectos reales son el mejor diploma que tengo." },
+        { title: "Obsesión por la velocidad", description: "Si un sitio tarda más de 3 segundos en cargar, ya perdí interés. Aplico el mismo estándar a todo lo que construyo." },
+        { title: "Fanático del dark mode", description: "Toda herramienta, editor y app que uso está en modo oscuro. Los ojos agradecen después de 12 horas de pantalla." },
+        { title: "De Venezuela a Argentina", description: "Nací en Venezuela y vivo en Buenos Aires. El cambio de país me enseñó a adaptarme rápido a cualquier contexto." },
       ],
     },
     credits: {
-      title: "Creditos",
+      title: "Créditos",
       designedBy: "Diseñado y desarrollado por",
       builtWith: "Construido con",
-      typography: "Tipografia",
+      typography: "Tipografía",
       deployedOn: "Desplegado en",
-      footer: "Hecho con dedicacion desde CABA, Argentina",
+      footer: "Hecho con dedicación desde CABA, Argentina",
     },
     achievements: {
       title: "Logros",
@@ -257,87 +228,53 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "Full Stack Developer",
+      role: "AI Engineer",
       available: "Available",
       name: "Yoseph Franco",
       tagline:
-        "I design and build digital products end to end. Frontend, backend, cloud infrastructure, and artificial intelligence — with the versatility to cover the entire development cycle and an obsession for the details that make the difference.",
+        "I build intelligent agents and AI-powered platforms that operate in real production. From multi-agent architectures and autonomous conversational flows to multi-tenant SaaS platforms with integrated AI engines. The full cycle: design, development, infrastructure, and deploy.",
       cta: "Let's work together",
       copyEmail: "Copy Email",
       copied: "Copied",
-      location: "Ciudad Autonoma de Buenos Aires, Argentina",
+      location: "Ciudad Autónoma de Buenos Aires, Argentina",
       experience: "+6 years of experience",
     },
     experience: {
       label: "Experience",
       roles: {
-        "desarrollo-web-wordpress": {
-          title: "Web Development & WordPress",
+        "ai-engineering": {
+          title: "AI Engineering & Multi-Agent Systems",
+          badge: "AI Engineer",
+          shortDescription:
+            "Autonomous conversational agents with function calling, multi-tenant SaaS platform with AI workflow engine, intelligent booking system, and bidirectional CRM integrations. 2,800+ contacts and 40,000+ messages processed in production.",
+          fullDescription:
+            "Design and construction of AI systems in real production. Autonomous conversational agents with function calling that manage sales, support, and operations via WhatsApp and web. Multi-tenant SaaS platform with AI workflow engine, SSR ecommerce, intelligent booking system, and bidirectional CRM integrations. Orchestration of multiple specialized agents that autonomously execute tasks connected to internal and external APIs.",
+          achievements: [
+            "Autonomous conversational agents with OpenAI API and function calling for complete interaction cycle",
+            "Multi-tenant whitelabel SaaS platform with AI workflow engine, SSR ecommerce, and admin panel",
+            "Booking system with intelligent agent connected to external appointment management API",
+            "Bidirectional GoHighLevel (CRM) integration via multi-tenant OAuth and webhooks",
+            "Meta and Instagram integration for automated messaging",
+            "Multi-agent orchestration: specialized agents that program, deploy, and execute tasks autonomously",
+            "Microservices architecture with Docker (6 containers: engine, frontend, ecommerce, booking, PostgreSQL, Redis)",
+            "Online academy and institutional site with React, Next.js, and SSR",
+          ],
+        },
+        "fullstack-cloud": {
+          title: "Full Stack Development & Cloud Infrastructure",
           badge: "Freelance",
           shortDescription:
-            "50+ websites built from scratch. Landing pages that load in under 2 seconds and convert up to 3x more than industry average.",
+            "50+ web projects for clients in Latin America and Europe. Full stack development, AWS cloud infrastructure with 30+ servers, and data-driven conversion strategies.",
           fullDescription:
-            "Led end-to-end web development projects for clients across Latin America and Spain. Every site was designed with an obsessive focus on performance, conversion, and scalability. From single-page landing pages to complex WordPress ecosystems with WooCommerce, ACF, and custom plugins. My work isn't just about building sites — it's about building conversion machines that deliver real business results.",
+            "50+ web projects for clients in Latin America and Europe. Full stack development, AWS cloud infrastructure with 30+ servers and zero downtime migrations, and data-driven conversion strategies. This stage built the engineering foundation and business vision I now apply to AI systems.",
           achievements: [
-            "Built 50+ websites from scratch, each optimized for conversion and performance",
-            "Landing pages with load times under 2 seconds on mobile",
-            "Consistently achieved PageSpeed Insights scores above 90% on mobile and desktop",
-            "Developed fully custom WordPress themes using PHP, hooks, and custom post types",
-            "Created a reusable Elementor template library that reduced development time by 40%",
-            "Rigorous mobile-first and responsive design implementation across all projects",
-            "Technical SEO optimization that ranked multiple clients in Google's top 3 results",
-            "Advanced performance techniques: WebP, lazy load, image compression, asset minification",
-          ],
-        },
-        "infraestructura-devops": {
-          title: "Infrastructure & DevOps",
-          badge: "Infrastructure",
-          shortDescription:
-            "Cloud architecture on AWS for high-traffic projects. 30+ servers managed with zero downtime during critical migrations.",
-          fullDescription:
-            "Complete cloud infrastructure and dedicated server management. From initial setup to continuous monitoring, ensuring every project has the solid technical foundation it needs to scale. Complex migrations without downtime, automated backups, and security policies that protect both data and client reputation.",
-          achievements: [
-            "Configuration and management of production environments on AWS (EC2, RDS, CloudFront, Route53)",
-            "Management of 30+ active accounts on Linux servers with WHM/cPanel",
-            "Implementation of auto-scaling policies and load balancing",
-            "Critical website migrations with zero downtime — no data loss",
-            "Automated backup systems with rotation and integrity verification",
-            "Automated SSL certificates with hands-free renewal",
-            "24/7 server resource monitoring with proactive alerts",
-          ],
-        },
-        "marketing-digital-cro": {
-          title: "Digital Marketing & CRO",
-          badge: "Marketing",
-          shortDescription:
-            "Acquisition and conversion strategies that deliver measurable results. Advanced tracking, lead automation, and continuous funnel optimization.",
-          fullDescription:
-            "Building a beautiful site isn't enough — it needs to generate business. I specialized in the complete cycle: from traffic acquisition with paid campaigns, through granular tracking of every interaction, to obsessive optimization of every funnel step. Every decision backed by data, every change measured, every result documented.",
-          achievements: [
-            "Designed and executed Google Ads and Facebook Ads campaigns with positive ROAS",
-            "Advanced tracking setup with Google Tag Manager and custom events",
-            "Google Analytics 4 implementation with funnels and conversion tracking",
-            "Heatmaps and session recordings with Microsoft Clarity and Hotjar",
-            "Lead flow automation via Webhooks to CRMs (Zoho, HubSpot)",
-            "Continuous A/B testing on landing pages to maximize conversion",
-            "Monthly executive reports with real impact metrics",
-          ],
-        },
-        "automatizacion-ia-hernandez": {
-          title: "AI Automation & Full Stack Development",
-          badge: "Full Stack",
-          shortDescription:
-            "AI-powered automation systems, React and Next.js web platform, online academy, and integrated booking system.",
-          fullDescription:
-            "Complete technical leadership in the organization's digital transformation. Designed and implemented an interconnected ecosystem of tools: from intelligent chatbots with OpenAI API to an online course platform and a real-time booking system. Every solution built with a modern stack — React, Next.js, Node.js, Express — prioritizing scalability and user experience.",
-          achievements: [
-            "Designed and developed intelligent automation system with Node.js and OpenAI API for customer service",
-            "Built institutional website with React and Next.js, featuring SSR and SEO optimization",
-            "Online academy platform with course system, student progress tracking, and multimedia content",
-            "Real-time booking system integrated with calendar and automatic notifications",
-            "Internal process automation that significantly reduced operational workload",
-            "Integration of multiple AI APIs for content generation and personalized assistance",
-            "Microservices architecture with Docker for independent deployment of each module",
+            "Landing pages with sub-2 second load times and PageSpeed >90 on mobile and desktop",
+            "Complete AWS infrastructure: EC2, RDS, CloudFront, Route53, zero downtime migrations",
+            "30+ Linux servers managed with automated backups and continuous monitoring",
+            "Custom WordPress themes with PHP, advanced hooks, and WooCommerce",
+            "Advanced tracking with GTM, GA4, heatmaps (Clarity, Hotjar)",
+            "Google Ads and Meta Ads campaigns with continuous funnel optimization",
+            "Technical SEO that ranked clients in Google's top 3",
           ],
         },
       },
@@ -345,37 +282,37 @@ export const translations = {
     skills: {
       label: "Tech Stack",
       categories: {
+        "ai-agents": {
+          name: "AI & Agents",
+          description: "OpenAI API, Anthropic Claude, Function Calling, MCP",
+          badge: "AI",
+        },
+        "backend-apis": {
+          name: "Backend & APIs",
+          description: "Node.js, TypeScript, Fastify, PostgreSQL, Redis",
+          badge: "BACKEND",
+        },
         "frontend-react": {
           name: "Frontend & React",
           description: "React, Next.js, TypeScript, Tailwind CSS",
           badge: "FRONTEND",
-        },
-        "backend-apis": {
-          name: "Backend & APIs",
-          description: "Node.js, Express, OpenAI API, databases",
-          badge: "BACKEND",
-        },
-        "wordpress-cms": {
-          name: "WordPress & CMS",
-          description: "Themes, plugins, hooks, ACF, WooCommerce",
-          badge: "CMS",
         },
         "cloud-devops": {
           name: "Cloud & DevOps",
           description: "AWS, Docker, Linux, CI/CD",
           badge: "INFRASTRUCTURE",
         },
-        "marketing-analytics": {
-          name: "Marketing & Analytics",
-          description: "Google Ads, Meta Ads, GTM, Analytics",
-          badge: "GROWTH",
-        },
       },
+    },
+    education: {
+      label: "Education",
+      certLabel: "Licenses & Certifications",
+      showCredential: "Show credential",
     },
     cta: {
       title: "Let's build something amazing.",
       subtitle:
-        "Your next project deserves performance, design, and strategy. Let's talk about how I can help you grow.",
+        "Intelligent systems that operate on their own. Let's talk about how AI can transform your operations.",
     },
     contact: {
       title: "Let's work together",
@@ -388,7 +325,7 @@ export const translations = {
       send: "Send message",
       sent: "Sent",
       subtitle:
-        "Your next project deserves performance, design, and strategy. Let's talk about how I can help you grow.",
+        "Intelligent systems that operate on their own. Let's talk about how AI can transform your operations.",
     },
     footer: {
       label: "Contact",
@@ -438,6 +375,11 @@ export const translations = {
       platformsDeveloped: "Platforms developed",
       aiIntegrations: "AI integrations",
       keyAchievements: "Key achievements",
+      contactsManaged: "Contacts managed by AI",
+      messagesProcessed: "Messages processed",
+      brandsSaaS: "Brands in SaaS production",
+      activeDomains: "Active domains",
+      awsServers: "AWS servers",
     },
     notFound: {
       title: "Page not found",
