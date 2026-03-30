@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Yoseph Franco | Full Stack Developer",
+    name: "Yoseph Franco | AI Engineer & Automation Expert",
     short_name: "Yoseph Franco",
     description:
-      "Full Stack Developer: React, Next.js, Node.js, TypeScript, IA. Productos digitales completos.",
+      "AI Engineer: intelligent agents, SaaS platforms, automation systems. Node.js, TypeScript, OpenAI, Anthropic, React, Docker.",
     start_url: "/",
     display: "standalone",
     background_color: "#161616",

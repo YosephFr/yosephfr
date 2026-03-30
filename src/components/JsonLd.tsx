@@ -1,8 +1,11 @@
 export default function JsonLd() {
   const personSchema = {
     "@context": "https://schema.org",
-    "@type": "Person",
+    "@type": ["Person", "ProfilePage"],
+    "@id": "https://yosephfr.com/#person",
     name: "Yoseph Franco",
+    givenName: "Yoseph",
+    familyName: "Franco",
     jobTitle: "AI Engineer",
     url: "https://yosephfr.com",
     email: "contacto@yosephfr.com",
@@ -12,41 +15,66 @@ export default function JsonLd() {
       addressLocality: "Ciudad Autonoma de Buenos Aires",
       addressCountry: "AR",
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.linkedin.com/in/yosephfr/",
+      "https://github.com/YosephFr",
+      "https://x.com/yosephfr",
+    ],
     knowsAbout: [
       "AI Engineering",
       "Agentic AI",
       "Multi-Agent Orchestration",
       "LLM Integration",
       "Function Calling",
-      "MCP",
+      "MCP (Model Context Protocol)",
       "OpenAI API",
       "Anthropic Claude API",
+      "GoHighLevel Integration",
+      "GHL Marketplace",
+      "n8n Workflow Automation",
       "SaaS Architecture",
       "Node.js",
       "TypeScript",
       "React",
       "Next.js",
+      "Fastify",
       "PostgreSQL",
       "Docker",
       "AWS",
       "Conversational AI",
       "WhatsApp Automation",
+      "AI Automation",
+      "CRM Integration",
+      "Prompt Engineering",
     ],
+    knowsLanguage: ["es", "en"],
+    nationality: {
+      "@type": "Country",
+      name: "Venezuela",
+    },
+    workLocation: {
+      "@type": "Place",
+      name: "Buenos Aires, Argentina",
+    },
     description:
-      "AI Engineer con +6 anos de experiencia full stack. Construye agentes inteligentes, plataformas SaaS multi-tenant y sistemas de automatizacion con LLMs en produccion real.",
+      "AI Engineer with +6 years of full stack experience. Builds intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production. Specialized in OpenAI, Anthropic Claude, function calling, multi-agent orchestration, n8n, and GoHighLevel integrations.",
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Platzi",
+    },
   }
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Yoseph Franco | AI Engineer",
+    "@id": "https://yosephfr.com/#website",
+    name: "Yoseph Franco | AI Engineer & Automation Expert",
     url: "https://yosephfr.com",
     description:
-      "Portfolio de Yoseph Franco. AI Engineer especializado en agentes inteligentes, plataformas SaaS con IA, Node.js, TypeScript, React y Next.js.",
+      "Portfolio of Yoseph Franco. AI Engineer specializing in intelligent agents, AI-powered SaaS platforms, automation systems, Node.js, TypeScript, React, and Next.js.",
+    inLanguage: ["es", "en"],
     author: {
-      "@type": "Person",
-      name: "Yoseph Franco",
+      "@id": "https://yosephfr.com/#person",
     },
   }
 

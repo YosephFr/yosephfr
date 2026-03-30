@@ -16,10 +16,19 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 
 User-agent: Googlebot
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 Sitemap: https://yosephfr.com/sitemap.xml

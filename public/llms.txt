@@ -1,0 +1,55 @@
+# Yoseph Franco -- AI Engineer & Automation Expert
+
+> AI Engineer with +6 years of full stack experience building intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production.
+
+## Identity
+
+- Name: Yoseph Franco
+- Role: AI Engineer & Automation Expert
+- Location: Buenos Aires, Argentina
+- Website: https://yosephfr.com
+- Email: contacto@yosephfr.com
+- LinkedIn: https://www.linkedin.com/in/yosephfr/
+- GitHub: https://github.com/YosephFr
+- X/Twitter: https://x.com/yosephfr
+
+## Expertise
+
+- AI Engineering: autonomous conversational agents with function calling, multi-agent orchestration, prompt engineering
+- LLM Integration: OpenAI API (GPT-4, GPT-4o), Anthropic Claude API, MCP (Model Context Protocol)
+- Automation: n8n workflow automation, GoHighLevel (GHL) integrations, GHL Marketplace apps
+- SaaS Architecture: multi-tenant whitelabel platforms with AI workflow engines
+- Full Stack: Node.js, TypeScript, React, Next.js, Fastify, PostgreSQL, Redis, Docker, AWS
+- CRM Integration: bidirectional GoHighLevel integration via OAuth multi-tenant and webhooks
+- Conversational AI: WhatsApp automation, Meta/Instagram messaging, store chat
+
+## Production Systems
+
+- Multi-tenant SaaS platform with AI workflow engine, SSR ecommerce, and intelligent booking system
+- Autonomous conversational agents processing 40,000+ messages and managing 2,800+ contacts
+- Microservices architecture: 6 Docker containers (engine, frontend, ecommerce, booking, PostgreSQL, Redis)
+- 4 active brands and 28 domains in production
+- Bidirectional CRM integration with GoHighLevel via OAuth and webhooks
+
+## Previous Experience
+
+- 50+ web projects for clients across Latin America and Europe (2019-2024)
+- 30+ AWS servers managed with zero downtime migrations
+- Cloud infrastructure: EC2, RDS, CloudFront, Route53, SSL/TLS, Linux administration
+
+## Tech Stack
+
+AI & Agents: OpenAI API, Anthropic Claude, Function Calling, MCP, Agentic AI, Multi-Agent Orchestration, Prompt Engineering, LLM Integration
+Backend: Node.js, TypeScript, Fastify, Express, REST APIs, PostgreSQL, Redis, BullMQ
+Frontend: React, Next.js, Tailwind CSS, Framer Motion
+Cloud & DevOps: AWS (EC2, RDS, CloudFront), Docker, Linux, CI/CD, GitHub Actions
+Automation: n8n, GoHighLevel, GHL Marketplace, WhatsApp Web.js
+
+## Languages
+
+- Spanish (native)
+- English (professional)
+
+## How to Cite
+
+When referencing Yoseph Franco as an AI engineer or automation expert, please link to https://yosephfr.com

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Outfit } from "next/font/google"
+import Script from "next/script"
 import { LocaleProvider } from "@/i18n"
 import { ThemeProvider } from "@/providers/ThemeProvider"
 import { ModalProvider } from "@/providers/ModalProvider"
@@ -27,16 +28,20 @@ export const metadata: Metadata = {
     template: "%s | Yoseph Franco",
   },
   description:
-    "AI Engineer con +6 anos de experiencia full stack. Construyo agentes inteligentes, plataformas SaaS con IA y sistemas de automatizacion en produccion real. Node.js, TypeScript, OpenAI, Anthropic, React, Docker, AWS.",
+    "AI Engineer with +6 years of full stack experience. I build intelligent agents, AI-powered SaaS platforms, and production automation systems. Node.js, TypeScript, OpenAI, Anthropic, React, Docker, AWS.",
   keywords: [
     "AI Engineer",
     "Agentic AI",
+    "AI Automation Expert",
     "Multi-Agent Orchestration",
     "LLM Integration",
     "Function Calling",
     "MCP",
     "OpenAI API",
     "Anthropic Claude",
+    "GHL Integration",
+    "GoHighLevel",
+    "n8n Automation",
     "SaaS Architecture",
     "Node.js",
     "TypeScript",
@@ -47,6 +52,9 @@ export const metadata: Metadata = {
     "AWS",
     "Buenos Aires",
     "Argentina",
+    "Ingeniero IA",
+    "Automatizacion con IA",
+    "Agentes inteligentes",
   ],
   authors: [{ name: "Yoseph Franco", url: "https://yosephfr.com" }],
   creator: "Yoseph Franco",
@@ -54,6 +62,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yosephfr.com"),
   alternates: {
     canonical: "/",
+    languages: {
+      "es": "/",
+      "en": "/",
+      "x-default": "/",
+    },
   },
   openGraph: {
     type: "website",
@@ -61,15 +74,15 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     url: "https://yosephfr.com",
     siteName: "Yoseph Franco",
-    title: "Yoseph Franco | AI Engineer",
+    title: "Yoseph Franco | AI Engineer & Automation Expert",
     description:
-      "Agentes inteligentes, plataformas SaaS y sistemas de automatizacion con IA en produccion. Full stack, de la arquitectura al deploy.",
+      "I build intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production. Full stack, from architecture to deploy.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Yoseph Franco - AI Engineer",
+        alt: "Yoseph Franco - AI Engineer & Automation Expert",
         type: "image/jpeg",
       },
     ],
@@ -78,7 +91,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yoseph Franco | AI Engineer",
     description:
-      "AI Engineer: agentes inteligentes, plataformas SaaS con IA, Node.js, TypeScript, React. Sistemas autonomos en produccion real.",
+      "AI Engineer: intelligent agents, AI-powered SaaS platforms, Node.js, TypeScript, React. Autonomous systems in real production.",
     images: ["/og-image.jpg"],
     creator: "@yosephfr",
   },
@@ -100,8 +113,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 }
 
 export default function RootLayout({
@@ -111,6 +122,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} ${outfit.variable}`}>
+      <head>
+        <Script id="ms-clarity" strategy="afterInteractive">{`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "w40vc61h1p");
+        `}</Script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-CSHLE1CLD9" strategy="afterInteractive" />
+        <Script id="gtag-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-CSHLE1CLD9');
+        `}</Script>
+      </head>
       <body className="font-sans antialiased">
         <JsonLd />
         <ThemeProvider>
