@@ -17,12 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/contacto`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/experiencia/ai-engineering`,
       lastModified: new Date(),
       changeFrequency: "weekly",

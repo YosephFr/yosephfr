@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import { useLocale } from "@/i18n"
@@ -23,13 +22,13 @@ export default function CTA() {
           {t.cta.subtitle}
         </p>
         <div className="flex items-center justify-center gap-3">
-          <Link
-            href="/contacto"
+          <a
+            href="mailto:contacto@yosephfr.com"
             className="inline-flex items-center gap-2 bg-accent text-surface text-sm font-medium px-6 py-3 rounded-full hover:bg-accent-hover transition-all duration-200"
           >
             <Mail size={16} strokeWidth={1.5} />
             {t.hero.cta}
-          </Link>
+          </a>
         </div>
       </motion.div>
     </section>

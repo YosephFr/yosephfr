@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { useLocale } from "@/i18n"
 import Avatar from "./Avatar"
@@ -45,13 +44,13 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contacto"
+            <a
+              href="mailto:contacto@yosephfr.com"
               className="inline-flex items-center gap-2 bg-accent text-surface text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent-hover transition-all duration-200"
             >
               <span className="text-base leading-none">+</span>
               {t.hero.cta}
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>
