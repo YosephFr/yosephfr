@@ -32,7 +32,7 @@ export const EXPERIENCE: ExperienceRole[] = [
       "Arquitectura de microservicios con Docker (6 containers: engine, frontend, ecommerce, booking, PostgreSQL, Redis)",
       "Academia online y sitio institucional con React, Next.js y SSR",
     ],
-    tags: ["OpenAI API", "Anthropic Claude", "Function Calling", "MCP", "Node.js", "TypeScript", "React", "Next.js", "Fastify", "Docker"],
+    tags: ["OpenAI API", "Anthropic Claude", "Function Calling", "MCP", "Node.js", "TypeScript", "React", "Next.js", "Fastify", "Docker", "n8n", "GHL", "GHL Marketplace"],
     metrics: [
       { label: "Contactos gestionados por IA", value: "2,800+" },
       { label: "Mensajes procesados", value: "40,000+" },
