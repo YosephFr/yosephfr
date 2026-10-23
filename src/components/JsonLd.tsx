@@ -6,7 +6,7 @@ export default function JsonLd() {
     name: "Yoseph Franco",
     givenName: "Yoseph",
     familyName: "Franco",
-    jobTitle: "AI Engineer",
+    jobTitle: "AI builder",
     url: "https://yosephfr.com",
     email: "contacto@yosephfr.com",
     image: "https://yosephfr.com/og-image.jpg",
@@ -57,7 +57,7 @@ export default function JsonLd() {
       name: "Buenos Aires, Argentina",
     },
     description:
-      "AI Engineer with +6 years of full stack experience. Builds intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production. Specialized in OpenAI, Anthropic Claude, function calling, multi-agent orchestration, n8n, and GoHighLevel integrations.",
+      "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.",
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "Platzi",
@@ -68,10 +68,10 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://yosephfr.com/#website",
-    name: "Yoseph Franco | AI Engineer & Automation Expert",
+    name: "Yoseph Franco",
     url: "https://yosephfr.com",
     description:
-      "Portfolio of Yoseph Franco. AI Engineer specializing in intelligent agents, AI-powered SaaS platforms, automation systems, Node.js, TypeScript, React, and Next.js.",
+      "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.",
     inLanguage: ["es", "en"],
     author: {
       "@id": "https://yosephfr.com/#person",

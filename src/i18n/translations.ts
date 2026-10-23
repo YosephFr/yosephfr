@@ -6,6 +6,7 @@ export const translations = {
       home: "Inicio",
       experience: "Experiencia",
       skills: "Skills",
+      blog: "Blog",
       search: "Buscar",
       contact: "Contacto",
       theme: "Tema",
@@ -14,11 +15,11 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "AI Engineer",
+      role: "Conversaciones con clientes",
       available: "Disponible",
       name: "Yoseph Franco",
       tagline:
-        "Construyo agentes inteligentes y plataformas con IA que operan en producción real. Desde arquitecturas multi-agente y flujos conversacionales autónomos hasta plataformas SaaS multi-tenant con motor de IA integrado. Todo el ciclo: diseño, desarrollo, infraestructura y deploy.",
+        "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.",
       cta: "Trabajemos juntos",
       copyEmail: "Copiar Email",
       copied: "Copiado",
@@ -107,11 +108,16 @@ export const translations = {
       emailLabel: "Email",
       emailPlaceholder: "tu@email.com",
       messageLabel: "Mensaje",
-      messagePlaceholder: "Contame sobre tu proyecto...",
+      messagePlaceholder: "Cuéntame sobre tu proyecto...",
       send: "Enviar mensaje",
       sent: "Enviado",
       subtitle:
         "Sistemas inteligentes que operan solos. Hablemos de cómo la IA puede transformar tu operación.",
+    },
+    blog: {
+      latest: "Notas desde producción",
+      all: "Ver el blog",
+      minutes: "min de lectura",
     },
     footer: {
       label: "Contacto",
@@ -220,6 +226,7 @@ export const translations = {
       home: "Home",
       experience: "Experience",
       skills: "Skills",
+      blog: "Blog",
       search: "Search",
       contact: "Contact",
       theme: "Theme",
@@ -228,11 +235,11 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "AI Engineer",
+      role: "Customer conversations",
       available: "Available",
       name: "Yoseph Franco",
       tagline:
-        "I build intelligent agents and AI-powered platforms that operate in real production. From multi-agent architectures and autonomous conversational flows to multi-tenant SaaS platforms with integrated AI engines. The full cycle: design, development, infrastructure, and deploy.",
+        "I build AI that talks to customers for a living. ~14k conversations a month, built and run by one person. Writing what breaks in production.",
       cta: "Let's work together",
       copyEmail: "Copy Email",
       copied: "Copied",
@@ -326,6 +333,11 @@ export const translations = {
       sent: "Sent",
       subtitle:
         "Intelligent systems that operate on their own. Let's talk about how AI can transform your operations.",
+    },
+    blog: {
+      latest: "Notes from production",
+      all: "Read the blog",
+      minutes: "min read",
     },
     footer: {
       label: "Contact",

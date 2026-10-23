@@ -4,10 +4,10 @@ export const dynamic = "force-static"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Yoseph Franco | AI Engineer & Automation Expert",
+    name: "Yoseph Franco",
     short_name: "Yoseph Franco",
     description:
-      "AI Engineer: intelligent agents, SaaS platforms, automation systems. Node.js, TypeScript, OpenAI, Anthropic, React, Docker.",
+      "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.",
     start_url: "/",
     display: "standalone",
     background_color: "#161616",

@@ -1,7 +1,6 @@
 "use client"
 
 import { Mail } from "lucide-react"
-import { motion } from "framer-motion"
 import { useLocale } from "@/i18n"
 
 export default function CTA() {
@@ -9,12 +8,7 @@ export default function CTA() {
 
   return (
     <section className="py-10 px-4">
-      <motion.div
-        className="max-w-[640px] mx-auto text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-      >
+      <div className="max-w-[640px] mx-auto text-center animate-fade-in-up">
         <h2 className="text-[32px] md:text-4xl font-semibold tracking-tight mb-4">
           {t.cta.title}
         </h2>
@@ -30,7 +24,7 @@ export default function CTA() {
             {t.hero.cta}
           </a>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

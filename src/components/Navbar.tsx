@@ -6,7 +6,7 @@ import { useModals } from "@/providers/ModalProvider"
 import { useEffect, useState, useRef, useCallback } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Briefcase, Layers, Search, Mail, Sun, Moon, Monitor, Github, Linkedin } from "lucide-react"
+import { Home, Briefcase, Layers, Search, Mail, Sun, Moon, Monitor, Github, Linkedin, NotebookPen } from "lucide-react"
 import { engine } from "@/easter-eggs/engine"
 
 type Theme = "dark" | "light" | "auto"
@@ -100,6 +100,10 @@ function isNavActive(
     return false
   }
 
+  if (key === "blog") {
+    return pathname === "/blog" || pathname.startsWith("/blog/") || pathname.startsWith("/en/blog")
+  }
+
   return false
 }
 
@@ -107,6 +111,7 @@ const NAV_ITEMS = [
   { key: "home", icon: Home, href: "/#inicio" },
   { key: "experience", icon: Briefcase, href: "/#experiencia" },
   { key: "skills", icon: Layers, href: "/#skills" },
+  { key: "blog", icon: NotebookPen, href: "/blog" },
 ]
 
 export default function Navbar() {
@@ -143,7 +148,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-[640px] px-4">
+    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-[720px] px-4">
       <div className="flex items-center justify-between bg-surface-raised/80 backdrop-blur-xl border border-surface-border rounded-full px-3 py-2">
         <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
           {NAV_ITEMS.map(({ key, icon: Icon, href }) => (
@@ -155,15 +160,20 @@ export default function Navbar() {
                   ? t.nav.home
                   : key === "experience"
                     ? t.nav.experience
-                    : t.nav.skills
+                    : key === "skills"
+                      ? t.nav.skills
+                      : t.nav.blog
               }
-              className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 shrink-0 ${
+              className={`flex items-center justify-center rounded-full transition-all duration-200 shrink-0 ${
+                key === "blog" ? "h-10 px-3 gap-1.5 text-sm font-medium" : "w-10 h-10"
+              } ${
                 isNavActive(key, pathname, activeSection)
                   ? "text-text-primary bg-surface-overlay"
                   : "text-text-secondary hover:text-text-primary hover:bg-surface-overlay"
               }`}
             >
               <Icon size={18} strokeWidth={1.5} />
+              {key === "blog" ? <span>{t.nav.blog}</span> : null}
             </Link>
           ))}
           <button

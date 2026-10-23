@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { useLocale } from "@/i18n"
 import Avatar from "./Avatar"
 
@@ -10,16 +9,8 @@ export default function Hero() {
   return (
     <section id="inicio" className="pt-28 pb-4 px-4">
       <div className="max-w-[640px] mx-auto">
-        <motion.div
-          className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <div
-            className="flex items-center gap-2 text-text-secondary mb-8"
-            data-egg-click="logo"
-          >
+        <div className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10 animate-fade-in-up">
+          <div className="flex items-center gap-2 text-text-secondary mb-8" data-egg-click="logo">
             <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
             <span className="text-sm tracking-[-0.2px]">{t.hero.role}</span>
           </div>
@@ -52,7 +43,7 @@ export default function Hero() {
               {t.hero.cta}
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

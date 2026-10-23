@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { ExternalLink } from "lucide-react"
-import { motion } from "framer-motion"
 import { SKILLS } from "@/data/skills"
 import { useLocale } from "@/i18n"
 
@@ -12,36 +11,17 @@ export default function Skills() {
   return (
     <section id="skills" className="px-4 mt-6">
       <div className="max-w-[640px] mx-auto">
-        <motion.div
-          className="flex items-center gap-2 text-text-secondary mb-4"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
+        <div className="flex items-center gap-2 text-text-secondary mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
           <span className="text-sm tracking-[-0.2px]">{t.skills.label}</span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="flex flex-col gap-3"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
+        <div className="flex flex-col gap-3">
           {SKILLS.map((skill) => {
             const categoryTranslation = t.skills.categories[skill.slug as keyof typeof t.skills.categories]
 
             return (
-              <motion.div
-                key={skill.slug}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
-                }}
-              >
+              <div key={skill.slug}>
                 <Link
                   href={`/skills/${skill.slug}`}
                   data-context-menu={`/skills/${skill.slug}`}
@@ -68,10 +48,10 @@ export default function Skills() {
                     className="text-text-muted group-hover:text-accent group-hover:translate-x-0.5 transition-all duration-200 shrink-0"
                   />
                 </Link>
-              </motion.div>
+              </div>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

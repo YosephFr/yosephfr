@@ -7,3 +7,5 @@ npm run build
 # Los assets de _next/static llevan hash en el nombre: caché de un año.
 printf 'Header set Cache-Control "public, max-age=31536000, immutable"\n' > out/_next/static/.htaccess
 rsync -az --delete --exclude .well-known out/ hostinger:domains/yosephfr.com/public_html/
+# The HTML is already on the origin. A failed ping must not roll the deploy back.
+node scripts/indexnow.mjs || echo "IndexNow: el ping falló; el sitio ya está publicado." >&2

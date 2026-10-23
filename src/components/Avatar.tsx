@@ -13,7 +13,7 @@ export default function Avatar({ size = 100, className = "" }: AvatarProps) {
   const [hasError, setHasError] = useState(false)
   const { resolved } = useTheme()
 
-  const src = resolved === "dark" ? "/avatar-light.png" : "/avatar-dark.png"
+  const src = resolved === "dark" ? "/avatar-light.webp" : "/avatar-dark.webp"
 
   if (hasError) {
     return (

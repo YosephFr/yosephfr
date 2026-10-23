@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Yoseph Franco</title>
+    <link>https://yosephfr.com/blog</link>
+    <description>Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.</description>
+    <language>es</language>
+    <lastBuildDate>Fri, 23 Oct 2026 04:46:26 GMT</lastBuildDate>
+    <atom:link href="https://yosephfr.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Los límites del agente viven en el código</title>
+      <link>https://yosephfr.com/blog/limites-de-agentes-en-codigo</link>
+      <guid isPermaLink="true">https://yosephfr.com/blog/limites-de-agentes-en-codigo</guid>
+      <pubDate>Thu, 22 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Por qué los límites de un agente de IA tienen que ejecutarse en código: presupuesto, herramientas, pasos y tiempo. El prompt no es un control.</description>
+      <category>es</category>
+    </item>
+    <item>
+      <title>Rotar claves de API y alertas de gasto</title>
+      <link>https://yosephfr.com/blog/rotar-claves-api-agentes</link>
+      <guid isPermaLink="true">https://yosephfr.com/blog/rotar-claves-api-agentes</guid>
+      <pubDate>Wed, 21 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Método para rotar claves de API y poner alertas de gasto cuando un agente de código puede llamar servicios de pago. Sin sorpresas en la factura.</description>
+      <category>es</category>
+    </item>
+    <item>
+      <title>Operar 14.000 conversaciones de IA al mes</title>
+      <link>https://yosephfr.com/blog/operar-14000-conversaciones-de-ia</link>
+      <guid isPermaLink="true">https://yosephfr.com/blog/operar-14000-conversaciones-de-ia</guid>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Cómo mantengo unas 14.000 conversaciones de IA al mes como único equipo técnico: colas, fallos, muestreo de calidad y qué no dejo en manos del agente.</description>
+      <category>es</category>
+    </item>
+  </channel>
+</rss>

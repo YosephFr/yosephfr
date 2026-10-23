@@ -46,6 +46,8 @@ export default function Footer() {
         </div>
         <div className="text-center">
           <p className="text-xs text-text-muted">
+            <Link href="/blog" className="hover:text-text-primary">{t.nav.blog}</Link>
+            <span aria-hidden="true"> · </span>
             Yoseph Franco &middot; CABA, Argentina
           </p>
           <p className="text-xs text-text-muted/50 mt-2">
