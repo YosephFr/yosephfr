@@ -10,11 +10,6 @@ export default function Hero() {
     <section id="inicio" className="pt-28 pb-4 px-4">
       <div className="max-w-[640px] mx-auto">
         <div className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10 animate-fade-in-up">
-          <div className="flex items-center gap-2 text-text-secondary mb-8" data-egg-click="logo">
-            <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
-            <span className="text-sm tracking-[-0.2px]">{t.hero.role}</span>
-          </div>
-
           <div className="flex items-center gap-4 mb-4">
             <div data-egg-click="avatar">
               <div className="rounded-full ring-2 ring-accent/30 ring-offset-2 ring-offset-surface-raised">
@@ -30,8 +25,15 @@ export default function Hero() {
             </h1>
           </div>
 
+          <p
+            className="text-[15px] md:text-base font-medium tracking-[-0.02em] leading-relaxed text-text-primary mb-3"
+            data-egg-click="logo"
+          >
+            {t.hero.headline}
+          </p>
+
           <p className="text-text-secondary text-base leading-relaxed mb-6">
-            {t.hero.tagline}
+            {t.hero.summary}
           </p>
 
           <div className="flex flex-wrap gap-3">

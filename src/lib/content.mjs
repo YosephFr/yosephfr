@@ -13,18 +13,25 @@ export const PAGE_SIZE = 10
 export const site = {
   url: "https://yosephfr.com",
   name: "Yoseph Franco",
-  jobTitle: "AI builder",
+  siteTitle: "Yoseph Franco | AI & agents in production",
+  jobTitle: "Tech Lead",
   personId: "https://yosephfr.com/#person",
   email: "contacto@yosephfr.com",
-  twitter: "@yosephfr",
+  twitter: "@Arncof",
   positioning: {
-    es: "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción.",
-    en: "I build AI that talks to customers for a living. ~14k conversations a month, built and run by one person. Writing what breaks in production.",
+    es: "AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month",
+    en: "AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month",
+  },
+  summary: {
+    es: "Lidero tecnología y desarrollo: agentes de IA en producción, plataformas SaaS y automatización, de punta a punta: diseño, código, infraestructura y deploy.",
+    en: "I lead technology and development: AI agents in production, SaaS platforms, and automation, end to end: design, code, infrastructure, and deploy.",
   },
   sameAs: [
     "https://www.linkedin.com/in/yosephfr/",
     "https://github.com/YosephFr",
-    "https://x.com/yosephfr",
+    "https://x.com/Arncof",
+    "https://www.instagram.com/yosephfranco/",
+    "https://www.tiktok.com/@arncof",
   ],
 }
 

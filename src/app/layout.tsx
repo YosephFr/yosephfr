@@ -2,10 +2,8 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Outfit } from "next/font/google"
 import Script from "next/script"
 import JsonLd from "@/components/JsonLd"
+import { site } from "@/lib/content.mjs"
 import "./globals.css"
-
-const positioning =
-  "Construyo IA que conversa con clientes. ~14.000 conversaciones al mes, diseñadas y operadas por una sola persona. Escribo lo que funciona (y lo que se rompe) en producción."
 
 const inter = Inter({
   variable: "--font-inter",
@@ -20,10 +18,10 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: {
-    default: "Yoseph Franco",
+    default: site.siteTitle,
     template: "%s | Yoseph Franco",
   },
-  description: positioning,
+  description: site.positioning.es,
   keywords: [
     "Agentic AI",
     "AI Automation Expert",
@@ -61,25 +59,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     url: "https://yosephfr.com",
-    siteName: "Yoseph Franco",
-    title: "Yoseph Franco",
-    description: positioning,
+    siteName: site.siteTitle,
+    title: site.siteTitle,
+    description: site.positioning.es,
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Yoseph Franco",
+        alt: site.siteTitle,
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yoseph Franco",
-    description: positioning,
+    title: site.siteTitle,
+    description: site.positioning.es,
     images: ["/og-image.jpg"],
-    creator: "@yosephfr",
+    creator: site.twitter,
   },
   robots: {
     index: true,

@@ -36,6 +36,9 @@ export default function Experience() {
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
+                        {roleTranslation?.badge ?? job.badge}
+                      </span>
+                      <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
                         {job.period}
                       </span>
                       <ChevronRight

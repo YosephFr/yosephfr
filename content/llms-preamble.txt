@@ -1,17 +1,19 @@
 # Yoseph Franco
 
-> I build AI that talks to customers for a living. ~14k conversations a month, built and run by one person. Writing what breaks in production.
+> AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month
 
 ## Identity
 
 - Name: Yoseph Franco
-- Role: AI builder
+- Role: Tech Lead
 - Location: Buenos Aires, Argentina
 - Website: https://yosephfr.com
 - Email: contacto@yosephfr.com
 - LinkedIn: https://www.linkedin.com/in/yosephfr/
 - GitHub: https://github.com/YosephFr
-- X/Twitter: https://x.com/yosephfr
+- X: https://x.com/Arncof
+- Instagram: https://www.instagram.com/yosephfranco/
+- TikTok: https://www.tiktok.com/@arncof
 
 ## Expertise
 

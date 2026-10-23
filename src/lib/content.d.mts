@@ -61,11 +61,13 @@ export const PAGE_SIZE: number
 export const site: {
   url: string
   name: string
+  siteTitle: string
   jobTitle: string
   personId: string
   email: string
   twitter: string
   positioning: { es: string; en: string }
+  summary: { es: string; en: string }
   sameAs: string[]
 }
 

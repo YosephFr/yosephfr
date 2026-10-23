@@ -17,6 +17,9 @@ export default function ExperienceContent({ slug }: { slug: string }) {
       <div className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10 mt-6">
         <div>
           <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
+            {roleTranslation?.badge ?? role.badge}
+          </span>
+          <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full ml-2">
             {role.period}
           </span>
           <h1 className="text-2xl font-semibold tracking-tight text-text-primary mt-4">

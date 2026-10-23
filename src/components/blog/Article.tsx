@@ -13,6 +13,8 @@ function profileLabel(url: string) {
   if (url.includes("linkedin.com")) return "LinkedIn"
   if (url.includes("github.com")) return "GitHub"
   if (url.includes("x.com")) return "X"
+  if (url.includes("instagram.com")) return "Instagram"
+  if (url.includes("tiktok.com")) return "TikTok"
   return url
 }
 
