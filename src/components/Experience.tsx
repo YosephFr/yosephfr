@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
-import { motion } from "framer-motion"
 import { EXPERIENCE } from "@/data/experience"
 import { useLocale } from "@/i18n"
 
@@ -12,36 +11,17 @@ export default function Experience() {
   return (
     <section id="experiencia" className="px-4">
       <div className="max-w-[640px] mx-auto">
-        <motion.div
-          className="flex items-center gap-2 text-text-secondary mb-4"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-        >
+        <div className="flex items-center gap-2 text-text-secondary mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
           <span className="text-sm tracking-[-0.2px]">{t.experience.label}</span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="flex flex-col gap-3"
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1 } }
-          }}
-        >
+        <div className="flex flex-col gap-3">
           {EXPERIENCE.map((job) => {
             const roleTranslation = t.experience.roles[job.slug as keyof typeof t.experience.roles]
 
             return (
-              <motion.div
-                key={job.slug}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
-                }}
-              >
+              <div key={job.slug}>
                 <Link
                   href={`/experiencia/${job.slug}`}
                   data-context-menu={`/experiencia/${job.slug}`}
@@ -55,6 +35,9 @@ export default function Experience() {
                       <p className="text-sm text-text-muted mt-0.5">{job.company}</p>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
+                      <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
+                        {roleTranslation?.badge ?? job.badge}
+                      </span>
                       <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
                         {job.period}
                       </span>
@@ -78,10 +61,10 @@ export default function Experience() {
                     ))}
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

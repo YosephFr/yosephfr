@@ -14,10 +14,10 @@ export interface ExperienceRole {
 export const EXPERIENCE: ExperienceRole[] = [
   {
     slug: "ai-engineering",
-    title: "AI Engineering & Multi-Agent Systems",
+    title: "AI & Agents",
     company: "Independent",
     period: "2025 - act",
-    badge: "AI Engineer",
+    badge: "Tech Lead",
     shortDescription:
       "Agentes conversacionales autónomos con function calling, plataforma SaaS multi-tenant con motor de workflows de IA, sistema de reservas inteligente e integraciones bidireccionales con CRMs. 2,800+ contactos y 40,000+ mensajes procesados en producción.",
     fullDescription:

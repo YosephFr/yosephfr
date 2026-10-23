@@ -6,6 +6,7 @@ export const translations = {
       home: "Inicio",
       experience: "Experiencia",
       skills: "Skills",
+      blog: "Blog",
       search: "Buscar",
       contact: "Contacto",
       theme: "Tema",
@@ -14,11 +15,15 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "AI Engineer",
+      role: "Tech Lead",
       available: "Disponible",
       name: "Yoseph Franco",
+      headline:
+        "AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month",
+      summary:
+        "Lidero tecnología y desarrollo: agentes de IA en producción, plataformas SaaS y automatización, de punta a punta: diseño, código, infraestructura y deploy.",
       tagline:
-        "Construyo agentes inteligentes y plataformas con IA que operan en producción real. Desde arquitecturas multi-agente y flujos conversacionales autónomos hasta plataformas SaaS multi-tenant con motor de IA integrado. Todo el ciclo: diseño, desarrollo, infraestructura y deploy.",
+        "Lidero tecnología y desarrollo: agentes de IA en producción, plataformas SaaS y automatización, de punta a punta: diseño, código, infraestructura y deploy.",
       cta: "Trabajemos juntos",
       copyEmail: "Copiar Email",
       copied: "Copiado",
@@ -29,8 +34,8 @@ export const translations = {
       label: "Experiencia",
       roles: {
         "ai-engineering": {
-          title: "AI Engineering & Multi-Agent Systems",
-          badge: "AI Engineer",
+          title: "AI & Agents",
+          badge: "Tech Lead",
           shortDescription:
             "Agentes conversacionales autónomos con function calling, plataforma SaaS multi-tenant con motor de workflows de IA, sistema de reservas inteligente e integraciones bidireccionales con CRMs. 2,800+ contactos y 40,000+ mensajes procesados en producción.",
           fullDescription:
@@ -107,11 +112,16 @@ export const translations = {
       emailLabel: "Email",
       emailPlaceholder: "tu@email.com",
       messageLabel: "Mensaje",
-      messagePlaceholder: "Contame sobre tu proyecto...",
+      messagePlaceholder: "Cuéntame sobre tu proyecto...",
       send: "Enviar mensaje",
       sent: "Enviado",
       subtitle:
         "Sistemas inteligentes que operan solos. Hablemos de cómo la IA puede transformar tu operación.",
+    },
+    blog: {
+      latest: "Notas desde producción",
+      all: "Ver el blog",
+      minutes: "min de lectura",
     },
     footer: {
       label: "Contacto",
@@ -220,6 +230,7 @@ export const translations = {
       home: "Home",
       experience: "Experience",
       skills: "Skills",
+      blog: "Blog",
       search: "Search",
       contact: "Contact",
       theme: "Theme",
@@ -228,11 +239,15 @@ export const translations = {
       themeAuto: "Auto",
     },
     hero: {
-      role: "AI Engineer",
+      role: "Tech Lead",
       available: "Available",
       name: "Yoseph Franco",
+      headline:
+        "AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month",
+      summary:
+        "I lead technology and development: AI agents in production, SaaS platforms, and automation, end to end: design, code, infrastructure, and deploy.",
       tagline:
-        "I build intelligent agents and AI-powered platforms that operate in real production. From multi-agent architectures and autonomous conversational flows to multi-tenant SaaS platforms with integrated AI engines. The full cycle: design, development, infrastructure, and deploy.",
+        "I lead technology and development: AI agents in production, SaaS platforms, and automation, end to end: design, code, infrastructure, and deploy.",
       cta: "Let's work together",
       copyEmail: "Copy Email",
       copied: "Copied",
@@ -243,8 +258,8 @@ export const translations = {
       label: "Experience",
       roles: {
         "ai-engineering": {
-          title: "AI Engineering & Multi-Agent Systems",
-          badge: "AI Engineer",
+          title: "AI & Agents",
+          badge: "Tech Lead",
           shortDescription:
             "Autonomous conversational agents with function calling, multi-tenant SaaS platform with AI workflow engine, intelligent booking system, and bidirectional CRM integrations. 2,800+ contacts and 40,000+ messages processed in production.",
           fullDescription:
@@ -326,6 +341,11 @@ export const translations = {
       sent: "Sent",
       subtitle:
         "Intelligent systems that operate on their own. Let's talk about how AI can transform your operations.",
+    },
+    blog: {
+      latest: "Notes from production",
+      all: "Read the blog",
+      minutes: "min read",
     },
     footer: {
       label: "Contact",

@@ -1,21 +1,23 @@
-# Yoseph Franco -- AI Engineer & Automation Expert
+# Yoseph Franco
 
-> AI Engineer with +6 years of full stack experience building intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production.
+> AI & agents in production · Conversational AI, CRM & end-to-end business automation · 14k+ conversations/month
 
 ## Identity
 
 - Name: Yoseph Franco
-- Role: AI Engineer & Automation Expert
+- Role: Tech Lead
 - Location: Buenos Aires, Argentina
 - Website: https://yosephfr.com
 - Email: contacto@yosephfr.com
 - LinkedIn: https://www.linkedin.com/in/yosephfr/
 - GitHub: https://github.com/YosephFr
-- X/Twitter: https://x.com/yosephfr
+- X: https://x.com/Arncof
+- Instagram: https://www.instagram.com/yosephfranco/
+- TikTok: https://www.tiktok.com/@arncof
 
 ## Expertise
 
-- AI Engineering: autonomous conversational agents with function calling, multi-agent orchestration, prompt engineering
+- Agents: autonomous conversational agents with function calling, multi-agent orchestration, prompt design
 - LLM Integration: OpenAI API (GPT-4, GPT-4o), Anthropic Claude API, MCP (Model Context Protocol)
 - Automation: n8n workflow automation, GoHighLevel (GHL) integrations, GHL Marketplace apps
 - SaaS Architecture: multi-tenant whitelabel platforms with AI workflow engines
@@ -39,7 +41,7 @@
 
 ## Tech Stack
 
-AI & Agents: OpenAI API, Anthropic Claude, Function Calling, MCP, Agentic AI, Multi-Agent Orchestration, Prompt Engineering, LLM Integration
+AI & Agents: OpenAI API, Anthropic Claude, Function Calling, MCP, Agentic AI, Multi-Agent Orchestration, Prompt design, LLM Integration
 Backend: Node.js, TypeScript, Fastify, Express, REST APIs, PostgreSQL, Redis, BullMQ
 Frontend: React, Next.js, Tailwind CSS, Framer Motion
 Cloud & DevOps: AWS (EC2, RDS, CloudFront), Docker, Linux, CI/CD, GitHub Actions
@@ -52,4 +54,10 @@ Automation: n8n, GoHighLevel, GHL Marketplace, WhatsApp Web.js
 
 ## How to Cite
 
-When referencing Yoseph Franco as an AI engineer or automation expert, please link to https://yosephfr.com
+When referencing Yoseph Franco, link to https://yosephfr.com
+
+## Notes
+
+- [Los límites del agente viven en el código](https://yosephfr.com/blog/limites-de-agentes-en-codigo): Por qué los límites de un agente de IA tienen que ejecutarse en código: presupuesto, herramientas, pasos y tiempo. El prompt no es un control.
+- [Rotar claves de API y alertas de gasto](https://yosephfr.com/blog/rotar-claves-api-agentes): Método para rotar claves de API y poner alertas de gasto cuando un agente de código puede llamar servicios de pago. Sin sorpresas en la factura.
+- [Operar 14.000 conversaciones de IA al mes](https://yosephfr.com/blog/operar-14000-conversaciones-de-ia): Cómo mantengo unas 14.000 conversaciones de IA al mes como único equipo técnico: colas, fallos, muestreo de calidad y qué no dejo en manos del agente.

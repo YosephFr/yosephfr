@@ -1,0 +1,117 @@
+.blog-shell {
+  min-height: 100vh;
+}
+
+.blog-shell a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+}
+
+.prose h2,
+.prose h3 {
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  scroll-margin-top: 2rem;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+  margin: 2rem 0 0.5rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table {
+  margin: 1rem 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.35rem;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.prose blockquote {
+  border-left: 3px solid #0a93d8;
+  padding-left: 1rem;
+  color: var(--color-text-primary);
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--color-surface-overlay);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+}
+
+.prose pre {
+  background: #1f2024;
+  border: 1px solid var(--color-surface-border);
+  border-radius: 0.9rem;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  color: #f3f4f6;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--color-surface-border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose img {
+  border-radius: 0.9rem;
+  max-width: 100%;
+  height: auto;
+}

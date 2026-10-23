@@ -1,3 +1,5 @@
+import { site } from "@/lib/content.mjs"
+
 export default function JsonLd() {
   const personSchema = {
     "@context": "https://schema.org",
@@ -6,22 +8,18 @@ export default function JsonLd() {
     name: "Yoseph Franco",
     givenName: "Yoseph",
     familyName: "Franco",
-    jobTitle: "AI Engineer",
-    url: "https://yosephfr.com",
-    email: "contacto@yosephfr.com",
+    jobTitle: site.jobTitle,
+    url: site.url,
+    email: site.email,
     image: "https://yosephfr.com/og-image.jpg",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Ciudad Autonoma de Buenos Aires",
       addressCountry: "AR",
     },
-    sameAs: [
-      "https://www.linkedin.com/in/yosephfr/",
-      "https://github.com/YosephFr",
-      "https://x.com/yosephfr",
-    ],
+    sameAs: site.sameAs,
     knowsAbout: [
-      "AI Engineering",
+      "AI & Agents",
       "Agentic AI",
       "Multi-Agent Orchestration",
       "LLM Integration",
@@ -45,19 +43,14 @@ export default function JsonLd() {
       "WhatsApp Automation",
       "AI Automation",
       "CRM Integration",
-      "Prompt Engineering",
+      "Prompt design",
     ],
     knowsLanguage: ["es", "en"],
-    nationality: {
-      "@type": "Country",
-      name: "Venezuela",
-    },
     workLocation: {
       "@type": "Place",
       name: "Buenos Aires, Argentina",
     },
-    description:
-      "AI Engineer with +6 years of full stack experience. Builds intelligent agents, multi-tenant SaaS platforms, and AI automation systems in real production. Specialized in OpenAI, Anthropic Claude, function calling, multi-agent orchestration, n8n, and GoHighLevel integrations.",
+    description: site.positioning.es,
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "Platzi",
@@ -68,10 +61,9 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://yosephfr.com/#website",
-    name: "Yoseph Franco | AI Engineer & Automation Expert",
-    url: "https://yosephfr.com",
-    description:
-      "Portfolio of Yoseph Franco. AI Engineer specializing in intelligent agents, AI-powered SaaS platforms, automation systems, Node.js, TypeScript, React, and Next.js.",
+    name: site.siteTitle,
+    url: site.url,
+    description: site.positioning.es,
     inLanguage: ["es", "en"],
     author: {
       "@id": "https://yosephfr.com/#person",

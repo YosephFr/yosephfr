@@ -7,6 +7,14 @@ ErrorDocument 404 /404.html
 RewriteEngine On
 RewriteBase /
 
+# Blog and the rest of the export: /blog/slug -> blog/slug.html
+RewriteRule ^blog/?$ /blog.html [L]
+RewriteRule ^en/blog/?$ /en/blog.html [L]
+RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+RewriteRule ^blog/(.+?)/?$ /blog/$1.html [L]
+RewriteCond %{DOCUMENT_ROOT}/en/blog/$1.html -f
+RewriteRule ^en/blog/(.+?)/?$ /en/blog/$1.html [L]
+
 # /contacto -> contacto.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
@@ -16,3 +24,21 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteCond %{REQUEST_FILENAME}/index.html !-f
 RewriteRule ^ - [R=404,L]
+
+<IfModule mod_headers.c>
+  # HTML (also after the internal rewrite to .html): short TTL so Cloudflare can revalidate.
+  <FilesMatch "\.(html|xml|json|txt)$">
+    Header set Cache-Control "public, max-age=300, stale-while-revalidate=86400"
+  </FilesMatch>
+  # Hashed Next assets. Repeated in out/_next/static/.htaccess by the deploy script.
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # Easter eggs stay out of the index even if a crawler fetches them directly.
+  SetEnvIf Request_URI "^/(click|memory|snake|typing|secreto|credits|achievements)(/|$)" EASTER_EGG
+  # Static-export placeholders for empty pagination and English routes.
+  SetEnvIf Request_URI "^/(en/)?blog/(_|page/0)(/|$)" BLOG_SENTINEL
+  SetEnvIf Request_URI "^/(en/)?blog/tag/_(\/|$)" BLOG_SENTINEL
+  Header set X-Robots-Tag "noindex, nofollow" env=EASTER_EGG
+  Header set X-Robots-Tag "noindex, nofollow" env=BLOG_SENTINEL
+</IfModule>

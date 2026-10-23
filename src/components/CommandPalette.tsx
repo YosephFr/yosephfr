@@ -5,7 +5,7 @@ import { useModals } from "@/providers/ModalProvider"
 import { useEffect, useState, useCallback, useRef, useMemo } from "react"
 import { createPortal } from "react-dom"
 import { useRouter } from "next/navigation"
-import { Search, ArrowRight, Briefcase, Layers, Mail, Home, Award, Gamepad2 } from "lucide-react"
+import { Search, ArrowRight, Briefcase, Layers, Mail, Home, Award, Gamepad2, NotebookPen } from "lucide-react"
 import { EXPERIENCE } from "@/data/experience"
 import { SKILLS } from "@/data/skills"
 
@@ -129,6 +129,14 @@ export default function CommandPalette() {
         title: t.nav.home,
         section: t.search.navigation,
         action: () => navigate("/"),
+      },
+      {
+        id: "nav-blog",
+        icon: <NotebookPen size={16} strokeWidth={1.5} />,
+        title: t.nav.blog,
+        section: t.search.navigation,
+        keywords: ["blog", "notas", "notes", "posts"],
+        action: () => navigate("/blog"),
       },
       {
         id: "nav-experiencia",

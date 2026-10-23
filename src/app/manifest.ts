@@ -1,13 +1,13 @@
 import type { MetadataRoute } from "next"
+import { site } from "@/lib/content.mjs"
 
 export const dynamic = "force-static"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Yoseph Franco | AI Engineer & Automation Expert",
-    short_name: "Yoseph Franco",
-    description:
-      "AI Engineer: intelligent agents, SaaS platforms, automation systems. Node.js, TypeScript, OpenAI, Anthropic, React, Docker.",
+    name: site.siteTitle,
+    short_name: site.name,
+    description: site.positioning.es,
     start_url: "/",
     display: "standalone",
     background_color: "#161616",

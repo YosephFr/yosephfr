@@ -128,7 +128,7 @@ export default function ContactModal() {
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Contame sobre tu proyecto..."
+              placeholder="Cuéntame sobre tu proyecto..."
               required
               className="bg-surface-overlay border border-surface-border rounded-xl px-4 py-3 text-base text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent transition-colors min-h-[120px] resize-none"
             />
