@@ -134,6 +134,10 @@ function escapeXml(value) {
 }
 
 const feedPosts = posts.slice(0, 100)
+const lastBuild = feedPosts.reduce(
+  (latest, post) => (post.updated > latest ? post.updated : latest),
+  feedPosts[0]?.updated ?? "1970-01-01",
+)
 const rssItems = feedPosts
   .map((post) => {
     const pub = new Date(`${post.date}T00:00:00Z`).toUTCString()
@@ -155,7 +159,7 @@ const rss = `<?xml version="1.0" encoding="UTF-8"?>
     <link>${site.url}/blog</link>
     <description>${escapeXml(site.positioning.es)}</description>
     <language>es</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${new Date(`${lastBuild}T00:00:00Z`).toUTCString()}</lastBuildDate>
     <atom:link href="${site.url}/rss.xml" rel="self" type="application/rss+xml"/>
 ${rssItems}
   </channel>
