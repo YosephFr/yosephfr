@@ -269,12 +269,12 @@ export default function SnakeGame() {
   return (
     <div className="flex flex-col items-center gap-3 w-full px-4">
       <div className="flex items-center justify-between w-full max-w-[400px]">
-        <span className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
+        <h1 className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
           Snake
-        </span>
+        </h1>
         <div className="flex items-center gap-4">
           <span className="text-sm text-text-secondary">
-            Puntuacion: <span className="text-accent font-semibold tabular-nums">{score}</span>
+            Puntuación: <span className="text-accent font-semibold tabular-nums">{score}</span>
           </span>
           {highScore > 0 && (
             <span className="text-xs text-text-muted tabular-nums">

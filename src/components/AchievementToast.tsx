@@ -68,7 +68,7 @@ function SingleToast({
       }}
       className="pointer-events-auto w-[360px]"
     >
-      <div className="relative bg-surface-raised border border-accent/30 rounded-2xl px-5 py-3.5 shadow-2xl overflow-hidden">
+      <div className="relative bg-surface-raised rounded-[18px] px-5 py-3.5 overflow-hidden" style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.06), 0 24px 48px -20px rgba(0,0,0,.9), 0 0 32px -12px rgba(180,245,154,.35)" }}>
         <motion.div
           className="absolute bottom-0 left-0 h-[2px] bg-accent/40"
           initial={{ width: "100%" }}
@@ -77,7 +77,7 @@ function SingleToast({
         />
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex items-center justify-center w-9 h-9 rounded-xl bg-accent/15 text-accent shrink-0"
+            className="flex items-center justify-center w-9 h-9 rounded-[18px] bg-accent/15 text-accent shrink-0"
             initial={{ scale: 0, rotate: -90 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{
@@ -118,7 +118,7 @@ function SingleToast({
             </motion.span>
             <button
               onClick={handleDismiss}
-              className="flex items-center justify-center w-6 h-6 rounded-lg text-text-muted/50 hover:text-text-primary transition-colors"
+              className="flex items-center justify-center w-6 h-6 rounded-[18px] text-text-muted hover:text-text-primary transition-colors"
             >
               <X size={14} strokeWidth={1.5} />
             </button>
@@ -135,7 +135,7 @@ export default function AchievementToastStack({
   onDismiss,
 }: AchievementToastStackProps) {
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] flex flex-col-reverse gap-2 items-center pointer-events-none">
+    <div className="avisos-logros fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] flex flex-col-reverse gap-2 items-center pointer-events-none">
       <LayoutGroup>
         <AnimatePresence mode="popLayout">
           {toasts.map((toast) => (

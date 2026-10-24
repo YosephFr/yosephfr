@@ -1,58 +1,12 @@
-import type { MetadataRoute } from "next"
-
-export const dynamic = "force-static"
-
+import type { MetadataRoute } from 'next'
+import { getPublicArticles } from '@/data/articles'
+import { PROFILE } from '@/data/profile'
+import { EXPERIENCE } from '@/data/experience'
+import { SKILLS } from '@/data/skills'
+export const dynamic='force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://yosephfr.com"
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-      alternates: {
-        languages: {
-          es: baseUrl,
-          en: baseUrl,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/experiencia/ai-engineering`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/experiencia/fullstack-cloud`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/skills/ai-agents`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/skills/backend-apis`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/skills/frontend-react`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/skills/cloud-devops`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ]
+  const articles=getPublicArticles()
+  const blogUpdated=new Date(Math.max(Date.parse(PROFILE.updated),...articles.map(article=>Date.parse(article.updated))))
+  const paths=['','/cv','/contacto','/blog',...EXPERIENCE.map(e=>`/experiencia/${e.slug}`),...SKILLS.map(s=>`/skills/${s.slug}`)]
+  return [...paths.map(route=>({url:PROFILE.url+route,lastModified:route==='/blog'?blogUpdated:new Date(PROFILE.updated)})),...articles.map(a=>({url:`${PROFILE.url}/blog/${a.slug}`,lastModified:new Date(a.updated)}))]
 }

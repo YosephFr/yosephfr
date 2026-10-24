@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, useLayoutEffect, useCallback, type ReactNode } from "react"
+import { usePathname } from "next/navigation"
 import { useEasterEggs } from "@/hooks/useEasterEggs"
 import { engine } from "@/easter-eggs/engine"
 import AchievementToastStack, { type ToastData } from "@/components/AchievementToast"
@@ -44,17 +45,20 @@ function EasterEggTriggers() {
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const easterEggs = useEasterEggs()
+  const pathname = usePathname()
+  const isEditorial = !["/snake", "/memory", "/typing", "/click", "/achievements", "/secreto"].includes(pathname)
   const [activeToasts, setActiveToasts] = useState<ToastData[]>([])
 
   useLayoutEffect(() => {
     const unsubscribe = engine.onDiscover((egg) => {
+      if (isEditorial) return
       setActiveToasts((existing) => [
         ...existing,
         { id: egg.id, eggName: egg.name, category: egg.category, hint: egg.hint },
       ])
     })
     return unsubscribe
-  }, [])
+  }, [isEditorial])
 
   const handleDismiss = useCallback((toastId: string) => {
     setActiveToasts((prev) => prev.filter((t) => t.id !== toastId))
@@ -62,13 +66,13 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
 
   return (
     <EasterEggContext.Provider value={easterEggs}>
-      <EasterEggTriggers />
+      {!isEditorial && <EasterEggTriggers />}
       {children}
-      <AchievementToastStack
+      {!isEditorial && <AchievementToastStack
         toasts={activeToasts}
         progress={easterEggs.progress}
         onDismiss={handleDismiss}
-      />
+      />}
     </EasterEggContext.Provider>
   )
 }

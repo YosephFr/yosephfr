@@ -19,9 +19,9 @@ export const SKILLS: SkillCategory[] = [
   {
     slug: "ai-agents",
     icon: "AI",
-    name: "AI & Agents",
+    name: "IA y agentes",
     color: "bg-emerald-500/15 text-emerald-400",
-    description: "OpenAI API, Anthropic Claude, Function Calling, MCP",
+    description: "Modelos, herramientas, MCP y coordinación con evidencia.",
     badge: "AI",
     items: [
       { name: "OpenAI API", level: "expert" },
@@ -29,20 +29,21 @@ export const SKILLS: SkillCategory[] = [
       { name: "Function Calling", level: "expert" },
       { name: "MCP (Model Context Protocol)", level: "expert" },
       { name: "Agentic AI", level: "expert" },
-      { name: "Multi-Agent Orchestration", level: "advanced" },
+      { name: "Orquestación y revisión de agentes", level: "advanced" },
+      { name: "Contexto persistente y trazabilidad", level: "advanced" },
       { name: "Prompt Engineering", level: "expert" },
       { name: "LLM Integration", level: "expert" },
     ],
-    tools: ["OpenAI Platform", "Anthropic Console", "LangChain", "Playwright", "tmux", "Docker"],
+    tools: ["Codex", "Claude Code", "OpenAI Platform", "Anthropic Console", "LangChain", "Playwright", "tmux", "Docker"],
     fullDescription:
-      "Agentes inteligentes con modelos de lenguaje, function calling, MCP y orquestacion multi-agente. Diseno sistemas autonomos que gestionan procesos de negocio reales en produccion: ventas conversacionales, soporte, reservas, clasificacion de consultas y operaciones internas.",
+      "Agentes inteligentes con modelos de lenguaje, function calling, MCP y orquestación multi-agente. Diseño sistemas autónomos que gestionan procesos de negocio reales en producción: ventas conversacionales, soporte, reservas, clasificación de consultas y operaciones internas.",
   },
   {
     slug: "backend-apis",
     icon: "{}",
-    name: "Backend & APIs",
+    name: "Servicios y APIs",
     color: "bg-orange-500/15 text-orange-400",
-    description: "Node.js, TypeScript, Fastify, PostgreSQL, Redis",
+    description: "APIs, integraciones, datos y flujos de negocio.",
     badge: "BACKEND",
     items: [
       { name: "Node.js", level: "expert" },
@@ -56,14 +57,14 @@ export const SKILLS: SkillCategory[] = [
     ],
     tools: ["Docker", "PM2", "Drizzle", "Postman", "Insomnia", "GitHub Actions"],
     fullDescription:
-      "APIs de alto rendimiento con Node.js y TypeScript. Integracion de modelos de lenguaje con function tools, colas de mensajes, bases de datos y servicios externos. Arquitectura orientada a microservicios con Docker para entornos escalables y reproducibles.",
+      "APIs de alto rendimiento con Node.js y TypeScript. Integración de modelos de lenguaje con function tools, colas de mensajes, bases de datos y servicios externos. Arquitectura orientada a microservicios con Docker para entornos escalables y reproducibles.",
   },
   {
     slug: "frontend-react",
     icon: "<>",
-    name: "Frontend & React",
+    name: "Interfaces y diseño",
     color: "bg-blue-500/15 text-blue-400",
-    description: "React, Next.js, TypeScript, Tailwind CSS",
+    description: "Productos claros, accesibles y probados en uso.",
     badge: "FRONTEND",
     items: [
       { name: "React", level: "expert" },
@@ -77,14 +78,14 @@ export const SKILLS: SkillCategory[] = [
     ],
     tools: ["VS Code", "Git", "Chrome DevTools", "npm", "Vite", "Figma"],
     fullDescription:
-      "Arquitectura de interfaces modernas con React y Next.js. Componentes reutilizables, state management avanzado, Server Components, y animaciones fluidas con Framer Motion. TypeScript como estandar en cada proyecto para garantizar calidad y mantenibilidad del codigo.",
+      "Arquitectura de interfaces modernas con React y Next.js. Componentes reutilizables, state management avanzado, Server Components, y animaciones fluidas con Framer Motion. TypeScript como estándar en cada proyecto para mejorar la claridad y mantenibilidad del código.",
   },
   {
     slug: "cloud-devops",
     icon: "A",
-    name: "Cloud & DevOps",
+    name: "Infraestructura cloud",
     color: "bg-amber-500/15 text-amber-400",
-    description: "AWS, Docker, CI/CD, Linux Admin",
+    description: "Despliegues, continuidad, respaldos y observabilidad.",
     badge: "INFRASTRUCTURE",
     items: [
       { name: "AWS (EC2, RDS, CloudFront)", level: "expert" },
@@ -98,7 +99,7 @@ export const SKILLS: SkillCategory[] = [
     ],
     tools: ["AWS Console", "Docker", "SSH", "WHM", "Let's Encrypt", "Certbot", "GitHub Actions"],
     fullDescription:
-      "Infraestructura cloud que escala. AWS para produccion, Docker para entornos reproducibles, CI/CD con GitHub Actions, y administracion de servidores Linux. Migraciones sin downtime, backups automatizados y certificados SSL renovados automaticamente.",
+      "Infraestructura cloud que escala. AWS para producción, Docker para entornos reproducibles, CI/CD con GitHub Actions, y administración de servidores Linux. Migraciones sin downtime, backups automatizados y certificados SSL renovados automáticamente.",
   },
 ]
 

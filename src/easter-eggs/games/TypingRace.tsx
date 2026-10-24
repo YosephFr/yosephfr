@@ -33,7 +33,12 @@ function pickUniquePhrases(count: number): string[] {
 }
 
 export default function TypingRace({ onComplete }: TypingRaceProps) {
-  const [phrases] = useState(() => pickUniquePhrases(TOTAL_ROUNDS))
+  // Mismas frases en servidor y cliente para hidratar; la selección aleatoria ocurre después de montar.
+  const [phrases, setPhrases] = useState(() => PHRASES.slice(0, TOTAL_ROUNDS))
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setPhrases(pickUniquePhrases(TOTAL_ROUNDS)))
+    return () => cancelAnimationFrame(frame)
+  }, [])
   const [currentRound, setCurrentRound] = useState(0)
   const [typed, setTyped] = useState("")
   const [startTime, setStartTime] = useState<number | null>(null)
@@ -183,7 +188,7 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
               <p className="text-text-primary text-3xl font-bold tabular-nums">
                 {avgAccuracy}%
               </p>
-              <p className="text-text-muted text-xs">Precision promedio</p>
+              <p className="text-text-muted text-xs">Precisión promedio</p>
             </div>
           </div>
         </div>
@@ -233,7 +238,7 @@ export default function TypingRace({ onComplete }: TypingRaceProps) {
             </span>
           </span>
           <span className="text-sm text-text-secondary">
-            Precision:{" "}
+            Precisión:{" "}
             <span className="text-text-primary font-semibold tabular-nums">
               {currentAccuracy}%
             </span>

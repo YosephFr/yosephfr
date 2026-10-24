@@ -26,15 +26,16 @@ const CARD_COLORS: Record<string, string> = {
   CDN: "#F38020",
 }
 
+// Tinta de cada cara con contraste ≥ 4,5:1 sobre su color (PHP, SEO y CDN pasan a texto oscuro).
 const TEXT_COLORS: Record<string, string> = {
   WP: "#ffffff",
   JS: "#000000",
   CSS: "#ffffff",
-  PHP: "#ffffff",
+  PHP: "#000000",
   AWS: "#000000",
   SQL: "#000000",
-  SEO: "#ffffff",
-  CDN: "#ffffff",
+  SEO: "#000000",
+  CDN: "#000000",
 }
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -48,22 +49,29 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-function createDeck(): Card[] {
+function createDeck(shuffle = true): Card[] {
   const pairs = TECH_LABELS.flatMap((label, index) => [
     { id: index * 2, content: label, flipped: false, matched: false },
     { id: index * 2 + 1, content: label, flipped: false, matched: false },
   ])
-  return shuffleArray(pairs)
+  return shuffle ? shuffleArray(pairs) : pairs
 }
 
 export default function MemoryGame({ onComplete }: MemoryGameProps) {
-  const [cards, setCards] = useState<Card[]>(() => createDeck())
+  // El primer render es igual en servidor y cliente; el mazo se baraja después de montar.
+  const [cards, setCards] = useState<Card[]>(() => createDeck(false))
   const [flippedIds, setFlippedIds] = useState<number[]>([])
   const [locked, setLocked] = useState(false)
   const [attempts, setAttempts] = useState(0)
   const [startTime, setStartTime] = useState<number | null>(null)
   const [elapsed, setElapsed] = useState(0)
   const [completed, setCompleted] = useState(false)
+
+  useEffect(() => {
+    // Si ya se dio vuelta una carta antes del barajado, no pisar la partida en curso.
+    const frame = requestAnimationFrame(() => setCards((prev) => (prev.some((card) => card.flipped || card.matched) ? prev : createDeck())))
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   useEffect(() => {
     if (!startTime || completed) return
@@ -158,9 +166,9 @@ export default function MemoryGame({ onComplete }: MemoryGameProps) {
   return (
     <div className="flex flex-col items-center gap-3 w-full px-4">
       <div className="flex items-center justify-between w-full max-w-[400px]">
-        <span className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
+        <h1 className="text-base font-semibold text-text-primary" style={{ fontFamily: "var(--font-heading)" }}>
           Memory
-        </span>
+        </h1>
         <div className="flex items-center gap-4">
           <span className="text-sm text-text-secondary">
             Intentos: <span className="text-accent font-semibold tabular-nums">{attempts}</span>

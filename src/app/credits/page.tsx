@@ -40,14 +40,6 @@ export default function CreditsPage() {
               Inter
             </p>
           </div>
-          <div>
-            <span className="text-xs text-text-muted uppercase tracking-wider">
-              {t.credits.deployedOn}
-            </span>
-            <p className="text-lg font-medium text-text-primary mt-2">
-              Google Cloud
-            </p>
-          </div>
         </div>
         <div className="mt-16 pt-8 border-t border-surface-border">
           <p className="text-xs text-text-muted">

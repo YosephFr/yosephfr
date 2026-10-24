@@ -1,0 +1,311 @@
+[
+  {
+    "slug": "continuidad-entre-sesiones-de-agentes",
+    "title": "Qué guardar para continuar un trabajo con agentes sin empezar de nuevo",
+    "description": "Una nota breve para que la próxima sesión, o el próximo agente, retome con las decisiones, la evidencia y el siguiente paso, sin empezar de cero.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Franco",
+    "date": "2026-10-23T19:30:00-03:00",
+    "updated": "2026-10-23T19:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Un trabajo largo con agentes rara vez termina en una sola sesión. La conversación se corta, cambias de día o entra otro agente. El historial tiene las pistas, pero reconstruir qué sigue vigente lleva tiempo y abre la puerta a errores: retomar una idea descartada, repetir una prueba o dar por hecho algo que nunca se comprobó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Una nota breve de estado evita ese arranque en frío: dice qué se busca ahora, qué se decidió, qué está comprobado y qué sigue."
+      },
+      {
+        "type": "heading",
+        "text": "Un caso para seguir"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagina que llevas dos días trabajando con un agente en la página de un producto. Empezó como un formulario de contacto. A mitad de camino decidiste que la página debía servir para reservar una demostración. Mañana otra sesión tiene que terminarla."
+      },
+      {
+        "type": "paragraph",
+        "text": "Esa sesión encontrará los dos pedidos en el historial. Sin una nota, tendrá que adivinar cuál vale."
+      },
+      {
+        "type": "heading",
+        "text": "Escribe primero el objetivo vigente"
+      },
+      {
+        "type": "paragraph",
+        "text": "La nota empieza por lo que se busca hoy: «Que el visitante reserve una demostración desde la página del producto». Debajo van las condiciones que lo acompañan, como conservar la identidad visual y usar la disponibilidad que ya existe."
+      },
+      {
+        "type": "paragraph",
+        "text": "El historial explica el camino. La nota dice desde dónde seguir."
+      },
+      {
+        "type": "heading",
+        "text": "Guarda cada decisión con su motivo"
+      },
+      {
+        "type": "paragraph",
+        "text": "«Usar un único formulario» ayuda poco si nadie sabe por qué. Supongamos que el motivo es que la persona pueda cambiar de servicio sin volver a escribir sus datos. Con ese motivo a la vista, la siguiente sesión puede juzgar si una propuesta nueva mejora el recorrido o lo vuelve a romper."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para cada decisión importante bastan tres datos: qué se eligió, qué necesidad lo explica y qué cambio justificaría revisarla. Así no reabres lo mismo en cada sesión ni tratas una elección vieja como una regla eterna."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si descartaste una alternativa por una razón que sigue en pie, anótala en una línea. No hace falta un acta."
+      },
+      {
+        "type": "heading",
+        "text": "Describe el estado con evidencia"
+      },
+      {
+        "type": "paragraph",
+        "text": "«Listo» puede significar un diseño, código escrito o una prueba completa. Escribe el estado de forma que se sepa qué existe y qué se verificó:"
+      },
+      {
+        "type": "paragraph",
+        "text": "«El formulario funciona en el entorno de pruebas. Se completó una reserva con datos ficticios y la confirmación muestra la fecha elegida. Falta probarlo en el sitio público.»"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con eso, quien retoma no confunde algo que funciona en pruebas con algo disponible para los usuarios. Enlaza junto al estado las capturas, registros o archivos que lo respaldan."
+      },
+      {
+        "type": "heading",
+        "text": "Deja pendientes que se puedan ejecutar"
+      },
+      {
+        "type": "paragraph",
+        "text": "Un pendiente útil tiene una acción y una forma de saber que terminó. «Revisar reservas» es demasiado amplio. «Cambiar la hora elegida y comprobar que la confirmación muestre la nueva» se puede hacer y cerrar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si falta una decisión humana, guarda la pregunta y las opciones que se plantearon. Una opción sugerida no es una respuesta aceptada. Mientras tanto, el agente puede avanzar en lo que no depende de ella."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si hay más de un agente trabajando, anota quién tiene cada parte. Así nadie toca archivos o decisiones que tienen otro responsable."
+      },
+      {
+        "type": "heading",
+        "text": "Conserva el alcance del encargo"
+      },
+      {
+        "type": "paragraph",
+        "text": "La nota también lleva los permisos y sus límites. Preparar la página para revisión no es lo mismo que publicarla, y cambiar de sesión no debería borrar esa diferencia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Escribe qué acciones están autorizadas y qué límites siguen vigentes. Lo que ya está dentro del encargo puede continuar. Una decisión nueva con consecuencias importantes se consulta, con el contexto necesario para responderla."
+      },
+      {
+        "type": "heading",
+        "text": "Enlaza el material extenso"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagina también que existe una grabación de la demostración con comentarios sobre la página. No hace falta que cada sesión la lea entera. La nota guarda dónde está y en qué minuto se apoya cada decisión."
+      },
+      {
+        "type": "paragraph",
+        "text": "La transcripción ayuda a encontrar ese momento, pero no siempre alcanza. Una frase como «mira lo que pasa aquí» solo se entiende con las imágenes de antes y de después. La referencia tiene que llevar a esa evidencia, para que nadie dependa de una interpretación."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tampoco copies la misma regla en varios lugares. Cada decisión necesita una sola fuente vigente; los informes pueden guardar la historia y enlazarla."
+      },
+      {
+        "type": "heading",
+        "text": "Una nota que cabe en una pantalla"
+      },
+      {
+        "type": "paragraph",
+        "text": "Para la página de demostraciones, la nota podría quedar así:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Objetivo: reservar una demostración desde la página del producto.",
+          "Decisión: un único formulario, para cambiar de servicio sin repetir datos.",
+          "Estado: reserva completa en pruebas con datos ficticios; falta el sitio público.",
+          "Pendiente: cambiar la hora y comprobar que la confirmación muestre la nueva.",
+          "Alcance: preparar para revisión; publicar requiere aprobación.",
+          "Evidencia: captura de la confirmación y minuto de la grabación con los comentarios."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Al cerrar cada tramo, actualízala con lo que de verdad cambió. Si una decisión se reemplazó, deja la nueva y su motivo."
+      },
+      {
+        "type": "heading",
+        "text": "Comprueba que la nota funciona"
+      },
+      {
+        "type": "paragraph",
+        "text": "Abre una sesión nueva, dale solo la nota y pregúntale cuál es el siguiente paso. Si lo identifica, respeta las decisiones y encuentra los archivos, la nota cumple. Lo que no pueda reconstruir te dice qué falta escribir."
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic describe una práctica parecida para agentes que trabajan a lo largo de muchas sesiones: cada sesión empieza leyendo el historial de cambios y un archivo de progreso. Está en [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents). El caso y la nota de este artículo son una propuesta propia."
+      }
+    ]
+  },
+  {
+    "slug": "referencias-antes-de-redisenar",
+    "title": "Cómo orientar a un agente antes de rediseñar una pantalla",
+    "description": "Dale al agente una situación de uso, referencias que resuelvan el mismo trabajo y una prueba final, para que la pantalla funcione mejor y no solo se vea mejor.",
+    "category": "Diseño con agentes",
+    "language": "es",
+    "author": "Franco",
+    "date": "2026-10-23T12:30:00-03:00",
+    "updated": "2026-10-23T12:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pedirle a un agente que «mejore» una pantalla deja sin responder lo más importante: mejorar para qué. Si no lo dices, el agente decide, y lo más fácil de cambiar suele ser la apariencia: colores, sombras, una animación. La pantalla queda más bonita y el problema que te trajo sigue ahí."
+      },
+      {
+        "type": "paragraph",
+        "text": "Conviene seguir otro orden: primero una situación de uso, después referencias que resuelvan ese mismo trabajo, luego unas pocas decisiones de estructura y, al final, una prueba con contenido difícil. Así el agente sabe qué tiene que resolver y tú sabes cuándo terminó."
+      },
+      {
+        "type": "heading",
+        "text": "Empieza por una situación de uso"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagina la bandeja de mensajes de un equipo de atención. Una persona la abre a primera hora y tiene que responder lo pendiente. Necesita ver qué conversación lleva más tiempo esperando, entender qué pide el cliente y contestar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Esa escena convierte «mejorar» en preguntas que se pueden revisar:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "¿Las conversaciones pendientes se distinguen de las atendidas?",
+          "¿Se ve el último mensaje sin abrir cada una?",
+          "¿Responder obliga a salir de la lista y perder el lugar?"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Un cambio de colores puede dejar las tres sin resolver. Por eso la situación entra en el encargo desde el principio y vuelve en la prueba final."
+      },
+      {
+        "type": "heading",
+        "text": "Pide referencias que hagan el mismo trabajo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pide al agente que recorra varias herramientas de ese tipo: otras bandejas, gestores de soporte, clientes de correo. Una portada llamativa puede inspirar un estilo, pero no explica cómo se ordena el trabajo de todos los días."
+      },
+      {
+        "type": "paragraph",
+        "text": "De cada referencia interesa anotar las decisiones:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "qué se muestra primero;",
+          "cómo se agrupan los elementos;",
+          "dónde ocurre la acción principal;",
+          "qué pasa después del primer clic."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "En la bandeja, una referencia puede resolver bien el filtro por estado; otra, la vista previa del último mensaje; otra, la respuesta junto a la lista. No hace falta elegir una ganadora. Hace falta entender cada decisión y ver si encaja en tu caso."
+      },
+      {
+        "type": "paragraph",
+        "text": "Anota también lo que no conviene copiar. Una herramienta pensada para diez conversaciones al día puede mostrar detalles que se vuelven ruido cuando hay doscientas. Que dos pantallas se parezcan no significa que sirvan para el mismo uso."
+      },
+      {
+        "type": "heading",
+        "text": "Parte de lo que el producto ya tiene"
+      },
+      {
+        "type": "paragraph",
+        "text": "Antes de inventar componentes, el agente tiene que ver las pantallas que ya existen: cómo usa el producto el color, el espacio, los campos, los botones y las palabras."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si en todo el producto la acción se llama «Responder», un botón nuevo que diga «Gestionar interacción» obliga a la persona a traducir. Si los formularios usan un tipo de campo y la pantalla nueva trae otro sin motivo, también suma esfuerzo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ser consistente no impide mejorar. Te ayuda a gastar los cambios donde de verdad resuelven algo."
+      },
+      {
+        "type": "heading",
+        "text": "Fija cuatro decisiones antes de dibujar"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con la situación, las referencias y el sistema existente ya puedes decidir la estructura. Para la bandeja podrían ser estas:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Prioridad: lo que espera respuesta aparece antes que lo atendido.",
+          "Información: cada fila muestra nombre, último mensaje y tiempo de espera.",
+          "Acción: se responde sin perder el lugar en la lista.",
+          "Densidad: caben suficientes filas para comparar, sin recortar los mensajes hasta volverlos ilegibles."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "El encargo cabe en una frase: diseña una bandeja que ayude a encontrar y responder lo pendiente, con los componentes que ya existen y estas cuatro decisiones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Añade datos de prueba con forma real. No necesitas conversaciones de clientes: bastan nombres y mensajes inventados con longitudes, estados y combinaciones parecidas a las que el producto tendrá que soportar."
+      },
+      {
+        "type": "heading",
+        "text": "Prueba el recorrido con contenido incómodo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuando la pantalla funcione con el caso fácil, ponla en aprietos. Usa un mensaje muy largo, un nombre que no cabe en una línea y suficientes conversaciones para tener que desplazarte. Responde una y mira dónde queda. Cambia un filtro y vuelve."
+      },
+      {
+        "type": "paragraph",
+        "text": "Revisa también los vacíos. «Todavía no hay conversaciones» y «Ninguna coincide con este filtro» son situaciones distintas, y en cada una la persona necesita saber qué hacer a continuación."
+      },
+      {
+        "type": "paragraph",
+        "text": "Fíjate si la pantalla necesita un texto que explique cómo usarla. Si hace falta un párrafo de instrucciones, suele ser señal de que la estructura todavía no está resuelta."
+      },
+      {
+        "type": "paragraph",
+        "text": "Repite la prueba en el teléfono y en el escritorio. En el teléfono, que todo se lea y que los controles se puedan tocar. En el escritorio, que el espacio extra conserve contexto útil en lugar de estirar la versión móvil."
+      },
+      {
+        "type": "heading",
+        "text": "Cierra con una sola comprobación"
+      },
+      {
+        "type": "paragraph",
+        "text": "La revisión termina con una prueba que puedes observar: con los datos de prueba, una persona encuentra la conversación que más espera, entiende qué necesita y la responde sin perder su lugar en la lista, en el teléfono y en el escritorio. Si lo consigue, el rediseño cumplió. Si se atasca, ya sabes dónde seguir."
+      },
+      {
+        "type": "paragraph",
+        "text": "Guarda el caso que probaste y lo que viste. La próxima revisión podrá partir de ese resultado."
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic comparte prácticas para orientar el diseño de interfaces con Claude en [Improving frontend design through Skills](https://claude.com/resources/articles/improving-frontend-design-through-skills). El recorrido y el ejemplo de este artículo son una propuesta propia."
+      }
+    ]
+  }
+]

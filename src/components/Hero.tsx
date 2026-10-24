@@ -1,58 +1,22 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { useLocale } from "@/i18n"
-import Avatar from "./Avatar"
+import Link from 'next/link'
+import ContactActions from './ContactActions'
+import ProcessWindow from './dots/ProcessWindow'
+import DotIcon from './dots/DotIcon'
 
 export default function Hero() {
-  const { t } = useLocale()
-
   return (
-    <section id="inicio" className="pt-28 pb-4 px-4">
-      <div className="max-w-[640px] mx-auto">
-        <motion.div
-          className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <div
-            className="flex items-center gap-2 text-text-secondary mb-8"
-            data-egg-click="logo"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-text-muted" />
-            <span className="text-sm tracking-[-0.2px]">{t.hero.role}</span>
-          </div>
-
-          <div className="flex items-center gap-4 mb-4">
-            <div data-egg-click="avatar">
-              <div className="rounded-full ring-2 ring-accent/30 ring-offset-2 ring-offset-surface-raised">
-                <Avatar size={56} />
-              </div>
-            </div>
-            <h1
-              className="text-[28px] md:text-[32px] font-bold tracking-[-0.03em] leading-[1.2] text-text-primary"
-              style={{ fontFamily: "var(--font-heading)" }}
-              data-egg-click="name"
-            >
-              {t.hero.name}
-            </h1>
-          </div>
-
-          <p className="text-text-secondary text-base leading-relaxed mb-6">
-            {t.hero.tagline}
-          </p>
-
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="mailto:contacto@yosephfr.com"
-              className="inline-flex items-center gap-2 bg-accent text-surface text-sm font-medium px-5 py-2.5 rounded-full hover:bg-accent-hover transition-all duration-200"
-            >
-              <span className="text-base leading-none">+</span>
-              {t.hero.cta}
-            </a>
-          </div>
-        </motion.div>
+    <section id="inicio" className="marco portada-hero">
+      <div className="portada-hero-texto">
+        <h1 className="display">IA que llega al trabajo real.</h1>
+        <p className="entrada-texto">Construyo agentes, software y automatizaciones. Comparto lo que sirve para pasar de una idea a un producto que funciona.</p>
+        <ContactActions />
+      </div>
+      <div className="portada-hero-ventana">
+        <ProcessWindow caption="De una consulta a una tarea resuelta." />
+        <Link href="/skills/ai-agents" className="enlace hero-enlace">
+          Así trabajo con agentes
+          <DotIcon name="flecha" size={13} />
+        </Link>
       </div>
     </section>
   )

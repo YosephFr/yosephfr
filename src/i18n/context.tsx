@@ -5,7 +5,6 @@ import {
   useContext,
   useState,
   useCallback,
-  useEffect,
   type ReactNode,
 } from "react"
 import { translations, type Locale, type Translations } from "./translations"
@@ -24,12 +23,7 @@ const LocaleContext = createContext<LocaleContextValue | null>(null)
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(DEFAULT_LOCALE)
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === "es" || stored === "en") {
-      setLocaleState(stored)
-    }
-  }, [])
+
 
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next)

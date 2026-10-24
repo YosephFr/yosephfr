@@ -1,6 +1,6 @@
 "use client"
 
-import { useSyncExternalStore, useCallback } from "react"
+import { useSyncExternalStore, useCallback, useMemo } from "react"
 import { engine } from "../easter-eggs/engine"
 
 export function useEasterEggs() {
@@ -20,13 +20,15 @@ export function useEasterEggs() {
     getServerSnapshot
   )
 
-  const state = JSON.parse(raw) as {
+  const state = useMemo(() => JSON.parse(raw) as {
     progress: { found: number; total: number }
     discoveries: string[]
-  }
+  }, [raw])
 
   const discover = useCallback((id: string) => engine.discover(id), [])
-  const isDiscovered = useCallback((id: string) => engine.isDiscovered(id), [])
+  // Se consulta el mismo snapshot que se hidrata (vacío en el servidor), no el motor directamente.
+  const discoveries = state.discoveries
+  const isDiscovered = useCallback((id: string) => discoveries.includes(id), [discoveries])
   const getEgg = useCallback((id: string) => engine.getEgg(id), [])
   const getAllEggs = useCallback(() => engine.getAllEggs(), [])
   const reset = useCallback(() => engine.reset(), [])

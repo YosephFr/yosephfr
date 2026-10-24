@@ -1,57 +1,49 @@
-"use client"
+import Link from 'next/link'
+import { PROFILE } from '@/data/profile'
+import DotIcon from '@/components/dots/DotIcon'
 
-import Link from "next/link"
-import { Github, Linkedin } from "lucide-react"
-import { useLocale } from "@/i18n"
+const SECTIONS = [
+  { href: '/', label: 'Inicio' },
+  { href: '/blog', label: 'Artículos' },
+  { href: '/cv', label: 'CV' },
+  { href: '/contacto', label: 'Contacto' },
+]
 
 export default function Footer() {
-  const { t } = useLocale()
-
   return (
-    <footer className="py-8 px-4 border-t border-surface-border">
-      <div className="max-w-[640px] mx-auto">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <a
-            href="https://github.com/yosephfr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"
-            aria-label="GitHub"
-          >
-            <Github size={18} strokeWidth={1.5} />
+    <footer className="marco pie">
+      <div className="pie-rejilla">
+        <div className="pie-marca">
+          <Link href="/" className="marca"><DotIcon name="marca" size={20} />Arncof</Link>
+          <p>Agentes de IA, software y automatización para el trabajo real.</p>
+          <a href={`mailto:${PROFILE.email}`} data-event="contact_email_click" className="boton boton-tonal">
+            <DotIcon name="correo" size={16} />
+            {PROFILE.email}
           </a>
-          <a
-            href="https://www.linkedin.com/in/yosephfr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={18} strokeWidth={1.5} />
-          </a>
-          <a
-            href="mailto:contacto@yosephfr.com"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-surface-border text-text-muted hover:text-text-primary hover:border-surface-hover transition-all duration-200"
-            aria-label="Email"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
-          </a>
-          <Link
-            href="/contacto"
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-surface hover:bg-accent-hover transition-all duration-200"
-            aria-label={t.nav.contact}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
-          </Link>
         </div>
-        <div className="text-center">
-          <p className="text-xs text-text-muted">
-            Yoseph Franco &middot; CABA, Argentina
-          </p>
-          <p className="text-xs text-text-muted/50 mt-2">
-            {t.footer.cmdHint}
-          </p>
-        </div>
+        <nav aria-label="Secciones">
+          <h2>Secciones</h2>
+          <ul>
+            {SECTIONS.map(s => <li key={s.href}><Link href={s.href}>{s.label}</Link></li>)}
+          </ul>
+        </nav>
+        <nav aria-label="Perfiles">
+          <h2>Perfiles</h2>
+          <ul>
+            {PROFILE.socials.map(s => (
+              <li key={s.name}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" data-event="social_profile_click" data-channel={s.name}>
+                  {s.name}<DotIcon name="salida" size={11} />
+                </a>
+              </li>
+            ))}
+            <li><a href="/feed.xml">RSS<DotIcon name="rss" size={11} /></a></li>
+          </ul>
+        </nav>
+      </div>
+      <div className="pie-firma">
+        <span>{PROFILE.name} · Buenos Aires</span>
+        <span>© {new Date().getFullYear()}</span>
       </div>
     </footer>
   )

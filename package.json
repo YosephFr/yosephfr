@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "import-articles": "node scripts/import-articles.mjs",
+    "preview-editorial": "ARNCOF_PREVIEW=1 next dev --hostname 127.0.0.1",
+    "postbuild": "node scripts/finalize-export.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.33.0",

@@ -5,7 +5,7 @@ import { useModals } from "@/providers/ModalProvider"
 import { useEffect, useState, useCallback, useRef, useMemo } from "react"
 import { createPortal } from "react-dom"
 import { useRouter } from "next/navigation"
-import { Search, ArrowRight, Briefcase, Layers, Mail, Home, Award, Gamepad2 } from "lucide-react"
+import { Search, ArrowRight, Briefcase, Layers, Mail, Home, Award, Gamepad2, FileText } from "lucide-react"
 import { EXPERIENCE } from "@/data/experience"
 import { SKILLS } from "@/data/skills"
 
@@ -35,11 +35,11 @@ function CommandItemRow({
       data-selected={isSelected}
       onClick={item.action}
       onMouseEnter={() => onSelect(index)}
-      className={`group flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors duration-100 ${
+      className={`group flex items-center gap-3 w-full px-4 py-2.5 text-left rounded-[18px] transition-colors duration-100 ${
         isSelected ? "bg-surface-overlay" : ""
       }`}
     >
-      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-surface-overlay text-text-secondary shrink-0">
+      <span className="flex items-center justify-center w-8 h-8 rounded-[18px] bg-surface-overlay text-text-secondary shrink-0">
         {item.icon}
       </span>
       <div className="flex-1 min-w-0">
@@ -68,6 +68,8 @@ export default function CommandPalette() {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const listRef = useRef<HTMLDivElement>(null)
+  const returnFocus = useRef<HTMLElement | null>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
   const navigate = useCallback(
@@ -131,18 +133,42 @@ export default function CommandPalette() {
         action: () => navigate("/"),
       },
       {
+        id: "nav-blog",
+        icon: <FileText size={16} strokeWidth={1.5} />,
+        title: "Artículos",
+        section: t.search.navigation,
+        keywords: ["blog", "articulos", "guias"],
+        action: () => navigate("/blog"),
+      },
+      {
+        id: "nav-cv",
+        icon: <Briefcase size={16} strokeWidth={1.5} />,
+        title: "CV",
+        section: t.search.navigation,
+        keywords: ["curriculum", "experiencia", "formacion"],
+        action: () => navigate("/cv"),
+      },
+      {
+        id: "nav-contacto",
+        icon: <Mail size={16} strokeWidth={1.5} />,
+        title: "Contacto",
+        section: t.search.navigation,
+        keywords: ["correo", "email", "contacto"],
+        action: () => navigate("/contacto"),
+      },
+      {
         id: "nav-experiencia",
         icon: <Briefcase size={16} strokeWidth={1.5} />,
         title: t.experience.label,
         section: t.search.navigation,
-        action: () => navigate("/#experiencia"),
+        action: () => navigate("/#trabajo"),
       },
       {
         id: "nav-skills",
         icon: <Layers size={16} strokeWidth={1.5} />,
-        title: t.skills.label,
+        title: "Capacidades",
         section: t.search.navigation,
-        action: () => navigate("/#skills"),
+        action: () => navigate("/#capacidades"),
       },
       ...EXPERIENCE.map((exp) => ({
         id: `exp-${exp.slug}`,
@@ -230,20 +256,55 @@ export default function CommandPalette() {
 
   useEffect(() => {
     if (commandPaletteOpen) {
+      returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
       setQuery("")
       setSelectedIndex(0)
       document.body.style.overflow = "hidden"
       setTimeout(() => inputRef.current?.focus(), 0)
     } else {
       document.body.style.overflow = ""
+      // Al cerrar, el foco vuelve a donde estaba si ese elemento sigue en la página.
+      if (returnFocus.current?.isConnected) returnFocus.current.focus()
+      returnFocus.current = null
     }
     return () => {
       document.body.style.overflow = ""
     }
   }, [commandPaletteOpen])
 
+  // Mientras la paleta está abierta, el resto de la página queda inerte: no se enfoca ni se lee.
+  useEffect(() => {
+    if (!commandPaletteOpen) return
+    const dialog = dialogRef.current
+    const blocked: Element[] = []
+    for (const child of Array.from(document.body.children)) {
+      if (dialog && child.contains(dialog)) continue
+      if (child.hasAttribute("inert")) continue
+      child.setAttribute("inert", "")
+      blocked.push(child)
+    }
+    return () => blocked.forEach((child) => child.removeAttribute("inert"))
+  }, [commandPaletteOpen])
+
   useEffect(() => {
     const handleGlobalKeydown = (e: KeyboardEvent) => {
+      // Si el foco quedó fuera de la paleta abierta, Escape la cierra igual y Tab vuelve a entrar.
+      const dialog = dialogRef.current
+      if (commandPaletteOpen && dialog && !dialog.contains(document.activeElement)) {
+        if (e.key === "Escape") {
+          e.preventDefault()
+          closeCommandPalette()
+          return
+        }
+        if (e.key === "Tab") {
+          e.preventDefault()
+          const focusable = Array.from(
+            dialog.querySelectorAll<HTMLElement>('input, button, [href], [tabindex]:not([tabindex="-1"])')
+          ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null)
+          ;(e.shiftKey ? focusable[focusable.length - 1] : focusable[0])?.focus()
+          return
+        }
+      }
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault()
         if (commandPaletteOpen) {
@@ -279,6 +340,30 @@ export default function CommandPalette() {
         e.preventDefault()
         closeCommandPalette()
       }
+
+      // Tab y Shift+Tab giran dentro de la paleta, aunque haya un solo elemento enfocable.
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>('input, button, [href], [tabindex]:not([tabindex="-1"])')
+        ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null)
+        if (focusable.length === 0) {
+          e.preventDefault()
+          return
+        }
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        const active = document.activeElement
+        if (focusable.length === 1 || !dialogRef.current.contains(active)) {
+          e.preventDefault()
+          first.focus()
+        } else if (e.shiftKey && active === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && active === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     },
     [flatItems, selectedIndex, closeCommandPalette]
   )
@@ -296,10 +381,10 @@ export default function CommandPalette() {
   let flatIndex = -1
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh]" onKeyDown={handleKeydown}>
+    <div ref={dialogRef} className="fixed inset-0 z-[100] flex items-start justify-center pt-[20vh]" onKeyDown={handleKeydown} role="dialog" aria-modal="true" aria-label="Buscar en el sitio">
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={closeCommandPalette} />
-      <div className="relative w-full max-w-[520px] mx-4 bg-surface-raised border border-surface-border rounded-2xl overflow-hidden shadow-2xl animate-slide-down">
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-surface-border">
+      <div className="paleta relative w-full max-w-[520px] mx-4 overflow-hidden animate-slide-down">
+        <div className="flex items-center gap-3 px-4 h-14 bg-surface-overlay">
           <Search size={18} strokeWidth={1.5} className="text-text-muted shrink-0" />
           <input
             ref={inputRef}
@@ -307,14 +392,15 @@ export default function CommandPalette() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.search.placeholder}
+            aria-label={t.search.placeholder}
             className="flex-1 bg-transparent text-text-primary text-base placeholder:text-text-muted outline-none"
           />
-          <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium text-text-muted bg-surface-overlay border border-surface-border rounded">
-            ESC
+          <kbd className="hidden sm:inline-flex items-center px-2 py-1 text-xs text-text-muted bg-surface-raised rounded-[18px]">
+            Esc
           </kbd>
         </div>
 
-        <div ref={listRef} className="max-h-[360px] overflow-y-auto py-2">
+        <div ref={listRef} className="max-h-[360px] overflow-y-auto p-2">
           {flatItems.length === 0 && (
             <div className="px-4 py-8 text-center text-sm text-text-muted">
               {t.search.noResults}
@@ -324,7 +410,7 @@ export default function CommandPalette() {
           {orderedSections.map((sectionName) => (
             <div key={sectionName}>
               <div className="px-4 pt-3 pb-1">
-                <span className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
+                <span className="text-[13px] font-medium text-text-muted">
                   {sectionName}
                 </span>
               </div>
@@ -344,18 +430,18 @@ export default function CommandPalette() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between px-4 py-2 border-t border-surface-border">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-surface-overlay">
           <div className="flex items-center gap-2">
-            <kbd className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium text-text-muted bg-surface-overlay border border-surface-border rounded">
-              up/down
+            <kbd className="inline-flex items-center px-2 py-1 text-xs text-text-muted bg-surface-raised rounded-[18px]">
+              ↑ ↓
             </kbd>
-            <span className="text-[11px] text-text-muted">{t.search.navigate}</span>
+            <span className="text-xs text-text-muted">{t.search.navigate}</span>
           </div>
           <div className="flex items-center gap-2">
-            <kbd className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-medium text-text-muted bg-surface-overlay border border-surface-border rounded">
-              enter
+            <kbd className="inline-flex items-center px-2 py-1 text-xs text-text-muted bg-surface-raised rounded-[18px]">
+              Enter
             </kbd>
-            <span className="text-[11px] text-text-muted">{t.search.select}</span>
+            <span className="text-xs text-text-muted">{t.search.select}</span>
           </div>
         </div>
       </div>

@@ -126,7 +126,7 @@ export default function ClickChallenge({ onComplete }: ClickChallengeProps) {
     <div className="flex flex-col items-center gap-6">
       {phase === "idle" && (
         <p className="text-text-secondary text-sm text-center max-w-[280px]">
-          Haz clic lo mas rapido posible en 10 segundos
+          Haz clic lo más rápido posible en 10 segundos
         </p>
       )}
 
@@ -185,9 +185,9 @@ export default function ClickChallenge({ onComplete }: ClickChallengeProps) {
           </p>
           {personalBest > 0 && (
             <p className="text-text-muted text-xs">
-              Record personal: {personalBest}
+              Récord personal: {personalBest}
               {isNewRecord && (
-                <span className="text-accent ml-1 font-medium">Nuevo record</span>
+                <span className="text-accent ml-1 font-medium">Nuevo récord</span>
               )}
             </p>
           )}

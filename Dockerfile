@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Vista local del export estático; producción vive en Hostinger (scripts/deploy-hostinger.sh).
+# Vista local del export estático; producción vive en Hostinger (ver deploy/README.md).
 FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./

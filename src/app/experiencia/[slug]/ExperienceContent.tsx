@@ -1,73 +1,46 @@
-"use client"
-
-import { getExperienceBySlug } from "@/data/experience"
-import BackButton from "@/components/BackButton"
-import DetailLayout from "@/components/DetailLayout"
-import { useLocale } from "@/i18n"
+import { EXPERIENCE, getExperienceBySlug } from '@/data/experience'
+import BackButton from '@/components/BackButton'
+import Footer from '@/components/Footer'
+import { DetailHeader, NextCards } from '@/components/DetailParts'
+import { workGlyph } from '@/components/dots/maps'
 
 export default function ExperienceContent({ slug }: { slug: string }) {
-  const { t } = useLocale()
   const role = getExperienceBySlug(slug)!
-  const roleTranslation = t.experience.roles[slug as keyof typeof t.experience.roles]
-
+  const others = EXPERIENCE.filter(e => e.slug !== slug)
   return (
-    <DetailLayout>
-      <BackButton href="/#experiencia" />
-
-      <div className="bg-surface-raised border border-surface-border rounded-3xl p-8 md:p-10 mt-6">
-        <div>
-          <span className="text-xs text-text-muted bg-surface-overlay px-3 py-1 rounded-full">
-            {role.period}
-          </span>
-          <h1 className="text-2xl font-semibold tracking-tight text-text-primary mt-4">
-            {roleTranslation?.title ?? role.title}
-          </h1>
-          <p className="text-sm text-text-muted mt-1">{role.company}</p>
-        </div>
-
-        <p className="text-text-secondary leading-relaxed mt-6">
-          {roleTranslation?.fullDescription ?? role.fullDescription}
-        </p>
-
-        <div className="grid grid-cols-2 gap-3 mt-8">
-          {role.metrics.map((metric) => (
-            <div
-              key={metric.label}
-              className="bg-surface-overlay border border-surface-border rounded-xl p-4 text-center"
-            >
-              <span className="text-2xl font-bold text-accent">{metric.value}</span>
-              <span className="block text-xs text-text-muted mt-1">{metric.label}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8">
-          <h2 className="text-sm font-medium text-text-primary mb-4">{t.detail.keyAchievements}</h2>
-          <ul className="flex flex-col gap-3">
-            {(roleTranslation?.achievements ?? role.achievements).map((achievement) => (
-              <li key={achievement} className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">
-                  &#10003;
-                </span>
-                <span className="text-sm text-text-secondary leading-relaxed">
-                  {achievement}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-surface-border">
-          {role.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs text-text-muted bg-surface-overlay px-2.5 py-1 rounded-md"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </DetailLayout>
+    <>
+      <main id="contenido" className="acento-naranja">
+        <div className="marco"><BackButton href="/#trabajo" /></div>
+        <DetailHeader
+          title={role.title}
+          lead={role.shortDescription}
+          glyph={workGlyph(slug)}
+          facts={[
+            { label: 'Período', value: role.period },
+            { label: 'Ámbito', value: role.company },
+            { label: 'Base', value: 'Buenos Aires' },
+          ]}
+        />
+        <section className="marco seccion detalle-cuerpo">
+          <div className="cuerpo-texto">
+            <p>{role.fullDescription}</p>
+            <h2>Trabajo realizado</h2>
+            <ul className="lista-puntos">{role.achievements.map(a => <li key={a}>{a}</li>)}</ul>
+          </div>
+          <aside className="detalle-lateral" aria-label="Tecnologías">
+            <h2>Tecnologías</h2>
+            <ul className="tecnologias">{role.tags.map(t => <li key={t}>{t}</li>)}</ul>
+          </aside>
+        </section>
+        <NextCards
+          title="Sigue explorando"
+          items={[
+            ...others.map(e => ({ href: `/experiencia/${e.slug}`, meta: e.period, title: e.title })),
+            { href: '/cv', meta: 'Experiencia y formación', title: 'CV completo' },
+          ]}
+        />
+      </main>
+      <Footer />
+    </>
   )
 }

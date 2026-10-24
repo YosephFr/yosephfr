@@ -1,18 +1,16 @@
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import DotIcon from "@/components/dots/DotIcon"
 
 interface BackButtonProps {
   href?: string
+  label?: string
 }
 
-export default function BackButton({ href = "/" }: BackButtonProps) {
+export default function BackButton({ href = "/", label = "Volver" }: BackButtonProps) {
   return (
-    <Link
-      href={href}
-      className="inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors"
-    >
-      <ArrowLeft size={16} strokeWidth={1.5} />
-      Volver
+    <Link href={href} className="enlace enlace-suave volver">
+      <DotIcon name="volver" size={14} />
+      {label}
     </Link>
   )
 }
