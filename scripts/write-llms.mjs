@@ -57,6 +57,7 @@ ${link('Inicio', `${origin}/`, 'perfil profesional, áreas de trabajo y artícul
 ${link('CV', `${origin}/cv`, 'experiencia, prácticas actuales y formación')}
 ${link('Contacto', `${origin}/contacto`, 'correo y perfiles públicos')}
 ${link('Blog', `${origin}/blog`, 'artículos en español')}
+${link('Tabla de costo real de modelos de IA', `${origin}/recursos/costo-real-modelos-ia`, 'tiempo y USD por tarea para construir un juego roadster, con mediciones propias de octubre de 2026')}
 ${link('IA y agentes', `${origin}/skills/ai-agents`, 'modelos, herramientas, MCP y coordinación')}
 ${link('Servicios y APIs', `${origin}/skills/backend-apis`, 'APIs, integraciones y flujos')}
 ${link('Interfaces y diseño', `${origin}/skills/frontend-react`, 'interfaces claras y probadas en uso')}
@@ -70,6 +71,7 @@ ${link('CV', `${origin}/en/cv`, 'experience, current practices and education')}
 ${link('Contact', `${origin}/en/contact`, 'email and public profiles')}
 ${link('Articles', `${origin}/en/blog`, 'English articles, plus Spanish originals that do not have an English version yet')}
 ${link('RSS', `${origin}/en/feed.xml`, 'English feed')}
+${link('Real-cost table of AI models', `${origin}/en/resources/real-cost-ai-models`, 'time and USD per task to build a roadster game, from my own runs in October 2026')}
 
 ## Artículos
 ${posts(spanish)}

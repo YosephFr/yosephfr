@@ -620,7 +620,7 @@ main { animation: pagina 0.45s var(--entrada) both; }
 
 @media print {
   html, body { background: #fff !important; color: #111 !important; }
-  body::before, .barra, .capsula, .pie, .skip-link, .acciones, .estado-texto, .no-imprimir { display: none !important; }
+  body::before, .barra, .capsula, .pie, .skip-link, .acciones, .estado-texto, .no-imprimir, .boletin { display: none !important; }
   .marco, .lectura { width: 100%; }
   .lamina, .ventana { box-shadow: none !important; background: #fff !important; padding-inline: 0 !important; }
   .entrada-texto, .meta, .rol-cuerpo > p, .lista-puntos li, .practica p, .formacion-item p, .trayectoria-nombre { color: #333 !important; }
@@ -681,3 +681,65 @@ main { animation: pagina 0.45s var(--entrada) both; }
 .numero { display: block; font-size: 40px; line-height: 1; font-weight: 800; color: var(--acento); font-variant-numeric: tabular-nums; text-shadow: 0 0 18px var(--acento-luz); }
 @media (min-width: 900px) { .numero { font-size: 52px; } }
 .pie-tarjeta { margin-top: auto; padding-top: 14px; }
+
+/* Newsletter y tabla de costo real */
+.boletin-seccion { padding-top: 12px; }
+.boletin {
+  display: grid;
+  gap: 0;
+  max-width: 720px;
+  margin-inline: auto;
+  padding: 22px 18px 18px;
+  border-radius: var(--r);
+  background-color: var(--capa);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 55%);
+  box-shadow: var(--sombra);
+}
+.boletin h2 { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.08; max-width: 16ch; }
+.boletin .entrada-texto { margin-top: 10px; font-size: 16px; }
+.boletin-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.boletin-form input[type="email"] {
+  flex: 1 1 200px;
+  min-width: 0;
+  height: var(--alto);
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--r);
+  background: var(--negro);
+  color: var(--texto);
+  font: inherit;
+  font-size: 16px;
+}
+.boletin-form input::placeholder { color: var(--texto-3); }
+.boletin .consentimiento { margin-top: 12px; max-width: 46em; }
+@media (min-width: 760px) {
+  .boletin { padding: 28px 32px 22px; }
+  .boletin .entrada-texto { font-size: 17px; }
+}
+.medicion { width: min(760px, calc(100% - 2 * var(--margen))); padding-bottom: 8px; }
+.medicion h2 { margin-top: 28px; font-size: clamp(22px, 2vw, 28px); line-height: 1.15; }
+.medicion .nota { margin-top: 12px; max-width: 42em; color: var(--texto-2); }
+.medicion .nota + .nota { margin-top: 10px; }
+.tabla-medicion { overflow-x: auto; border-radius: var(--r); background: #111113; box-shadow: var(--sombra); }
+.tabla-medicion table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.4; }
+.tabla-medicion th, .tabla-medicion td { text-align: left; vertical-align: middle; padding: 12px 14px; }
+.tabla-medicion thead th { color: var(--texto); font-weight: 700; }
+.tabla-medicion thead th, .tabla-medicion tbody tr + tr :is(th, td) { box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08); }
+.tabla-medicion tbody th { font-weight: 650; color: var(--texto); }
+.tabla-medicion td { font-variant-numeric: tabular-nums; color: var(--texto-2); }
+.tabla-medicion :is(th, td):nth-child(n + 2) { text-align: right; }
+.tabla-medicion thead button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+}
+.tabla-medicion thead th:nth-child(n + 2) button { margin-left: auto; }
+.tabla-medicion .orden { color: var(--acento); font-size: 12px; }
+.gracias .pagina-cabeza h1 { max-width: 16em; font-size: clamp(32px, 4.2vw, 56px); line-height: 1.05; }

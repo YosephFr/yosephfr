@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
+import NewsletterCTA from '@/components/NewsletterCTA'
 import ArticleCards, { FeaturedArticle } from '@/components/blog/ArticleCards'
 import DotIcon from '@/components/dots/DotIcon'
 import DotField, { cascade } from '@/components/dots/DotField'
@@ -75,6 +76,7 @@ export default function BlogPageEn() {
             <ArticleCards articles={spanishOnly} lang="en" />
           </section>
         )}
+        <NewsletterCTA lang="en" />
       </main>
       <Footer lang="en" />
     </>

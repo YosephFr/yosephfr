@@ -7,6 +7,7 @@ import Hero from '@/components/Hero'
 import Experience from '@/components/Experience'
 import Skills from '@/components/Skills'
 import CTA from '@/components/CTA'
+import NewsletterCTA from '@/components/NewsletterCTA'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
 import { jsonLd, og, profilePage } from '@/lib/seo'
@@ -61,6 +62,7 @@ export default function HomeEn() {
         <Experience lang="en" />
         <Skills lang="en" />
         <CTA lang="en" />
+        <NewsletterCTA lang="en" />
       </main>
       <Footer lang="en" />
     </>

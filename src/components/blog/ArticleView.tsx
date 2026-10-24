@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import BackButton from '@/components/BackButton'
 import Footer from '@/components/Footer'
+import NewsletterCTA from '@/components/NewsletterCTA'
 import ArticleBody from '@/components/blog/ArticleBody'
 import ArticleCards from '@/components/blog/ArticleCards'
 import ArticleCover from '@/components/blog/ArticleCover'
@@ -151,6 +152,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
             <ArticleCards articles={related} lang={lang} />
           </section>
         )}
+        <NewsletterCTA lang={lang} />
       </main>
       <Footer lang={lang} />
     </>

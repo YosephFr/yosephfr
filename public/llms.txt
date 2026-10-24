@@ -9,6 +9,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [CV](https://yosephfr.com/cv): experiencia, prácticas actuales y formación
 - [Contacto](https://yosephfr.com/contacto): correo y perfiles públicos
 - [Blog](https://yosephfr.com/blog): artículos en español
+- [Tabla de costo real de modelos de IA](https://yosephfr.com/recursos/costo-real-modelos-ia): tiempo y USD por tarea para construir un juego roadster, con mediciones propias de octubre de 2026
 - [IA y agentes](https://yosephfr.com/skills/ai-agents): modelos, herramientas, MCP y coordinación
 - [Servicios y APIs](https://yosephfr.com/skills/backend-apis): APIs, integraciones y flujos
 - [Interfaces y diseño](https://yosephfr.com/skills/frontend-react): interfaces claras y probadas en uso
@@ -22,6 +23,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Contact](https://yosephfr.com/en/contact): email and public profiles
 - [Articles](https://yosephfr.com/en/blog): English articles, plus Spanish originals that do not have an English version yet
 - [RSS](https://yosephfr.com/en/feed.xml): English feed
+- [Real-cost table of AI models](https://yosephfr.com/en/resources/real-cost-ai-models): time and USD per task to build a roadster game, from my own runs in October 2026
 
 ## Artículos
 - [La misma pantalla vacía puede significar tres cosas distintas](https://yosephfr.com/blog/pantallas-vacias-tres-motivos): Cuenta nueva, filtro sin resultados o carga fallida: cómo pedirle al agente que resuelva cada caso para que la persona sepa por qué no ve nada y qué hacer.
