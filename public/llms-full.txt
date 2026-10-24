@@ -7,6 +7,72 @@ CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 
+# Delegar de noche sin quedarte sin margen para el día
+
+Antes de dejar a un agente trabajando mientras duermes, elige la forma del trabajo para despertar con el resultado y con margen para seguir.
+
+URL: https://yosephfr.com/blog/delegar-de-noche-con-margen
+
+Publicado: 2026-10-24T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Dejarle a un agente una tarea larga antes de dormir es cómodo. A la mañana, la primera pregunta es si terminó. La segunda importa igual: cuánto margen te queda para el trabajo que tenías planeado hoy.
+
+Si usas un plan con límite de uso, o pagas por consumo, una noche mal organizada puede dejarte con el resultado listo y poco espacio para continuar. La forma en que repartes el trabajo antes de dormir influye en ese margen. Aquí tienes cómo elegirla y cómo comprobar qué te conviene.
+
+## Un caso para seguir
+
+Imagina que antes de dormir le dejas a un agente dos encargos sobre la misma aplicación: agregar la exportación de reportes a PDF y revisar los textos de las pantallas de configuración.
+
+El agente decide repartir todo entre varios subagentes. Uno prepara el formato del reporte, otro genera el archivo, otro agrega el botón, otro revisa textos. Cada uno necesita entender el proyecto para hacer su parte. A la mañana todo está hecho, pero buena parte del uso se fue en que cada subagente leyera lo mismo.
+
+## Cuándo repartir ayuda
+
+Repartir entre varios agentes ayuda cuando las áreas son de verdad independientes: archivos distintos, comprobaciones distintas y una revisión al final que junta todo.
+
+En el caso, la revisión de textos y la exportación a PDF cumplen esa condición. No tocan los mismos archivos ni dependen una de la otra. Pueden avanzar en paralelo.
+
+La exportación por dentro es otra historia. El formato del reporte define qué genera el archivo, y el archivo define qué hace el botón. Cada paso espera al anterior. Repartir un trabajo secuencial entre varios agentes puede repetir el mismo contexto en cada uno sin ahorrar tiempo.
+
+## Elige la forma antes de dormir
+
+Antes de delegar, decide cuál de estas formas encaja con la tarea:
+
+1. Un agente: para trabajo secuencial y acotado, donde cada paso depende del anterior.
+2. Dos áreas independientes: un agente por área cuando no comparten archivos ni decisiones.
+3. Quien implementa y quien revisa: un agente hace el cambio y otro, por separado, lo revisa al final.
+
+En el caso, una forma razonable sería un agente para la exportación completa, otro para los textos y una revisión al final. Es una propuesta para este ejemplo; tu tarea puede pedir otra.
+
+Pon también un límite explícito: cuántos agentes como máximo y si pueden delegar a su vez. Sin ese límite, la decisión de cuánto repartir queda en manos del agente.
+
+## Deja escrito qué significa terminado
+
+La revisión de la mañana es corta cuando sabes qué tienes que mirar. Escríbelo en el encargo, para cada parte.
+
+Para la exportación, podría ser: con un reporte de prueba, el botón genera un PDF con los mismos datos que muestra la pantalla, y las pruebas que ya existían siguen pasando. Para los textos: una lista con cada cambio, el texto anterior y el nuevo.
+
+Con eso, al despertar revisas contra un criterio en lugar de reconstruir qué pasó durante la noche.
+
+## Mide tu caso
+
+No hay una cifra que sirva para todos. El consumo de cada agente depende de la tarea, de la herramienta y del modelo. Por eso conviene probar con tu propio trabajo.
+
+Una comparación sencilla: toma una tarea acotada y ejecútala tres veces, una con cada forma. Mantén iguales el modelo, el nivel de esfuerzo, la versión del repositorio y la definición de terminado. Después compara tres cosas:
+
+- el tiempo hasta tener el resultado;
+- el costo que realmente puedes ver, como el uso o los tokens que muestra tu herramienta;
+- los defectos que encuentra la revisión.
+
+Esta comparación es una propuesta para medir tu caso. Lo que encuentres te dirá cuánto paralelismo justifica tu caso, y puede ser distinto para cada tipo de tarea.
+
+## La comprobación al despertar
+
+Antes de abrir otra cosa, mira dos datos juntos: si cada parte cumple lo que dejaste escrito como terminado y cuánto margen te queda para hoy. Si tienes las dos cosas, la forma que elegiste funcionó. Si tienes el resultado y te quedaste sin margen, la próxima noche prueba una forma más simple.
+
+---
+
 # ¿Qué ve un agente de IA de tu tarjeta o tu contraseña?
 
 Si escribes tu contraseña en el chat, el modelo la lee; con formularios seguros o gestores, no. Lo que documentan OpenAI, Anthropic, 1Password y Bitwarden.

@@ -5,7 +5,7 @@
     "description": "Antes de dejar a un agente trabajando mientras duermes, elige la forma del trabajo para despertar con el resultado y con margen para seguir.",
     "category": "Operación de agentes",
     "language": "es",
-    "author": "Franco",
+    "author": "Yoseph Franco",
     "date": "2026-10-24T19:30:00-03:00",
     "updated": "2026-10-24T19:30:00-03:00",
     "publication": "published",
@@ -118,6 +118,1022 @@
       {
         "type": "paragraph",
         "text": "Antes de abrir otra cosa, mira dos datos juntos: si cada parte cumple lo que dejaste escrito como terminado y cuánto margen te queda para hoy. Si tienes las dos cosas, la forma que elegiste funcionó. Si tienes el resultado y te quedaste sin margen, la próxima noche prueba una forma más simple."
+      }
+    ]
+  },
+  {
+    "slug": "que-ve-un-agente-tarjeta-contrasena",
+    "title": "¿Qué ve un agente de IA de tu tarjeta o tu contraseña?",
+    "description": "Si escribes tu contraseña en el chat, el modelo la lee; con formularios seguros o gestores, no. Lo que documentan OpenAI, Anthropic, 1Password y Bitwarden.",
+    "category": "Seguridad",
+    "language": "es",
+    "translation": "what-an-ai-agent-sees-card-password",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:45:00-03:00",
+    "updated": "2026-10-24T18:45:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "tags": [
+      "agentes de IA",
+      "seguridad",
+      "contraseñas",
+      "gestores de contraseñas",
+      "privacidad"
+    ],
+    "faq": [
+      {
+        "q": "¿El agente de IA ve mi contraseña si la escribo en el chat?",
+        "a": "Sí. Todo lo que escribes en el chat entra en el contexto que lee el modelo. Por eso OpenAI pide no pegar contraseñas, códigos de seguridad ni datos de pago en la conversación, y Bitwarden no recomienda ingresar credenciales directamente en modelos o agentes."
+      },
+      {
+        "q": "¿ChatGPT ve la contraseña que escribo en su formulario seguro de inicio de sesión?",
+        "a": "Según OpenAI, no. Las credenciales del formulario seguro van directo al navegador remoto, el modelo no las ve y ChatGPT no las guarda. La sesión iniciada sí puede seguir activa para tareas futuras hasta que expire o borres los datos del sitio."
+      },
+      {
+        "q": "¿Claude in Chrome puede pagar con mi tarjeta?",
+        "a": "No. La guía de permisos de Anthropic indica que Claude in Chrome tiene prohibido hacer compras o transacciones financieras y manejar datos sensibles de tarjetas o documentos de identidad, sin importar el modo de permisos."
+      },
+      {
+        "q": "¿Puedo usar mi gestor de contraseñas con un agente sin que vea la clave?",
+        "a": "Hay opciones en etapa temprana. 1Password ofrece Secure Agentic Autofill en acceso anticipado vía Browserbase y anunció 1Password for Agents el 22/10/2026. Bitwarden publicó Agent Access SDK en fase alfa temprana. En todos, una persona aprueba cada uso de la credencial."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** si escribes tu contraseña o tu tarjeta en el chat, el modelo la ve, porque todo lo que escribes ahí entra en su contexto. Si la ingresas en un formulario seguro de inicio de sesión, como el del navegador en la nube de ChatGPT, o la rellena un gestor de contraseñas con tu aprobación, el dato va directo al sitio y, según la documentación oficial, el modelo no lo lee. Lo que decide si el agente ve tu secreto no es la marca del agente, sino el camino por el que entra el dato."
+      },
+      {
+        "type": "paragraph",
+        "text": "Uso agentes de IA a diario y la pregunta que más me hacen es \"¿el agente ve mi contraseña?\". Aquí reviso qué dicen hoy las páginas oficiales, sin suponer nada que no esté escrito en ellas."
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué pasa si escribes tu contraseña en el chat?"
+      },
+      {
+        "type": "paragraph",
+        "text": "El chat es la entrada del modelo: lo que escribes ahí, lo lee. 1Password lo resume así: quien entrega credenciales directamente a una app de IA que usa el navegador puede exponerlas al agente y al modelo subyacente, y esos secretos terminan repartidos entre agentes, *prompts* y registros ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "Los propios fabricantes lo desaconsejan:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI: \"Never paste passwords, security codes, or payment details into the conversation\" (\"nunca pegues contraseñas, códigos de seguridad ni datos de pago en la conversación\") ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)).",
+          "Bitwarden: no recomienda ingresar credenciales sensibles directamente en modelos o agentes de IA ([GitHub de Bitwarden](https://github.com/bitwarden/agent-access)).",
+          "Google, sobre Gemini: pide no ingresar información confidencial que no querrías que viera un revisor humano ([Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en))."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué ve ChatGPT cuando usas su formulario seguro?"
+      },
+      {
+        "type": "paragraph",
+        "text": "El navegador en la nube de ChatGPT Work se detiene cuando llega a una página de inicio de sesión compatible y te pide que entres con un formulario seguro. Según OpenAI ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Las credenciales del formulario seguro van directo al navegador remoto. El modelo no ve el usuario ni la contraseña, y ChatGPT no guarda esas credenciales.",
+          "Antes de pedirte que inicies sesión, un modelo de revisión adicional busca señales de *phishing*, y tú ves la dirección del sitio y una vista previa del formulario.",
+          "Antes de acciones difíciles de revertir, como confirmar una reserva o hacer un pago, ChatGPT te pide confirmación en el chat."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay un matiz: la sesión iniciada sigue activa para tareas futuras hasta que expire; puedes cerrarla antes borrando los datos del sitio en *Settings > Cloud browser*. OpenAI también indica que en iOS puedes usar un gestor de contraseñas compatible para iniciar sesión ([ChatGPT Learn](https://learn.chatgpt.com/docs/browser))."
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué permite Claude in Chrome con datos sensibles y tarjetas?"
+      },
+      {
+        "type": "paragraph",
+        "text": "La guía de permisos de Anthropic ([Claude Help Center](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)) establece dos reglas que aplican en cualquier modo de permisos:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Permiso explícito** antes de ingresar información potencialmente sensible en un sitio, incluso si marcaste un sitio como \"siempre permitir\".",
+          "**Acciones prohibidas**: hacer compras o transacciones financieras y manejar datos sensibles de tarjetas o de documentos de identidad, entre otras."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Para trabajo con dinero, mensajes en tu nombre o archivos importantes, recomienda supervisar de cerca o volver al modo manual. La guía no detalla si el modelo ve el valor que autorizas ingresar, así que no lo afirmo en ningún sentido."
+      },
+      {
+        "type": "heading",
+        "text": "¿Cómo funcionan los gestores de contraseñas con agentes?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Aquí el dato no lo escribes tú ni el agente: lo rellena el gestor después de que una persona aprueba."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1Password.** Su función Secure Agentic Autofill inyecta credenciales en el navegador mediante la extensión de 1Password, solo cuando hacen falta y siempre con autorización de una persona. 1Password afirma que las credenciales en bruto nunca entran en el contexto del modelo y que viajan por un canal cifrado de extremo a extremo basado en el Noise Framework ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)). Está en acceso anticipado desde el 8 de octubre de 2025 para clientes de 1Password que usan Browserbase ([nota de prensa](https://1password.com/press/2025/oct/browserbase-ai-security-partnership), [Marketplace](https://marketplace.1password.com/integration/browserbase)). El 22 de octubre de 2026, 1Password anunció además 1Password for Agents: el agente pide una credencial, tú apruebas y 1Password la rellena en el sitio sin que el agente tenga acceso a ella. Por ahora es para cuentas Individual y Family de 1Password.com, y la disponibilidad y las capacidades varían según cada integración ([1Password](https://1password.com/blog/1password-for-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bitwarden.** El 24 de marzo de 2026 publicó Agent Access SDK, un protocolo abierto con licencia Apache 2.0. Permite aprobar credenciales específicas solo cuando una tarea las necesita, en lugar de dar acceso a todo el baúl, con cifrado de extremo a extremo y aprobación humana. Hoy funciona por línea de comandos: el subcomando `run` inyecta la credencial como variables de entorno en un proceso; la extensión de navegador está anunciada como \"próximamente\" ([Bitwarden](https://bitwarden.com/blog/introducing-agent-access-sdk/)). El blog lo describe en fase alfa temprana y pide probarlo solo con datos de muestra; el repositorio lo llama \"early preview\" y recomienda la inyección por entorno para no exponer secretos en el contexto ([GitHub](https://github.com/bitwarden/agent-access))."
+      },
+      {
+        "type": "heading",
+        "text": "Comparación rápida"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Método",
+          "¿El modelo ve el valor?",
+          "¿Quién confirma?",
+          "Estado"
+        ],
+        "rows": [
+          [
+            "Escribirlo en el chat",
+            "Sí, entra en el contexto",
+            "Nadie",
+            "Desaconsejado por OpenAI y Bitwarden"
+          ],
+          [
+            "Formulario seguro de ChatGPT",
+            "No, según OpenAI",
+            "Tú inicias sesión; pagos y reservas se confirman en el chat",
+            "Disponible en planes pagos, salvo Free y Go"
+          ],
+          [
+            "Claude in Chrome",
+            "No documentado",
+            "Tú, con permiso explícito; tarjetas prohibidas",
+            "Disponible en planes pagos"
+          ],
+          [
+            "1Password Secure Agentic Autofill",
+            "No, según 1Password",
+            "Tú apruebas cada solicitud",
+            "Acceso anticipado (Browserbase)"
+          ],
+          [
+            "Bitwarden Agent Access SDK",
+            "No, si se usa inyección por entorno",
+            "Tú apruebas en la CLI",
+            "Alfa temprana / *early preview*"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist práctico"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**No pegues contraseñas, códigos ni datos de tarjeta en el chat.**",
+          "**Usa el formulario seguro** cuando el agente lo ofrezca, y revisa la dirección del sitio antes de escribir.",
+          "**Revisa cada confirmación** de pago o reserva antes de aceptar.",
+          "**Cierra la sesión del agente** cuando termines: en ChatGPT, borra los datos del sitio en *Settings > Cloud browser*.",
+          "**Usa el modo manual** para tareas con dinero o mensajes en tu nombre, como recomienda Anthropic.",
+          "**Usa un gestor de contraseñas** con claves únicas por cuenta. El NCSC del Reino Unido señala que el autocompletado también protege del *phishing*, porque la contraseña solo se rellena en el sitio correcto ([NCSC](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers)).",
+          "**Activa la verificación en dos pasos** y usa *passkeys* donde existan, como recomienda el NCSC.",
+          "**Trata como experimentales** las integraciones de gestores en acceso anticipado o alfa."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "La pregunta que me hago antes de compartir un dato ya no es \"¿confío en este agente?\", sino \"¿este dato pasa por el contexto del modelo?\". Si la respuesta es sí, busco otro camino."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿El agente de IA ve mi contraseña si la escribo en el chat?**\nSí. Lo que escribes en el chat entra en el contexto del modelo. OpenAI y Bitwarden desaconsejan hacerlo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿ChatGPT ve la contraseña que escribo en su formulario seguro?**\nSegún OpenAI, no: va directo al navegador remoto y ChatGPT no la guarda. La sesión sí puede seguir activa hasta que expire."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Claude in Chrome puede pagar con mi tarjeta?**\nNo. Tiene prohibido comprar y manejar datos sensibles de tarjetas, en cualquier modo de permisos."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Puedo usar mi gestor de contraseñas con un agente sin que vea la clave?**\nHay opciones en etapa temprana: 1Password Secure Agentic Autofill (acceso anticipado), 1Password for Agents (anunciado el 22/10/2026) y Bitwarden Agent Access SDK (alfa temprana). En todos, una persona aprueba cada uso."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consultadas el 24 de octubre de 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI Help Center, [Using cloud browser in ChatGPT](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)",
+          "ChatGPT Learn, [Browser](https://learn.chatgpt.com/docs/browser)",
+          "Claude Help Center, [Claude in Chrome permissions guide](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)",
+          "1Password, [Closing the credential risk gap for AI agents using a browser](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)",
+          "1Password, [1Password and Browserbase Partner to Secure Credential Access for Agentic AI Automation](https://1password.com/press/2025/oct/browserbase-ai-security-partnership) (8/10/2025)",
+          "1Password Marketplace, [Secure Agentic Autofill for Browserbase (Early Access)](https://marketplace.1password.com/integration/browserbase)",
+          "1Password, [Introducing 1Password for Agents](https://1password.com/blog/1password-for-ai-agents) (22/10/2026)",
+          "Bitwarden, [Introducing the Agent Access SDK](https://bitwarden.com/blog/introducing-agent-access-sdk/) (24/03/2026)",
+          "GitHub, [bitwarden/agent-access](https://github.com/bitwarden/agent-access)",
+          "Google, [Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en)",
+          "NCSC (Reino Unido), [Managing your passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) (revisada el 21/05/2026)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "what-an-ai-agent-sees-card-password",
+    "title": "What an AI Agent Sees When You Share a Card or Password",
+    "description": "Type a password into the chat and the model reads it. Use a secure sign-in form or password-manager autofill and, per the vendors, it does not.",
+    "category": "Security",
+    "language": "en",
+    "translation": "que-ve-un-agente-tarjeta-contrasena",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:45:00-03:00",
+    "updated": "2026-10-24T18:45:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "tags": [
+      "AI agents",
+      "security",
+      "passwords",
+      "password managers",
+      "privacy"
+    ],
+    "faq": [
+      {
+        "q": "Can an AI agent see my password if I type it into the chat?",
+        "a": "Yes. Anything you type into the chat becomes part of the context the model reads. That is why OpenAI says never to paste passwords, security codes or payment details into the conversation, and Bitwarden does not recommend entering sensitive credentials directly into LLMs or AI agents."
+      },
+      {
+        "q": "Does ChatGPT see the password I enter in its secure sign-in form?",
+        "a": "According to OpenAI, no. Credentials entered through the secure form go directly to the remote browser, are not visible to the model, and are not stored by ChatGPT. The signed-in session can persist for future tasks until it expires or you clear the site's data."
+      },
+      {
+        "q": "Can Claude in Chrome pay with my credit card?",
+        "a": "No. Anthropic's permissions guide says Claude in Chrome is prohibited from making purchases or financial transactions and from handling sensitive credit card or ID data, regardless of permission mode."
+      },
+      {
+        "q": "Can I use my password manager with an AI agent without exposing the password?",
+        "a": "There are early-stage options. 1Password offers Secure Agentic Autofill in early access through Browserbase and announced 1Password for Agents on October 22, 2026. Bitwarden released the Agent Access SDK as an early alpha. In each case, a person approves every credential use."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Short answer:** if you type a password or card number into the chat, the model sees it, because everything in the chat becomes part of its context. If you enter it in a secure sign-in form, like the one in ChatGPT's cloud browser, or a password manager fills it in after you approve, the value goes straight to the website and, according to the vendors' documentation, the model never reads it. Whether an agent sees your secret depends less on which agent you use and more on which path the data takes."
+      },
+      {
+        "type": "paragraph",
+        "text": "I use AI agents every day, and the question I hear most is \"can the agent see my password?\" Below is what the official documentation from OpenAI, Anthropic, 1Password and Bitwarden says today, and nothing it doesn't. All sources were checked on October 24, 2026."
+      },
+      {
+        "type": "heading",
+        "text": "What happens when you paste a password into the chat?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chat is the model's input. Whatever you type there, it reads. 1Password puts it plainly: when people hand credentials directly to a browser-use AI app, they may expose them to the agent and the underlying LLM, scattering secrets across agents, prompts and logs ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "The vendors themselves warn against it:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**OpenAI:** \"Never paste passwords, security codes, or payment details into the conversation. Use the secure sign-in flow for credentials.\" ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt))",
+          "**Bitwarden:** \"We do not recommend inputting sensitive credentials directly into LLMs or AI agents.\" ([GitHub](https://github.com/bitwarden/agent-access))",
+          "**Google, on Gemini:** \"Please don't enter confidential information that you wouldn't want a reviewer to see or Google to use to improve our services.\" ([Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en))"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "What does ChatGPT see when you use its secure sign-in form?"
+      },
+      {
+        "type": "paragraph",
+        "text": "ChatGPT Work's cloud browser pauses when it reaches a supported sign-in page and asks you to sign in through a secure form. According to OpenAI ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Credentials entered in the secure form go directly to the remote browser. The username and password are not visible to the model, and ChatGPT does not store them.",
+          "Before you're asked to sign in, an additional review model checks the request for signs of phishing, and you see the site address and a preview of the form.",
+          "Before actions that are hard to reverse, such as confirming a booking or making a payment, ChatGPT asks for confirmation in the chat."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "One catch: the signed-in session persists for future tasks until it expires. You can end it earlier by clearing that site's data under *Settings > Cloud browser*. OpenAI also notes that on iOS you can sign in with a supported password manager ([ChatGPT Learn](https://learn.chatgpt.com/docs/browser))."
+      },
+      {
+        "type": "heading",
+        "text": "What does Claude in Chrome allow with sensitive data and cards?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic's permissions guide ([Claude Help Center](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)) sets two rules that apply in every permission mode:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Explicit permission** before entering potentially sensitive information into a website, even on sites you've marked \"always allow.\"",
+          "**Prohibited actions**, including making purchases or financial transactions and handling sensitive credit card or ID data."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For work involving money, messages sent as you, or important files, Anthropic suggests staying close or switching back to manual approval. The guide doesn't say whether the model sees a value you authorize it to enter, so I won't claim either way."
+      },
+      {
+        "type": "heading",
+        "text": "How do password managers work with agents?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here neither you nor the agent types the secret. The password manager fills it in after a human approves."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1Password.** Secure Agentic Autofill injects credentials into the browser through the 1Password browser extension, only when needed and always authorized by a person. 1Password says raw credentials never enter the LLM context and travel over an end-to-end encrypted channel built on the Noise Framework ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)). It has been in early access since October 8, 2025, for 1Password customers using Browserbase ([press release](https://1password.com/press/2025/oct/browserbase-ai-security-partnership), [Marketplace](https://marketplace.1password.com/integration/browserbase)). On October 22, 2026, 1Password also announced 1Password for Agents: the agent requests a credential, you approve it, and 1Password fills it into the site so the agent doesn't have access to it. It's currently available for Individual and Family accounts on 1Password.com, and availability and capabilities vary by integration ([1Password](https://1password.com/blog/1password-for-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bitwarden.** On March 24, 2026, Bitwarden released the Agent Access SDK, an open protocol under the Apache 2.0 license. You approve specific credentials only when a task needs them, instead of exposing your whole vault, with end-to-end encryption and human approval. For now it runs from the command line: the `run` subcommand injects the credential as environment variables into a child process, and a browser extension is listed as coming soon ([Bitwarden](https://bitwarden.com/blog/introducing-agent-access-sdk/)). The blog calls it an early alpha and recommends testing with sample data only; the repository calls it an \"early preview\" and recommends environment injection to keep secrets out of recorded context ([GitHub](https://github.com/bitwarden/agent-access))."
+      },
+      {
+        "type": "heading",
+        "text": "Side-by-side"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Method",
+          "Does the model see the value?",
+          "Who confirms",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Typing it into the chat",
+            "Yes, it's in the context",
+            "No one",
+            "Discouraged by OpenAI and Bitwarden"
+          ],
+          [
+            "ChatGPT secure sign-in form",
+            "No, per OpenAI",
+            "You sign in; payments and bookings confirmed in chat",
+            "Paid plans, excluding Free and Go"
+          ],
+          [
+            "Claude in Chrome",
+            "Not documented",
+            "You, via explicit permission; card data prohibited",
+            "Paid plans"
+          ],
+          [
+            "1Password Secure Agentic Autofill",
+            "No, per 1Password",
+            "You approve each request",
+            "Early access (Browserbase)"
+          ],
+          [
+            "Bitwarden Agent Access SDK",
+            "No, when using environment injection",
+            "You approve in the CLI",
+            "Early alpha / early preview"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "A practical checklist"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Never paste passwords, codes or card numbers into the chat.**",
+          "**Use the secure sign-in form** when the agent offers one, and check the site address first.",
+          "**Read every payment or booking confirmation** before you approve it.",
+          "**End the agent's session** when you're done. In ChatGPT, clear the site's data under *Settings > Cloud browser*.",
+          "**Use manual approval** for tasks involving money or messages sent as you, as Anthropic recommends.",
+          "**Use a password manager** with a unique password per account. The UK's NCSC notes that autofill also helps against phishing, because the password only fills on the correct website ([NCSC](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers)).",
+          "**Turn on two-step verification** and use passkeys wherever they're offered, as the NCSC recommends.",
+          "**Treat early-access and alpha integrations as experimental.**"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Before I share anything with an agent, the question I ask isn't \"do I trust this agent?\" It's \"does this value pass through the model's context?\" If it does, I look for another route."
+      },
+      {
+        "type": "heading",
+        "text": "FAQ"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can an AI agent see my password if I type it into the chat?**\nYes. Anything in the chat is part of the model's context. OpenAI and Bitwarden both advise against it."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Does ChatGPT see the password I enter in its secure sign-in form?**\nAccording to OpenAI, no. It goes directly to the remote browser and isn't stored by ChatGPT. The session can stay active until it expires."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can Claude in Chrome pay with my credit card?**\nNo. It's prohibited from making purchases and handling sensitive card data in every permission mode."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can I use my password manager with an agent without exposing the password?**\nThere are early-stage options: 1Password Secure Agentic Autofill (early access), 1Password for Agents (announced October 22, 2026) and Bitwarden's Agent Access SDK (early alpha). In each, a person approves every use."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "paragraph",
+        "text": "Checked October 24, 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI Help Center, [Using cloud browser in ChatGPT](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)",
+          "ChatGPT Learn, [Browser](https://learn.chatgpt.com/docs/browser)",
+          "Claude Help Center, [Claude in Chrome permissions guide](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)",
+          "1Password, [Closing the credential risk gap for AI agents using a browser](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)",
+          "1Password, [1Password and Browserbase Partner to Secure Credential Access for Agentic AI Automation](https://1password.com/press/2025/oct/browserbase-ai-security-partnership) (Oct 8, 2025)",
+          "1Password Marketplace, [Secure Agentic Autofill for Browserbase (Early Access)](https://marketplace.1password.com/integration/browserbase)",
+          "1Password, [Introducing 1Password for Agents](https://1password.com/blog/1password-for-ai-agents) (Oct 22, 2026)",
+          "Bitwarden, [Introducing the Agent Access SDK](https://bitwarden.com/blog/introducing-agent-access-sdk/) (Mar 24, 2026)",
+          "GitHub, [bitwarden/agent-access](https://github.com/bitwarden/agent-access)",
+          "Google, [Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en)",
+          "UK NCSC, [Managing your passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) (reviewed May 21, 2026)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "samsung-tv-privacy-listening",
+    "title": "They said phones weren't listening.",
+    "description": "Today it's a Samsung TV. Before that it was Apple, Google and Amazon. Here's what's proven, what's alleged, and what's still a rumor, plus the settings to change tonight.",
+    "category": "Privacy",
+    "language": "en",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:00:00-03:00",
+    "updated": "2026-10-24T18:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 14,
+    "keyword": "Samsung TV privacy",
+    "citation": "https://x.com/arncof/status/2114086750280921322",
+    "cover": {
+      "src": "/blog/samsung-tv-privacy-listening/g1-title-card.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "They said phones weren't listening. Today it's a Samsung TV: what's proven, what's alleged, and what's still a rumor."
+    },
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For about a decade, regular people have said the same thing: \"I talked about something near my phone, and then I saw an ad for it.\" The industry's answer was always some version of \"we don't do that.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Some of that denial held up. A lot of it didn't. Contractors listened to voice-assistant recordings. A TV maker sold what millions of households watched. Companies paid settlements in the tens of millions. This week a security researcher says he opened up his own Samsung TV and found something worse."
+      },
+      {
+        "type": "paragraph",
+        "text": "I'm tired of every big company turning the hardware we pay for into a sensor pointed back at us. But being angry doesn't mean being sloppy. So let's separate what's been proven in court or by regulators from what one person is claiming on X, and from what is still just a rumor."
+      },
+      {
+        "type": "heading",
+        "text": "What a researcher says he found inside a Samsung TV"
+      },
+      {
+        "type": "paragraph",
+        "text": "On October 21, 2026, the researcher [@log4j](https://x.com/log4j) (his bio: reverse engineer, pentester, bounty hunter) [posted](https://x.com/log4j/status/2113014142600953868) that his Samsung TV kept showing him strangely well-targeted ads. The firmware was encrypted, so he says he used zero-day exploits to get a root shell on the TV itself. His summary: \"PRIVACY HORROR.\""
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/01-root-shell.webp",
+        "width": 1536,
+        "height": 1152,
+        "alt": "Screenshot from the researcher's post: a root shell on his Samsung TV, summarized as PRIVACY HORROR."
+      },
+      {
+        "type": "paragraph",
+        "text": "Over the next three days he posted a stream of findings. According to him:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "A system package named `csapi-tv-service-alwaysonvoice`, which he calls \"always on hot mic functionality,\" shows up in the TV's security policy. Next to it he lists ACR, geo-positioning, network mapping, a targeted-ads service, four DRM services and user-profile building, with data shared with \"samsung + their 400 partners.\" ([post](https://x.com/log4j/status/2113028209612644795))",
+          "If the TV has no microphone, the software looks for one on a connected soundbar or Bluetooth device, and \"this gets shipped off to bixby.\" ([post](https://x.com/log4j/status/2113762242327892456))",
+          "The telemetry includes classified sound events, such as dog-barking and baby-crying counters, plus camera-streaming duration. ([post](https://x.com/log4j/status/2113781968601055366))",
+          "A \"wifi-presence\" service starts about 20 minutes after boot. It sends ARP probes across your home network every hour to log IP and MAC addresses, and he found no check for opt-out. ([post](https://x.com/log4j/status/2113756782304596232))",
+          "A service called \"rmdemon\" starts a packet logger on your network. ([post](https://x.com/log4j/status/2113740242624917953))",
+          "A region-specific neural network (`LogoCNN.bin`) tracks in-app behavior, such as which YouTube videos you watch and which ads you skip. ([post](https://x.com/log4j/status/2113750330861125680))",
+          "Face-detection code that he says is used and returns bounding boxes around faces. ([post](https://x.com/log4j/status/2113796501117759683))"
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/02-security-policy.webp",
+        "width": 1091,
+        "height": 1600,
+        "alt": "The TV security policy listing the package csapi-tv-service-alwaysonvoice, which the researcher calls always-on hot mic functionality, next to ACR and other services."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/03-audio-classification.webp",
+        "width": 1600,
+        "height": 971,
+        "alt": "The researcher's audio table of classified sound events, including dog-barking and baby-crying counters, which his notes say still require verification."
+      },
+      {
+        "type": "paragraph",
+        "text": "The thread spread quickly. One repost that [summed it up](https://x.com/0x0SojalSec/status/2113208608980898022) as \"This isn't a bug, It's the product bro\" passed 1.4 million views."
+      },
+      {
+        "type": "subheading",
+        "text": "Now the caveats, and they matter"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Nobody has independently reproduced any of this yet.** As of October 24, 2026, I couldn't find a public response from Samsung to these specific claims.",
+          "**His own notes are cautious.** A page from his write-up is tagged \"STATIC PATH REVIEWED\" and \"RUNTIME UNVERIFIED.\" His audio table says the active runtime policy \"still require[s] verification.\" Code that exists in firmware isn't proof that it runs on your TV, or that it sends what it captures. ([post](https://x.com/log4j/status/2113828949046280384))",
+          "**The details shift.** His first post says a \"2025 samsung tv.\" A later post says \"my 2024 era samsung tv.\" In a reply, he says it's an EU model. He says about 44 write-ups, prepared with help from AI agents, are coming \"in a few days.\"",
+          "**Some of it overlaps with features Samsung advertises.** Samsung's own [Smart Home page](https://www.samsung.com/lb/tvs/smart-tv/smart-home/) says the TV \"can detect noises like barking through its microphone,\" and the fine print says this works only while the TV is turned off (Q8F and above, activated through SmartThings). The same page says the TV \"can detect when users come nearby\" to wake its Daily Board while the screen is off. So a mic that listens for sounds isn't a secret. The real questions are what gets reported, to whom, and whether opting out actually stops it."
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/04-writeups.webp",
+        "width": 1600,
+        "height": 1096,
+        "alt": "A page from the researcher's write-up tagged STATIC PATH REVIEWED and RUNTIME UNVERIFIED."
+      },
+      {
+        "type": "paragraph",
+        "text": "So, for now: **alleged, specific, worth watching, not proven.**"
+      },
+      {
+        "type": "heading",
+        "text": "Then his AI account got banned"
+      },
+      {
+        "type": "paragraph",
+        "text": "Then the story took a turn. On October 23, the researcher [posted](https://x.com/log4j/status/2113647464154857840) a screenshot of an OpenAI email saying his account had been deactivated for violating its policies on \"Cyber Abuse.\" He says he never used OpenAI \"to exploit or find vulnerabilities, only local reverse engineering,\" and that the ban cost him about $500."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/09-openai-ban.webp",
+        "width": 1545,
+        "height": 1600,
+        "alt": "Screenshot of an OpenAI email saying the researcher's account was deactivated for violating its policies on Cyber Abuse."
+      },
+      {
+        "type": "paragraph",
+        "text": "The same day, the account behind the viral repost [claimed](https://x.com/0x0SojalSec/status/2113751276320399694) that Claude had stopped helping with REA (\"Reverse Engineer Anything\"), a reverse-engineering workflow popular with users, and pointed to the \"interesting timing\" after the Samsung TV posts. Its evidence is a Reddit screenshot of Claude stopping mid-answer after a safety check. Developer [@yacineMTB amplified the ban](https://x.com/yacineMTB/status/2113965724435697732): \"You aren't allowed to stop your tv from spying on your family.\" X's [trending story](https://x.com/i/trending/2114013503564423636) collects the reaction."
+      },
+      {
+        "type": "paragraph",
+        "text": "Treat all of this as claims. The link between the Samsung research and either AI company's action is users' interpretation; neither company has said so. As of this writing, I found no public comment from OpenAI or Anthropic. Coincidence or not, it's a reminder that the tools researchers use to check on Big Tech are themselves run by Big Tech."
+      },
+      {
+        "type": "heading",
+        "text": "The receipts: this has happened before"
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason a claim like this spreads so fast is that the industry has a record. Here's the part that is documented."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g2-evidence-timeline.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "Timeline of documented cases where companies collected voice or viewing data, from Samsung in 2015 through the settlements and studies of 2025 and 2026."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "When",
+          "Who",
+          "What happened",
+          "Outcome"
+        ],
+        "rows": [
+          [
+            "Feb 2015",
+            "Samsung",
+            "The Smart TV privacy policy warned that \"if your spoken words include personal or other sensitive information, that information will be among the data captured and transmitted to a third party.\" ([NPR](https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening))",
+            "Samsung [clarified](https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations) that voice is collected only when you press the button, and that the third party was Nuance"
+          ],
+          [
+            "Feb 2017",
+            "Vizio",
+            "ACR collected second-by-second viewing data from 11 million TVs without consent, and Vizio sold it ([FTC](https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million))",
+            "$2.2M to the FTC and New Jersey"
+          ],
+          [
+            "Jul 2019",
+            "Apple",
+            "A contractor whistleblower said reviewers regularly heard confidential details in Siri recordings ([Guardian](https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings))",
+            "Apple [suspended](https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri) the program"
+          ],
+          [
+            "Jul 2019",
+            "Google",
+            "More than 1,000 Assistant recordings leaked to VRT NWS, 153 of them recorded without \"OK Google\" ([VRT](https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/))",
+            "Google said reviewers hear about 0.2% of clips"
+          ],
+          [
+            "Aug 2019",
+            "Facebook",
+            "Paid contractors to transcribe Messenger voice clips ([Bloomberg](https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio))",
+            "Paused"
+          ],
+          [
+            "Aug 2019",
+            "Microsoft",
+            "Contractors listened to Xbox audio from Kinect and Cortana, much of it accidental activations, some of it from children ([Vice](https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/))",
+            "Microsoft said it had stopped the reviews"
+          ],
+          [
+            "2023",
+            "Amazon",
+            "Kept children's Alexa voice recordings indefinitely and undermined deletion requests ([FTC](https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever), [DOJ](https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens))",
+            "$25M civil penalty under COPPA"
+          ],
+          [
+            "Oct 2025",
+            "Apple",
+            "Siri class action over accidental recordings (Lopez v. Apple) ([settlement site](https://www.lopezvoiceassistantsettlement.com/), [Lowey Dannenberg](https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/))",
+            "$95M, final approval Oct 16, 2025. Apple denies wrongdoing"
+          ],
+          [
+            "Dec 2025 – Feb 2026",
+            "Samsung, LG, Sony, Hisense, TCL",
+            "Texas sued all five over ACR, alleging screenshots of what's on screen as often as every 500 milliseconds ([Texas AG](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans))",
+            "Samsung [agreed](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs) to require express consent for ACR. LG reached [its own agreement](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)"
+          ],
+          [
+            "Oct 2026",
+            "Google",
+            "Assistant class action over \"false accept\" recordings ([Reuters](https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/), [final approval order](https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf))",
+            "$68M, final approval Oct 13, 2026. Google denies wrongdoing"
+          ],
+          [
+            "Oct 2026",
+            "Samsung, Vizio, Roku",
+            "A Northeastern University study ran 5,943 experiments on 12 TVs from 10 manufacturers. On Samsung Tizen, Vizio and Roku, it found traffic still going to ACR endpoints after users opted out ([Ars Technica](https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/), [paper](https://watchingthewatchers.github.io/watchingthewatchers/))",
+            "Payloads are encrypted, so the contents are unknown. The authors call it \"suspicious\""
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That last row is the one I'd watch most closely. It's independent of the Samsung researcher, it was done systematically, and it suggests that flipping the opt-out toggle may not be the end of the story. On Samsung's Tizen, the study saw ACR traffic after opt-out in all 30 first-party app measurements, 41 of 60 antenna measurements and 18 of 30 HDMI measurements."
+      },
+      {
+        "type": "heading",
+        "text": "Proven vs alleged vs rumor"
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g3-proven-alleged-rumor.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "What's proven, what's alleged, and what's still a rumor about devices listening and smart TVs tracking what you watch."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Claim",
+          "Status",
+          "Why"
+        ],
+        "rows": [
+          [
+            "Smart TVs log what you watch through ACR",
+            "**Proven**",
+            "Vizio FTC case (2017); Texas lawsuits and Samsung agreement (2025–26)"
+          ],
+          [
+            "Humans listened to voice-assistant recordings, including accidental ones",
+            "**Proven**",
+            "Apple, Google, Amazon, Facebook and Microsoft all confirmed or paused programs in 2019"
+          ],
+          [
+            "Companies paid for it",
+            "**Proven (settled)**",
+            "Apple $95M, Google $68M, Amazon $25M, Vizio $2.2M. Apple and Google deny wrongdoing"
+          ],
+          [
+            "Some TVs keep contacting ACR servers after you opt out",
+            "**Documented, contents unknown**",
+            "Northeastern study, Oct 2026"
+          ],
+          [
+            "A Samsung TV runs an \"always-on\" voice service, scans your network and logs packets",
+            "**Alleged**",
+            "One researcher's reverse engineering; his own notes say runtime is unverified; not reproduced"
+          ],
+          [
+            "Data goes to \"400 partners\"",
+            "**Alleged**",
+            "The researcher's figure; I couldn't verify it"
+          ],
+          [
+            "A marketing firm can target ads from what you say near your devices",
+            "**Alleged (marketing claim)**",
+            "A Cox Media Group pitch deck claimed it ([404 Media](https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)). Google removed CMG from its partner program, and Meta and Amazon distanced themselves. No evidence that it worked"
+          ],
+          [
+            "Your phone secretly records you to target ads",
+            "**Rumor / unproven**",
+            "Zuckerberg [denied it](https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/) to the Senate in 2018, and Instagram's Adam Mosseri [denied it again](https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) in 2025. A 2018 Northeastern study of 17,260 Android apps found no secret mic recording, though some apps [sent screenshots and screen recordings](https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) to third parties"
+          ],
+          [
+            "Your TV records you while it's fully off",
+            "**Rumor / unproven**",
+            "Samsung does advertise sound detection while the screen is off, but nothing public shows covert recording"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The uncomfortable pattern: the rumor that phones listen for ads is still unproven, and yet every time someone looks closely, they find a microphone doing more than people were told."
+      },
+      {
+        "type": "heading",
+        "text": "What the community has been saying"
+      },
+      {
+        "type": "paragraph",
+        "text": "The researcher's posts didn't land in a vacuum. People have been joking for years, half-seriously, that their devices are listening. [A reel from the community](https://www.instagram.com/reel/De0YSX4tTNT/) captures that mood: the suspicion came long before the receipts."
+      },
+      {
+        "type": "paragraph",
+        "text": "For Spanish speakers, Porque Pasa Esto put together a clear [70-second breakdown of the Samsung story](https://x.com/xq_pasaesto/status/2114056938153537713): \"A hacker opened his Samsung TV and this is what he says he found.\" Note the word \"says.\" That's the right framing."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/08-xq-pasaesto.webp",
+        "width": 675,
+        "height": 1200,
+        "alt": "Thumbnail for the Porque Pasa Esto video: A hacker opened his Samsung TV and this is what he says he found.",
+        "href": "https://x.com/xq_pasaesto/status/2114056938153537713"
+      },
+      {
+        "type": "heading",
+        "text": "Wait, is my PlayStation controller next?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Half joking, I figured my game controller would be the next thing caught snitching. So I checked."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Xbox:** In 2019, Microsoft contractors [listened to Xbox audio](https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera) captured by Kinect and Cortana, much of it triggered by accident, some of it from kids. Microsoft said it had stopped.",
+          "**PS5:** Sony [records party voice chat](https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) on a rolling five-minute loop, so players can report harassment. If you report, a 40-second clip goes to Sony's moderators. Sony says it doesn't actively monitor chats.",
+          "**DualSense ad listening:** I found no evidence of it. Rumor."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "So no, your controller isn't proven to be spying on you. But it does have a microphone, and so does almost everything else in your living room."
+      },
+      {
+        "type": "heading",
+        "text": "The 2-minute privacy checklist"
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g4-privacy-checklist.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "A two-minute privacy checklist for Samsung, LG, Vizio and Roku TVs, plus phones and voice assistants."
+      },
+      {
+        "type": "paragraph",
+        "text": "Menu names vary by model, region and year. The TV paths below follow [Consumer Reports' guide](https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/)."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Samsung TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > General & Privacy > Terms & Privacy: turn off **Viewing Information Services** and **Interest-Based Advertising**.",
+          "Under Privacy Choices, enable \"Do Not Sell or Share My Personal Information\" where it's offered.",
+          "Settings > All Settings > Advanced Features > Voice: turn off voice features you don't use.",
+          "Flip the **physical microphone switch** on the bottom of the TV ([Samsung](https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)).",
+          "In SmartThings, turn off sound-sensor features such as Pet Care if you don't use them."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**LG TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > Support > Privacy & Terms > User Agreements: turn off **Viewing Information**, **Voice Information**, **Interest-Based Cross-Device Advertising** and \"Who. Where. What?\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Vizio TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > Admin & Privacy > **Viewing Data**: off. On older sets: System > Reset & Admin > Smart Interactivity."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Roku TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > Privacy > Smart TV Experience: uncheck **Use Info from TV Inputs**. Reset the advertising ID while you're there."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Any smart TV, the strong version**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Keep the TV off your network and stream from a separate box.",
+          "Or block ACR domains at the router or DNS level with the Northeastern researchers' [blocklist](https://watchingthewatchers.github.io/watchingthewatchers/)."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Phones and assistants** (general guidance; exact menus vary by OS version)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Review which apps have **microphone permission**, and revoke any that don't need it.",
+          "Watch for the mic indicator: the orange dot on iPhone, the green indicator on Android 12 and later.",
+          "iPhone: under Privacy & Security > Analytics & Improvements, turn off \"Improve Siri & Dictation,\" and delete your Siri history in Siri settings.",
+          "Google: in your Google Account's Web & App Activity, uncheck voice and audio recordings.",
+          "Alexa: in the Alexa app under Alexa Privacy, set recordings to auto-delete."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "Today it's Samsung. Before that it was Apple, Google, Amazon, Vizio and Microsoft. The researcher's Samsung claims are still claims, and they deserve the same scrutiny we'd want from the companies themselves. But the track record is why nobody gives \"we don't do that\" the benefit of the doubt anymore."
+      },
+      {
+        "type": "paragraph",
+        "text": "Change the settings. Unplug the mic you don't use. And next time someone says your devices aren't listening, ask them which settlement they're citing."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "paragraph",
+        "text": "All figures were checked against the source on Oct 24, 2026 (America/Buenos_Aires)."
+      },
+      {
+        "type": "subheading",
+        "text": "Researcher claims (ALLEGED, not independently verified, no Samsung response found)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Rooted a \"2025\" Samsung TV with zero-days; targeted ads; \"PRIVACY HORROR\" (Oct 21, 2026, 18:06 ART)](https://x.com/log4j/status/2113014142600953868)",
+          "[\"always on hot mic\", csapi-tv-service-alwaysonvoice, ACR, geo, network mapping, ads, 4 DRM, profiles, \"$3000 TV\", \"samsung + their 400 partners\"](https://x.com/log4j/status/2113028209612644795)",
+          "[Exploit \"sdb2shell\", tested on Tizen 10.0](https://x.com/log4j/status/2113026061596492219)",
+          "[Advice: turn off auto-update (Settings > Support > Software Update)](https://x.com/log4j/status/2113118136144646371)",
+          "[\"rmdemon\" starts a packet logger](https://x.com/log4j/status/2113740242624917953)",
+          "[LogoCNN.bin tracks in-app usage (YouTube videos, skipped ads)](https://x.com/log4j/status/2113750330861125680)",
+          "[Face detection code, possibly stock OpenCV](https://x.com/log4j/status/2113753283382628411)",
+          "[Face code is used, returns bounding boxes](https://x.com/log4j/status/2113796501117759683)",
+          "[wifi-presence ARP probe after 20 min, then hourly; no opt-out check](https://x.com/log4j/status/2113756782304596232)",
+          "[EU model](https://x.com/log4j/status/2113757199415558516)",
+          "[No mic → uses soundbar/Bluetooth mic → Bixby](https://x.com/log4j/status/2113762242327892456)",
+          "[Camera preview/recording capabilities](https://x.com/log4j/status/2113769177450160328)",
+          "[Code can change the power LED](https://x.com/log4j/status/2113774908169740538)",
+          "[Dog-barking/baby-crying counters, camera streaming duration in telemetry (his own table: \"still require verification\")](https://x.com/log4j/status/2113781968601055366)",
+          "[~44 write-ups, made with AI agents, \"in a few days\"; tags \"RUNTIME UNVERIFIED\"](https://x.com/log4j/status/2113828949046280384)",
+          "[\"my 2024 era samsung tv\" (contradicts \"2025\")](https://x.com/log4j/status/2113979924348281263)",
+          "[Viral repost \"It's the product bro\" (1.46M views)](https://x.com/0x0SojalSec/status/2113208608980898022)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "AI account bans after the research (CLAIMS; no public comment from OpenAI or Anthropic found)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[OpenAI deactivated @log4j's account for \"Cyber Abuse\" (email screenshot); he says he only did local reverse engineering; \"-$500\" (Oct 23, 2026, 12:03 ART; ~792K views)](https://x.com/log4j/status/2113647464154857840)",
+          "[Claude no longer helps with REA (\"Reverse Engineer Anything\"); \"interesting timing\" after Samsung TV posts; evidence is a Reddit r/claude screenshot of a mid-response safety stop. The Samsung connection is the poster's interpretation (Oct 23, 2026, 18:55 ART; ~562K views)](https://x.com/0x0SojalSec/status/2113751276320399694)",
+          "[Amplification: \"You aren't allowed to stop your tv from spying on your family\" (Oct 24, 2026, 09:07 ART; ~435K views)](https://x.com/yacineMTB/status/2113965724435697732)",
+          "[X News story \"Anthropic Blocks Claude's Reverse Engineering Tool Amid Samsung TV Privacy Revelations\" (AI-generated summary; its line \"the company says it aligns with routine safety policies\" has no source, so it isn't used)](https://x.com/i/trending/2114013503564423636)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Samsung's own documentation"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Pet Care: TV \"can detect noises like barking through its microphone\"; only when TV is off; Q8F+; via SmartThings; Daily Board detects users nearby](https://www.samsung.com/lb/tvs/smart-tv/smart-home/)",
+          "[Physical mic switch, bottom center or bottom right](https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)",
+          "[2015 policy quote \"if your spoken words include...\"](https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening)",
+          "[2015 clarification: button-activated, third party was Nuance](https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Proven / settled"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Vizio $2.2M (FTC $1.5M + NJ $1M, $300K suspended), 11M TVs, second-by-second, sold data (Feb 6, 2017)](https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million)",
+          "[Siri contractors heard confidential details (Jul 26, 2019)](https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings)",
+          "[Apple suspended grading (Aug 2, 2019)](https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri)",
+          "Apple $95M Siri settlement, final approval Oct 16, 2025, denies wrongdoing: [https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/](https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/) · [https://www.lopezvoiceassistantsettlement.com/](https://www.lopezvoiceassistantsettlement.com/)",
+          "[Google: 1,000+ clips leaked, 153 without \"OK Google\", 0.2% reviewed (Jul 10, 2019)](https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/)",
+          "Google $68M Assistant settlement; final approval Oct 13, 2026; denies wrongdoing: [https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/](https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/) · [https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf](https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf)",
+          "[Facebook Messenger audio transcribed by contractors (Aug 13, 2019)](https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio)",
+          "Microsoft contractors heard Xbox/Kinect/Cortana audio, incl. kids, accidental (Aug 2019): [https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/](https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/) · [https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera](https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera)",
+          "Amazon $25M COPPA civil penalty, kids' Alexa recordings (2023): [https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever](https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever) · [https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens](https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens)",
+          "[Texas sues Sony, Samsung, LG, Hisense, TCL (Dec 15, 2025); \"every 500 milliseconds\" is the AG's allegation](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans)",
+          "[Samsung–Texas agreement, express consent for ACR (Feb 26, 2026)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs)",
+          "[LG–Texas agreement (date NOT checked)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)",
+          "Northeastern \"Watching the Watchers\": 12 TVs, 10 makers, 5,943 experiments; Tizen/Vizio/Roku ACR traffic after opt-out; Tizen 30/30, 41/60, 18/30; encrypted; blocklist: [https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/](https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/) · [https://watchingthewatchers.github.io/watchingthewatchers/](https://watchingthewatchers.github.io/watchingthewatchers/)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Alleged / rumor context"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[CMG \"Active Listening\" pitch deck; Google removed CMG; Amazon/Meta distanced themselves](https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)",
+          "[Zuckerberg to the Senate, Apr 10, 2018: \"we don't do that\"](https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/)",
+          "Mosseri denies mic listening (Oct 1, 2025): [https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/](https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) · [https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri](https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri)",
+          "Panoptispy 2018: 17,260 apps, no secret mic recording, some sent screenshots/screen video: [https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/](https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) · [https://petsymposium.org/popets/2018/popets-2018-0030.pdf](https://petsymposium.org/popets/2018/popets-2018-0030.pdf)",
+          "PS5 rolling 5-minute party chat recording, 40-second clip on report, no active monitoring: [https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/](https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) · [https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation](https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Settings"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Samsung / LG / Vizio / Roku menu paths](https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/)",
+          "Phone tips (mic permissions, indicators, Siri/Google/Alexa history): General knowledge. Menu paths not checked against current OS versions"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Community / partner"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Partner video (Porque Pasa Esto, Spanish, ~70s)](https://x.com/xq_pasaesto/status/2114056938153537713)",
+          "[Community reel (caption couldn't be read; shown only as \"a reel from the community\")](https://www.instagram.com/reel/De0YSX4tTNT/)"
+        ]
       }
     ]
   },
