@@ -35,7 +35,7 @@ export default function BlogPage() {
   }
   return (
     <>
-      <main id="contenido" lang="es" className="acento-fucsia">
+      <main id="contenido" lang="es" className="acento-azul">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
         <header className="marco pagina-cabeza blog-cabeza cabeza-centrada">
           <div>

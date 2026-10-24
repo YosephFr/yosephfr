@@ -33,7 +33,7 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
         <Hero />
         {articles.length > 0 && (
-          <section className="marco seccion acento-fucsia">
+          <section className="marco seccion acento-azul">
             <div className="seccion-cabeza">
               <h2>Ideas para trabajar mejor</h2>
               <Link href="/blog" className="enlace">Todos los artículos <DotIcon name="flecha" size={13} /></Link>

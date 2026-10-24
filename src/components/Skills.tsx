@@ -5,7 +5,7 @@ import { skillGlyph } from '@/components/dots/maps'
 
 export default function Skills({ title = 'Cómo puedo ayudarte', withItems = false }: { title?: string; withItems?: boolean }) {
   return (
-    <section id="capacidades" className="marco seccion">
+    <section id="capacidades" className="marco seccion acento-morado">
       <div className="seccion-cabeza"><h2>{title}</h2></div>
       <div className="capacidades">
         {SKILLS.map(skill => (

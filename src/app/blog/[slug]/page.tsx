@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }: Props) {
   }
   return (
     <>
-      <main id="contenido" lang="es" className="acento-fucsia">
+      <main id="contenido" lang="es" className="acento-azul">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
         <article>
           <header className="marco articulo-cabeza">

@@ -50,8 +50,7 @@
   --verde: #b4f59a;
   --naranja: #ffa877;
   --morado: #c3a6ff;
-  --fucsia: #ff9bd5;
-  --cian: #9be8f7;
+  --azul: #9ec3ff;
   --acento: var(--verde);
   --r: 18px;
   --alto: 48px;
@@ -68,7 +67,7 @@
 .acento-verde { --acento: var(--verde); --acento-luz: rgba(180, 245, 154, 0.5); }
 .acento-naranja { --acento: var(--naranja); --acento-luz: rgba(255, 168, 119, 0.5); }
 .acento-morado { --acento: var(--morado); --acento-luz: rgba(195, 166, 255, 0.5); }
-.acento-fucsia { --acento: var(--fucsia); --acento-luz: rgba(255, 155, 213, 0.5); }
+.acento-azul { --acento: var(--azul); --acento-luz: rgba(158, 195, 255, 0.5); }
 
 /* Base en la capa de Tailwind: las utilidades de las rutas heredadas siguen ganando */
 @layer base {
