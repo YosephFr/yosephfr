@@ -7,311 +7,310 @@ CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 
-# Mejor modelo de IA 2026: Opus 5.5, GPT-6, Gemini 4 y Kimi
+# They said phones weren't listening.
 
-Comparativa de octubre de 2026: Claude Opus 5.5, GPT-6 Astra, Gemini 4 Argon y Kimi K3.1 Pro. Precios, contexto, benchmarks y cuál elegir según tu tarea.
+Today it's a Samsung TV. Before that it was Apple, Google and Amazon. Here's what's proven, what's alleged, and what's still a rumor, plus the settings to change tonight.
 
-URL: https://yosephfr.com/blog/mejor-modelo-ia-octubre-2026
+URL: https://yosephfr.com/en/blog/samsung-tv-privacy-listening
 
-Publicado: 2026-10-24T08:00:00-03:00
+Publicado: 2026-10-24T18:00:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
-Respuesta corta: a octubre de 2026, Claude Opus 5.5 es el modelo con mejor puntaje general entre los cuatro grandes lanzamientos recientes según el índice independiente de Artificial Analysis (58 puntos), y además lidera en programación con agentes según los datos de Anthropic. Kimi K3.1 Pro (55) y Gemini 4 Argon (53) ofrecen el menor precio por token, y GPT-6 Astra (53) es el más caro por token, aunque OpenAI lo posiciona como su mejor modelo para uso de computadora y trabajo profesional. No hay un ganador único: el mejor modelo depende de tu tarea, tu presupuesto y tus requisitos de privacidad.
+Originally published on X (https://x.com/arncof/status/2114086750280921322).
 
-Abajo comparo los cuatro con datos de las fuentes oficiales consultadas el 23 de octubre de 2026.
+They said phones weren't listening. Today it's a Samsung TV: what's proven, what's alleged, and what's still a rumor. (https://yosephfr.com/blog/samsung-tv-privacy-listening/g1-title-card.webp)
 
-## Los cuatro modelos en una tabla
+For about a decade, regular people have said the same thing: "I talked about something near my phone, and then I saw an ad for it." The industry's answer was always some version of "we don't do that."
 
-Modelo | Lanzamiento | Precio API (entrada / salida, USD por 1M tokens) | Contexto | Salida máxima | AA Intelligence Index
-Claude Opus 5.5 (Anthropic) | 22/09/2026 | 4 / 20 | 1M | 128K | 58
-Kimi K3.1 Pro (Moonshot) | 23/10/2026 | 2 / 10 | 1M | 131.072 por defecto, hasta 1.048.576 | 55
-GPT-6 Astra (OpenAI) | 03/09/2026 | 10 / 50 | 1.050.000 (máx. 922.000 de entrada) | 128.000 | 53
-Gemini 4 Argon (Google) | Anuncio 30/09/2026; disponible para todos el 13/10/2026 | 2 / 10 (introductorio hasta el 30/11/2026); 4 / 20 desde el 1/12/2026 | 1.048.576 | 65.536 por defecto, hasta 1.048.576 con long decode | 53
+Some of that denial held up. A lot of it didn't. Contractors listened to voice-assistant recordings. A TV maker sold what millions of households watched. Companies paid settlements in the tens of millions. This week a security researcher says he opened up his own Samsung TV and found something worse.
 
-Notas sobre la tabla:
+I'm tired of every big company turning the hardware we pay for into a sensor pointed back at us. But being angry doesn't mean being sloppy. So let's separate what's been proven in court or by regulators from what one person is claiming on X, and from what is still just a rumor.
 
-- El AA Intelligence Index (v4.3.2) de Artificial Analysis (https://artificialanalysis.ai/models/claude-opus-5-5) combina 10 evaluaciones y es la única medición independiente común a los cuatro (Astra en configuración max, Argon en high).
-- GPT-6 Astra cobra el doble por entrada y 1,5 veces por salida en los prompts de más de 272K tokens de entrada, según la ficha del modelo (https://platform.openai.com/docs/models/gpt-6-astra).
-- La salida máxima de Kimi es el valor de max_completion_tokens en su guía de API (https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart).
+## What a researcher says he found inside a Samsung TV
 
-## Claude Opus 5.5: el más sólido para agentes de código y trabajo de conocimiento
+On October 21, 2026, the researcher @log4j (https://x.com/log4j) (his bio: reverse engineer, pentester, bounty hunter) posted (https://x.com/log4j/status/2113014142600953868) that his Samsung TV kept showing him strangely well-targeted ads. The firmware was encrypted, so he says he used zero-day exploits to get a root shell on the TV itself. His summary: "PRIVACY HORROR."
 
-Anthropic lanzó Claude Opus 5.5 (https://www.anthropic.com/claude-opus-5-5) el 22 de septiembre de 2026 como el primer modelo de la familia 5.5. Los datos clave del anuncio son estos:
+Screenshot from the researcher's post: a root shell on his Samsung TV, summarized as PRIVACY HORROR. (https://yosephfr.com/blog/samsung-tv-privacy-listening/01-root-shell.webp)
 
-- Precio: USD 4 por millón de tokens de entrada y USD 20 de salida, un 20 % menos que Opus 5. La lectura de caché cuesta USD 0,20 por millón, un 60 % menos que Opus 5.
-- Programación con agentes: 66,4 % en Terminal-Bench 4.0 y 57,8 % en CursorBench 4.0, según la tabla de Anthropic.
-- Trabajo de conocimiento: 1846 Elo en GDPval-AA v2.1.
-- Velocidad: Artificial Analysis mide 96,3 tokens por segundo, el más rápido de los cuatro.
+Over the next three days he posted a stream of findings. According to him:
 
-Un matiz importante: según Anthropic, la mayoría de las tareas de ciberseguridad se derivan a Claude Opus 4.8. Además, en Opus 5.5 el razonamiento ("thinking") ya no se puede desactivar.
+- A system package named csapi-tv-service-alwaysonvoice, which he calls "always on hot mic functionality," shows up in the TV's security policy. Next to it he lists ACR, geo-positioning, network mapping, a targeted-ads service, four DRM services and user-profile building, with data shared with "samsung + their 400 partners." (post (https://x.com/log4j/status/2113028209612644795))
+- If the TV has no microphone, the software looks for one on a connected soundbar or Bluetooth device, and "this gets shipped off to bixby." (post (https://x.com/log4j/status/2113762242327892456))
+- The telemetry includes classified sound events, such as dog-barking and baby-crying counters, plus camera-streaming duration. (post (https://x.com/log4j/status/2113781968601055366))
+- A "wifi-presence" service starts about 20 minutes after boot. It sends ARP probes across your home network every hour to log IP and MAC addresses, and he found no check for opt-out. (post (https://x.com/log4j/status/2113756782304596232))
+- A service called "rmdemon" starts a packet logger on your network. (post (https://x.com/log4j/status/2113740242624917953))
+- A region-specific neural network (LogoCNN.bin) tracks in-app behavior, such as which YouTube videos you watch and which ads you skip. (post (https://x.com/log4j/status/2113750330861125680))
+- Face-detection code that he says is used and returns bounding boxes around faces. (post (https://x.com/log4j/status/2113796501117759683))
 
-Si buscas algo más barato dentro de Anthropic, la ficha de modelos (https://platform.claude.com/docs/en/about-claude/models/overview) indica que Claude Sonnet 5.5 cuesta USD 2 / 10.
+The TV security policy listing the package csapi-tv-service-alwaysonvoice, which the researcher calls always-on hot mic functionality, next to ACR and other services. (https://yosephfr.com/blog/samsung-tv-privacy-listening/02-security-policy.webp)
 
-## GPT-6 Astra: el foco de OpenAI en uso de computadora y trabajo profesional
+The researcher's audio table of classified sound events, including dog-barking and baby-crying counters, which his notes say still require verification. (https://yosephfr.com/blog/samsung-tv-privacy-listening/03-audio-classification.webp)
 
-GPT-6 Astra (https://openai.com/index/gpt-6-astra/) empezó a desplegarse el 3 de septiembre de 2026 (fecha de la system card (https://deploymentsafety.openai.com/gpt-6-astra/sec:appendix-200473)). OpenAI lo presenta como su modelo más capaz y destaca estos puntos:
+The thread spread quickly. One repost that summed it up (https://x.com/0x0SojalSec/status/2113208608980898022) as "This isn't a bug, It's the product bro" passed 1.4 million views.
 
-- Uso de computadora: 72,6 % en OSWorld 2.0, con unos 40 minutos por tarea frente a unos 75 de GPT-5.6 Sol, según su propia tabla.
-- Código: 57,9 % en Terminal-Bench 4.0 y 74,1 % en DeepSWE v1.1.
-- Razonamiento: 99,9 % en ARC-AGI-3 y 96,0 % en GPQA Diamond.
-- Precio: USD 10 por millón de tokens de entrada y USD 50 de salida (entrada cacheada: USD 1). Es el más caro por token de esta comparativa.
+### Now the caveats, and they matter
 
-Un dato de Artificial Analysis cambia la lectura: Astra es el menos verboso de los cuatro (60M de tokens de salida en el índice, frente a 260M de Opus 5.5), así que su costo por tarea (USD 3,26) queda por debajo del de Opus 5.5 (USD 5,98). El precio por token no es el costo por tarea.
+- Nobody has independently reproduced any of this yet. As of October 24, 2026, I couldn't find a public response from Samsung to these specific claims.
+- His own notes are cautious. A page from his write-up is tagged "STATIC PATH REVIEWED" and "RUNTIME UNVERIFIED." His audio table says the active runtime policy "still require[s] verification." Code that exists in firmware isn't proof that it runs on your TV, or that it sends what it captures. (post (https://x.com/log4j/status/2113828949046280384))
+- The details shift. His first post says a "2025 samsung tv." A later post says "my 2024 era samsung tv." In a reply, he says it's an EU model. He says about 44 write-ups, prepared with help from AI agents, are coming "in a few days."
+- Some of it overlaps with features Samsung advertises. Samsung's own Smart Home page (https://www.samsung.com/lb/tvs/smart-tv/smart-home/) says the TV "can detect noises like barking through its microphone," and the fine print says this works only while the TV is turned off (Q8F and above, activated through SmartThings). The same page says the TV "can detect when users come nearby" to wake its Daily Board while the screen is off. So a mic that listens for sounds isn't a secret. The real questions are what gets reported, to whom, and whether opting out actually stops it.
 
-OpenAI ya amplió la familia con GPT-6 Sol, GPT-6 Luna (22/09) y GPT-6.1 Sol (29/09).
+A page from the researcher's write-up tagged STATIC PATH REVIEWED and RUNTIME UNVERIFIED. (https://yosephfr.com/blog/samsung-tv-privacy-listening/04-writeups.webp)
 
-## Gemini 4 Argon: precio introductorio agresivo y contexto unificado
+So, for now: alleged, specific, worth watching, not proven.
 
-Google anunció Gemini 4 Argon (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/) el 30 de septiembre de 2026 para un grupo de defensores de ciberseguridad y lo abrió a todos (https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/) el 13 de octubre, por API y en la app de Gemini para suscriptores de Google AI Pro y Ultra.
+## Then his AI account got banned
 
-- Precio: USD 2 de entrada y USD 10 de salida por millón de tokens hasta el 30 de noviembre de 2026. Desde el 1 de diciembre pasa a USD 4 y USD 20, según la página de precios (https://ai.google.dev/gemini-api/docs/pricing). No está disponible en el nivel gratuito.
-- Contexto: 1.048.576 tokens unificados de entrada y salida. La salida síncrona por defecto es de 65.536 tokens y puede llegar al millón con long decode (ficha del modelo (https://ai.google.dev/gemini-api/docs/models/gemini-4-argon)).
-- API: llamadas a funciones, salidas estructuradas, ejecución de código y uso de computadora (vista previa).
-- Seguridad: Google afirma que lidera el benchmark de inyección indirecta de prompts de Gray Swan (0,7 % de éxito de ataque).
+Then the story took a turn. On October 23, the researcher posted (https://x.com/log4j/status/2113647464154857840) a screenshot of an OpenAI email saying his account had been deactivated for violating its policies on "Cyber Abuse." He says he never used OpenAI "to exploit or find vulnerabilities, only local reverse engineering," and that the ban cost him about $500.
 
-En el índice de Artificial Analysis, Argon registra el menor costo por tarea de los cuatro (USD 1,99).
+Screenshot of an OpenAI email saying the researcher's account was deactivated for violating its policies on Cyber Abuse. (https://yosephfr.com/blog/samsung-tv-privacy-listening/09-openai-ban.webp)
 
-## Kimi K3.1 Pro: el retador de pesos abiertos
+The same day, the account behind the viral repost claimed (https://x.com/0x0SojalSec/status/2113751276320399694) that Claude had stopped helping with REA ("Reverse Engineer Anything"), a reverse-engineering workflow popular with users, and pointed to the "interesting timing" after the Samsung TV posts. Its evidence is a Reddit screenshot of Claude stopping mid-answer after a safety check. Developer @yacineMTB amplified the ban (https://x.com/yacineMTB/status/2113965724435697732): "You aren't allowed to stop your tv from spying on your family." X's trending story (https://x.com/i/trending/2114013503564423636) collects the reaction.
 
-Moonshot lanzó Kimi K3.1 Pro (https://kimi.ai/blog/kimi-k3-1-pro) el 23 de octubre de 2026 y promete publicar los pesos completos antes del 4 de noviembre.
+Treat all of this as claims. The link between the Samsung research and either AI company's action is users' interpretation; neither company has said so. As of this writing, I found no public comment from OpenAI or Anthropic. Coincidence or not, it's a reminder that the tools researchers use to check on Big Tech are themselves run by Big Tech.
 
-- Precio: USD 2 / 10, con lectura de caché a USD 0,20 (plataforma de Kimi (https://platform.kimi.ai)).
-- Benchmarks publicados por Moonshot: 65,7 % en Terminal-Bench 4.0, apenas detrás de Opus 5.5 (66,4 %). En BenchCAD con herramientas obtiene 92,7 %, por debajo de Opus 5.5 (96,2 %) y de GPT-6 Astra (95,9 %).
-- Medición independiente: 55 puntos en el índice de Artificial Analysis, el 4.º lugar entre 215 modelos.
+## The receipts: this has happened before
 
-Lo explico con código en Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API (/blog/kimi-k3-1-pro).
+The reason a claim like this spreads so fast is that the industry has a record. Here's the part that is documented.
 
-## Cuánto cuesta una tarea típica: un ejemplo con números
+Timeline of documented cases where companies collected voice or viewing data, from Samsung in 2015 through the settlements and studies of 2025 and 2026. (https://yosephfr.com/blog/samsung-tv-privacy-listening/g2-evidence-timeline.webp)
 
-Supón una tarea de agente que consume 100.000 tokens de entrada (sin caché) y genera 10.000 de salida. Con los precios de lista:
+When | Who | What happened | Outcome
+Feb 2015 | Samsung | The Smart TV privacy policy warned that "if your spoken words include personal or other sensitive information, that information will be among the data captured and transmitted to a third party." (NPR (https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening)) | Samsung clarified (https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations) that voice is collected only when you press the button, and that the third party was Nuance
+Feb 2017 | Vizio | ACR collected second-by-second viewing data from 11 million TVs without consent, and Vizio sold it (FTC (https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million)) | $2.2M to the FTC and New Jersey
+Jul 2019 | Apple | A contractor whistleblower said reviewers regularly heard confidential details in Siri recordings (Guardian (https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings)) | Apple suspended (https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri) the program
+Jul 2019 | Google | More than 1,000 Assistant recordings leaked to VRT NWS, 153 of them recorded without "OK Google" (VRT (https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/)) | Google said reviewers hear about 0.2% of clips
+Aug 2019 | Facebook | Paid contractors to transcribe Messenger voice clips (Bloomberg (https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio)) | Paused
+Aug 2019 | Microsoft | Contractors listened to Xbox audio from Kinect and Cortana, much of it accidental activations, some of it from children (Vice (https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/)) | Microsoft said it had stopped the reviews
+2023 | Amazon | Kept children's Alexa voice recordings indefinitely and undermined deletion requests (FTC (https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever), DOJ (https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens)) | $25M civil penalty under COPPA
+Oct 2025 | Apple | Siri class action over accidental recordings (Lopez v. Apple) (settlement site (https://www.lopezvoiceassistantsettlement.com/), Lowey Dannenberg (https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/)) | $95M, final approval Oct 16, 2025. Apple denies wrongdoing
+Dec 2025 – Feb 2026 | Samsung, LG, Sony, Hisense, TCL | Texas sued all five over ACR, alleging screenshots of what's on screen as often as every 500 milliseconds (Texas AG (https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans)) | Samsung agreed (https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs) to require express consent for ACR. LG reached its own agreement (https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)
+Oct 2026 | Google | Assistant class action over "false accept" recordings (Reuters (https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/), final approval order (https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf)) | $68M, final approval Oct 13, 2026. Google denies wrongdoing
+Oct 2026 | Samsung, Vizio, Roku | A Northeastern University study ran 5,943 experiments on 12 TVs from 10 manufacturers. On Samsung Tizen, Vizio and Roku, it found traffic still going to ACR endpoints after users opted out (Ars Technica (https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/), paper (https://watchingthewatchers.github.io/watchingthewatchers/)) | Payloads are encrypted, so the contents are unknown. The authors call it "suspicious"
 
-Modelo | Entrada | Salida | Total aproximado
-Claude Opus 5.5 | 0,1 × 4 = USD 0,40 | 0,01 × 20 = USD 0,20 | USD 0,60
-GPT-6 Astra | 0,1 × 10 = USD 1,00 | 0,01 × 50 = USD 0,50 | USD 1,50
-Gemini 4 Argon (hasta 30/11) | USD 0,20 | USD 0,10 | USD 0,30
-Gemini 4 Argon (desde 1/12) | USD 0,40 | USD 0,20 | USD 0,60
-Kimi K3.1 Pro | USD 0,20 | USD 0,10 | USD 0,30
+That last row is the one I'd watch most closely. It's independent of the Samsung researcher, it was done systematically, and it suggests that flipping the opt-out toggle may not be the end of the story. On Samsung's Tizen, the study saw ACR traffic after opt-out in all 30 first-party app measurements, 41 of 60 antenna measurements and 18 of 30 HDMI measurements.
 
-Es solo una referencia: los tokens de razonamiento y la caché cambian mucho el resultado. La tabla de arriba es la forma de medirlo.
+## Proven vs alleged vs rumor
 
-## Cuál elegir según tu caso de uso
+What's proven, what's alleged, and what's still a rumor about devices listening and smart TVs tracking what you watch. (https://yosephfr.com/blog/samsung-tv-privacy-listening/g3-proven-alleged-rumor.webp)
 
-Mi recomendación, basada en los datos anteriores:
+Claim | Status | Why
+Smart TVs log what you watch through ACR | Proven | Vizio FTC case (2017); Texas lawsuits and Samsung agreement (2025–26)
+Humans listened to voice-assistant recordings, including accidental ones | Proven | Apple, Google, Amazon, Facebook and Microsoft all confirmed or paused programs in 2019
+Companies paid for it | Proven (settled) | Apple $95M, Google $68M, Amazon $25M, Vizio $2.2M. Apple and Google deny wrongdoing
+Some TVs keep contacting ACR servers after you opt out | Documented, contents unknown | Northeastern study, Oct 2026
+A Samsung TV runs an "always-on" voice service, scans your network and logs packets | Alleged | One researcher's reverse engineering; his own notes say runtime is unverified; not reproduced
+Data goes to "400 partners" | Alleged | The researcher's figure; I couldn't verify it
+A marketing firm can target ads from what you say near your devices | Alleged (marketing claim) | A Cox Media Group pitch deck claimed it (404 Media (https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)). Google removed CMG from its partner program, and Meta and Amazon distanced themselves. No evidence that it worked
+Your phone secretly records you to target ads | Rumor / unproven | Zuckerberg denied it (https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/) to the Senate in 2018, and Instagram's Adam Mosseri denied it again (https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) in 2025. A 2018 Northeastern study of 17,260 Android apps found no secret mic recording, though some apps sent screenshots and screen recordings (https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) to third parties
+Your TV records you while it's fully off | Rumor / unproven | Samsung does advertise sound detection while the screen is off, but nothing public shows covert recording
 
-1. Agentes de código de larga duración (migraciones, refactorizaciones, CI): empieza por Claude Opus 5.5. Tiene el mejor Terminal-Bench 4.0 publicado y la mayor velocidad medida. Si el costo pesa, prueba Kimi K3.1 Pro, que reporta un resultado muy cercano con la mitad del precio por token. Para un trabajo que cruza varias sesiones, guarda el estado como describo en qué guardar para continuar un trabajo con agentes (/blog/continuidad-entre-sesiones-de-agentes). El enfoque general está en IA y agentes (/skills/ai-agents).
-2. Automatización de interfaces y uso de computadora: GPT-6 Astra es el que OpenAI posiciona para este uso, con 72,6 % en OSWorld 2.0.
-3. Alto volumen con presupuesto ajustado: Gemini 4 Argon (mientras dure el precio introductorio) o Kimi K3.1 Pro. Ambos cuestan USD 2 / 10 y tienen los dos menores costos por tarea del índice independiente.
-4. Necesidad de alojar el modelo por tu cuenta: solo Kimi K3.1 Pro apunta a eso, y únicamente cuando se publiquen los pesos. Lo desarrollo en Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API (/blog/kimi-k3-1-pro).
+The uncomfortable pattern: the rumor that phones listen for ads is still unproven, and yet every time someone looks closely, they find a microphone doing more than people were told.
 
-Una regla que aplico: no elijas por un solo benchmark. Las cifras de Terminal-Bench de esta guía las publica cada fabricante con su propio harness (Moonshot, por ejemplo, cita 58,2 % para GPT-6 Astra; OpenAI publica 57,9 %), y la propia Anthropic advierte que los márgenes de los benchmarks son una guía cada vez menos confiable de las diferencias reales. Arma un conjunto de 10 a 20 tareas reales, ejecútalo con dos o tres modelos y compara calidad, tiempo y costo.
+## What the community has been saying
 
-## Preguntas frecuentes
+The researcher's posts didn't land in a vacuum. People have been joking for years, half-seriously, that their devices are listening. A reel from the community (https://www.instagram.com/reel/De0YSX4tTNT/) captures that mood: the suspicion came long before the receipts.
 
-### ¿Cuál es el mejor modelo de IA en octubre de 2026?
+For Spanish speakers, Porque Pasa Esto put together a clear 70-second breakdown of the Samsung story (https://x.com/xq_pasaesto/status/2114056938153537713): "A hacker opened his Samsung TV and this is what he says he found." Note the word "says." That's the right framing.
 
-En el Artificial Analysis Intelligence Index (v4.3.2), Claude Opus 5.5 lidera entre estos cuatro con 58 puntos, seguido de Kimi K3.1 Pro (55), GPT-6 Astra (53) y Gemini 4 Argon (53). El mejor para ti depende de la tarea y del presupuesto.
+Thumbnail for the Porque Pasa Esto video: A hacker opened his Samsung TV and this is what he says he found. (https://yosephfr.com/blog/samsung-tv-privacy-listening/08-xq-pasaesto.webp)
+https://x.com/xq_pasaesto/status/2114056938153537713
 
-### ¿Cuál es el modelo de IA de frontera más barato por API?
+## Wait, is my PlayStation controller next?
 
-A precio de lista, Gemini 4 Argon (precio introductorio hasta el 30/11/2026) y Kimi K3.1 Pro cuestan USD 2 por millón de tokens de entrada y USD 10 por millón de salida. Desde el 1/12/2026, Argon pasa a USD 4 y USD 20.
+Half joking, I figured my game controller would be the next thing caught snitching. So I checked.
 
-### ¿Qué modelo conviene para programar con agentes?
+- Xbox: In 2019, Microsoft contractors listened to Xbox audio (https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera) captured by Kinect and Cortana, much of it triggered by accident, some of it from kids. Microsoft said it had stopped.
+- PS5: Sony records party voice chat (https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) on a rolling five-minute loop, so players can report harassment. If you report, a 40-second clip goes to Sony's moderators. Sony says it doesn't actively monitor chats.
+- DualSense ad listening: I found no evidence of it. Rumor.
 
-En Terminal-Bench 4.0, según cifras publicadas por cada fabricante, Claude Opus 5.5 reporta 66,4 %, Kimi K3.1 Pro 65,7 % y GPT-6 Astra 57,9 %. Conviene probar con tus propias tareas antes de decidir.
+So no, your controller isn't proven to be spying on you. But it does have a microphone, and so does almost everything else in your living room.
 
-### ¿Todos estos modelos tienen 1 millón de tokens de contexto?
+## The 2-minute privacy checklist
 
-Sí, los cuatro rondan el millón de tokens: Opus 5.5 (1M), GPT-6 Astra (1.050.000, con un máximo de 922.000 de entrada), Gemini 4 Argon (1.048.576) y Kimi K3.1 Pro (1M).
+A two-minute privacy checklist for Samsung, LG, Vizio and Roku TVs, plus phones and voice assistants. (https://yosephfr.com/blog/samsung-tv-privacy-listening/g4-privacy-checklist.webp)
 
-### ¿Kimi K3.1 Pro es de pesos abiertos?
+Menu names vary by model, region and year. The TV paths below follow Consumer Reports' guide (https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/).
 
-Moonshot lo presenta como modelo de pesos abiertos y promete publicar los pesos completos antes del 4 de noviembre de 2026. Hasta entonces solo está disponible por sus productos y su API.
+Samsung TV
 
-## Fuentes
+- Settings > All Settings > General & Privacy > Terms & Privacy: turn off Viewing Information Services and Interest-Based Advertising.
+- Under Privacy Choices, enable "Do Not Sell or Share My Personal Information" where it's offered.
+- Settings > All Settings > Advanced Features > Voice: turn off voice features you don't use.
+- Flip the physical microphone switch on the bottom of the TV (Samsung (https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)).
+- In SmartThings, turn off sound-sensor features such as Pet Care if you don't use them.
 
-Consultadas el 23 de octubre de 2026.
+LG TV
 
-- Anthropic. Claude Opus 5.5 (https://www.anthropic.com/claude-opus-5-5) (anuncio, precios y benchmarks).
-- Anthropic. Models overview (https://platform.claude.com/docs/en/about-claude/models/overview) (contexto, salida máxima y precios de la familia 5.5).
-- OpenAI. GPT-6 Astra: A new generation of intelligence (https://openai.com/index/gpt-6-astra/).
-- OpenAI. Ficha de GPT-6 Astra en la documentación de la API (https://platform.openai.com/docs/models/gpt-6-astra).
-- OpenAI. GPT-6 Astra System Card (https://deploymentsafety.openai.com/gpt-6-astra/sec:appendix-200473) (fecha de publicación).
-- Google. Gemini 4 Argon: our next era of frontier intelligence (https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/) (anuncio del 30/09/2026).
-- Google. Gemini 4 Argon: Built to solve your hardest problems (https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/) (disponibilidad general del 13/10/2026).
-- Google AI for Developers. Ficha de Gemini 4 Argon (https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) y precios de la API de Gemini (https://ai.google.dev/gemini-api/docs/pricing).
-- Moonshot AI. Introducing Kimi K3.1 Pro (https://kimi.ai/blog/kimi-k3-1-pro) y Kimi API Platform (https://platform.kimi.ai).
-- Artificial Analysis (medición independiente). Fichas de Claude Opus 5.5 (https://artificialanalysis.ai/models/claude-opus-5-5), GPT-6 Astra (https://artificialanalysis.ai/models/gpt-6-astra), Gemini 4 Argon (https://artificialanalysis.ai/models/gemini-4-argon) y Kimi K3.1 Pro (https://artificialanalysis.ai/models/kimi-k3-1-pro).
+- Settings > All Settings > Support > Privacy & Terms > User Agreements: turn off Viewing Information, Voice Information, Interest-Based Cross-Device Advertising and "Who. Where. What?"
+
+Vizio TV
+
+- Settings > All Settings > Admin & Privacy > Viewing Data: off. On older sets: System > Reset & Admin > Smart Interactivity.
+
+Roku TV
+
+- Settings > Privacy > Smart TV Experience: uncheck Use Info from TV Inputs. Reset the advertising ID while you're there.
+
+Any smart TV, the strong version
+
+- Keep the TV off your network and stream from a separate box.
+- Or block ACR domains at the router or DNS level with the Northeastern researchers' blocklist (https://watchingthewatchers.github.io/watchingthewatchers/).
+
+Phones and assistants (general guidance; exact menus vary by OS version)
+
+- Review which apps have microphone permission, and revoke any that don't need it.
+- Watch for the mic indicator: the orange dot on iPhone, the green indicator on Android 12 and later.
+- iPhone: under Privacy & Security > Analytics & Improvements, turn off "Improve Siri & Dictation," and delete your Siri history in Siri settings.
+- Google: in your Google Account's Web & App Activity, uncheck voice and audio recordings.
+- Alexa: in the Alexa app under Alexa Privacy, set recordings to auto-delete.
+
+## Bottom line
+
+Today it's Samsung. Before that it was Apple, Google, Amazon, Vizio and Microsoft. The researcher's Samsung claims are still claims, and they deserve the same scrutiny we'd want from the companies themselves. But the track record is why nobody gives "we don't do that" the benefit of the doubt anymore.
+
+Change the settings. Unplug the mic you don't use. And next time someone says your devices aren't listening, ask them which settlement they're citing.
+
+## Sources
+
+All figures were checked against the source on Oct 24, 2026 (America/Buenos_Aires).
+
+### Researcher claims (ALLEGED, not independently verified, no Samsung response found)
+
+- Rooted a "2025" Samsung TV with zero-days; targeted ads; "PRIVACY HORROR" (Oct 21, 2026, 18:06 ART) (https://x.com/log4j/status/2113014142600953868)
+- "always on hot mic", csapi-tv-service-alwaysonvoice, ACR, geo, network mapping, ads, 4 DRM, profiles, "$3000 TV", "samsung + their 400 partners" (https://x.com/log4j/status/2113028209612644795)
+- Exploit "sdb2shell", tested on Tizen 10.0 (https://x.com/log4j/status/2113026061596492219)
+- Advice: turn off auto-update (Settings > Support > Software Update) (https://x.com/log4j/status/2113118136144646371)
+- "rmdemon" starts a packet logger (https://x.com/log4j/status/2113740242624917953)
+- LogoCNN.bin tracks in-app usage (YouTube videos, skipped ads) (https://x.com/log4j/status/2113750330861125680)
+- Face detection code, possibly stock OpenCV (https://x.com/log4j/status/2113753283382628411)
+- Face code is used, returns bounding boxes (https://x.com/log4j/status/2113796501117759683)
+- wifi-presence ARP probe after 20 min, then hourly; no opt-out check (https://x.com/log4j/status/2113756782304596232)
+- EU model (https://x.com/log4j/status/2113757199415558516)
+- No mic → uses soundbar/Bluetooth mic → Bixby (https://x.com/log4j/status/2113762242327892456)
+- Camera preview/recording capabilities (https://x.com/log4j/status/2113769177450160328)
+- Code can change the power LED (https://x.com/log4j/status/2113774908169740538)
+- Dog-barking/baby-crying counters, camera streaming duration in telemetry (his own table: "still require verification") (https://x.com/log4j/status/2113781968601055366)
+- ~44 write-ups, made with AI agents, "in a few days"; tags "RUNTIME UNVERIFIED" (https://x.com/log4j/status/2113828949046280384)
+- "my 2024 era samsung tv" (contradicts "2025") (https://x.com/log4j/status/2113979924348281263)
+- Viral repost "It's the product bro" (1.46M views) (https://x.com/0x0SojalSec/status/2113208608980898022)
+
+### AI account bans after the research (CLAIMS; no public comment from OpenAI or Anthropic found)
+
+- OpenAI deactivated @log4j's account for "Cyber Abuse" (email screenshot); he says he only did local reverse engineering; "-$500" (Oct 23, 2026, 12:03 ART; ~792K views) (https://x.com/log4j/status/2113647464154857840)
+- Claude no longer helps with REA ("Reverse Engineer Anything"); "interesting timing" after Samsung TV posts; evidence is a Reddit r/claude screenshot of a mid-response safety stop. The Samsung connection is the poster's interpretation (Oct 23, 2026, 18:55 ART; ~562K views) (https://x.com/0x0SojalSec/status/2113751276320399694)
+- Amplification: "You aren't allowed to stop your tv from spying on your family" (Oct 24, 2026, 09:07 ART; ~435K views) (https://x.com/yacineMTB/status/2113965724435697732)
+- X News story "Anthropic Blocks Claude's Reverse Engineering Tool Amid Samsung TV Privacy Revelations" (AI-generated summary; its line "the company says it aligns with routine safety policies" has no source, so it isn't used) (https://x.com/i/trending/2114013503564423636)
+
+### Samsung's own documentation
+
+- Pet Care: TV "can detect noises like barking through its microphone"; only when TV is off; Q8F+; via SmartThings; Daily Board detects users nearby (https://www.samsung.com/lb/tvs/smart-tv/smart-home/)
+- Physical mic switch, bottom center or bottom right (https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)
+- 2015 policy quote "if your spoken words include..." (https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening)
+- 2015 clarification: button-activated, third party was Nuance (https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations)
+
+### Proven / settled
+
+- Vizio $2.2M (FTC $1.5M + NJ $1M, $300K suspended), 11M TVs, second-by-second, sold data (Feb 6, 2017) (https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million)
+- Siri contractors heard confidential details (Jul 26, 2019) (https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings)
+- Apple suspended grading (Aug 2, 2019) (https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri)
+- Apple $95M Siri settlement, final approval Oct 16, 2025, denies wrongdoing: https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/ (https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/) · https://www.lopezvoiceassistantsettlement.com/ (https://www.lopezvoiceassistantsettlement.com/)
+- Google: 1,000+ clips leaked, 153 without "OK Google", 0.2% reviewed (Jul 10, 2019) (https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/)
+- Google $68M Assistant settlement; final approval Oct 13, 2026; denies wrongdoing: https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/ (https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/) · https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf (https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf)
+- Facebook Messenger audio transcribed by contractors (Aug 13, 2019) (https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio)
+- Microsoft contractors heard Xbox/Kinect/Cortana audio, incl. kids, accidental (Aug 2019): https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/ (https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/) · https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera (https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera)
+- Amazon $25M COPPA civil penalty, kids' Alexa recordings (2023): https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever (https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever) · https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens (https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens)
+- Texas sues Sony, Samsung, LG, Hisense, TCL (Dec 15, 2025); "every 500 milliseconds" is the AG's allegation (https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans)
+- Samsung–Texas agreement, express consent for ACR (Feb 26, 2026) (https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs)
+- LG–Texas agreement (date NOT checked) (https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)
+- Northeastern "Watching the Watchers": 12 TVs, 10 makers, 5,943 experiments; Tizen/Vizio/Roku ACR traffic after opt-out; Tizen 30/30, 41/60, 18/30; encrypted; blocklist: https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/ (https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/) · https://watchingthewatchers.github.io/watchingthewatchers/ (https://watchingthewatchers.github.io/watchingthewatchers/)
+
+### Alleged / rumor context
+
+- CMG "Active Listening" pitch deck; Google removed CMG; Amazon/Meta distanced themselves (https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)
+- Zuckerberg to the Senate, Apr 10, 2018: "we don't do that" (https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/)
+- Mosseri denies mic listening (Oct 1, 2025): https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/ (https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) · https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri (https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri)
+- Panoptispy 2018: 17,260 apps, no secret mic recording, some sent screenshots/screen video: https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/ (https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) · https://petsymposium.org/popets/2018/popets-2018-0030.pdf (https://petsymposium.org/popets/2018/popets-2018-0030.pdf)
+- PS5 rolling 5-minute party chat recording, 40-second clip on report, no active monitoring: https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/ (https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) · https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation (https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation)
+
+### Settings
+
+- Samsung / LG / Vizio / Roku menu paths (https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/)
+- Phone tips (mic permissions, indicators, Siri/Google/Alexa history): General knowledge. Menu paths not checked against current OS versions
+
+### Community / partner
+
+- Partner video (Porque Pasa Esto, Spanish, ~70s) (https://x.com/xq_pasaesto/status/2114056938153537713)
+- Community reel (caption couldn't be read; shown only as "a reel from the community") (https://www.instagram.com/reel/De0YSX4tTNT/)
 
 ---
 
-# Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API
+# La misma pantalla vacía puede significar tres cosas distintas
 
-Kimi K3.1 Pro, el nuevo modelo de Moonshot (23/10/2026): precios por token, contexto de 1M, benchmarks con sus matices y guía paso a paso para usarlo por API.
+Cuenta nueva, filtro sin resultados o carga fallida: cómo pedirle al agente que resuelva cada caso para que la persona sepa por qué no ve nada y qué hacer.
 
-URL: https://yosephfr.com/blog/kimi-k3-1-pro
+URL: https://yosephfr.com/blog/pantallas-vacias-tres-motivos
 
-Publicado: 2026-10-24T07:30:00-03:00
+Publicado: 2026-10-24T12:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
-Respuesta corta: a octubre de 2026, Kimi K3.1 Pro es el modelo más capaz de Moonshot AI, lanzado el 23 de octubre de 2026, con 1 millón de tokens de contexto y pesos abiertos prometidos antes del 4 de noviembre. Por API cuesta USD 2 por millón de tokens de entrada y USD 10 de salida, un tercio menos que su predecesor Kimi K3. Se usa con el SDK de OpenAI o el de Anthropic cambiando solo la base_url y el identificador kimi-k3.1-pro.
+Las referencias que se usan para diseñar suelen mostrar la pantalla llena: tarjetas completas, fotos, datos bien alineados. Es el momento más cómodo de cualquier interfaz. Pero la persona también llega cuando no hay nada que mostrar, y ahí necesita entender por qué y qué puede hacer.
 
-Abajo encontrarás qué es exactamente, cuánto cuesta cada variante, qué dicen (y qué no) los benchmarks, y una guía paso a paso para hacer tu primera llamada.
+Si le pides a un agente que copie una referencia, es fácil que resuelva la versión llena y deje los vacíos con un mensaje genérico. Con tres estados bien definidos y una prueba sencilla, puedes pedirle que resuelva también los momentos incómodos.
 
-## Qué es Kimi K3.1 Pro
+## El caso: un catálogo de clases
 
-Según el anuncio oficial de Moonshot (https://kimi.ai/blog/kimi-k3-1-pro), Kimi K3.1 Pro es el primer modelo de la serie K3.1 y su "modelo de pesos abiertos de clase 3T más capaz hasta la fecha". Técnicamente es un post-entrenamiento de Kimi K3 con un cómputo de aprendizaje por refuerzo sustancialmente mayor.
+Imagina el catálogo de un estudio que publica sus clases de la semana. La misma zona de la pantalla puede quedar vacía por tres motivos:
 
-Los puntos clave:
+- el estudio acaba de abrir su cuenta y todavía no cargó ninguna clase;
+- alguien filtró por sábado y ese día no hay clases;
+- el catálogo no pudo cargar.
 
-- Contexto: 1 millón de tokens.
-- Entrada: texto e imagen. La API también acepta video subido como archivo, según la guía de inicio (https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart).
-- Variantes: kimi-k3.1-pro y kimi-k3.1-pro-highspeed. Esta última es de 2 a 3 veces más rápida, según el anuncio.
-- Dónde se usa: Kimi.ai, Kimi Work, Kimi Code y la API de Kimi. En Kimi Enterprise el acceso viene desactivado por defecto.
-- Pesos abiertos: Moonshot se compromete a publicar los pesos completos antes del 4 de noviembre de 2026. Mientras tanto, Artificial Analysis (https://artificialanalysis.ai/models/kimi-k3-1-pro) lo clasifica como "Proprietary" porque los pesos aún no están disponibles.
+A simple vista es la misma pantalla. Para quien la mira son situaciones distintas, y cada una tiene una salida diferente.
 
-Las áreas donde Moonshot dice haber mejorado más son la programación (incluidos motores de juego como Unity, Unreal Engine y Godot), el modelado 3D (puede escribir y ejecutar scripts para Blender y software CAD), la investigación financiera y la ciberseguridad con controles de riesgo.
+## Cuenta nueva: lleva a la primera acción
 
-## Cuánto cuesta Kimi K3.1 Pro
+El estudio todavía no tiene clases. Un «No hay clases» es verdad, pero deja a la persona sin saber qué hacer. Lo útil es la acción que resuelve el vacío: crear la primera clase desde ese mismo lugar.
 
-Precios oficiales de la plataforma de Kimi (https://platform.kimi.ai), en USD por millón de tokens:
+Esta pantalla la ve sobre todo quien administra el estudio, y puede ser su primer contacto con el producto. Conviene que lo lleve directo a algo que le sirva.
 
-Modelo | Entrada | Salida | Escritura de caché | Acierto de caché
-Kimi K3.1 Pro | 2,00 | 10,00 | 2,00 | 0,20
-Kimi K3.1 Pro Highspeed | 4,00 | 20,00 | 4,00 | 0,20
-Kimi K3 (generación anterior) | 3,00 | 15,00 | 3,00 | 0,30
+## Filtro sin resultados: conserva lo que eligió
 
-Detalles útiles:
+Ahora la persona busca clases para el sábado y no hay ninguna. Necesita ver que el filtro sigue aplicado, porque eso explica por qué la lista está vacía. También necesita poder cambiar de día sin empezar la búsqueda de nuevo.
 
-- Precio plano en todo el contexto: la guía de inicio (https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart) aclara que no hay tramos por longitud de contexto.
-- Caché automática: tiene dos duraciones, 5m (por defecto) y 1h. Si tu agente hace pausas de más de cinco minutos entre llamadas, conviene pasar prompt_cache_options.ttl con el valor 1h para no volver a pagar la escritura.
-- Desbloqueo con recarga: al ser un modelo insignia, K3.1 Pro se habilita tras una recarga de saldo exitosa (mínimo USD 1). El total recargado define tu nivel de cuenta y tus límites de uso.
-- Retención de datos: el anuncio indica que hay Zero Data Retention disponible para clientes de la API.
+Si la pantalla quita el filtro sin avisar, o muestra el mismo mensaje que una cuenta nueva, parece que el estudio no tiene clases en toda la semana. La persona puede irse con una idea equivocada.
 
-Como referencia, Artificial Analysis calcula un costo de USD 2,11 por tarea de su índice de inteligencia. También señala que el modelo es muy verboso: generó 150 millones de tokens de salida para completar el índice, frente a una mediana de 87 millones. En la práctica, esto significa que el bajo precio por token se compensa en parte con más tokens de razonamiento.
+## Carga fallida: separa lo vacío de lo desconocido
 
-## Qué dicen los benchmarks (y cómo leerlos)
+Si el catálogo no cargó, «No hay clases disponibles» afirma algo que nadie sabe. Puede haber diez clases el sábado. La pantalla tiene que distinguir lo vacío de lo desconocido: la información no está disponible por ahora, y la persona puede volver a intentarlo.
 
-Primero, la medición independiente: en el Artificial Analysis Intelligence Index v4.3.2, Kimi K3.1 Pro obtiene 55 puntos y queda 4.º de 215 modelos. Como contexto, en ese mismo índice Claude Opus 5.5 tiene 58, y GPT-6 Astra y Gemini 4 Argon tienen 53 cada uno. Lo comparo en detalle en el mejor modelo de IA en octubre de 2026 (/blog/mejor-modelo-ia-octubre-2026).
+Es el estado que más se presta a confusión, porque visualmente se parece a los otros dos. Un mensaje vago aquí convierte un fallo pasajero en una respuesta falsa.
 
-Las siguientes cifras las publica Moonshot en su anuncio:
+## Cómo pedírselo al agente
 
-Benchmark | Kimi K3.1 Pro | Referencia citada por Moonshot
-Terminal-Bench 4.0 | 65,7 % | Claude Opus 5.5: 66,4 %; GPT-6 Astra: 58,2 %
-BenchCAD (con herramientas) | 92,7 % | Claude Opus 5.5: 96,2 %; GPT-6 Astra: 95,9 %
-Kimi Code Bench 3.0 Long-horizon (interno) | 61,2 % | Kimi K3: 55,95 %
-OfficeQA Pro v2 | 64,4 | Moonshot lo presenta como estado del arte
+Cuando compartas una referencia, pide al agente que también mire qué hace cuando no hay nada que mostrar. Muchas capturas públicas no enseñan esos estados, y eso también es un dato: el agente tendrá que resolverlos con los componentes del producto.
 
-Tres matices importantes:
+Después, pídele que prepare los tres estados con contenido de prueba propio:
 
-1. Las cifras de terceros pueden no coincidir. Moonshot cita 58,2 % para GPT-6 Astra en Terminal-Bench 4.0, mientras que OpenAI publica 57,9 % (https://openai.com/index/gpt-6-astra/). Cada fabricante usa su propio harness (Moonshot indica que evaluó con el de Claude Code).
-2. Los benchmarks internos no se pueden reproducir. Kimi Code Bench y las evaluaciones de finanzas son internos.
-3. Ciberseguridad: Moonshot eliminó datos relacionados con ciberseguridad del entrenamiento para la versión de pesos abiertos. En su benchmark interno xdev-bench-hard, el modelo final resuelve el 81,0 % (pass@3), frente al 90,5 % de un checkpoint sin esa limpieza. La empresa afirma que su capacidad ofensiva sigue por detrás de los modelos propietarios de frontera que llevan al menos tres meses publicados.
+1. Una cuenta sin clases cargadas.
+2. Un filtro por un día sin coincidencias.
+3. Una carga que falla a propósito.
 
-En finanzas, Moonshot reporta mejoras frente a K3 de 7,2 puntos en Financial Modeling y de 11,6 puntos en Financial Research, además de un rendimiento unas 4,2 veces mayor en Business Operation. Son benchmarks internos.
+Para cada estado, el agente debería poder responder tres preguntas: qué ve la persona, por qué la pantalla está vacía y qué puede hacer a continuación. Si alguna respuesta es «nada», ese estado todavía no está diseñado.
 
-## Cómo usar Kimi K3.1 Pro por API, paso a paso
+Usa contenido inventado con forma real. No hace falta el catálogo de un cliente para probar esto; bastan clases ficticias con nombres, horarios y días parecidos a los que tendrá el producto.
 
-La documentación de la API (https://platform.kimi.ai/docs/api/overview) indica que la API de Kimi es compatible con tres formatos:
+## Prueba los tres juntos
 
-Formato | base_url | Endpoint
-OpenAI Chat Completions | https://api.moonshot.ai/v1 | /chat/completions
-OpenAI Responses | https://api.moonshot.ai/v1 | /responses
-Anthropic Messages | https://api.moonshot.ai/anthropic | /messages
+Revisar cada estado por separado ayuda poco, porque el riesgo está en que se parezcan. Pon las tres pantallas una al lado de la otra y compáralas. El texto, la acción principal y lo que queda visible tienen que cambiar según el motivo del vacío.
 
-Pasos para tu primera llamada:
+Fíjate en las palabras. «Crea tu primera clase», «No hay clases el sábado» y «No pudimos cargar el catálogo» dicen cosas distintas y llevan a acciones distintas. Si los tres estados terminan con el mismo mensaje, el agente resolvió una sola situación y la repitió.
 
-1. Crea una cuenta en platform.kimi.ai (https://platform.kimi.ai) y recarga saldo (mínimo USD 1) para desbloquear K3.1 Pro.
-2. Genera una API key en la sección API Keys. Nunca la pegues en el código ni la subas a un repositorio. Guárdala en una variable de entorno:
+## La comprobación final
 
-```bash
-export MOONSHOT_API_KEY="tu_clave_aqui"
-```
-
-3. Instala el SDK de OpenAI (Python 3.9 o superior):
-
-```bash
-python3 -m pip install --upgrade 'openai>=1.0'
-```
-
-4. Haz la llamada apuntando a la base_url de Kimi:
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.environ["MOONSHOT_API_KEY"],
-    base_url="https://api.moonshot.ai/v1",
-)
-
-respuesta = client.chat.completions.create(
-    model="kimi-k3.1-pro",
-    reasoning_effort="low",
-    messages=[{"role": "user", "content": "Resume en tres puntos qué es un agente de IA."}],
-)
-
-print(respuesta.choices[0].message.content)
-```
-
-5. Ajusta el razonamiento. K3.1 Pro siempre razona, y reasoning_effort acepta low, high y max (por defecto, max). Para tareas simples, low reduce tiempo y tokens.
-
-Reglas de la guía oficial que conviene conocer antes de construir un agente:
-
-- Parámetros fijos: temperature, top_p, n, presence_penalty y frequency_penalty tienen valores fijos, así que no los envíes.
-- Mensajes completos: en conversaciones de varios turnos y en llamadas a herramientas, devuelve el mensaje completo del asistente, incluido reasoning_content, y no solo content.
-- Imágenes: no se aceptan URLs públicas. Hay que enviarlas en base64 o subirlas como archivo.
-- Búsqueda web: la herramienta oficial está en actualización y Moonshot no la recomienda para producción por ahora.
-- Longitud de salida: max_completion_tokens vale 131.072 por defecto y admite hasta 1.048.576.
-
-Si ya trabajas con agentes, la compatibilidad con el formato Messages de Anthropic permite conectarlo a herramientas como Claude Code cambiando la base_url. La documentación lo menciona de forma explícita. Si estás empezando, te recomiendo leer cómo trabajo con agentes de IA (/skills/ai-agents) y qué guardar para continuar un trabajo entre sesiones (/blog/continuidad-entre-sesiones-de-agentes).
-
-### Usarlo sin escribir código
-
-- Kimi Code: selecciona el modelo con el comando /model.
-- Kimi Work (escritorio): requiere la versión 3.1.0 o superior, en Windows o en Mac con Apple silicon.
-- Apps móviles: está disponible en iOS, Android y HarmonyOS.
-
-## Mi opinión: cuándo tiene sentido
-
-Kimi K3.1 Pro es interesante por tres razones. Ofrece un rendimiento publicado cercano al de los modelos propietarios más fuertes en tareas de terminal, cuesta la mitad por token que Claude Opus 5.5 y promete pesos abiertos. Si tu caso exige alojar el modelo en tu propia infraestructura, conviene seguir de cerca la publicación de los pesos (lo comparo en el mejor modelo de IA en octubre de 2026 (/blog/mejor-modelo-ia-octubre-2026)).
-
-Antes de migrar un flujo en producción, haría dos cosas. Primero, mediría el costo real por tarea, porque es un modelo verboso. Segundo, esperaría a que haya más evaluaciones independientes, ya que el modelo salió hace muy poco.
-
-## Preguntas frecuentes
-
-### ¿Cuánto cuesta Kimi K3.1 Pro por API?
-
-USD 2 por millón de tokens de entrada, USD 10 por millón de salida y USD 0,20 por millón en aciertos de caché. La variante Highspeed cuesta USD 4 de entrada y USD 20 de salida.
-
-### ¿Kimi K3.1 Pro es de código abierto?
-
-Moonshot lo define como un modelo de pesos abiertos y se compromete a publicar los pesos completos antes del 4 de noviembre de 2026. Hasta ese momento solo se puede usar por los productos de Kimi y su API.
-
-### ¿Kimi K3.1 Pro es compatible con el SDK de OpenAI?
-
-Sí. La API de Kimi acepta los formatos Chat Completions y Responses de OpenAI con base_url https://api.moonshot.ai/v1, y el formato Messages de Anthropic con https://api.moonshot.ai/anthropic.
-
-### ¿Se puede desactivar el razonamiento de Kimi K3.1 Pro?
-
-No. El modo de razonamiento está siempre activo. Puedes reducirlo con el parámetro reasoning_effort, que acepta low, high y max (el valor por defecto es max).
-
-### ¿Qué diferencia hay entre Kimi K3.1 Pro y K3.1 Pro Highspeed?
-
-Highspeed ofrece las mismas capacidades a una velocidad de 2 a 3 veces mayor, según Moonshot, y cuesta el doble por token de entrada y de salida.
-
-## Fuentes
-
-Consultadas el 23 de octubre de 2026.
-
-- Moonshot AI. Introducing Kimi K3.1 Pro (https://kimi.ai/blog/kimi-k3-1-pro) (anuncio oficial y benchmarks).
-- Kimi API Platform. Precios y modelos (https://platform.kimi.ai).
-- Kimi API Platform. Guía de inicio de Kimi K3.1 Pro (https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart) (parámetros, límites y caché).
-- Kimi API Platform. API Overview (https://platform.kimi.ai/docs/api/overview) (base_url y compatibilidad).
-- Kimi API Platform. Quickstart (https://platform.kimi.ai/docs/get-your-api-key) (API key y primera llamada).
-- Artificial Analysis. Kimi K3.1 Pro (https://artificialanalysis.ai/models/kimi-k3-1-pro) (índice independiente, costo por tarea y verbosidad).
-- OpenAI. GPT-6 Astra (https://openai.com/index/gpt-6-astra/) (cifra propia de Terminal-Bench 4.0).
+Muestra los tres estados a alguien que no conoce el producto. En cada uno, esa persona debería poder decir por qué la pantalla está vacía y qué haría después. Si confunde dos de ellos, todavía falta trabajo; si los distingue sin ayuda, la pantalla está lista también para cuando no hay nada que mostrar.
 
 ---
 

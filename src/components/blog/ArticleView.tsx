@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { preload } from 'react-dom'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import BackButton from '@/components/BackButton'
@@ -26,15 +27,21 @@ export function articleMetadata(slug: string, lang: Lang): Metadata {
   if (!a) return {}
   const path = articlePath(a)
   const other = getTranslation(a)
-  const languages = other ? { [a.language]: path, [other.language]: articlePath(other), 'x-default': a.language === 'es' ? path : articlePath(other) } : undefined
+  // Con traducción: hreflang recíproco y x-default en español. Un original solo en inglés declara en, sin x-default.
+  const languages = other
+    ? { [a.language]: path, [other.language]: articlePath(other), 'x-default': a.language === 'es' ? path : articlePath(other) }
+    : a.language === 'en'
+      ? { en: path }
+      : undefined
   const socialTitle = a.ogTitle || a.title
   const socialDescription = a.ogDescription || a.description
+  const coverImage = a.cover ? [{ url: a.cover.src, width: a.cover.width, height: a.cover.height, alt: a.cover.alt, type: 'image/webp' as const }] : undefined
   return {
     title: a.title,
     description: a.description,
     alternates: { canonical: path, ...(languages ? { languages } : {}) },
-    openGraph: og({ title: socialTitle, description: socialDescription, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale }),
-    twitter: { card: 'summary_large_image', title: socialTitle, description: socialDescription, images: ['/og-arncof-v2.jpg'], creator: '@arncof' },
+    openGraph: og({ title: socialTitle, description: socialDescription, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale, ...(coverImage ? { images: coverImage } : {}) }),
+    twitter: { card: 'summary_large_image', title: socialTitle, description: socialDescription, images: [a.cover?.src ?? '/og-arncof-v2.jpg'], creator: '@arncof' },
     robots: isEditorialPreview ? { index: false, follow: false } : { index: true, follow: true },
   }
 }
@@ -48,10 +55,11 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
   const blog = UI[lang].blog
   const other = getTranslation(article)
   const headings = article.blocks.filter(b => b.type === 'heading').map(b => ({ id: headingId(b.text!), text: b.text! }))
-  const related = getArticles(lang)
+  const sameLanguage = getArticles(lang)
     .filter(a => a.slug !== slug)
     .sort((a, b) => Number(b.category === article.category) - Number(a.category === article.category) || Date.parse(b.date) - Date.parse(a.date))
-    .slice(0, 2)
+  const related = (sameLanguage.length ? sameLanguage : lang === 'en' ? getArticles('es') : []).slice(0, 2)
+  if (article.cover) preload(article.cover.src, { as: 'image', fetchPriority: 'high' })
   const published = articleDate(article.date, lang)
   const updated = articleDate(article.updated, lang)
   const schema = {
@@ -66,12 +74,15 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
         datePublished: article.date,
         dateModified: article.updated,
         inLanguage: lang,
-        image: `${PROFILE.url}/og-arncof-v2.jpg`,
+        image: article.cover
+          ? { '@type': 'ImageObject', url: `${PROFILE.url}${article.cover.src}`, width: article.cover.width, height: article.cover.height, caption: article.cover.alt }
+          : `${PROFILE.url}/og-arncof-v2.jpg`,
         url,
         mainEntityOfPage: url,
         author: { '@type': 'Person', '@id': `${PROFILE.url}/#person`, name: PROFILE.name, url: PROFILE.url },
         publisher: { '@id': `${PROFILE.url}/#person` },
-        isPartOf: { '@id': `${PROFILE.url}/blog#blog` },
+        isPartOf: { '@id': `${PROFILE.url}${lang === 'en' ? '/en/blog' : '/blog'}#blog` },
+        ...(article.citation ? { citation: article.citation, isBasedOn: article.citation } : {}),
         ...(article.keyword ? { keywords: article.keyword } : {}),
         // La versión en inglés declara de qué artículo es traducción.
         ...(other && lang === 'en' ? { translationOfWork: { '@id': `${PROFILE.url}${articlePath(other)}#articulo` } } : {}),
@@ -94,6 +105,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
             <BackButton href={blog} label={t.articles} />
             <h1>{article.title}</h1>
             <p className="entrada-texto">{article.description}</p>
+            {article.citation && <p className="atribucion">Originally published on <a href={article.citation} rel="noopener">X</a>.</p>}
             <div className="articulo-datos">
               <span className="meta">
                 {article.category} · <Link href={UI[lang].home} rel="author">{PROFILE.name}</Link> · <time dateTime={article.date}>{published}</time> · {article.readingMinutes} {t.read}
@@ -103,7 +115,14 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
               <CopyLink url={url} lang={lang} />
             </div>
           </header>
-          <div className="marco articulo-banda" aria-hidden="true"><ArticleCover slug={slug} cols={36} rows={8} density={0.85} from="abajo-derecha" /></div>
+          {article.cover ? (
+            <figure className="marco articulo-banda con-portada">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={article.cover.src} width={article.cover.width} height={article.cover.height} alt={article.cover.alt} decoding="async" fetchPriority="high" />
+            </figure>
+          ) : (
+            <div className="marco articulo-banda" aria-hidden="true"><ArticleCover slug={slug} cols={36} rows={8} density={0.85} from="abajo-derecha" /></div>
+          )}
           <div className="marco articulo-rejilla">
             <div>
               {headings.length > 1 && <ArticleToc headings={headings} variant="movil" lang={lang} />}

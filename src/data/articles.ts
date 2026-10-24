@@ -3,13 +3,17 @@ import type { Lang } from '@/lib/lang'
 
 export type ArticleBlock = {
   type: string; text?: string; items?: string[]; headers?: string[]; rows?: string[][]; lang?: string; start?: number
+  src?: string; width?: number; height?: number; alt?: string; href?: string
 }
 export type ArticleFaq = { q: string; a: string }
+export type ArticleCover = { src: string; width: number; height: number; alt: string }
 export type Article = {
   slug: string; title: string; description: string; category: string;
   language: string; translation?: string; author: string; date: string; updated: string; publication: string;
   readingMinutes: number; blocks: ArticleBlock[]; faq?: ArticleFaq[]; keyword?: string; tags?: string[]
   ogTitle?: string; ogDescription?: string
+  cover?: ArticleCover
+  citation?: string
 }
 
 const all: Article[] = data

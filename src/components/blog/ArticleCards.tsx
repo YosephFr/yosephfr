@@ -20,12 +20,20 @@ function meta(article: Article, lang: Lang, withCategory: boolean) {
   return `${withCategory && !foreign ? `${article.category} · ` : ''}${shortDate(article.date, lang)} · ${article.readingMinutes} ${t.minutes}${foreign ? ` · ${t.inSpanish}` : ''}`
 }
 
+function CoverArt({ article, cols, rows }: { article: Article; cols?: number; rows?: number }) {
+  if (!article.cover) return <ArticleCover slug={article.slug} cols={cols} rows={rows} />
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img className="foto-portada" src={article.cover.src} alt="" width={article.cover.width} height={article.cover.height} decoding="async" loading="lazy" />
+  )
+}
+
 function Card({ article, level = 'h3', className = '', lang = 'es' }: Props & { className?: string }) {
   const Title = level
   const l = linkProps(article, lang)
   return (
     <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-tarjeta${className}`}>
-      <div className="articulo-portada"><ArticleCover slug={article.slug} /></div>
+      <div className="articulo-portada"><CoverArt article={article} /></div>
       <div className="articulo-texto">
         <Title lang={l.textLang}>{article.title}</Title>
         <p lang={l.textLang}>{article.description}</p>
@@ -40,7 +48,7 @@ export function FeaturedArticle({ article, level = 'h2', compact = false, lang =
   const l = linkProps(article, lang)
   return (
     <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-destacado${compact ? ' compacto' : ''}`}>
-      <div className="articulo-portada"><ArticleCover slug={article.slug} cols={compact ? 18 : 16} rows={compact ? 8 : 11} /></div>
+      <div className="articulo-portada"><CoverArt article={article} cols={compact ? 18 : 16} rows={compact ? 8 : 11} /></div>
       <div className="articulo-texto">
         <Title lang={l.textLang}>{article.title}</Title>
         <p lang={l.textLang}>{article.description}</p>

@@ -479,7 +479,11 @@ a.lamina:active { transform: translateY(-1px) scale(0.99); }
 .articulo-datos { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
 .articulo-datos .boton { height: 40px; padding: 0 14px; font-size: 14px; }
 .articulo-banda { aspect-ratio: 4 / 1; border-radius: var(--r); overflow: hidden; background: #111113; box-shadow: var(--sombra); }
-@media (min-width: 900px) { .articulo-cabeza { padding-block: 40px 48px; } .articulo-banda { aspect-ratio: 40 / 9; } }
+.articulo-banda.con-portada { aspect-ratio: auto; }
+.articulo-banda.con-portada img { display: block; width: 100%; height: auto; }
+.articulo-cabeza .atribucion { margin-top: 14px; max-width: 40em; font-size: 15px; line-height: 1.5; color: var(--texto-3); }
+.articulo-cabeza .atribucion a { color: var(--texto-2); text-decoration: underline; text-decoration-color: var(--acento); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+@media (min-width: 900px) { .articulo-cabeza { padding-block: 40px 48px; } .articulo-banda { aspect-ratio: 40 / 9; } .articulo-banda.con-portada { aspect-ratio: auto; } }
 .articulo-rejilla { display: grid; gap: 24px; padding-block: 32px 24px; }
 @media (min-width: 1000px) { .articulo-rejilla { grid-template-columns: minmax(0, 680px) minmax(0, 1fr); gap: 96px; padding-block: 64px 40px; } }
 .indice { display: none; }
@@ -518,6 +522,10 @@ a.lamina:active { transform: translateY(-1px) scale(0.99); }
 .editorial-body strong { color: var(--texto); font-weight: 700; }
 .editorial-body a { color: var(--texto); text-decoration: underline; text-decoration-color: var(--acento); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .editorial-body a:hover { text-decoration-color: var(--texto); }
+.editorial-body .figura img { display: block; width: 100%; height: auto; border-radius: var(--r); background: #111113; box-shadow: var(--sombra); }
+.editorial-body .figura a { display: block; text-decoration: none; }
+.editorial-body .figura a:hover { text-decoration: none; }
+.articulo-portada .foto-portada { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .editorial-body ol { list-style: none; counter-reset: paso var(--paso, 0); display: grid; gap: 14px; }
 .editorial-body ol li { counter-increment: paso; position: relative; padding-left: 40px; }
 .editorial-body ol li::before { content: counter(paso); position: absolute; left: 0; top: 0.1em; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--carbon-3); color: var(--texto); font-size: 14px; font-weight: 800; line-height: 1; }

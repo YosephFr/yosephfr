@@ -1,5 +1,555 @@
 [
   {
+    "slug": "samsung-tv-privacy-listening",
+    "title": "They said phones weren't listening.",
+    "description": "Today it's a Samsung TV. Before that it was Apple, Google and Amazon. Here's what's proven, what's alleged, and what's still a rumor, plus the settings to change tonight.",
+    "category": "Privacy",
+    "language": "en",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:00:00-03:00",
+    "updated": "2026-10-24T18:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 14,
+    "keyword": "Samsung TV privacy",
+    "citation": "https://x.com/arncof/status/2114086750280921322",
+    "cover": {
+      "src": "/blog/samsung-tv-privacy-listening/g1-title-card.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "They said phones weren't listening. Today it's a Samsung TV: what's proven, what's alleged, and what's still a rumor."
+    },
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "For about a decade, regular people have said the same thing: \"I talked about something near my phone, and then I saw an ad for it.\" The industry's answer was always some version of \"we don't do that.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "Some of that denial held up. A lot of it didn't. Contractors listened to voice-assistant recordings. A TV maker sold what millions of households watched. Companies paid settlements in the tens of millions. This week a security researcher says he opened up his own Samsung TV and found something worse."
+      },
+      {
+        "type": "paragraph",
+        "text": "I'm tired of every big company turning the hardware we pay for into a sensor pointed back at us. But being angry doesn't mean being sloppy. So let's separate what's been proven in court or by regulators from what one person is claiming on X, and from what is still just a rumor."
+      },
+      {
+        "type": "heading",
+        "text": "What a researcher says he found inside a Samsung TV"
+      },
+      {
+        "type": "paragraph",
+        "text": "On October 21, 2026, the researcher [@log4j](https://x.com/log4j) (his bio: reverse engineer, pentester, bounty hunter) [posted](https://x.com/log4j/status/2113014142600953868) that his Samsung TV kept showing him strangely well-targeted ads. The firmware was encrypted, so he says he used zero-day exploits to get a root shell on the TV itself. His summary: \"PRIVACY HORROR.\""
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/01-root-shell.webp",
+        "width": 1536,
+        "height": 1152,
+        "alt": "Screenshot from the researcher's post: a root shell on his Samsung TV, summarized as PRIVACY HORROR."
+      },
+      {
+        "type": "paragraph",
+        "text": "Over the next three days he posted a stream of findings. According to him:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "A system package named `csapi-tv-service-alwaysonvoice`, which he calls \"always on hot mic functionality,\" shows up in the TV's security policy. Next to it he lists ACR, geo-positioning, network mapping, a targeted-ads service, four DRM services and user-profile building, with data shared with \"samsung + their 400 partners.\" ([post](https://x.com/log4j/status/2113028209612644795))",
+          "If the TV has no microphone, the software looks for one on a connected soundbar or Bluetooth device, and \"this gets shipped off to bixby.\" ([post](https://x.com/log4j/status/2113762242327892456))",
+          "The telemetry includes classified sound events, such as dog-barking and baby-crying counters, plus camera-streaming duration. ([post](https://x.com/log4j/status/2113781968601055366))",
+          "A \"wifi-presence\" service starts about 20 minutes after boot. It sends ARP probes across your home network every hour to log IP and MAC addresses, and he found no check for opt-out. ([post](https://x.com/log4j/status/2113756782304596232))",
+          "A service called \"rmdemon\" starts a packet logger on your network. ([post](https://x.com/log4j/status/2113740242624917953))",
+          "A region-specific neural network (`LogoCNN.bin`) tracks in-app behavior, such as which YouTube videos you watch and which ads you skip. ([post](https://x.com/log4j/status/2113750330861125680))",
+          "Face-detection code that he says is used and returns bounding boxes around faces. ([post](https://x.com/log4j/status/2113796501117759683))"
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/02-security-policy.webp",
+        "width": 1091,
+        "height": 1600,
+        "alt": "The TV security policy listing the package csapi-tv-service-alwaysonvoice, which the researcher calls always-on hot mic functionality, next to ACR and other services."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/03-audio-classification.webp",
+        "width": 1600,
+        "height": 971,
+        "alt": "The researcher's audio table of classified sound events, including dog-barking and baby-crying counters, which his notes say still require verification."
+      },
+      {
+        "type": "paragraph",
+        "text": "The thread spread quickly. One repost that [summed it up](https://x.com/0x0SojalSec/status/2113208608980898022) as \"This isn't a bug, It's the product bro\" passed 1.4 million views."
+      },
+      {
+        "type": "subheading",
+        "text": "Now the caveats, and they matter"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Nobody has independently reproduced any of this yet.** As of October 24, 2026, I couldn't find a public response from Samsung to these specific claims.",
+          "**His own notes are cautious.** A page from his write-up is tagged \"STATIC PATH REVIEWED\" and \"RUNTIME UNVERIFIED.\" His audio table says the active runtime policy \"still require[s] verification.\" Code that exists in firmware isn't proof that it runs on your TV, or that it sends what it captures. ([post](https://x.com/log4j/status/2113828949046280384))",
+          "**The details shift.** His first post says a \"2025 samsung tv.\" A later post says \"my 2024 era samsung tv.\" In a reply, he says it's an EU model. He says about 44 write-ups, prepared with help from AI agents, are coming \"in a few days.\"",
+          "**Some of it overlaps with features Samsung advertises.** Samsung's own [Smart Home page](https://www.samsung.com/lb/tvs/smart-tv/smart-home/) says the TV \"can detect noises like barking through its microphone,\" and the fine print says this works only while the TV is turned off (Q8F and above, activated through SmartThings). The same page says the TV \"can detect when users come nearby\" to wake its Daily Board while the screen is off. So a mic that listens for sounds isn't a secret. The real questions are what gets reported, to whom, and whether opting out actually stops it."
+        ]
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/04-writeups.webp",
+        "width": 1600,
+        "height": 1096,
+        "alt": "A page from the researcher's write-up tagged STATIC PATH REVIEWED and RUNTIME UNVERIFIED."
+      },
+      {
+        "type": "paragraph",
+        "text": "So, for now: **alleged, specific, worth watching, not proven.**"
+      },
+      {
+        "type": "heading",
+        "text": "Then his AI account got banned"
+      },
+      {
+        "type": "paragraph",
+        "text": "Then the story took a turn. On October 23, the researcher [posted](https://x.com/log4j/status/2113647464154857840) a screenshot of an OpenAI email saying his account had been deactivated for violating its policies on \"Cyber Abuse.\" He says he never used OpenAI \"to exploit or find vulnerabilities, only local reverse engineering,\" and that the ban cost him about $500."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/09-openai-ban.webp",
+        "width": 1545,
+        "height": 1600,
+        "alt": "Screenshot of an OpenAI email saying the researcher's account was deactivated for violating its policies on Cyber Abuse."
+      },
+      {
+        "type": "paragraph",
+        "text": "The same day, the account behind the viral repost [claimed](https://x.com/0x0SojalSec/status/2113751276320399694) that Claude had stopped helping with REA (\"Reverse Engineer Anything\"), a reverse-engineering workflow popular with users, and pointed to the \"interesting timing\" after the Samsung TV posts. Its evidence is a Reddit screenshot of Claude stopping mid-answer after a safety check. Developer [@yacineMTB amplified the ban](https://x.com/yacineMTB/status/2113965724435697732): \"You aren't allowed to stop your tv from spying on your family.\" X's [trending story](https://x.com/i/trending/2114013503564423636) collects the reaction."
+      },
+      {
+        "type": "paragraph",
+        "text": "Treat all of this as claims. The link between the Samsung research and either AI company's action is users' interpretation; neither company has said so. As of this writing, I found no public comment from OpenAI or Anthropic. Coincidence or not, it's a reminder that the tools researchers use to check on Big Tech are themselves run by Big Tech."
+      },
+      {
+        "type": "heading",
+        "text": "The receipts: this has happened before"
+      },
+      {
+        "type": "paragraph",
+        "text": "The reason a claim like this spreads so fast is that the industry has a record. Here's the part that is documented."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g2-evidence-timeline.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "Timeline of documented cases where companies collected voice or viewing data, from Samsung in 2015 through the settlements and studies of 2025 and 2026."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "When",
+          "Who",
+          "What happened",
+          "Outcome"
+        ],
+        "rows": [
+          [
+            "Feb 2015",
+            "Samsung",
+            "The Smart TV privacy policy warned that \"if your spoken words include personal or other sensitive information, that information will be among the data captured and transmitted to a third party.\" ([NPR](https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening))",
+            "Samsung [clarified](https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations) that voice is collected only when you press the button, and that the third party was Nuance"
+          ],
+          [
+            "Feb 2017",
+            "Vizio",
+            "ACR collected second-by-second viewing data from 11 million TVs without consent, and Vizio sold it ([FTC](https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million))",
+            "$2.2M to the FTC and New Jersey"
+          ],
+          [
+            "Jul 2019",
+            "Apple",
+            "A contractor whistleblower said reviewers regularly heard confidential details in Siri recordings ([Guardian](https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings))",
+            "Apple [suspended](https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri) the program"
+          ],
+          [
+            "Jul 2019",
+            "Google",
+            "More than 1,000 Assistant recordings leaked to VRT NWS, 153 of them recorded without \"OK Google\" ([VRT](https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/))",
+            "Google said reviewers hear about 0.2% of clips"
+          ],
+          [
+            "Aug 2019",
+            "Facebook",
+            "Paid contractors to transcribe Messenger voice clips ([Bloomberg](https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio))",
+            "Paused"
+          ],
+          [
+            "Aug 2019",
+            "Microsoft",
+            "Contractors listened to Xbox audio from Kinect and Cortana, much of it accidental activations, some of it from children ([Vice](https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/))",
+            "Microsoft said it had stopped the reviews"
+          ],
+          [
+            "2023",
+            "Amazon",
+            "Kept children's Alexa voice recordings indefinitely and undermined deletion requests ([FTC](https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever), [DOJ](https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens))",
+            "$25M civil penalty under COPPA"
+          ],
+          [
+            "Oct 2025",
+            "Apple",
+            "Siri class action over accidental recordings (Lopez v. Apple) ([settlement site](https://www.lopezvoiceassistantsettlement.com/), [Lowey Dannenberg](https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/))",
+            "$95M, final approval Oct 16, 2025. Apple denies wrongdoing"
+          ],
+          [
+            "Dec 2025 – Feb 2026",
+            "Samsung, LG, Sony, Hisense, TCL",
+            "Texas sued all five over ACR, alleging screenshots of what's on screen as often as every 500 milliseconds ([Texas AG](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans))",
+            "Samsung [agreed](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs) to require express consent for ACR. LG reached [its own agreement](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)"
+          ],
+          [
+            "Oct 2026",
+            "Google",
+            "Assistant class action over \"false accept\" recordings ([Reuters](https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/), [final approval order](https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf))",
+            "$68M, final approval Oct 13, 2026. Google denies wrongdoing"
+          ],
+          [
+            "Oct 2026",
+            "Samsung, Vizio, Roku",
+            "A Northeastern University study ran 5,943 experiments on 12 TVs from 10 manufacturers. On Samsung Tizen, Vizio and Roku, it found traffic still going to ACR endpoints after users opted out ([Ars Technica](https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/), [paper](https://watchingthewatchers.github.io/watchingthewatchers/))",
+            "Payloads are encrypted, so the contents are unknown. The authors call it \"suspicious\""
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "That last row is the one I'd watch most closely. It's independent of the Samsung researcher, it was done systematically, and it suggests that flipping the opt-out toggle may not be the end of the story. On Samsung's Tizen, the study saw ACR traffic after opt-out in all 30 first-party app measurements, 41 of 60 antenna measurements and 18 of 30 HDMI measurements."
+      },
+      {
+        "type": "heading",
+        "text": "Proven vs alleged vs rumor"
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g3-proven-alleged-rumor.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "What's proven, what's alleged, and what's still a rumor about devices listening and smart TVs tracking what you watch."
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Claim",
+          "Status",
+          "Why"
+        ],
+        "rows": [
+          [
+            "Smart TVs log what you watch through ACR",
+            "**Proven**",
+            "Vizio FTC case (2017); Texas lawsuits and Samsung agreement (2025–26)"
+          ],
+          [
+            "Humans listened to voice-assistant recordings, including accidental ones",
+            "**Proven**",
+            "Apple, Google, Amazon, Facebook and Microsoft all confirmed or paused programs in 2019"
+          ],
+          [
+            "Companies paid for it",
+            "**Proven (settled)**",
+            "Apple $95M, Google $68M, Amazon $25M, Vizio $2.2M. Apple and Google deny wrongdoing"
+          ],
+          [
+            "Some TVs keep contacting ACR servers after you opt out",
+            "**Documented, contents unknown**",
+            "Northeastern study, Oct 2026"
+          ],
+          [
+            "A Samsung TV runs an \"always-on\" voice service, scans your network and logs packets",
+            "**Alleged**",
+            "One researcher's reverse engineering; his own notes say runtime is unverified; not reproduced"
+          ],
+          [
+            "Data goes to \"400 partners\"",
+            "**Alleged**",
+            "The researcher's figure; I couldn't verify it"
+          ],
+          [
+            "A marketing firm can target ads from what you say near your devices",
+            "**Alleged (marketing claim)**",
+            "A Cox Media Group pitch deck claimed it ([404 Media](https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)). Google removed CMG from its partner program, and Meta and Amazon distanced themselves. No evidence that it worked"
+          ],
+          [
+            "Your phone secretly records you to target ads",
+            "**Rumor / unproven**",
+            "Zuckerberg [denied it](https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/) to the Senate in 2018, and Instagram's Adam Mosseri [denied it again](https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) in 2025. A 2018 Northeastern study of 17,260 Android apps found no secret mic recording, though some apps [sent screenshots and screen recordings](https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) to third parties"
+          ],
+          [
+            "Your TV records you while it's fully off",
+            "**Rumor / unproven**",
+            "Samsung does advertise sound detection while the screen is off, but nothing public shows covert recording"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The uncomfortable pattern: the rumor that phones listen for ads is still unproven, and yet every time someone looks closely, they find a microphone doing more than people were told."
+      },
+      {
+        "type": "heading",
+        "text": "What the community has been saying"
+      },
+      {
+        "type": "paragraph",
+        "text": "The researcher's posts didn't land in a vacuum. People have been joking for years, half-seriously, that their devices are listening. [A reel from the community](https://www.instagram.com/reel/De0YSX4tTNT/) captures that mood: the suspicion came long before the receipts."
+      },
+      {
+        "type": "paragraph",
+        "text": "For Spanish speakers, Porque Pasa Esto put together a clear [70-second breakdown of the Samsung story](https://x.com/xq_pasaesto/status/2114056938153537713): \"A hacker opened his Samsung TV and this is what he says he found.\" Note the word \"says.\" That's the right framing."
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/08-xq-pasaesto.webp",
+        "width": 675,
+        "height": 1200,
+        "alt": "Thumbnail for the Porque Pasa Esto video: A hacker opened his Samsung TV and this is what he says he found.",
+        "href": "https://x.com/xq_pasaesto/status/2114056938153537713"
+      },
+      {
+        "type": "heading",
+        "text": "Wait, is my PlayStation controller next?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Half joking, I figured my game controller would be the next thing caught snitching. So I checked."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Xbox:** In 2019, Microsoft contractors [listened to Xbox audio](https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera) captured by Kinect and Cortana, much of it triggered by accident, some of it from kids. Microsoft said it had stopped.",
+          "**PS5:** Sony [records party voice chat](https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) on a rolling five-minute loop, so players can report harassment. If you report, a 40-second clip goes to Sony's moderators. Sony says it doesn't actively monitor chats.",
+          "**DualSense ad listening:** I found no evidence of it. Rumor."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "So no, your controller isn't proven to be spying on you. But it does have a microphone, and so does almost everything else in your living room."
+      },
+      {
+        "type": "heading",
+        "text": "The 2-minute privacy checklist"
+      },
+      {
+        "type": "image",
+        "src": "/blog/samsung-tv-privacy-listening/g4-privacy-checklist.webp",
+        "width": 1600,
+        "height": 900,
+        "alt": "A two-minute privacy checklist for Samsung, LG, Vizio and Roku TVs, plus phones and voice assistants."
+      },
+      {
+        "type": "paragraph",
+        "text": "Menu names vary by model, region and year. The TV paths below follow [Consumer Reports' guide](https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/)."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Samsung TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > General & Privacy > Terms & Privacy: turn off **Viewing Information Services** and **Interest-Based Advertising**.",
+          "Under Privacy Choices, enable \"Do Not Sell or Share My Personal Information\" where it's offered.",
+          "Settings > All Settings > Advanced Features > Voice: turn off voice features you don't use.",
+          "Flip the **physical microphone switch** on the bottom of the TV ([Samsung](https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)).",
+          "In SmartThings, turn off sound-sensor features such as Pet Care if you don't use them."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**LG TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > Support > Privacy & Terms > User Agreements: turn off **Viewing Information**, **Voice Information**, **Interest-Based Cross-Device Advertising** and \"Who. Where. What?\""
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Vizio TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > All Settings > Admin & Privacy > **Viewing Data**: off. On older sets: System > Reset & Admin > Smart Interactivity."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Roku TV**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Settings > Privacy > Smart TV Experience: uncheck **Use Info from TV Inputs**. Reset the advertising ID while you're there."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Any smart TV, the strong version**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Keep the TV off your network and stream from a separate box.",
+          "Or block ACR domains at the router or DNS level with the Northeastern researchers' [blocklist](https://watchingthewatchers.github.io/watchingthewatchers/)."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "**Phones and assistants** (general guidance; exact menus vary by OS version)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Review which apps have **microphone permission**, and revoke any that don't need it.",
+          "Watch for the mic indicator: the orange dot on iPhone, the green indicator on Android 12 and later.",
+          "iPhone: under Privacy & Security > Analytics & Improvements, turn off \"Improve Siri & Dictation,\" and delete your Siri history in Siri settings.",
+          "Google: in your Google Account's Web & App Activity, uncheck voice and audio recordings.",
+          "Alexa: in the Alexa app under Alexa Privacy, set recordings to auto-delete."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "Today it's Samsung. Before that it was Apple, Google, Amazon, Vizio and Microsoft. The researcher's Samsung claims are still claims, and they deserve the same scrutiny we'd want from the companies themselves. But the track record is why nobody gives \"we don't do that\" the benefit of the doubt anymore."
+      },
+      {
+        "type": "paragraph",
+        "text": "Change the settings. Unplug the mic you don't use. And next time someone says your devices aren't listening, ask them which settlement they're citing."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "paragraph",
+        "text": "All figures were checked against the source on Oct 24, 2026 (America/Buenos_Aires)."
+      },
+      {
+        "type": "subheading",
+        "text": "Researcher claims (ALLEGED, not independently verified, no Samsung response found)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Rooted a \"2025\" Samsung TV with zero-days; targeted ads; \"PRIVACY HORROR\" (Oct 21, 2026, 18:06 ART)](https://x.com/log4j/status/2113014142600953868)",
+          "[\"always on hot mic\", csapi-tv-service-alwaysonvoice, ACR, geo, network mapping, ads, 4 DRM, profiles, \"$3000 TV\", \"samsung + their 400 partners\"](https://x.com/log4j/status/2113028209612644795)",
+          "[Exploit \"sdb2shell\", tested on Tizen 10.0](https://x.com/log4j/status/2113026061596492219)",
+          "[Advice: turn off auto-update (Settings > Support > Software Update)](https://x.com/log4j/status/2113118136144646371)",
+          "[\"rmdemon\" starts a packet logger](https://x.com/log4j/status/2113740242624917953)",
+          "[LogoCNN.bin tracks in-app usage (YouTube videos, skipped ads)](https://x.com/log4j/status/2113750330861125680)",
+          "[Face detection code, possibly stock OpenCV](https://x.com/log4j/status/2113753283382628411)",
+          "[Face code is used, returns bounding boxes](https://x.com/log4j/status/2113796501117759683)",
+          "[wifi-presence ARP probe after 20 min, then hourly; no opt-out check](https://x.com/log4j/status/2113756782304596232)",
+          "[EU model](https://x.com/log4j/status/2113757199415558516)",
+          "[No mic → uses soundbar/Bluetooth mic → Bixby](https://x.com/log4j/status/2113762242327892456)",
+          "[Camera preview/recording capabilities](https://x.com/log4j/status/2113769177450160328)",
+          "[Code can change the power LED](https://x.com/log4j/status/2113774908169740538)",
+          "[Dog-barking/baby-crying counters, camera streaming duration in telemetry (his own table: \"still require verification\")](https://x.com/log4j/status/2113781968601055366)",
+          "[~44 write-ups, made with AI agents, \"in a few days\"; tags \"RUNTIME UNVERIFIED\"](https://x.com/log4j/status/2113828949046280384)",
+          "[\"my 2024 era samsung tv\" (contradicts \"2025\")](https://x.com/log4j/status/2113979924348281263)",
+          "[Viral repost \"It's the product bro\" (1.46M views)](https://x.com/0x0SojalSec/status/2113208608980898022)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "AI account bans after the research (CLAIMS; no public comment from OpenAI or Anthropic found)"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[OpenAI deactivated @log4j's account for \"Cyber Abuse\" (email screenshot); he says he only did local reverse engineering; \"-$500\" (Oct 23, 2026, 12:03 ART; ~792K views)](https://x.com/log4j/status/2113647464154857840)",
+          "[Claude no longer helps with REA (\"Reverse Engineer Anything\"); \"interesting timing\" after Samsung TV posts; evidence is a Reddit r/claude screenshot of a mid-response safety stop. The Samsung connection is the poster's interpretation (Oct 23, 2026, 18:55 ART; ~562K views)](https://x.com/0x0SojalSec/status/2113751276320399694)",
+          "[Amplification: \"You aren't allowed to stop your tv from spying on your family\" (Oct 24, 2026, 09:07 ART; ~435K views)](https://x.com/yacineMTB/status/2113965724435697732)",
+          "[X News story \"Anthropic Blocks Claude's Reverse Engineering Tool Amid Samsung TV Privacy Revelations\" (AI-generated summary; its line \"the company says it aligns with routine safety policies\" has no source, so it isn't used)](https://x.com/i/trending/2114013503564423636)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Samsung's own documentation"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Pet Care: TV \"can detect noises like barking through its microphone\"; only when TV is off; Q8F+; via SmartThings; Daily Board detects users nearby](https://www.samsung.com/lb/tvs/smart-tv/smart-home/)",
+          "[Physical mic switch, bottom center or bottom right](https://www.samsung.com/hk_en/support/tv-audio-video/how-to-enable-or-disable-the-microphone-switch-on-samsung-smart-tvs/)",
+          "[2015 policy quote \"if your spoken words include...\"](https://www.npr.org/sections/thetwo-way/2015/02/09/385001258/samsungs-privacy-policy-warns-customers-their-smart-tvs-are-listening)",
+          "[2015 clarification: button-activated, third party was Nuance](https://news.samsung.com/global/samsung-smart-tvs-do-not-monitor-living-room-conversations)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Proven / settled"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Vizio $2.2M (FTC $1.5M + NJ $1M, $300K suspended), 11M TVs, second-by-second, sold data (Feb 6, 2017)](https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million)",
+          "[Siri contractors heard confidential details (Jul 26, 2019)](https://www.theguardian.com/technology/2019/jul/26/apple-contractors-regularly-hear-confidential-details-on-siri-recordings)",
+          "[Apple suspended grading (Aug 2, 2019)](https://www.theguardian.com/technology/2019/aug/02/apple-halts-practice-of-contractors-listening-in-to-users-on-siri)",
+          "Apple $95M Siri settlement, final approval Oct 16, 2025, denies wrongdoing: [https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/](https://lowey.com/news/the-courts-granted-final-approval-for-apple-siri-litigation-for-95-million/) · [https://www.lopezvoiceassistantsettlement.com/](https://www.lopezvoiceassistantsettlement.com/)",
+          "[Google: 1,000+ clips leaked, 153 without \"OK Google\", 0.2% reviewed (Jul 10, 2019)](https://www.vrt.be/vrtnws/en/2019/07/10/google-employees-are-eavesdropping-even-in-flemish-living-rooms/)",
+          "Google $68M Assistant settlement; final approval Oct 13, 2026; denies wrongdoing: [https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/](https://www.reuters.com/sustainability/boards-policy-regulation/google-settles-google-assistant-privacy-lawsuit-68-million-2026-01-26/) · [https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf](https://www.courthousenews.com/wp-content/uploads/2026/10/kumandan-v-google-final-settlement-approval.pdf)",
+          "[Facebook Messenger audio transcribed by contractors (Aug 13, 2019)](https://www.bloomberg.com/news/articles/2019-08-13/facebook-paid-hundreds-of-contractors-to-transcribe-users-audio)",
+          "Microsoft contractors heard Xbox/Kinect/Cortana audio, incl. kids, accidental (Aug 2019): [https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/](https://www.vice.com/en/article/microsoft-human-contractors-listened-to-xbox-owners-homes-kinect-cortana/) · [https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera](https://www.theverge.com/2019/8/21/20827007/microsoft-listening-xbox-one-voice-recordings-cortana-assistant-kinect-camera)",
+          "Amazon $25M COPPA civil penalty, kids' Alexa recordings (2023): [https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever](https://www.ftc.gov/news-events/news/press-releases/2023/05/ftc-doj-charge-amazon-violating-childrens-privacy-law-keeping-kids-alexa-voice-recordings-forever) · [https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens](https://www.justice.gov/archives/opa/pr/amazon-agrees-injunctive-relief-and-25-million-civil-penalty-alleged-violations-childrens)",
+          "[Texas sues Sony, Samsung, LG, Hisense, TCL (Dec 15, 2025); \"every 500 milliseconds\" is the AG's allegation](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-sues-five-major-tv-companies-including-some-ties-ccp-spying-texans)",
+          "[Samsung–Texas agreement, express consent for ACR (Feb 26, 2026)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-paxton-secures-major-agreement-samsung-ensure-texans-are-protected-smart-tvs)",
+          "[LG–Texas agreement (date NOT checked)](https://www.texasattorneygeneral.gov/news/releases/attorney-general-ken-paxton-secures-major-agreement-lg-protect-texans-privacy-and-stop-data-being)",
+          "Northeastern \"Watching the Watchers\": 12 TVs, 10 makers, 5,943 experiments; Tizen/Vizio/Roku ACR traffic after opt-out; Tizen 30/30, 41/60, 18/30; encrypted; blocklist: [https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/](https://arstechnica.com/gadgets/2026/10/does-opting-out-of-smart-tv-tracking-work-research-finds-suspicious-traffic/) · [https://watchingthewatchers.github.io/watchingthewatchers/](https://watchingthewatchers.github.io/watchingthewatchers/)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Alleged / rumor context"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[CMG \"Active Listening\" pitch deck; Google removed CMG; Amazon/Meta distanced themselves](https://www.404media.co/heres-the-pitch-deck-for-active-listening-ad-targeting/)",
+          "[Zuckerberg to the Senate, Apr 10, 2018: \"we don't do that\"](https://techcrunch.com/2018/04/10/zuckerberg-tells-congress-facebook-is-not-listening-to-you-through-your-phone/)",
+          "Mosseri denies mic listening (Oct 1, 2025): [https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/](https://techcrunch.com/2025/10/01/instagram-head-says-company-is-not-using-your-microphone-to-listen-to-you-with-ai-data-it-wont-need-to/) · [https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri](https://www.theverge.com/news/789991/meta-instagram-microphone-listen-ads-targeting-adam-mosseri)",
+          "Panoptispy 2018: 17,260 apps, no secret mic recording, some sent screenshots/screen video: [https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/](https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/) · [https://petsymposium.org/popets/2018/popets-2018-0030.pdf](https://petsymposium.org/popets/2018/popets-2018-0030.pdf)",
+          "PS5 rolling 5-minute party chat recording, 40-second clip on report, no active monitoring: [https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/](https://blog.playstation.com/2020/10/16/details-on-new-voice-chat-functionality-coming-to-ps5/) · [https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation](https://www.theverge.com/2020/10/16/21520156/sony-ps5-voice-chat-recording-update-eavesdropping-moderation)"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Settings"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Samsung / LG / Vizio / Roku menu paths](https://www.consumerreports.org/electronics/privacy/how-to-turn-off-smart-tv-snooping-features-a4840102036/)",
+          "Phone tips (mic permissions, indicators, Siri/Google/Alexa history): General knowledge. Menu paths not checked against current OS versions"
+        ]
+      },
+      {
+        "type": "subheading",
+        "text": "Community / partner"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Partner video (Porque Pasa Esto, Spanish, ~70s)](https://x.com/xq_pasaesto/status/2114056938153537713)",
+          "[Community reel (caption couldn't be read; shown only as \"a reel from the community\")](https://www.instagram.com/reel/De0YSX4tTNT/)"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "pantallas-vacias-tres-motivos",
     "title": "La misma pantalla vacía puede significar tres cosas distintas",
     "description": "Cuenta nueva, filtro sin resultados o carga fallida: cómo pedirle al agente que resuelva cada caso para que la persona sepa por qué no ve nada y qué hacer.",

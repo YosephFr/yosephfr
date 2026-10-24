@@ -21,6 +21,8 @@ function articleText(article) {
     `Publicado: ${article.date}`,
     'Autor: Yoseph Franco (https://yosephfr.com/)',
   ]
+  if (article.citation) chunks.push(`Originally published on X (${article.citation}).`)
+  if (article.cover) chunks.push(`${article.cover.alt} (${origin}${article.cover.src})`)
   for (const block of article.blocks) {
     if (block.type === 'heading') chunks.push(`## ${block.text}`)
     else if (block.type === 'subheading') chunks.push(`### ${block.text}`)
@@ -29,6 +31,11 @@ function articleText(article) {
     else if (block.type === 'list') chunks.push(block.items.map((item, index) => `${(block.start || 1) + index}. ${plain(item)}`).join('\n'))
     else if (block.type === 'code') chunks.push('```' + (block.lang || '') + '\n' + block.text + '\n```')
     else if (block.type === 'table') chunks.push([block.headers.map(plain).join(' | '), ...block.rows.map(row => row.map(plain).join(' | '))].join('\n'))
+    else if (block.type === 'image') {
+      const url = `${origin}${block.src}`
+      const line = block.alt ? `${block.alt} (${url})` : url
+      chunks.push(block.href ? `${line}\n${block.href}` : line)
+    }
   }
   return chunks.join('\n\n')
 }

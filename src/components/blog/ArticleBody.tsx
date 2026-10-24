@@ -8,8 +8,8 @@ function inline(text: string): ReactNode[] {
   return text.split(TOKEN).map((part, i) => {
     if (!part) return null
     if (part.startsWith('`') && part.endsWith('`') && part.length > 1) return <code key={i}>{part.slice(1, -1)}</code>
-    if (part.startsWith('**') && part.endsWith('**')) return <strong key={i}>{part.slice(2, -2)}</strong>
-    if (part.startsWith('*') && part.endsWith('*')) return <em key={i}>{part.slice(1, -1)}</em>
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) return <strong key={i}>{inline(part.slice(2, -2))}</strong>
+    if (part.startsWith('*') && part.endsWith('*') && !part.startsWith('**')) return <em key={i}>{inline(part.slice(1, -1))}</em>
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
     if (link) {
       const href = link[2]
@@ -30,6 +30,13 @@ export default function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
       if (block.type === 'list') {
         const style = block.start && block.start > 1 ? ({ '--paso': block.start - 1 } as CSSProperties) : undefined
         return <ol key={index} start={block.start} style={style}>{block.items!.map((item, i) => <li key={i}>{inline(item)}</li>)}</ol>
+      }
+      if (block.type === 'image') {
+        const img = (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={block.src} width={block.width} height={block.height} alt={block.alt || ''} loading="lazy" decoding="async" />
+        )
+        return <figure key={index} className="figura">{block.href ? <a href={block.href} rel="noopener">{img}</a> : img}</figure>
       }
       if (block.type === 'code') return <pre key={index}><code className={block.lang ? `language-${block.lang}` : undefined}>{block.text}</code></pre>
       if (block.type === 'table') return (
