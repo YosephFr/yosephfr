@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState } from "react"
-import { useTheme } from "@/providers/ThemeProvider"
+import { PROFILE } from "@/data/profile"
 
 interface AvatarProps {
   size?: number
@@ -11,9 +11,6 @@ interface AvatarProps {
 
 export default function Avatar({ size = 100, className = "" }: AvatarProps) {
   const [hasError, setHasError] = useState(false)
-  const { resolved } = useTheme()
-
-  const src = resolved === "dark" ? "/avatar-light.png" : "/avatar-dark.png"
 
   if (hasError) {
     return (
@@ -28,14 +25,14 @@ export default function Avatar({ size = 100, className = "" }: AvatarProps) {
 
   return (
     <Image
-      key={src}
-      src={src}
-      alt="Yoseph Franco"
+      src={PROFILE.photo}
+      alt={PROFILE.name}
       width={size}
       height={size}
-      className={`rounded-full object-cover border-2 border-accent/30 shrink-0 ${className}`}
+      sizes={`${size}px`}
+      className={`foto-perfil border-2 border-accent/30 shrink-0 ${className}`}
+      style={{ width: size, height: size }}
       onError={() => setHasError(true)}
-      priority
     />
   )
 }

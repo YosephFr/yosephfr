@@ -1,17 +1,40 @@
-# Arncof · Yoseph Franco
+# Yoseph Franco
 
-> Ingeniería de IA, software y automatización. Perfil profesional y artículos originales en español, con autoría, fechas y fuentes.
+> AI Engineer en Buenos Aires. Diseña agentes de IA, software y automatizaciones, y escribe sobre agentes, modelos, automatización y herramientas de código con IA.
 
-- [Perfil](https://yosephfr.com/): presentación y áreas de trabajo.
-- [CV](https://yosephfr.com/cv): experiencia, prácticas actuales y formación.
-- [Artículos](https://yosephfr.com/blog): guías y análisis publicados.
-- [English](https://yosephfr.com/en): profile in English; [articles index](https://yosephfr.com/en/blog) with English versions of the Spanish originals, each linked to its original; [RSS in English](https://yosephfr.com/en/feed.xml).
-- [RSS](https://yosephfr.com/feed.xml): novedades del blog.
-- [Contacto](https://yosephfr.com/contacto) / [Contact](https://yosephfr.com/en/contact): franco@imanleads.com (único canal público; sin teléfono ni dirección).
-- [X](https://x.com/arncof)
-- [LinkedIn](https://www.linkedin.com/in/arncof/)
-- [TikTok](https://www.tiktok.com/@arncof)
-- [Instagram](https://www.instagram.com/yosephfranco/)
-- [GitHub](https://github.com/YosephFr)
+Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yosephfr.com/contacto
 
-Las guías describen prácticas y ejemplos recreados cuando corresponde. Las noticias citan sus fuentes y distinguen la fecha del anuncio de la de publicación. No se publican casos privados identificables ni resultados sin evidencia.
+## Español
+- [Inicio](https://yosephfr.com/): perfil profesional, áreas de trabajo y artículos recientes
+- [CV](https://yosephfr.com/cv): experiencia, prácticas actuales y formación
+- [Contacto](https://yosephfr.com/contacto): correo y perfiles públicos
+- [Blog](https://yosephfr.com/blog): artículos en español
+- [IA y agentes](https://yosephfr.com/skills/ai-agents): modelos, herramientas, MCP y coordinación
+- [Servicios y APIs](https://yosephfr.com/skills/backend-apis): APIs, integraciones y flujos
+- [Interfaces y diseño](https://yosephfr.com/skills/frontend-react): interfaces claras y probadas en uso
+- [Infraestructura cloud](https://yosephfr.com/skills/cloud-devops): despliegues, continuidad y observabilidad
+- [Ingeniería de IA y agentes](https://yosephfr.com/experiencia/ai-engineering): agentes y sistemas en producción
+- [Software e infraestructura](https://yosephfr.com/experiencia/fullstack-cloud): desarrollo, infraestructura y automatización
+
+## English
+- [Home](https://yosephfr.com/en): professional profile and recent articles
+- [CV](https://yosephfr.com/en/cv): experience, current practices and education
+- [Contact](https://yosephfr.com/en/contact): email and public profiles
+- [Articles](https://yosephfr.com/en/blog): English articles, plus Spanish originals that do not have an English version yet
+- [RSS](https://yosephfr.com/en/feed.xml): English feed
+
+## Artículos
+- [Mejor modelo de IA 2026: Opus 5.5, GPT-6, Gemini 4 y Kimi](https://yosephfr.com/blog/mejor-modelo-ia-octubre-2026): Comparativa de octubre de 2026: Claude Opus 5.5, GPT-6 Astra, Gemini 4 Argon y Kimi K3.1 Pro. Precios, contexto, benchmarks y cuál elegir según tu tarea.
+- [Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API](https://yosephfr.com/blog/kimi-k3-1-pro): Kimi K3.1 Pro, el nuevo modelo de Moonshot (23/10/2026): precios por token, contexto de 1M, benchmarks con sus matices y guía paso a paso para usarlo por API.
+- [Qué guardar para continuar un trabajo con agentes sin empezar de nuevo](https://yosephfr.com/blog/continuidad-entre-sesiones-de-agentes): Una nota breve para que la próxima sesión, o el próximo agente, retome con las decisiones, la evidencia y el siguiente paso, sin empezar de cero.
+- [Cómo orientar a un agente antes de rediseñar una pantalla](https://yosephfr.com/blog/referencias-antes-de-redisenar): Dale al agente una situación de uso, referencias que resuelvan el mismo trabajo y una prueba final, para que la pantalla funcione mejor y no solo se vea mejor.
+
+## Articles in English
+- No English originals yet. Spanish articles are listed above and linked from the English index.
+
+## Cómo citar
+- Autor: Yoseph Franco (https://yosephfr.com/). Cita la URL del artículo y su fecha de publicación.
+
+## Optional
+- [Texto completo](https://yosephfr.com/llms-full.txt)
+- [RSS](https://yosephfr.com/feed.xml)

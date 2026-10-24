@@ -7,6 +7,10 @@ ErrorDocument 404 /404.html
 RewriteEngine On
 RewriteBase /
 
+# www -> apex. Solo corre si este vhost recibe el host www.
+RewriteCond %{HTTP_HOST} ^www\.yosephfr\.com$ [NC]
+RewriteRule ^ https://yosephfr.com%{REQUEST_URI} [R=301,L]
+
 # /contacto -> contacto.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
@@ -16,3 +20,10 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteCond %{REQUEST_FILENAME}/index.html !-f
 RewriteRule ^ - [R=404,L]
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  <FilesMatch "\.(?:webp|woff2|svg|ico|jpe?g)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+</IfModule>

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PROFILE } from '@/data/profile'
-import { social } from '@/lib/seo'
+import ProfilePhoto from '@/components/ProfilePhoto'
+import { breadcrumbs, jsonLd, profilePage, social } from '@/lib/seo'
 import { EXPERIENCE } from '@/data/experience'
 import { EXPERIENCE_FULL_EN, PRACTICES_EN } from '@/data/cv-en'
 import { EXPERIENCE_EN, alternates } from '@/lib/lang'
@@ -25,24 +26,23 @@ export const metadata: Metadata = {
 export default function CVEn() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': `${PROFILE.url}/en/cv#perfil`,
-    url: `${PROFILE.url}/en/cv`,
-    name: 'Yoseph Franco’s CV',
-    inLanguage: 'en',
-    dateModified: PROFILE.updated,
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    mainEntity: { '@id': `${PROFILE.url}/#person` },
+    '@graph': [
+      profilePage({ id: `${PROFILE.url}/en/cv#perfil`, url: `${PROFILE.url}/en/cv`, name: 'Yoseph Franco’s CV', inLanguage: 'en' }),
+      breadcrumbs([{ name: 'Home', path: '/en' }, { name: 'CV', path: '/en/cv' }]),
+    ],
   }
   return (
     <>
       <main id="contenido" className="acento-morado">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza cabeza-doble">
-          <div>
+          <div className="cv-identidad">
+            <ProfilePhoto size={96} priority />
+            <div>
             <h1 className="display">Yoseph Franco</h1>
             <p className="entrada-texto">I design workflows with agents to research, build and review products. I organize the context, the tools and the continuity of the work, and I check the result against real cases.</p>
             <div className="acciones-cv"><ContactActions lang="en" extra={<PrintButton lang="en" />} /></div>
+            </div>
           </div>
           <Trajectory lang="en" />
         </header>

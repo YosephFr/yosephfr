@@ -60,12 +60,12 @@ export default function SiteShell({ lang, children }: Readonly<{ lang: Lang; chi
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "w40vc61h1p");
         `}</Script>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-CSHLE1CLD9" strategy="afterInteractive" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-F7PKB9996F" strategy="afterInteractive" />
         <Script id="gtag-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-CSHLE1CLD9');
+          gtag('config', 'G-F7PKB9996F');
         `}</Script>
       </head>
       <body>

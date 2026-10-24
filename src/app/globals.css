@@ -505,10 +505,20 @@ a.lamina:active { transform: translateY(-1px) scale(0.99); }
 .editorial-body h2 { color: var(--texto); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; margin-top: 2.2em; scroll-margin-top: 120px; }
 .editorial-body h2:first-child { margin-top: 0; }
 .editorial-body h2 + * { margin-top: 0.8em; }
+.editorial-body h3 { color: var(--texto); font-size: clamp(18px, 2vw, 22px); line-height: 1.25; margin-top: 1.6em; scroll-margin-top: 120px; }
+.editorial-body h3 + * { margin-top: 0.55em; }
+.editorial-body code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+.editorial-body pre { overflow-x: auto; padding: 16px 18px; border-radius: var(--r); background: #111113; box-shadow: var(--sombra); font-size: 13.5px; line-height: 1.55; }
+.editorial-body pre code { font-size: inherit; }
+.editorial-body .tabla { overflow-x: auto; border-radius: var(--r); background: #111113; box-shadow: var(--sombra); }
+.editorial-body table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14.5px; line-height: 1.45; }
+.editorial-body th, .editorial-body td { text-align: left; vertical-align: top; padding: 12px 14px; }
+.editorial-body th { color: var(--texto); font-weight: 700; }
+.editorial-body thead th, .editorial-body tbody tr + tr td { box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.08); }
 .editorial-body strong { color: var(--texto); font-weight: 700; }
 .editorial-body a { color: var(--texto); text-decoration: underline; text-decoration-color: var(--acento); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .editorial-body a:hover { text-decoration-color: var(--texto); }
-.editorial-body ol { list-style: none; counter-reset: paso; display: grid; gap: 14px; }
+.editorial-body ol { list-style: none; counter-reset: paso var(--paso, 0); display: grid; gap: 14px; }
 .editorial-body ol li { counter-increment: paso; position: relative; padding-left: 40px; }
 .editorial-body ol li::before { content: counter(paso); position: absolute; left: 0; top: 0.1em; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--carbon-3); color: var(--texto); font-size: 14px; font-weight: 800; line-height: 1; }
 .editorial-body ul { display: grid; gap: 10px; }
@@ -519,7 +529,7 @@ a.lamina:active { transform: translateY(-1px) scale(0.99); }
 .autor { display: grid; gap: 16px; padding: 22px 18px; margin-top: 48px; }
 .autor h2 { font-size: 20px; }
 .autor p { font-size: 15px; color: var(--texto-3); line-height: 1.55; }
-@media (min-width: 760px) { .autor { grid-template-columns: 1fr auto; align-items: center; padding: 28px 32px; } }
+@media (min-width: 760px) { .autor { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; padding: 28px 32px; } }
 
 /* Contacto */
 .contacto-rejilla { display: grid; gap: 20px; }
@@ -587,9 +597,14 @@ a.lamina:active { transform: translateY(-1px) scale(0.99); }
 .stagger-5 { animation-delay: 0.25s; }
 .stagger-6 { animation-delay: 0.3s; }
 
-/* Entrada suave de cada página */
-main { animation: pagina 0.5s var(--entrada) both; }
-@keyframes pagina { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+/* Entrada suave. Sin opacity:0: el texto de portada quedaba invisible y retrasaba el LCP. */
+main { animation: pagina 0.45s var(--entrada) both; }
+@keyframes pagina { from { transform: translateY(8px); } to { transform: none; } }
+.foto-perfil { border-radius: 50%; object-fit: cover; object-position: center 22%; background: #161617; }
+.hero-identidad { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.portada-hero .hero-identidad .hero-nombre { margin: 0; }
+@media (min-width: 1000px) { .hero-identidad { margin-bottom: 26px; } }
+.cv-identidad { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

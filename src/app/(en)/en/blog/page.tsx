@@ -5,7 +5,7 @@ import DotIcon from '@/components/dots/DotIcon'
 import DotField, { cascade } from '@/components/dots/DotField'
 import { articlePath, getEnglishIndex, isEditorialPreview } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
-import { og } from '@/lib/seo'
+import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { alternates } from '@/lib/lang'
 
 const title = 'AI for real work'
@@ -27,20 +27,25 @@ export default function BlogPageEn() {
   const all = [...english, ...spanishOnly]
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Blog',
-    '@id': `${PROFILE.url}/en/blog#blog`,
-    url: `${PROFILE.url}/en/blog`,
-    name: title,
-    description,
-    inLanguage: 'en',
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    publisher: { '@id': `${PROFILE.url}/#person` },
-    blogPost: all.map(a => ({ '@type': 'BlogPosting', headline: a.title, url: `${PROFILE.url}${articlePath(a)}`, inLanguage: a.language, datePublished: a.date, dateModified: a.updated, author: { '@id': `${PROFILE.url}/#person` } })),
+    '@graph': [
+      {
+        '@type': 'Blog',
+        '@id': `${PROFILE.url}/en/blog#blog`,
+        url: `${PROFILE.url}/en/blog`,
+        name: title,
+        description,
+        inLanguage: 'en',
+        isPartOf: { '@id': `${PROFILE.url}/#website` },
+        publisher: { '@id': `${PROFILE.url}/#person` },
+        blogPost: all.map(a => ({ '@type': 'BlogPosting', headline: a.title, url: `${PROFILE.url}${articlePath(a)}`, inLanguage: a.language, datePublished: a.date, dateModified: a.updated, author: { '@id': `${PROFILE.url}/#person` } })),
+      },
+      breadcrumbs([{ name: 'Home', path: '/en' }, { name: 'Articles', path: '/en/blog' }]),
+    ],
   }
   return (
     <>
       <main id="contenido" lang="en" className="acento-azul">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza blog-cabeza cabeza-centrada">
           <div>
             <h1 className="display">{title}</h1>

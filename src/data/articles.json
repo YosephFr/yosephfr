@@ -1,5 +1,735 @@
 [
   {
+    "slug": "mejor-modelo-ia-octubre-2026",
+    "title": "Mejor modelo de IA 2026: Opus 5.5, GPT-6, Gemini 4 y Kimi",
+    "description": "Comparativa de octubre de 2026: Claude Opus 5.5, GPT-6 Astra, Gemini 4 Argon y Kimi K3.1 Pro. Precios, contexto, benchmarks y cuál elegir según tu tarea.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T08:00:00-03:00",
+    "updated": "2026-10-24T08:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 9,
+    "keyword": "mejor modelo de IA 2026",
+    "tags": [
+      "modelos de IA",
+      "Claude Opus 5.5",
+      "GPT-6 Astra",
+      "Gemini 4 Argon",
+      "Kimi K3.1 Pro",
+      "comparativa"
+    ],
+    "ogTitle": "Mejor modelo de IA en octubre de 2026: comparativa con datos oficiales",
+    "ogDescription": "Opus 5.5, GPT-6 Astra, Gemini 4 Argon y Kimi K3.1 Pro frente a frente: precio por token, ventana de contexto, índice independiente y recomendaciones por caso de uso.",
+    "faq": [
+      {
+        "q": "¿Cuál es el mejor modelo de IA en octubre de 2026?",
+        "a": "En el Artificial Analysis Intelligence Index (v4.3.2), Claude Opus 5.5 lidera entre estos cuatro con 58 puntos, seguido de Kimi K3.1 Pro (55), GPT-6 Astra (53) y Gemini 4 Argon (53). El mejor para ti depende de la tarea y del presupuesto."
+      },
+      {
+        "q": "¿Cuál es el modelo de IA de frontera más barato por API?",
+        "a": "A precio de lista, Gemini 4 Argon (precio introductorio hasta el 30/11/2026) y Kimi K3.1 Pro cuestan USD 2 por millón de tokens de entrada y USD 10 por millón de salida. Desde el 1/12/2026, Argon pasa a USD 4 y USD 20."
+      },
+      {
+        "q": "¿Qué modelo conviene para programar con agentes?",
+        "a": "En Terminal-Bench 4.0, según cifras publicadas por cada fabricante, Claude Opus 5.5 reporta 66,4 %, Kimi K3.1 Pro 65,7 % y GPT-6 Astra 57,9 %. Conviene probar con tus propias tareas antes de decidir."
+      },
+      {
+        "q": "¿Todos estos modelos tienen 1 millón de tokens de contexto?",
+        "a": "Sí, los cuatro rondan el millón de tokens: Opus 5.5 (1M), GPT-6 Astra (1.050.000, con un máximo de 922.000 de entrada), Gemini 4 Argon (1.048.576) y Kimi K3.1 Pro (1M)."
+      },
+      {
+        "q": "¿Kimi K3.1 Pro es de pesos abiertos?",
+        "a": "Moonshot lo presenta como modelo de pesos abiertos y promete publicar los pesos completos antes del 4 de noviembre de 2026. Hasta entonces solo está disponible por sus productos y su API."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** a octubre de 2026, **Claude Opus 5.5** es el modelo con mejor puntaje general entre los cuatro grandes lanzamientos recientes según el índice independiente de Artificial Analysis (58 puntos), y además lidera en programación con agentes según los datos de Anthropic. **Kimi K3.1 Pro** (55) y **Gemini 4 Argon** (53) ofrecen el menor precio por token, y **GPT-6 Astra** (53) es el más caro por token, aunque OpenAI lo posiciona como su mejor modelo para uso de computadora y trabajo profesional. No hay un ganador único: el mejor modelo depende de tu tarea, tu presupuesto y tus requisitos de privacidad."
+      },
+      {
+        "type": "paragraph",
+        "text": "Abajo comparo los cuatro con datos de las fuentes oficiales consultadas el 23 de octubre de 2026."
+      },
+      {
+        "type": "heading",
+        "text": "Los cuatro modelos en una tabla"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Modelo",
+          "Lanzamiento",
+          "Precio API (entrada / salida, USD por 1M tokens)",
+          "Contexto",
+          "Salida máxima",
+          "AA Intelligence Index"
+        ],
+        "rows": [
+          [
+            "Claude Opus 5.5 (Anthropic)",
+            "22/09/2026",
+            "4 / 20",
+            "1M",
+            "128K",
+            "58"
+          ],
+          [
+            "Kimi K3.1 Pro (Moonshot)",
+            "23/10/2026",
+            "2 / 10",
+            "1M",
+            "131.072 por defecto, hasta 1.048.576",
+            "55"
+          ],
+          [
+            "GPT-6 Astra (OpenAI)",
+            "03/09/2026",
+            "10 / 50",
+            "1.050.000 (máx. 922.000 de entrada)",
+            "128.000",
+            "53"
+          ],
+          [
+            "Gemini 4 Argon (Google)",
+            "Anuncio 30/09/2026; disponible para todos el 13/10/2026",
+            "2 / 10 (introductorio hasta el 30/11/2026); 4 / 20 desde el 1/12/2026",
+            "1.048.576",
+            "65.536 por defecto, hasta 1.048.576 con *long decode*",
+            "53"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Notas sobre la tabla:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "El **AA Intelligence Index** (v4.3.2) de [Artificial Analysis](https://artificialanalysis.ai/models/claude-opus-5-5) combina 10 evaluaciones y es la única medición independiente común a los cuatro (Astra en configuración *max*, Argon en *high*).",
+          "GPT-6 Astra cobra el doble por entrada y 1,5 veces por salida en los prompts de más de 272K tokens de entrada, según la [ficha del modelo](https://platform.openai.com/docs/models/gpt-6-astra).",
+          "La salida máxima de Kimi es el valor de `max_completion_tokens` en su [guía de API](https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart)."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Claude Opus 5.5: el más sólido para agentes de código y trabajo de conocimiento"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic lanzó [Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5) el 22 de septiembre de 2026 como el primer modelo de la familia 5.5. Los datos clave del anuncio son estos:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Precio:** USD 4 por millón de tokens de entrada y USD 20 de salida, un 20 % menos que Opus 5. La lectura de caché cuesta USD 0,20 por millón, un 60 % menos que Opus 5.",
+          "**Programación con agentes:** 66,4 % en Terminal-Bench 4.0 y 57,8 % en CursorBench 4.0, según la tabla de Anthropic.",
+          "**Trabajo de conocimiento:** 1846 Elo en GDPval-AA v2.1.",
+          "**Velocidad:** Artificial Analysis mide 96,3 tokens por segundo, el más rápido de los cuatro."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Un matiz importante: según Anthropic, la mayoría de las tareas de ciberseguridad se derivan a Claude Opus 4.8. Además, en Opus 5.5 el razonamiento (\"thinking\") ya no se puede desactivar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si buscas algo más barato dentro de Anthropic, la [ficha de modelos](https://platform.claude.com/docs/en/about-claude/models/overview) indica que Claude Sonnet 5.5 cuesta USD 2 / 10."
+      },
+      {
+        "type": "heading",
+        "text": "GPT-6 Astra: el foco de OpenAI en uso de computadora y trabajo profesional"
+      },
+      {
+        "type": "paragraph",
+        "text": "[GPT-6 Astra](https://openai.com/index/gpt-6-astra/) empezó a desplegarse el 3 de septiembre de 2026 (fecha de la [system card](https://deploymentsafety.openai.com/gpt-6-astra/sec:appendix-200473)). OpenAI lo presenta como su modelo más capaz y destaca estos puntos:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Uso de computadora:** 72,6 % en OSWorld 2.0, con unos 40 minutos por tarea frente a unos 75 de GPT-5.6 Sol, según su propia tabla.",
+          "**Código:** 57,9 % en Terminal-Bench 4.0 y 74,1 % en DeepSWE v1.1.",
+          "**Razonamiento:** 99,9 % en ARC-AGI-3 y 96,0 % en GPQA Diamond.",
+          "**Precio:** USD 10 por millón de tokens de entrada y USD 50 de salida (entrada cacheada: USD 1). Es el más caro por token de esta comparativa."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Un dato de Artificial Analysis cambia la lectura: Astra es el **menos verboso** de los cuatro (60M de tokens de salida en el índice, frente a 260M de Opus 5.5), así que su costo por tarea (USD 3,26) queda por debajo del de Opus 5.5 (USD 5,98). **El precio por token no es el costo por tarea.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "OpenAI ya amplió la familia con GPT-6 Sol, GPT-6 Luna (22/09) y GPT-6.1 Sol (29/09)."
+      },
+      {
+        "type": "heading",
+        "text": "Gemini 4 Argon: precio introductorio agresivo y contexto unificado"
+      },
+      {
+        "type": "paragraph",
+        "text": "Google anunció [Gemini 4 Argon](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/) el 30 de septiembre de 2026 para un grupo de defensores de ciberseguridad y lo [abrió a todos](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/) el 13 de octubre, por API y en la app de Gemini para suscriptores de Google AI Pro y Ultra."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Precio:** USD 2 de entrada y USD 10 de salida por millón de tokens **hasta el 30 de noviembre de 2026**. Desde el 1 de diciembre pasa a USD 4 y USD 20, según la [página de precios](https://ai.google.dev/gemini-api/docs/pricing). No está disponible en el nivel gratuito.",
+          "**Contexto:** 1.048.576 tokens unificados de entrada y salida. La salida síncrona por defecto es de 65.536 tokens y puede llegar al millón con *long decode* ([ficha del modelo](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon)).",
+          "**API:** llamadas a funciones, salidas estructuradas, ejecución de código y uso de computadora (vista previa).",
+          "**Seguridad:** Google afirma que lidera el benchmark de inyección indirecta de prompts de Gray Swan (0,7 % de éxito de ataque)."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "En el índice de Artificial Analysis, Argon registra el **menor costo por tarea** de los cuatro (USD 1,99)."
+      },
+      {
+        "type": "heading",
+        "text": "Kimi K3.1 Pro: el retador de pesos abiertos"
+      },
+      {
+        "type": "paragraph",
+        "text": "Moonshot lanzó [Kimi K3.1 Pro](https://kimi.ai/blog/kimi-k3-1-pro) el 23 de octubre de 2026 y promete publicar los pesos completos antes del 4 de noviembre."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Precio:** USD 2 / 10, con lectura de caché a USD 0,20 ([plataforma de Kimi](https://platform.kimi.ai)).",
+          "**Benchmarks publicados por Moonshot:** 65,7 % en Terminal-Bench 4.0, apenas detrás de Opus 5.5 (66,4 %). En BenchCAD con herramientas obtiene 92,7 %, por debajo de Opus 5.5 (96,2 %) y de GPT-6 Astra (95,9 %).",
+          "**Medición independiente:** 55 puntos en el índice de Artificial Analysis, el 4.º lugar entre 215 modelos."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo explico con código en [Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API](/blog/kimi-k3-1-pro)."
+      },
+      {
+        "type": "heading",
+        "text": "Cuánto cuesta una tarea típica: un ejemplo con números"
+      },
+      {
+        "type": "paragraph",
+        "text": "Supón una tarea de agente que consume **100.000 tokens de entrada** (sin caché) y genera **10.000 de salida**. Con los precios de lista:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Modelo",
+          "Entrada",
+          "Salida",
+          "Total aproximado"
+        ],
+        "rows": [
+          [
+            "Claude Opus 5.5",
+            "0,1 × 4 = USD 0,40",
+            "0,01 × 20 = USD 0,20",
+            "**USD 0,60**"
+          ],
+          [
+            "GPT-6 Astra",
+            "0,1 × 10 = USD 1,00",
+            "0,01 × 50 = USD 0,50",
+            "**USD 1,50**"
+          ],
+          [
+            "Gemini 4 Argon (hasta 30/11)",
+            "USD 0,20",
+            "USD 0,10",
+            "**USD 0,30**"
+          ],
+          [
+            "Gemini 4 Argon (desde 1/12)",
+            "USD 0,40",
+            "USD 0,20",
+            "**USD 0,60**"
+          ],
+          [
+            "Kimi K3.1 Pro",
+            "USD 0,20",
+            "USD 0,10",
+            "**USD 0,30**"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Es solo una referencia: los tokens de razonamiento y la caché cambian mucho el resultado. La tabla de arriba es la forma de medirlo."
+      },
+      {
+        "type": "heading",
+        "text": "Cuál elegir según tu caso de uso"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mi recomendación, basada en los datos anteriores:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Agentes de código de larga duración (migraciones, refactorizaciones, CI):** empieza por **Claude Opus 5.5**. Tiene el mejor Terminal-Bench 4.0 publicado y la mayor velocidad medida. Si el costo pesa, prueba **Kimi K3.1 Pro**, que reporta un resultado muy cercano con la mitad del precio por token. Para un trabajo que cruza varias sesiones, guarda el estado como describo en [qué guardar para continuar un trabajo con agentes](/blog/continuidad-entre-sesiones-de-agentes). El enfoque general está en [IA y agentes](/skills/ai-agents).",
+          "**Automatización de interfaces y uso de computadora:** **GPT-6 Astra** es el que OpenAI posiciona para este uso, con 72,6 % en OSWorld 2.0.",
+          "**Alto volumen con presupuesto ajustado:** **Gemini 4 Argon** (mientras dure el precio introductorio) o **Kimi K3.1 Pro**. Ambos cuestan USD 2 / 10 y tienen los dos menores costos por tarea del índice independiente.",
+          "**Necesidad de alojar el modelo por tu cuenta:** solo **Kimi K3.1 Pro** apunta a eso, y únicamente cuando se publiquen los pesos. Lo desarrollo en [Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API](/blog/kimi-k3-1-pro)."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Una regla que aplico: **no elijas por un solo benchmark**. Las cifras de Terminal-Bench de esta guía las publica cada fabricante con su propio *harness* (Moonshot, por ejemplo, cita 58,2 % para GPT-6 Astra; OpenAI publica 57,9 %), y la propia Anthropic advierte que los márgenes de los benchmarks son una guía cada vez menos confiable de las diferencias reales. Arma un conjunto de 10 a 20 tareas reales, ejecútalo con dos o tres modelos y compara calidad, tiempo y costo."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "subheading",
+        "text": "¿Cuál es el mejor modelo de IA en octubre de 2026?"
+      },
+      {
+        "type": "paragraph",
+        "text": "En el Artificial Analysis Intelligence Index (v4.3.2), Claude Opus 5.5 lidera entre estos cuatro con 58 puntos, seguido de Kimi K3.1 Pro (55), GPT-6 Astra (53) y Gemini 4 Argon (53). El mejor para ti depende de la tarea y del presupuesto."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Cuál es el modelo de IA de frontera más barato por API?"
+      },
+      {
+        "type": "paragraph",
+        "text": "A precio de lista, Gemini 4 Argon (precio introductorio hasta el 30/11/2026) y Kimi K3.1 Pro cuestan USD 2 por millón de tokens de entrada y USD 10 por millón de salida. Desde el 1/12/2026, Argon pasa a USD 4 y USD 20."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Qué modelo conviene para programar con agentes?"
+      },
+      {
+        "type": "paragraph",
+        "text": "En Terminal-Bench 4.0, según cifras publicadas por cada fabricante, Claude Opus 5.5 reporta 66,4 %, Kimi K3.1 Pro 65,7 % y GPT-6 Astra 57,9 %. Conviene probar con tus propias tareas antes de decidir."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Todos estos modelos tienen 1 millón de tokens de contexto?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sí, los cuatro rondan el millón de tokens: Opus 5.5 (1M), GPT-6 Astra (1.050.000, con un máximo de 922.000 de entrada), Gemini 4 Argon (1.048.576) y Kimi K3.1 Pro (1M)."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Kimi K3.1 Pro es de pesos abiertos?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Moonshot lo presenta como modelo de pesos abiertos y promete publicar los pesos completos antes del 4 de noviembre de 2026. Hasta entonces solo está disponible por sus productos y su API."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consultadas el 23 de octubre de 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Anthropic. [Claude Opus 5.5](https://www.anthropic.com/claude-opus-5-5) (anuncio, precios y benchmarks).",
+          "Anthropic. [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview) (contexto, salida máxima y precios de la familia 5.5).",
+          "OpenAI. [GPT-6 Astra: A new generation of intelligence](https://openai.com/index/gpt-6-astra/).",
+          "OpenAI. [Ficha de GPT-6 Astra en la documentación de la API](https://platform.openai.com/docs/models/gpt-6-astra).",
+          "OpenAI. [GPT-6 Astra System Card](https://deploymentsafety.openai.com/gpt-6-astra/sec:appendix-200473) (fecha de publicación).",
+          "Google. [Gemini 4 Argon: our next era of frontier intelligence](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/) (anuncio del 30/09/2026).",
+          "Google. [Gemini 4 Argon: Built to solve your hardest problems](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/) (disponibilidad general del 13/10/2026).",
+          "Google AI for Developers. [Ficha de Gemini 4 Argon](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) y [precios de la API de Gemini](https://ai.google.dev/gemini-api/docs/pricing).",
+          "Moonshot AI. [Introducing Kimi K3.1 Pro](https://kimi.ai/blog/kimi-k3-1-pro) y [Kimi API Platform](https://platform.kimi.ai).",
+          "Artificial Analysis (medición independiente). Fichas de [Claude Opus 5.5](https://artificialanalysis.ai/models/claude-opus-5-5), [GPT-6 Astra](https://artificialanalysis.ai/models/gpt-6-astra), [Gemini 4 Argon](https://artificialanalysis.ai/models/gemini-4-argon) y [Kimi K3.1 Pro](https://artificialanalysis.ai/models/kimi-k3-1-pro)."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "kimi-k3-1-pro",
+    "title": "Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API",
+    "description": "Kimi K3.1 Pro, el nuevo modelo de Moonshot (23/10/2026): precios por token, contexto de 1M, benchmarks con sus matices y guía paso a paso para usarlo por API.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T07:30:00-03:00",
+    "updated": "2026-10-24T07:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 8,
+    "keyword": "kimi k3.1 pro",
+    "tags": [
+      "Kimi K3.1 Pro",
+      "Moonshot AI",
+      "modelos de pesos abiertos",
+      "API",
+      "agentes de código"
+    ],
+    "ogTitle": "Kimi K3.1 Pro: precio, benchmarks y cómo usarlo por API",
+    "ogDescription": "Todo lo verificado sobre Kimi K3.1 Pro: variantes, precio por millón de tokens, qué dicen los benchmarks, cuándo llegan los pesos abiertos y un ejemplo de código.",
+    "faq": [
+      {
+        "q": "¿Cuánto cuesta Kimi K3.1 Pro por API?",
+        "a": "USD 2 por millón de tokens de entrada, USD 10 por millón de salida y USD 0,20 por millón en aciertos de caché. La variante Highspeed cuesta USD 4 de entrada y USD 20 de salida."
+      },
+      {
+        "q": "¿Kimi K3.1 Pro es de código abierto?",
+        "a": "Moonshot lo define como un modelo de pesos abiertos y se compromete a publicar los pesos completos antes del 4 de noviembre de 2026. Hasta ese momento solo se puede usar por los productos de Kimi y su API."
+      },
+      {
+        "q": "¿Kimi K3.1 Pro es compatible con el SDK de OpenAI?",
+        "a": "Sí. La API de Kimi acepta los formatos Chat Completions y Responses de OpenAI con base_url https://api.moonshot.ai/v1, y el formato Messages de Anthropic con https://api.moonshot.ai/anthropic."
+      },
+      {
+        "q": "¿Se puede desactivar el razonamiento de Kimi K3.1 Pro?",
+        "a": "No. El modo de razonamiento está siempre activo. Puedes reducirlo con el parámetro reasoning_effort, que acepta low, high y max (el valor por defecto es max)."
+      },
+      {
+        "q": "¿Qué diferencia hay entre Kimi K3.1 Pro y K3.1 Pro Highspeed?",
+        "a": "Highspeed ofrece las mismas capacidades a una velocidad de 2 a 3 veces mayor, según Moonshot, y cuesta el doble por token de entrada y de salida."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** a octubre de 2026, **Kimi K3.1 Pro** es el modelo más capaz de Moonshot AI, lanzado el 23 de octubre de 2026, con 1 millón de tokens de contexto y pesos abiertos prometidos antes del 4 de noviembre. Por API cuesta **USD 2 por millón de tokens de entrada y USD 10 de salida**, un tercio menos que su predecesor Kimi K3. Se usa con el SDK de OpenAI o el de Anthropic cambiando solo la `base_url` y el identificador `kimi-k3.1-pro`."
+      },
+      {
+        "type": "paragraph",
+        "text": "Abajo encontrarás qué es exactamente, cuánto cuesta cada variante, qué dicen (y qué no) los benchmarks, y una guía paso a paso para hacer tu primera llamada."
+      },
+      {
+        "type": "heading",
+        "text": "Qué es Kimi K3.1 Pro"
+      },
+      {
+        "type": "paragraph",
+        "text": "Según el [anuncio oficial de Moonshot](https://kimi.ai/blog/kimi-k3-1-pro), Kimi K3.1 Pro es el primer modelo de la serie K3.1 y su \"modelo de pesos abiertos de clase 3T más capaz hasta la fecha\". Técnicamente es un **post-entrenamiento de Kimi K3** con un cómputo de aprendizaje por refuerzo sustancialmente mayor."
+      },
+      {
+        "type": "paragraph",
+        "text": "Los puntos clave:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Contexto:** 1 millón de tokens.",
+          "**Entrada:** texto e imagen. La API también acepta video subido como archivo, según la [guía de inicio](https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart).",
+          "**Variantes:** `kimi-k3.1-pro` y `kimi-k3.1-pro-highspeed`. Esta última es de 2 a 3 veces más rápida, según el anuncio.",
+          "**Dónde se usa:** Kimi.ai, Kimi Work, Kimi Code y la API de Kimi. En Kimi Enterprise el acceso viene desactivado por defecto.",
+          "**Pesos abiertos:** Moonshot se compromete a publicar los pesos completos antes del 4 de noviembre de 2026. Mientras tanto, [Artificial Analysis](https://artificialanalysis.ai/models/kimi-k3-1-pro) lo clasifica como \"Proprietary\" porque los pesos aún no están disponibles."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Las áreas donde Moonshot dice haber mejorado más son la programación (incluidos motores de juego como Unity, Unreal Engine y Godot), el modelado 3D (puede escribir y ejecutar scripts para Blender y software CAD), la investigación financiera y la ciberseguridad con controles de riesgo."
+      },
+      {
+        "type": "heading",
+        "text": "Cuánto cuesta Kimi K3.1 Pro"
+      },
+      {
+        "type": "paragraph",
+        "text": "Precios oficiales de la [plataforma de Kimi](https://platform.kimi.ai), en USD por millón de tokens:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Modelo",
+          "Entrada",
+          "Salida",
+          "Escritura de caché",
+          "Acierto de caché"
+        ],
+        "rows": [
+          [
+            "Kimi K3.1 Pro",
+            "2,00",
+            "10,00",
+            "2,00",
+            "0,20"
+          ],
+          [
+            "Kimi K3.1 Pro Highspeed",
+            "4,00",
+            "20,00",
+            "4,00",
+            "0,20"
+          ],
+          [
+            "Kimi K3 (generación anterior)",
+            "3,00",
+            "15,00",
+            "3,00",
+            "0,30"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Detalles útiles:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Precio plano en todo el contexto:** la [guía de inicio](https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart) aclara que no hay tramos por longitud de contexto.",
+          "**Caché automática:** tiene dos duraciones, `5m` (por defecto) y `1h`. Si tu agente hace pausas de más de cinco minutos entre llamadas, conviene pasar `prompt_cache_options.ttl` con el valor `1h` para no volver a pagar la escritura.",
+          "**Desbloqueo con recarga:** al ser un modelo insignia, K3.1 Pro se habilita tras una recarga de saldo exitosa (mínimo USD 1). El total recargado define tu nivel de cuenta y tus límites de uso.",
+          "**Retención de datos:** el anuncio indica que hay *Zero Data Retention* disponible para clientes de la API."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Como referencia, Artificial Analysis calcula un costo de USD 2,11 por tarea de su índice de inteligencia. También señala que el modelo es **muy verboso**: generó 150 millones de tokens de salida para completar el índice, frente a una mediana de 87 millones. En la práctica, esto significa que el bajo precio por token se compensa en parte con más tokens de razonamiento."
+      },
+      {
+        "type": "heading",
+        "text": "Qué dicen los benchmarks (y cómo leerlos)"
+      },
+      {
+        "type": "paragraph",
+        "text": "Primero, la medición independiente: en el **Artificial Analysis Intelligence Index v4.3.2**, Kimi K3.1 Pro obtiene **55 puntos** y queda 4.º de 215 modelos. Como contexto, en ese mismo índice Claude Opus 5.5 tiene 58, y GPT-6 Astra y Gemini 4 Argon tienen 53 cada uno. Lo comparo en detalle en [el mejor modelo de IA en octubre de 2026](/blog/mejor-modelo-ia-octubre-2026)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Las siguientes cifras **las publica Moonshot** en su anuncio:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Benchmark",
+          "Kimi K3.1 Pro",
+          "Referencia citada por Moonshot"
+        ],
+        "rows": [
+          [
+            "Terminal-Bench 4.0",
+            "65,7 %",
+            "Claude Opus 5.5: 66,4 %; GPT-6 Astra: 58,2 %"
+          ],
+          [
+            "BenchCAD (con herramientas)",
+            "92,7 %",
+            "Claude Opus 5.5: 96,2 %; GPT-6 Astra: 95,9 %"
+          ],
+          [
+            "Kimi Code Bench 3.0 Long-horizon (interno)",
+            "61,2 %",
+            "Kimi K3: 55,95 %"
+          ],
+          [
+            "OfficeQA Pro v2",
+            "64,4",
+            "Moonshot lo presenta como estado del arte"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Tres matices importantes:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Las cifras de terceros pueden no coincidir.** Moonshot cita 58,2 % para GPT-6 Astra en Terminal-Bench 4.0, mientras que [OpenAI publica 57,9 %](https://openai.com/index/gpt-6-astra/). Cada fabricante usa su propio *harness* (Moonshot indica que evaluó con el de Claude Code).",
+          "**Los benchmarks internos no se pueden reproducir.** Kimi Code Bench y las evaluaciones de finanzas son internos.",
+          "**Ciberseguridad:** Moonshot eliminó datos relacionados con ciberseguridad del entrenamiento para la versión de pesos abiertos. En su benchmark interno xdev-bench-hard, el modelo final resuelve el 81,0 % (pass@3), frente al 90,5 % de un checkpoint sin esa limpieza. La empresa afirma que su capacidad ofensiva sigue por detrás de los modelos propietarios de frontera que llevan al menos tres meses publicados."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "En finanzas, Moonshot reporta mejoras frente a K3 de 7,2 puntos en Financial Modeling y de 11,6 puntos en Financial Research, además de un rendimiento unas 4,2 veces mayor en Business Operation. Son benchmarks internos."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo usar Kimi K3.1 Pro por API, paso a paso"
+      },
+      {
+        "type": "paragraph",
+        "text": "La [documentación de la API](https://platform.kimi.ai/docs/api/overview) indica que la API de Kimi es compatible con tres formatos:"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Formato",
+          "base_url",
+          "Endpoint"
+        ],
+        "rows": [
+          [
+            "OpenAI Chat Completions",
+            "`https://api.moonshot.ai/v1`",
+            "`/chat/completions`"
+          ],
+          [
+            "OpenAI Responses",
+            "`https://api.moonshot.ai/v1`",
+            "`/responses`"
+          ],
+          [
+            "Anthropic Messages",
+            "`https://api.moonshot.ai/anthropic`",
+            "`/messages`"
+          ]
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Pasos para tu primera llamada:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Crea una cuenta** en [platform.kimi.ai](https://platform.kimi.ai) y recarga saldo (mínimo USD 1) para desbloquear K3.1 Pro.",
+          "**Genera una API key** en la sección API Keys. Nunca la pegues en el código ni la subas a un repositorio. Guárdala en una variable de entorno:"
+        ]
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "text": "export MOONSHOT_API_KEY=\"tu_clave_aqui\""
+      },
+      {
+        "type": "list",
+        "start": 3,
+        "items": [
+          "**Instala el SDK de OpenAI** (Python 3.9 o superior):"
+        ]
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "text": "python3 -m pip install --upgrade 'openai>=1.0'"
+      },
+      {
+        "type": "list",
+        "start": 4,
+        "items": [
+          "**Haz la llamada** apuntando a la `base_url` de Kimi:"
+        ]
+      },
+      {
+        "type": "code",
+        "lang": "python",
+        "text": "import os\nfrom openai import OpenAI\n\nclient = OpenAI(\n    api_key=os.environ[\"MOONSHOT_API_KEY\"],\n    base_url=\"https://api.moonshot.ai/v1\",\n)\n\nrespuesta = client.chat.completions.create(\n    model=\"kimi-k3.1-pro\",\n    reasoning_effort=\"low\",\n    messages=[{\"role\": \"user\", \"content\": \"Resume en tres puntos qué es un agente de IA.\"}],\n)\n\nprint(respuesta.choices[0].message.content)"
+      },
+      {
+        "type": "list",
+        "start": 5,
+        "items": [
+          "**Ajusta el razonamiento.** K3.1 Pro siempre razona, y `reasoning_effort` acepta `low`, `high` y `max` (por defecto, `max`). Para tareas simples, `low` reduce tiempo y tokens."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Reglas de la guía oficial que conviene conocer antes de construir un agente:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Parámetros fijos:** `temperature`, `top_p`, `n`, `presence_penalty` y `frequency_penalty` tienen valores fijos, así que no los envíes.",
+          "**Mensajes completos:** en conversaciones de varios turnos y en llamadas a herramientas, devuelve el mensaje completo del asistente, incluido `reasoning_content`, y no solo `content`.",
+          "**Imágenes:** no se aceptan URLs públicas. Hay que enviarlas en base64 o subirlas como archivo.",
+          "**Búsqueda web:** la herramienta oficial está en actualización y Moonshot no la recomienda para producción por ahora.",
+          "**Longitud de salida:** `max_completion_tokens` vale 131.072 por defecto y admite hasta 1.048.576."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Si ya trabajas con agentes, la compatibilidad con el formato Messages de Anthropic permite conectarlo a herramientas como Claude Code cambiando la `base_url`. La documentación lo menciona de forma explícita. Si estás empezando, te recomiendo leer [cómo trabajo con agentes de IA](/skills/ai-agents) y [qué guardar para continuar un trabajo entre sesiones](/blog/continuidad-entre-sesiones-de-agentes)."
+      },
+      {
+        "type": "subheading",
+        "text": "Usarlo sin escribir código"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Kimi Code:** selecciona el modelo con el comando `/model`.",
+          "**Kimi Work (escritorio):** requiere la versión 3.1.0 o superior, en Windows o en Mac con Apple silicon.",
+          "**Apps móviles:** está disponible en iOS, Android y HarmonyOS."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Mi opinión: cuándo tiene sentido"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kimi K3.1 Pro es interesante por tres razones. Ofrece un rendimiento publicado cercano al de los modelos propietarios más fuertes en tareas de terminal, cuesta la mitad por token que Claude Opus 5.5 y promete pesos abiertos. Si tu caso exige alojar el modelo en tu propia infraestructura, conviene seguir de cerca la publicación de los pesos (lo comparo en [el mejor modelo de IA en octubre de 2026](/blog/mejor-modelo-ia-octubre-2026))."
+      },
+      {
+        "type": "paragraph",
+        "text": "Antes de migrar un flujo en producción, haría dos cosas. Primero, mediría el costo real por tarea, porque es un modelo verboso. Segundo, esperaría a que haya más evaluaciones independientes, ya que el modelo salió hace muy poco."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "subheading",
+        "text": "¿Cuánto cuesta Kimi K3.1 Pro por API?"
+      },
+      {
+        "type": "paragraph",
+        "text": "USD 2 por millón de tokens de entrada, USD 10 por millón de salida y USD 0,20 por millón en aciertos de caché. La variante Highspeed cuesta USD 4 de entrada y USD 20 de salida."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Kimi K3.1 Pro es de código abierto?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Moonshot lo define como un modelo de pesos abiertos y se compromete a publicar los pesos completos antes del 4 de noviembre de 2026. Hasta ese momento solo se puede usar por los productos de Kimi y su API."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Kimi K3.1 Pro es compatible con el SDK de OpenAI?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sí. La API de Kimi acepta los formatos Chat Completions y Responses de OpenAI con base_url https://api.moonshot.ai/v1, y el formato Messages de Anthropic con https://api.moonshot.ai/anthropic."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Se puede desactivar el razonamiento de Kimi K3.1 Pro?"
+      },
+      {
+        "type": "paragraph",
+        "text": "No. El modo de razonamiento está siempre activo. Puedes reducirlo con el parámetro reasoning_effort, que acepta low, high y max (el valor por defecto es max)."
+      },
+      {
+        "type": "subheading",
+        "text": "¿Qué diferencia hay entre Kimi K3.1 Pro y K3.1 Pro Highspeed?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Highspeed ofrece las mismas capacidades a una velocidad de 2 a 3 veces mayor, según Moonshot, y cuesta el doble por token de entrada y de salida."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consultadas el 23 de octubre de 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Moonshot AI. [Introducing Kimi K3.1 Pro](https://kimi.ai/blog/kimi-k3-1-pro) (anuncio oficial y benchmarks).",
+          "Kimi API Platform. [Precios y modelos](https://platform.kimi.ai).",
+          "Kimi API Platform. [Guía de inicio de Kimi K3.1 Pro](https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart) (parámetros, límites y caché).",
+          "Kimi API Platform. [API Overview](https://platform.kimi.ai/docs/api/overview) (base_url y compatibilidad).",
+          "Kimi API Platform. [Quickstart](https://platform.kimi.ai/docs/get-your-api-key) (API key y primera llamada).",
+          "Artificial Analysis. [Kimi K3.1 Pro](https://artificialanalysis.ai/models/kimi-k3-1-pro) (índice independiente, costo por tarea y verbosidad).",
+          "OpenAI. [GPT-6 Astra](https://openai.com/index/gpt-6-astra/) (cifra propia de Terminal-Bench 4.0)."
+        ]
+      }
+    ]
+  },
+  {
     "slug": "continuidad-entre-sesiones-de-agentes",
     "title": "Qué guardar para continuar un trabajo con agentes sin empezar de nuevo",
     "description": "Una nota breve para que la próxima sesión, o el próximo agente, retome con las decisiones, la evidencia y el siguiente paso, sin empezar de cero.",

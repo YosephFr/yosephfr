@@ -5,7 +5,7 @@ import DotIcon from '@/components/dots/DotIcon'
 import DotField, { cascade } from '@/components/dots/DotField'
 import { getArticles, isEditorialPreview } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
-import { og } from '@/lib/seo'
+import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { alternates } from '@/lib/lang'
 
 const description = 'Guías y decisiones prácticas sobre agentes de IA, diseño y automatización, por Franco.'
@@ -24,20 +24,25 @@ export default function BlogPage() {
   const [first, ...rest] = articles
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Blog',
-    '@id': `${PROFILE.url}/blog#blog`,
-    url: `${PROFILE.url}/blog`,
-    name: 'IA para el trabajo real',
-    description,
-    inLanguage: 'es',
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    publisher: { '@id': `${PROFILE.url}/#person` },
-    blogPost: articles.map(a => ({ '@type': 'BlogPosting', headline: a.title, url: `${PROFILE.url}/blog/${a.slug}`, datePublished: a.date, dateModified: a.updated, author: { '@id': `${PROFILE.url}/#person` } })),
+    '@graph': [
+      {
+        '@type': 'Blog',
+        '@id': `${PROFILE.url}/blog#blog`,
+        url: `${PROFILE.url}/blog`,
+        name: 'IA para el trabajo real',
+        description,
+        inLanguage: 'es',
+        isPartOf: { '@id': `${PROFILE.url}/#website` },
+        publisher: { '@id': `${PROFILE.url}/#person` },
+        blogPost: articles.map(a => ({ '@type': 'BlogPosting', headline: a.title, url: `${PROFILE.url}/blog/${a.slug}`, datePublished: a.date, dateModified: a.updated, author: { '@id': `${PROFILE.url}/#person` } })),
+      },
+      breadcrumbs([{ name: 'Inicio', path: '/' }, { name: 'Artículos', path: '/blog' }]),
+    ],
   }
   return (
     <>
       <main id="contenido" lang="es" className="acento-azul">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza blog-cabeza cabeza-centrada">
           <div>
             <h1 className="display">IA para el trabajo real</h1>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getEnglishIndex } from '@/data/articles'
+import { articlePath, getEnglishIndex } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
 import ArticleCards from '@/components/blog/ArticleCards'
 import Hero from '@/components/Hero'
@@ -9,7 +9,7 @@ import Skills from '@/components/Skills'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
-import { og } from '@/lib/seo'
+import { jsonLd, og, profilePage } from '@/lib/seo'
 import { UI, alternates } from '@/lib/lang'
 
 const title = 'Arncof · Yoseph Franco | AI and software'
@@ -29,19 +29,25 @@ export default function HomeEn() {
   const t = UI.en
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': `${PROFILE.url}/en#perfil`,
-    url: `${PROFILE.url}/en`,
-    name: `${PROFILE.brand} · ${PROFILE.name}`,
-    inLanguage: 'en',
-    dateModified: PROFILE.updated,
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    mainEntity: { '@id': `${PROFILE.url}/#person` },
+    ...profilePage({
+      id: `${PROFILE.url}/en#perfil`,
+      url: `${PROFILE.url}/en`,
+      name: `${PROFILE.brand} · ${PROFILE.name}`,
+      inLanguage: 'en',
+      hasPart: articles.slice(0, 3).map(a => ({
+        '@type': 'BlogPosting',
+        headline: a.title,
+        url: `${PROFILE.url}${articlePath(a)}`,
+        datePublished: a.date,
+        inLanguage: a.language,
+        author: { '@id': `${PROFILE.url}/#person` },
+      })),
+    }),
   }
   return (
     <>
       <main id="contenido" lang="en" className="acento-verde">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <Hero lang="en" />
         {articles.length > 0 && (
           <section className="marco seccion acento-azul">

@@ -117,7 +117,9 @@ function SingleToast({
               {progress.found}/{progress.total}
             </motion.span>
             <button
+              type="button"
               onClick={handleDismiss}
+              aria-label="Cerrar aviso"
               className="flex items-center justify-center w-6 h-6 rounded-[18px] text-text-muted hover:text-text-primary transition-colors"
             >
               <X size={14} strokeWidth={1.5} />
