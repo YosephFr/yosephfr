@@ -6,13 +6,14 @@ import DotField, { cascade } from '@/components/dots/DotField'
 import { getArticles, isEditorialPreview } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
 import { og } from '@/lib/seo'
+import { alternates } from '@/lib/lang'
 
 const description = 'Guías y decisiones prácticas sobre agentes de IA, diseño y automatización, por Franco.'
 
 export const metadata: Metadata = {
   title: 'IA para el trabajo real',
   description,
-  alternates: { canonical: '/blog', types: { 'application/rss+xml': '/feed.xml' } },
+  alternates: { canonical: '/blog', languages: alternates('/blog', '/en/blog'), types: { 'application/rss+xml': '/feed.xml' } },
   openGraph: og({ title: 'IA para el trabajo real | Franco', description: 'Guías prácticas de diseño y operación con agentes de IA.', url: '/blog', type: 'website' }),
   twitter: { card: 'summary_large_image', title: 'IA para el trabajo real | Franco', description: 'Guías prácticas de diseño y operación con agentes de IA.', images: ['/og-arncof-v2.jpg'] },
   robots: isEditorialPreview ? { index: false, follow: false } : { index: true, follow: true },

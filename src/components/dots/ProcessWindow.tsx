@@ -2,17 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react'
 import { seeded } from './glyphs'
+import { UI, type Lang } from '@/lib/lang'
 
 type Cell = [number, number]
 const COLS = 16
 const ROWS = 10
 const DURATION = [2600, 2600, 3600]
-
-const STEPS = [
-  { title: 'Entender', text: 'Qué necesita la persona.' },
-  { title: 'Conectar', text: 'La información y las herramientas.' },
-  { title: 'Comprobar', text: 'Que el resultado resuelve el pedido.' },
-]
 
 function distance(px: number, py: number, ax: number, ay: number, bx: number, by: number) {
   const vx = bx - ax, vy = by - ay
@@ -50,7 +45,8 @@ function subscribeMotion(change: () => void) {
 }
 const CHECK_SIZE = new Set(SHAPES[2].map(c => c.join(','))).size
 
-export default function ProcessWindow({ caption }: { caption?: string }) {
+export default function ProcessWindow({ caption, lang = 'es' }: { caption?: string; lang?: Lang }) {
+  const { label, steps } = UI[lang].process
   const [chosen, setPhase] = useState(0)
   const [running, setRunning] = useState(false)
   // Con movimiento reducido se muestra directamente el resultado comprobado.
@@ -98,8 +94,8 @@ export default function ProcessWindow({ caption }: { caption?: string }) {
           </g>
         </svg>
       </div>
-      <div className="ventana-banda proceso-banda" role="group" aria-label="Cómo trabajo">
-        {STEPS.map((step, i) => (
+      <div className="ventana-banda proceso-banda" role="group" aria-label={label}>
+        {steps.map((step, i) => (
           <button
             key={step.title}
             type="button"

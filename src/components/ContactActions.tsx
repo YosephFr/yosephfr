@@ -4,10 +4,12 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { PROFILE } from '@/data/profile'
 import DotIcon from '@/components/dots/DotIcon'
 import { copyText } from '@/lib/copy'
+import { UI, type Lang } from '@/lib/lang'
 
 type State = 'idle' | 'copied' | 'unavailable'
 
-export default function ContactActions({ variant = 'botones', extra }: { variant?: 'botones' | 'tarjeta'; extra?: ReactNode }) {
+export default function ContactActions({ variant = 'botones', extra, lang = 'es' }: { variant?: 'botones' | 'tarjeta'; extra?: ReactNode; lang?: Lang }) {
+  const t = UI[lang].contact
   const [state, setState] = useState<State>('idle')
   const address = useRef<HTMLSpanElement>(null)
   const timer = useRef<number | undefined>(undefined)
@@ -28,14 +30,14 @@ export default function ContactActions({ variant = 'botones', extra }: { variant
     timer.current = window.setTimeout(() => setState('idle'), ok ? 2400 : 5000)
   }
 
-  const label = state === 'copied' ? 'Copiado' : state === 'unavailable' ? 'Correo seleccionado' : 'Copiar correo'
-  const message = state === 'copied' ? 'Correo copiado.' : state === 'unavailable' ? 'No se pudo copiar. El correo quedó seleccionado.' : ''
+  const label = state === 'copied' ? t.copied : state === 'unavailable' ? t.selected : t.copy
+  const message = state === 'copied' ? t.copiedMessage : state === 'unavailable' ? t.failedMessage : ''
 
   const buttons = (
     <div className="acciones">
       <a className="boton boton-claro" href={`mailto:${PROFILE.email}`} data-event="contact_email_click">
         <DotIcon name="correo" size={16} />
-        Escribir correo
+        {t.write}
       </a>
       <button
         type="button"

@@ -109,6 +109,20 @@ export async function qaRelease(release) {
         await page.screenshot({path:path.join(qa,`${label}-articulo-${article.slug}.png`)});
         (row.articles??=[]).push({title:article.title,canonical:posting.url,datePublished:posting.datePublished,toc_target:hash});
       }
+      // Versión en inglés: idioma, hreflang recíproco y tarjetas que llevan al artículo en español.
+      for(const [en,es] of [['/en','/'],['/en/blog','/blog']]) {
+        await page.goto(base+en,{waitUntil:'networkidle'});
+        assert.equal(await page.locator('main').getAttribute('lang'),'en');
+        assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://yosephfr.com'+en);
+        assert.equal(await page.locator('link[rel="alternate"][hreflang="es"]').getAttribute('href'),'https://yosephfr.com'+es);
+        assert.equal(await page.locator('nav[aria-label="Main"] a[aria-current="page"]').getAttribute('href'),en);
+        await page.screenshot({path:path.join(qa,`${label}-en${en.replace(/\//g,'-')}.png`)});
+      }
+      if(published.length){
+        await page.locator(`a[href="/blog/${published[0].slug}"][hreflang="es"]`).first().click();
+        await page.waitForURL(base+'/blog/'+published[0].slug);
+      }
+      row.english={home:true,blog:true};
       report.viewports.push(row);
     }
     const feed=await (await fetch(base+'/feed.xml')).text();
@@ -116,6 +130,7 @@ export async function qaRelease(release) {
     for(const article of published)assert(feed.includes(new Date(article.date).toUTCString()));
     const sitemap=await (await fetch(base+'/sitemap.xml')).text();
     for(const article of published)assert(sitemap.includes('/blog/'+article.slug));
+    assert(sitemap.includes('<loc>https://yosephfr.com/en</loc>')&&sitemap.includes('<loc>https://yosephfr.com/en/blog</loc>')&&sitemap.includes('hreflang="en"'));
     for(const other of articles.filter(a=>a.publication!=='published')) {
       assert(!feed.includes(other.slug)&&!sitemap.includes(other.slug));
       assert.equal((await fetch(base+'/blog/'+other.slug)).status,404);

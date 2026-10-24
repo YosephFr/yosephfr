@@ -1,34 +1,36 @@
 import Link from 'next/link'
 import { PROFILE } from '@/data/profile'
 import DotIcon from '@/components/dots/DotIcon'
+import { UI, type Lang } from '@/lib/lang'
 
-const SECTIONS = [
-  { href: '/', label: 'Inicio' },
-  { href: '/blog', label: 'Artículos' },
-  { href: '/cv', label: 'CV' },
-  { href: '/contacto', label: 'Contacto' },
-]
-
-export default function Footer() {
+export default function Footer({ lang = 'es' }: { lang?: Lang }) {
+  const t = UI[lang]
+  const sections = [
+    { href: t.home, label: t.nav.home },
+    { href: t.blog, label: t.nav.articles },
+    { href: '/cv', label: t.nav.cv },
+    { href: '/contacto', label: t.nav.contact },
+  ]
   return (
-    <footer className="marco pie">
+    <footer className="marco pie" lang={lang === 'en' ? 'en' : undefined}>
       <div className="pie-rejilla">
         <div className="pie-marca">
-          <Link href="/" className="marca"><DotIcon name="marca" size={20} />Arncof</Link>
-          <p>Agentes de IA, software y automatización para el trabajo real.</p>
+          <Link href={t.home} className="marca"><DotIcon name="marca" size={20} />Arncof</Link>
+          <p>{t.footer.tagline}</p>
           <a href={`mailto:${PROFILE.email}`} data-event="contact_email_click" className="boton boton-tonal">
             <DotIcon name="correo" size={16} />
             {PROFILE.email}
           </a>
         </div>
         <nav aria-label="Secciones">
-          <h2>Secciones</h2>
+          <h2>{t.footer.sections}</h2>
           <ul>
-            {SECTIONS.map(s => <li key={s.href}><Link href={s.href}>{s.label}</Link></li>)}
+            {sections.map(s => <li key={s.href}><Link href={s.href}>{s.label}</Link></li>)}
+            <li><Link href={t.footer.otherHref} hrefLang={lang === 'en' ? 'es' : 'en'} lang={lang === 'en' ? 'es' : 'en'}>{t.footer.other}</Link></li>
           </ul>
         </nav>
         <nav aria-label="Perfiles">
-          <h2>Perfiles</h2>
+          <h2>{t.footer.profiles}</h2>
           <ul>
             {PROFILE.socials.map(s => (
               <li key={s.name}>

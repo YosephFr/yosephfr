@@ -9,9 +9,10 @@ import Skills from '@/components/Skills'
 import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
+import { alternates } from '@/lib/lang'
 
 export const metadata: Metadata = {
-  alternates: { canonical: '/', types: { 'application/rss+xml': '/feed.xml' } },
+  alternates: { canonical: '/', languages: alternates('/', '/en'), types: { 'application/rss+xml': '/feed.xml' } },
 }
 
 export default function Home() {
