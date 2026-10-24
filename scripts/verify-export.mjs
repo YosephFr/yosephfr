@@ -11,7 +11,8 @@ export function exportFiles(root) {
       const absolute=path.join(directory,entry.name);
       const relative=path.relative(root,absolute).split(path.sep).join('/');
       if(entry.isSymbolicLink()) throw new Error(`Enlace simbólico en exportación: ${relative}`);
-      if(!/^[a-zA-Z0-9_./@%+$()[\]-]+$/.test(relative)) throw new Error(`Ruta no admitida para transferencia: ${relative}`);
+      // Next 16 nombra los payloads por segmento con el grupo en base64 tras «!» (por ejemplo __next.!KGVzKQ.__PAGE__.txt).
+      if(!/^[a-zA-Z0-9_./@%+$()[\]!-]+$/.test(relative)) throw new Error(`Ruta no admitida para transferencia: ${relative}`);
       if(entry.isDirectory()) walk(absolute);
       else if(entry.isFile()) files.push(relative);
       else throw new Error(`Archivo especial en exportación: ${relative}`);
