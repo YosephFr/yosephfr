@@ -5,7 +5,7 @@
 - [Perfil](https://yosephfr.com/): presentación y áreas de trabajo.
 - [CV](https://yosephfr.com/cv): experiencia, prácticas actuales y formación.
 - [Artículos](https://yosephfr.com/blog): guías y análisis publicados.
-- [English](https://yosephfr.com/en): profile in English; [articles index](https://yosephfr.com/en/blog) (articles are written in Spanish).
+- [English](https://yosephfr.com/en): profile in English; [articles index](https://yosephfr.com/en/blog) with English versions of the Spanish originals, each linked to its original; [RSS in English](https://yosephfr.com/en/feed.xml).
 - [RSS](https://yosephfr.com/feed.xml): novedades del blog.
 - [Contacto](https://yosephfr.com/contacto): franco@imanleads.com.
 - [X](https://x.com/arncof)
