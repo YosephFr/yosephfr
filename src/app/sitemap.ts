@@ -10,6 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths=['','/en','/cv','/contacto','/blog','/en/blog',...EXPERIENCE.map(e=>`/experiencia/${e.slug}`),...SKILLS.map(s=>`/skills/${s.slug}`)]
   // Portada y blog existen en los dos idiomas: cada versión declara a la otra.
   const pairs:Record<string,{es:string;en:string}>={'':{es:'',en:'/en'},'/en':{es:'',en:'/en'},'/blog':{es:'/blog',en:'/en/blog'},'/en/blog':{es:'/blog',en:'/en/blog'}}
-  const languages=(route:string)=>pairs[route]?{alternates:{languages:{es:PROFILE.url+(pairs[route].es||'/'),en:PROFILE.url+pairs[route].en}}}:{}
+  const languages=(route:string)=>pairs[route]?{alternates:{languages:{es:PROFILE.url+pairs[route].es,en:PROFILE.url+pairs[route].en}}}:{}
   return [...paths.map(route=>({url:PROFILE.url+route,lastModified:route.endsWith('/blog')?blogUpdated:new Date(PROFILE.updated),...languages(route)})),...articles.map(a=>({url:`${PROFILE.url}/blog/${a.slug}`,lastModified:new Date(a.updated)}))]
 }
