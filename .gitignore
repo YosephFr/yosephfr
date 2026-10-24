@@ -34,3 +34,6 @@ next-env.d.ts
 
 .claude/
 1661020253222.jpeg
+
+/vendor/
+/deployment.tgz

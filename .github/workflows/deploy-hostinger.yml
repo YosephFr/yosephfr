@@ -1,0 +1,46 @@
+name: Deploy to Hostinger
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: production-yosephfr.com
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: https://yosephfr.com
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22.23.4'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build production site
+        run: npm run build
+      - name: Package the exact commit
+        run: |
+          mkdir -p deploy-package
+          cp -a out deploy-package/public
+          printf '%s\n' "$GITHUB_SHA" > deploy-package/REVISION
+          printf '{"revision":"%s"}\n' "$GITHUB_SHA" > deploy-package/public/version.json
+          printf 'Header set Cache-Control "public, max-age=31536000, immutable"\n' > deploy-package/public/_next/static/.htaccess
+          tar -czf deployment.tgz -C deploy-package .
+      - name: Deploy and verify, with rollback on failure
+        env:
+          HOSTINGER_DEPLOY_KEY: ${{ secrets.HOSTINGER_DEPLOY_KEY }}
+        run: |
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_DEPLOY_KEY" > "$HOME/.ssh/deploy_key"
+          chmod 600 "$HOME/.ssh/deploy_key"
+          trap 'rm -f "$HOME/.ssh/deploy_key"' EXIT
+          ssh -i "$HOME/.ssh/deploy_key" -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=deploy/hostinger-known-hosts u381549037@45.152.44.122 "deploy $GITHUB_SHA" < deployment.tgz
