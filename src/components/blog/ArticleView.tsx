@@ -11,7 +11,8 @@ import CopyLink from '@/components/CopyLink'
 import DotIcon from '@/components/dots/DotIcon'
 import { getArticle, getArticles, getTranslation, articleDate, articlePath, headingId, isEditorialPreview } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
-import { breadcrumbs, og } from '@/lib/seo'
+import ProfilePhoto from '@/components/ProfilePhoto'
+import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { UI, type Lang } from '@/lib/lang'
 
 const TEXT = {
@@ -26,12 +27,14 @@ export function articleMetadata(slug: string, lang: Lang): Metadata {
   const path = articlePath(a)
   const other = getTranslation(a)
   const languages = other ? { [a.language]: path, [other.language]: articlePath(other), 'x-default': a.language === 'es' ? path : articlePath(other) } : undefined
+  const socialTitle = a.ogTitle || a.title
+  const socialDescription = a.ogDescription || a.description
   return {
     title: a.title,
     description: a.description,
     alternates: { canonical: path, ...(languages ? { languages } : {}) },
-    openGraph: og({ title: a.title, description: a.description, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale }),
-    twitter: { card: 'summary_large_image', title: a.title, description: a.description, images: ['/og-arncof-v2.jpg'] },
+    openGraph: og({ title: socialTitle, description: socialDescription, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale }),
+    twitter: { card: 'summary_large_image', title: socialTitle, description: socialDescription, images: ['/og-arncof-v2.jpg'], creator: '@arncof' },
     robots: isEditorialPreview ? { index: false, follow: false } : { index: true, follow: true },
   }
 }
@@ -69,16 +72,23 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
         author: { '@type': 'Person', '@id': `${PROFILE.url}/#person`, name: PROFILE.name, url: PROFILE.url },
         publisher: { '@id': `${PROFILE.url}/#person` },
         isPartOf: { '@id': `${PROFILE.url}/blog#blog` },
+        ...(article.keyword ? { keywords: article.keyword } : {}),
         // La versión en inglés declara de qué artículo es traducción.
         ...(other && lang === 'en' ? { translationOfWork: { '@id': `${PROFILE.url}${articlePath(other)}#articulo` } } : {}),
       },
+      ...(article.faq?.length ? [{
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: lang,
+        mainEntity: article.faq.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })),
+      }] : []),
       breadcrumbs([{ name: t.home, path: UI[lang].home }, { name: t.articles, path: blog }, { name: article.title, path }]),
     ],
   }
   return (
     <>
       <main id="contenido" lang={lang} className="acento-azul">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <article>
           <header className="marco articulo-cabeza">
             <BackButton href={blog} label={t.articles} />
@@ -86,7 +96,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
             <p className="entrada-texto">{article.description}</p>
             <div className="articulo-datos">
               <span className="meta">
-                {article.category} · {article.author} · <time dateTime={article.date}>{published}</time> · {article.readingMinutes} {t.read}
+                {article.category} · <Link href={UI[lang].home} rel="author">{PROFILE.name}</Link> · <time dateTime={article.date}>{published}</time> · {article.readingMinutes} {t.read}
                 {updated !== published && <> · {t.updated} <time dateTime={article.updated}>{updated}</time></>}
                 {other && <> · <Link href={articlePath(other)} hrefLang={other.language} lang={other.language} className="enlace">{t.other}</Link></>}
               </span>
@@ -99,9 +109,10 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
               {headings.length > 1 && <ArticleToc headings={headings} variant="movil" lang={lang} />}
               <ArticleBody blocks={article.blocks} />
               <aside className="lamina autor" aria-label={t.by}>
+                <ProfilePhoto size={72} />
                 <div>
-                  <h2>{t.by} {article.author}</h2>
-                  <p>{PROFILE.name}. {t.bio}</p>
+                  <h2>{t.by} <Link href={UI[lang].home} rel="author">{PROFILE.name}</Link></h2>
+                  <p>{t.bio}</p>
                 </div>
                 <div className="acciones">
                   <Link href={UI[lang].cv} className="boton boton-tonal">{t.cv}</Link>

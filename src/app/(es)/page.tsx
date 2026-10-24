@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getPublicArticles } from '@/data/articles'
+import { articlePath, getPublicArticles } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
+import { jsonLd, profilePage } from '@/lib/seo'
 import ArticleCards from '@/components/blog/ArticleCards'
 import Hero from '@/components/Hero'
 import Experience from '@/components/Experience'
@@ -19,19 +20,25 @@ export default function Home() {
   const articles = getPublicArticles()
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': `${PROFILE.url}/#perfil`,
-    url: `${PROFILE.url}/`,
-    name: `${PROFILE.brand} · ${PROFILE.name}`,
-    inLanguage: 'es',
-    dateModified: PROFILE.updated,
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    mainEntity: { '@id': `${PROFILE.url}/#person` },
+    ...profilePage({
+      id: `${PROFILE.url}/#perfil`,
+      url: `${PROFILE.url}/`,
+      name: `${PROFILE.brand} · ${PROFILE.name}`,
+      inLanguage: 'es',
+      hasPart: articles.slice(0, 3).map(a => ({
+        '@type': 'BlogPosting',
+        headline: a.title,
+        url: `${PROFILE.url}${articlePath(a)}`,
+        datePublished: a.date,
+        inLanguage: a.language,
+        author: { '@id': `${PROFILE.url}/#person` },
+      })),
+    }),
   }
   return (
     <>
       <main id="contenido" className="acento-verde">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <Hero />
         {articles.length > 0 && (
           <section className="marco seccion acento-azul">

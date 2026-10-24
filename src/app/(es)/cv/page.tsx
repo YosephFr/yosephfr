@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PROFILE } from '@/data/profile'
-import { social } from '@/lib/seo'
+import ProfilePhoto from '@/components/ProfilePhoto'
+import { breadcrumbs, jsonLd, profilePage, social } from '@/lib/seo'
 import { alternates } from '@/lib/lang'
 import { EXPERIENCE } from '@/data/experience'
 import DotIcon from '@/components/dots/DotIcon'
@@ -29,24 +30,23 @@ const PRACTICES = [
 export default function CV() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ProfilePage',
-    '@id': `${PROFILE.url}/cv#perfil`,
-    url: `${PROFILE.url}/cv`,
-    name: 'CV de Yoseph Franco',
-    inLanguage: 'es',
-    dateModified: PROFILE.updated,
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    mainEntity: { '@id': `${PROFILE.url}/#person` },
+    '@graph': [
+      profilePage({ id: `${PROFILE.url}/cv#perfil`, url: `${PROFILE.url}/cv`, name: 'CV de Yoseph Franco', inLanguage: 'es' }),
+      breadcrumbs([{ name: 'Inicio', path: '/' }, { name: 'CV', path: '/cv' }]),
+    ],
   }
   return (
     <>
       <main id="contenido" className="acento-morado">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza cabeza-doble">
-          <div>
+          <div className="cv-identidad">
+            <ProfilePhoto size={96} priority />
+            <div>
             <h1 className="display">Yoseph Franco</h1>
             <p className="entrada-texto">Diseño flujos de trabajo con agentes para investigar, construir y revisar productos. Organizo el contexto, las herramientas y la continuidad del trabajo, y compruebo el resultado con casos reales.</p>
             <div className="acciones-cv"><ContactActions extra={<PrintButton />} /></div>
+            </div>
           </div>
           <Trajectory />
         </header>

@@ -1,11 +1,15 @@
 import data from './articles.json'
 import type { Lang } from '@/lib/lang'
 
-export type ArticleBlock = { type: string; text?: string; items?: string[] }
+export type ArticleBlock = {
+  type: string; text?: string; items?: string[]; headers?: string[]; rows?: string[][]; lang?: string; start?: number
+}
+export type ArticleFaq = { q: string; a: string }
 export type Article = {
   slug: string; title: string; description: string; category: string;
   language: string; translation?: string; author: string; date: string; updated: string; publication: string;
-  readingMinutes: number; blocks: ArticleBlock[]
+  readingMinutes: number; blocks: ArticleBlock[]; faq?: ArticleFaq[]; keyword?: string; tags?: string[]
+  ogTitle?: string; ogDescription?: string
 }
 
 const all: Article[] = data

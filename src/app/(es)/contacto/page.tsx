@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { PROFILE } from '@/data/profile'
-import { social } from '@/lib/seo'
+import { breadcrumbs, jsonLd, social } from '@/lib/seo'
 import { alternates } from '@/lib/lang'
 import ContactActions from '@/components/ContactActions'
 import Footer from '@/components/Footer'
@@ -24,18 +24,23 @@ function handle(href: string) {
 export default function ContactPage() {
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    '@id': `${PROFILE.url}/contacto#pagina`,
-    url: `${PROFILE.url}/contacto`,
-    name: 'Contacto',
-    inLanguage: 'es',
-    isPartOf: { '@id': `${PROFILE.url}/#website` },
-    mainEntity: { '@id': `${PROFILE.url}/#person` },
+    '@graph': [
+      {
+        '@type': 'ContactPage',
+        '@id': `${PROFILE.url}/contacto#pagina`,
+        url: `${PROFILE.url}/contacto`,
+        name: 'Contacto',
+        inLanguage: 'es',
+        isPartOf: { '@id': `${PROFILE.url}/#website` },
+        mainEntity: { '@id': `${PROFILE.url}/#person` },
+      },
+      breadcrumbs([{ name: 'Inicio', path: '/' }, { name: 'Contacto', path: '/contacto' }]),
+    ],
   }
   return (
     <>
       <main id="contenido" className="acento-verde">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza cabeza-centrada">
           <h1 className="display">Hablemos de tu próximo proyecto.</h1>
           <p className="entrada-texto">IA, software y automatización. Cuéntame qué necesitas resolver.</p>

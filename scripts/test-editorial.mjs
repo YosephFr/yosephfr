@@ -143,7 +143,36 @@ test('Versión en inglés: parejas recíprocas, rutas /en/blog, feed propio y hr
     assert(xml.includes('<link>https://yosephfr.com/en/blog/guide</link>')&&xml.includes('<language>en</language>')&&!xml.includes('guia'));
     const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]}}).default();
     const guide=sitemap.find(a=>a.url==='https://yosephfr.com/en/blog/guide');
-    assert.deepEqual(guide.alternates.languages,{en:'https://yosephfr.com/en/blog/guide',es:'https://yosephfr.com/blog/guia'});
+    assert.deepEqual(guide.alternates.languages,{en:'https://yosephfr.com/en/blog/guide',es:'https://yosephfr.com/blog/guia','x-default':'https://yosephfr.com/blog/guia'});
     assert.equal(sitemap.find(a=>a.url==='https://yosephfr.com/blog/solo-espanol').alternates,undefined);
   } finally {Date.now=originalNow;fs.rmSync(directory,{recursive:true,force:true});}
+});
+
+test('ProfilePage trae una Person con name en mainEntity, y los artículos nuevos no declaran inglés ni enlaces rotos',()=>{
+  const profile=loadTs('src/data/profile.ts',{});
+  const seo=loadTs('src/lib/seo.ts',{'@/data/profile':profile});
+  const page=seo.profilePage({id:'https://yosephfr.com/#perfil',url:'https://yosephfr.com/',name:'Yoseph Franco',inLanguage:'es'});
+  assert.equal(page['@type'],'ProfilePage');
+  assert.equal(page.mainEntity['@type'],'Person');
+  assert.equal(page.mainEntity.name,'Yoseph Franco');
+  assert.equal(page.mainEntity.jobTitle,'AI Engineer');
+  assert.ok(String(page.mainEntity.image.url).endsWith('/yoseph-franco.webp'));
+  assert.ok(page.mainEntity.sameAs.length>=3);
+  assert.ok(page.dateModified);
+  assert.equal(page.mainEntity['@id'].endsWith('#person'),true);
+  const articles=JSON.parse(fs.readFileSync(path.join(site,'src/data/articles.json'),'utf8'));
+  for(const slug of ['mejor-modelo-ia-octubre-2026','kimi-k3-1-pro']){
+    const article=articles.find(item=>item.slug===slug);
+    assert.ok(article);
+    assert.equal(article.language,'es');
+    assert.equal(article.translation,undefined);
+    assert.equal(article.publication,'published');
+    assert.ok(article.faq.length>=5);
+    assert.match(article.blocks[0].text,/Respuesta corta/);
+    const blob=JSON.stringify(article.blocks);
+    for(const broken of ['/blog/precio-api-claude-gpt-gemini','/blog/modelos-ia-pesos-abiertos-2026','/blog/como-crear-agente-ia']) assert.equal(blob.includes(broken),false,broken);
+  }
+  assert.equal(articles.filter(item=>item.slug==='continuidad-entre-sesiones-de-agentes'||item.slug==='referencias-antes-de-redisenar').length,2);
+  assert.equal(fs.existsSync(path.join(site,'public/yoseph-franco.webp')),true);
+  assert.equal(fs.existsSync(path.join(site,'public/avatar-light.png')),false);
 });
