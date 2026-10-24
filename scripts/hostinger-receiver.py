@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
-import os,sys,re,tarfile,pathlib,shutil,subprocess,json,time,fcntl
+import os,sys,re,tarfile,pathlib,shutil,subprocess,json,time,fcntl,signal
 site=sys.argv[1]
 if site not in ['indebooks.lat','yosephfr.com']:raise SystemExit('Unknown site')
 match=re.fullmatch(r'deploy ([0-9a-f]{40})',os.environ.get('SSH_ORIGINAL_COMMAND',''))
 if not match:raise SystemExit('Only deploy <commit> is allowed')
+def stop_release(release):
+ if release is None:return
+ expected=str(pathlib.Path(release).resolve()/'runtime')
+ for proc in pathlib.Path('/proc').iterdir():
+  if not proc.name.isdigit():continue
+  try:
+   if os.readlink(str(proc/'cwd'))==expected:
+    command=(proc/'cmdline').read_bytes()
+    if b'next-server' in command or b'node' in command:os.kill(int(proc.name),signal.SIGTERM)
+  except (OSError,PermissionError):pass
 revision=match.group(1)
 home=pathlib.Path.home();root=home/'domains'/site;state=root/'state';state.mkdir(exist_ok=True);state.chmod(0o700)
 lock=(state/'deploy.lock').open('w');fcntl.flock(lock,fcntl.LOCK_EX)
@@ -39,10 +49,21 @@ try:
   if (candidate/'public/.well-known').exists():shutil.rmtree(str(candidate/'public/.well-known'))
   (candidate/'public/.well-known').symlink_to(acme)
  previous=os.readlink(str(active)) if active.is_symlink() else None
+ previous_release=(active.parent/previous).resolve() if previous else None
+ configuration=root/'public_html/.htaccess'
+ old_configuration=configuration.read_text() if site=='indebooks.lat' else None
  temporary=active.with_name(active.name+'.next')
  if temporary.is_symlink():temporary.unlink()
  temporary.symlink_to(candidate/'public' if site=='yosephfr.com' else candidate);os.replace(str(temporary),str(active))
- if site=='indebooks.lat':(restart/'restart.txt').touch()
+ if site=='indebooks.lat':
+  # LiteSpeed retains a resolved PassengerAppRoot across symlink changes.
+  # An explicit release path plus retiring the previous worker forces readback
+  # from the new commit; retain the prior configuration for rollback.
+  updated=re.sub(r'^PassengerAppRoot .*$', 'PassengerAppRoot '+str(candidate),old_configuration,flags=re.M)
+  new_configuration=configuration.with_name('.htaccess.next')
+  new_configuration.write_text(updated);os.replace(str(new_configuration),str(configuration))
+  (restart/'restart.txt').touch()
+  stop_release(previous_release)
  success=False
  for attempt in range(18):
   time.sleep(2)
@@ -58,7 +79,10 @@ try:
  if not success:
   if previous:
    temporary.symlink_to(previous);os.replace(str(temporary),str(active))
-   if site=='indebooks.lat':(restart/'restart.txt').touch()
+   if site=='indebooks.lat':
+    configuration.write_text(old_configuration)
+    (restart/'restart.txt').touch()
+    stop_release(candidate)
   raise RuntimeError('Health verification failed; previous release restored')
  (state/'last-deploy.json').write_text(json.dumps({'revision':revision,'deployed_at':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'files':count,'bytes':size}))
  print('Deployed and verified '+site+' '+revision)
