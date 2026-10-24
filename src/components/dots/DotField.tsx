@@ -15,8 +15,8 @@ type Props = {
 
 // Retícula de círculos en contorno con partículas llenas que ocupan sus celdas.
 export default function DotField({ cols, rows, cells, className = '', align = 'xMidYMid slice', dim = [], label }: Props) {
-  const lattice: Cell[] = []
-  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) lattice.push([x, y])
+  // La retícula se repite con un patrón de una celda: el mismo dibujo sin un círculo por celda en el HTML.
+  const pattern = `campo-celda-${cols}x${rows}`
   return (
     <svg
       className={`campo ${className}`}
@@ -27,9 +27,12 @@ export default function DotField({ cols, rows, cells, className = '', align = 'x
       aria-hidden={label ? undefined : true}
       focusable="false"
     >
-      <g className="campo-reticula">
-        {lattice.map(([x, y]) => <circle key={`${x}-${y}`} cx={x + 0.5} cy={y + 0.5} r={0.46} />)}
-      </g>
+      <defs>
+        <pattern id={pattern} width={1} height={1} patternUnits="userSpaceOnUse">
+          <g className="campo-reticula"><circle cx={0.5} cy={0.5} r={0.46} /></g>
+        </pattern>
+      </defs>
+      <rect width={cols} height={rows} fill={`url(#${pattern})`} />
       {dim.length > 0 && (
         <g className="campo-tenue">
           {dim.map(([x, y], i) => <circle key={i} cx={x + 0.5} cy={y + 0.5} r={0.44} />)}

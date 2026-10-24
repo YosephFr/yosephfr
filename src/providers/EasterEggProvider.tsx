@@ -4,7 +4,8 @@ import { createContext, useContext, useState, useEffect, useLayoutEffect, useCal
 import { usePathname } from "next/navigation"
 import { useEasterEggs } from "@/hooks/useEasterEggs"
 import { engine } from "@/easter-eggs/engine"
-import AchievementToastStack, { type ToastData } from "@/components/AchievementToast"
+import dynamic from "next/dynamic"
+import type { ToastData } from "@/components/AchievementToast"
 import useKeyboardTriggers from "@/easter-eggs/triggers/useKeyboardTriggers"
 import useClickTriggers from "@/easter-eggs/triggers/useClickTriggers"
 import useScrollTriggers from "@/easter-eggs/triggers/useScrollTriggers"
@@ -13,6 +14,9 @@ import useMouseTriggers from "@/easter-eggs/triggers/useMouseTriggers"
 import useDevToolsTrigger from "@/easter-eggs/triggers/useDevToolsTrigger"
 import { confetti, matrixRain, screenFlip, discoMode, tealPulse } from "@/easter-eggs/effects/visualEffects"
 import "@/easter-eggs/registry"
+
+// framer-motion solo se descarga cuando aparece el primer logro.
+const AchievementToastStack = dynamic(() => import("@/components/AchievementToast"), { ssr: false })
 
 type EasterEggContextValue = ReturnType<typeof useEasterEggs>
 
@@ -48,6 +52,9 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const isEditorial = !["/snake", "/memory", "/typing", "/click", "/achievements", "/secreto"].includes(pathname)
   const [activeToasts, setActiveToasts] = useState<ToastData[]>([])
+  // Una vez montado se conserva, para que el último aviso pueda animar su salida.
+  const [toastsMounted, setToastsMounted] = useState(false)
+  if (activeToasts.length > 0 && !toastsMounted) setToastsMounted(true)
 
   useLayoutEffect(() => {
     const unsubscribe = engine.onDiscover((egg) => {
@@ -68,7 +75,7 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     <EasterEggContext.Provider value={easterEggs}>
       {!isEditorial && <EasterEggTriggers />}
       {children}
-      {!isEditorial && <AchievementToastStack
+      {!isEditorial && toastsMounted && <AchievementToastStack
         toasts={activeToasts}
         progress={easterEggs.progress}
         onDismiss={handleDismiss}
