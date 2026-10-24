@@ -69,6 +69,8 @@ export async function qaRelease(release) {
       await page.getByRole('heading',{name:'Memory',exact:true}).waitFor();
       await page.waitForFunction(()=>document.querySelectorAll('div.grid.grid-cols-4 > button').length===16);
       const cards = page.locator('div.grid.grid-cols-4 > button');
+      // El mazo se baraja un cuadro después de montar; un clic por coordenadas antes de eso cae en otra carta.
+      await page.waitForFunction(() => [...document.querySelectorAll('div.grid.grid-cols-4 > button')].map(b => b.textContent.replace(/\?/g, '')).join() !== 'WP,WP,JS,JS,CSS,CSS,PHP,PHP,AWS,AWS,SQL,SQL,SEO,SEO,CDN,CDN', null, { timeout: 3000 }).catch(() => {});
       for(const text of ['WP','JS','CSS','PHP','AWS','SQL','SEO','CDN']) {
         const pair = cards.filter({has:page.getByText(text,{exact:true})});
         assert.equal(await pair.count(),2);
