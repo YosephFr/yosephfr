@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { getPublicArticles } from '@/data/articles'
+import { getEnglishIndex } from '@/data/articles'
 import { PROFILE } from '@/data/profile'
 import ArticleCards from '@/components/blog/ArticleCards'
 import Hero from '@/components/Hero'
@@ -18,13 +18,14 @@ const description = 'AI agents, software and automation for real work. Experienc
 export const metadata: Metadata = {
   title: { absolute: title },
   description,
-  alternates: { canonical: '/en', languages: alternates('/', '/en'), types: { 'application/rss+xml': '/feed.xml' } },
+  alternates: { canonical: '/en', languages: alternates('/', '/en'), types: { 'application/rss+xml': '/en/feed.xml' } },
   openGraph: og({ title, description, url: '/en', type: 'website', locale: 'en_US', alternateLocale: ['es_AR'] }),
   twitter: { card: 'summary_large_image', title: 'Arncof · Yoseph Franco', description, images: ['/og-arncof-v2.jpg'] },
 }
 
 export default function HomeEn() {
-  const articles = getPublicArticles()
+  const { english, spanishOnly } = getEnglishIndex()
+  const articles = [...english, ...spanishOnly]
   const t = UI.en
   const schema = {
     '@context': 'https://schema.org',

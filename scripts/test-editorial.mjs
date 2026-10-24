@@ -40,7 +40,8 @@ test('Lote ampliable: tres publicados, borrador y futuro; RSS/sitemap usan la mi
     const articles=loadTs('src/data/articles.ts',{'./articles.json':data});
     assert.deepEqual(articles.getPublicArticles().map(a=>a.slug),['tercero-reciente','medio','antiguo']);
     assert.equal(articles.getArticles().length,5);
-    const feed=loadTs('src/app/feed.xml/route.ts',{'@/data/articles':articles});
+    const rss=loadTs('src/lib/rss.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}}});
+    const feed=loadTs('src/app/feed.xml/route.ts',{'@/data/articles':articles,'@/lib/rss':rss});
     const xml=await feed.GET().text();
     assert(xml.includes('&lt;prueba&gt; &amp; utilidad'));
     assert(!xml.includes('borrador-privado')&&!xml.includes('futuro-publicado'));
@@ -66,7 +67,8 @@ test('El importador rechaza metadatos ambiguos, fechas imposibles y slugs repeti
   assert.throws(()=>parseArticle(article('malo').replace('12:30:00','24:00:00')),/fecha inválida/);
   assert.throws(()=>parseArticle(article('malo').replace('status: "publicado"','status: "publicado"\nstatus: "borrador"')),/duplicado/);
   assert.throws(()=>parseArticle(article('malo').replace('description:','other:')),/description/);
-  assert.throws(()=>parseArticle(article('malo').replace('language: "es"','language: "en"')),/idioma/);
+  assert.throws(()=>parseArticle(article('malo').replace('language: "es"','language: "fr"')),/idioma/);
+  assert.throws(()=>parseArticle(article('malo').replace('language: "es"','language: "es"\ntranslation: "Mal Slug"')),/translation/);
   const directory=fs.mkdtempSync(path.join(lab,'duplicates-'));
   try {fs.writeFileSync(path.join(directory,'a.md'),article('mismo'));fs.writeFileSync(path.join(directory,'b.md'),article('mismo'));assert.throws(()=>readArticles(directory),/duplicados/);} finally {fs.rmSync(directory,{recursive:true,force:true});}
 });
@@ -76,7 +78,8 @@ test('El gate de exportación bloquea preview, rutas ocultas, texto en JS, fuent
   const put=(file,content)=>{fs.mkdirSync(path.dirname(path.join(directory,file)),{recursive:true});fs.writeFileSync(path.join(directory,file),content);};
   const options={root:directory,articles,now,preview:false};
   try {
-    put('index.html','Portada');put('blog.html','Blog');put('blog/publicado.html','Publicado');
+    put('index.html','<html lang="es">Portada');put('blog.html','<html lang="es">Blog');put('blog/publicado.html','<html lang="es">Publicado');put('404.html','<html lang="es">404');
+    put('en.html','<html lang="en">Home');put('en/blog.html','<html lang="en">Blog');put('en/feed.xml','<rss><channel/></rss>');
     put('feed.xml','<rss><channel><item><link>https://yosephfr.com/blog/publicado</link></item></channel></rss>');
     put('sitemap.xml','<urlset><url><loc>https://yosephfr.com/blog/publicado</loc></url></urlset>');
     assert.equal(verifyPublicExport(options).publicArticles,1);
@@ -85,7 +88,10 @@ test('El gate de exportación bloquea preview, rutas ocultas, texto en JS, fuent
     put('blog/borrador-secreto.txt','RSC');assert.throws(()=>verifyPublicExport(options),/Ruta editorial/);fs.unlinkSync(path.join(directory,'blog/borrador-secreto.txt'));
     put('_next/static/test.js',JSON.stringify(articles[1]));assert.throws(()=>verifyPublicExport(options),/no público/);
     put('_next/static/test.js','const source="/Users/private/material"');assert.throws(()=>verifyPublicExport(options),/privado/);
-    put('_next/static/test.js','const clean=true');put('feed.xml','<rss><channel/></rss>');assert.throws(()=>verifyPublicExport(options),/RSS/);
+    put('_next/static/test.js','const clean=true');
+    put('en/blog/sin-articulos.html','marcador');assert.throws(()=>verifyPublicExport(options),/Marcador de lista vacía/);fs.unlinkSync(path.join(directory,'en/blog/sin-articulos.html'));
+    put('en.html','<html lang="es">Home');assert.throws(()=>verifyPublicExport(options),/html lang/);put('en.html','<html lang="en">Home');
+    put('feed.xml','<rss><channel/></rss>');assert.throws(()=>verifyPublicExport(options),/RSS/);
   } finally {fs.rmSync(directory,{recursive:true,force:true});}
 });
 
@@ -104,4 +110,40 @@ test('Fecha pública real: published_at prevalece sin retrofechar la ventana y c
   assert.equal(parseArticle(precise).updated,iso);
   assert.throws(()=>parseArticle(actual.replace('published_at: "2026-10-23T15:50:00-03:00"','published_at: "2026-10-23T11:50:00-03:00"')),/published_at anterior/);
   assert.throws(()=>parseArticle(actual.replace('published_at: "2026-10-23T15:50:00-03:00"','published_at: "2026-02-31T15:50:00-03:00"')),/fecha inválida/);
+});
+
+test('Versión en inglés: parejas recíprocas, rutas /en/blog, feed propio y hreflang en el sitemap',async()=>{
+  const directory=fs.mkdtempSync(path.join(lab,'bilingue-'));
+  const originalNow=Date.now;
+  const en=raw=>raw.replace('language: "es"','language: "en"');
+  const pair=(raw,other)=>raw.replace('language:',`translation: "${other}"\nlanguage:`);
+  try {
+    fs.writeFileSync(path.join(directory,'a.md'),pair(article('guia'),'guide'));
+    fs.writeFileSync(path.join(directory,'a.en.md'),pair(en(article('guide')),'guia'));
+    fs.writeFileSync(path.join(directory,'b.md'),article('solo-espanol'));
+    const data=readArticles(directory);
+    assert.equal(data.find(a=>a.slug==='guide').translation,'guia');
+    fs.writeFileSync(path.join(directory,'c.en.md'),pair(en(article('huerfano')),'no-existe'));
+    assert.throws(()=>readArticles(directory),/pareja recíproca/);
+    fs.writeFileSync(path.join(directory,'c.en.md'),pair(en(article('huerfano','publicado','2026-10-21T12:30:00-03:00')),'solo-espanol'));
+    fs.writeFileSync(path.join(directory,'b.md'),pair(article('solo-espanol'),'huerfano'));
+    assert.throws(()=>readArticles(directory),/misma hora/);
+    fs.rmSync(path.join(directory,'c.en.md'));fs.writeFileSync(path.join(directory,'b.md'),article('solo-espanol'));
+    Date.now=()=>now;
+    const articles=loadTs('src/data/articles.ts',{'./articles.json':readArticles(directory)});
+    assert.deepEqual(articles.getPublicArticles('en').map(a=>a.slug),['guide']);
+    assert.deepEqual(articles.getPublicArticles().map(a=>a.slug).sort(),['guia','solo-espanol']);
+    assert.equal(articles.getArticle('guide'),undefined);
+    assert.equal(articles.articlePath(articles.getArticle('guide','en')),'/en/blog/guide');
+    assert.equal(articles.getTranslation(articles.getArticle('guide','en')).slug,'guia');
+    assert.deepEqual(articles.getEnglishIndex().spanishOnly.map(a=>a.slug),['solo-espanol']);
+    const rss=loadTs('src/lib/rss.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}}});
+    const feed=loadTs('src/app/(en)/en/feed.xml/route.ts',{'@/data/articles':articles,'@/lib/rss':rss});
+    const xml=await feed.GET().text();
+    assert(xml.includes('<link>https://yosephfr.com/en/blog/guide</link>')&&xml.includes('<language>en</language>')&&!xml.includes('guia'));
+    const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]}}).default();
+    const guide=sitemap.find(a=>a.url==='https://yosephfr.com/en/blog/guide');
+    assert.deepEqual(guide.alternates.languages,{en:'https://yosephfr.com/en/blog/guide',es:'https://yosephfr.com/blog/guia'});
+    assert.equal(sitemap.find(a=>a.url==='https://yosephfr.com/blog/solo-espanol').alternates,undefined);
+  } finally {Date.now=originalNow;fs.rmSync(directory,{recursive:true,force:true});}
 });

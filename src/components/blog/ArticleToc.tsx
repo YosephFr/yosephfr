@@ -6,7 +6,10 @@ import DotIcon from '@/components/dots/DotIcon'
 type Heading = { id: string; text: string }
 
 // Índice con puntos: el actual se ilumina y los leídos quedan llenos.
-export default function ArticleToc({ headings, variant }: { headings: Heading[]; variant: 'lateral' | 'movil' }) {
+const TEXT = { es: { title: 'En este artículo', label: 'Secciones del artículo' }, en: { title: 'In this article', label: 'Article sections' } }
+
+export default function ArticleToc({ headings, variant, lang = 'es' }: { headings: Heading[]; variant: 'lateral' | 'movil'; lang?: 'es' | 'en' }) {
+  const t = TEXT[lang]
   const [current, setCurrent] = useState(-1)
 
   useEffect(() => {
@@ -39,14 +42,14 @@ export default function ArticleToc({ headings, variant }: { headings: Heading[];
   if (variant === 'movil') {
     return (
       <details className="indice-movil">
-        <summary>En este artículo <DotIcon name="abajo" size={12} /></summary>
-        <nav aria-label="Secciones del artículo">{links(true)}</nav>
+        <summary>{t.title} <DotIcon name="abajo" size={12} /></summary>
+        <nav aria-label={t.label}>{links(true)}</nav>
       </details>
     )
   }
   return (
-    <nav aria-label="Secciones del artículo" className="indice">
-      <h2>En este artículo</h2>
+    <nav aria-label={t.label} className="indice">
+      <h2>{t.title}</h2>
       {links(false)}
     </nav>
   )

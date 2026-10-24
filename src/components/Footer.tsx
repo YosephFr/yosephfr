@@ -39,7 +39,7 @@ export default function Footer({ lang = 'es' }: { lang?: Lang }) {
                 </a>
               </li>
             ))}
-            <li><a href="/feed.xml">RSS<DotIcon name="rss" size={11} /></a></li>
+            <li><a href={lang === 'en' ? '/en/feed.xml' : '/feed.xml'}>RSS<DotIcon name="rss" size={11} /></a></li>
           </ul>
         </nav>
       </div>

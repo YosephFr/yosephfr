@@ -7,41 +7,50 @@ import { EasterEggProvider } from "@/providers/EasterEggProvider"
 import Navbar from "@/components/Navbar"
 import CommandPalette from "@/components/CommandPalette"
 import JsonLd from "@/components/JsonLd"
-import "./globals.css"
+import "@/app/globals.css"
 import { PROFILE } from "@/data/profile"
 import AnalyticsEvents from "@/components/AnalyticsEvents"
+import type { Lang } from "@/lib/lang"
 
-export const metadata: Metadata = {
-  title: { default: 'Arncof · Yoseph Franco | IA y software', template: '%s | Arncof' },
-  description: PROFILE.description,
+// Cada idioma tiene su layout raíz (app/(es) y app/(en)) para que <html lang> sea el correcto; los dos usan este marco.
+const SHARED: Metadata = {
   authors: [{ name: PROFILE.name, url: PROFILE.url }],
   creator: PROFILE.name,
   publisher: PROFILE.brand,
   metadataBase: new URL(PROFILE.url),
-  // Cada ruta declara su canonical; la 404 no hereda la de la portada.
-  alternates: { types: { 'application/rss+xml': '/feed.xml' } },
-  openGraph: { type: 'website', locale: 'es_AR', url: PROFILE.url, siteName: PROFILE.brand,
-    title: 'Arncof · Yoseph Franco | IA y software', description: PROFILE.description,
-    images: [{ url: '/og-arncof-v2.jpg', width:1200, height:630, alt:'Arncof · IA que llega al trabajo real', type:'image/jpeg' }] },
-  twitter: {card:'summary_large_image',title:'Arncof · Yoseph Franco',description:PROFILE.description,images:['/og-arncof-v2.jpg'],creator:'@arncof'},
-  robots:{index:true,follow:true,googleBot:{index:true,follow:true,'max-video-preview':-1,'max-image-preview':'large','max-snippet':-1}},
-  category:'technology',
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-video-preview': -1, 'max-image-preview': 'large', 'max-snippet': -1 } },
+  category: 'technology',
 }
 
-export const viewport: Viewport = {
+const COPY = {
+  es: { title: 'Arncof · Yoseph Franco | IA y software', description: PROFILE.description, locale: 'es_AR', alt: 'Arncof · IA que llega al trabajo real', skip: 'Ir al contenido', feed: '/feed.xml' },
+  en: { title: 'Arncof · Yoseph Franco | AI and software', description: 'AI agents, software and automation for real work. Experience, guides and analysis by Yoseph Franco, Arncof.', locale: 'en_US', alt: 'Arncof · AI that reaches real work', skip: 'Skip to content', feed: '/en/feed.xml' },
+}
+
+export function siteMetadata(lang: Lang): Metadata {
+  const c = COPY[lang]
+  return {
+    ...SHARED,
+    title: { default: c.title, template: '%s | Arncof' },
+    description: c.description,
+    // Cada ruta declara su canonical; la 404 no hereda la de la portada.
+    alternates: { types: { 'application/rss+xml': c.feed } },
+    openGraph: { type: 'website', locale: c.locale, url: PROFILE.url, siteName: PROFILE.brand, title: c.title, description: c.description,
+      images: [{ url: '/og-arncof-v2.jpg', width: 1200, height: 630, alt: c.alt, type: 'image/jpeg' }] },
+    twitter: { card: 'summary_large_image', title: 'Arncof · Yoseph Franco', description: c.description, images: ['/og-arncof-v2.jpg'], creator: '@arncof' },
+  }
+}
+
+export const siteViewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#0a0a0b",
   colorScheme: "dark",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function SiteShell({ lang, children }: Readonly<{ lang: Lang; children: React.ReactNode }>) {
   return (
-    <html lang="es" data-theme="dark">
+    <html lang={lang} data-theme="dark">
       <head>
         <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossOrigin="" />
         <Script id="ms-clarity" strategy="afterInteractive">{`
@@ -60,7 +69,7 @@ export default function RootLayout({
         `}</Script>
       </head>
       <body>
-        <a href="#contenido" className="skip-link">Ir al contenido</a>
+        <a href="#contenido" className="skip-link">{COPY[lang].skip}</a>
         <JsonLd />
         <AnalyticsEvents />
         <ThemeProvider>

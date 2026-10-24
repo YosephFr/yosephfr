@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { type Article } from '@/data/articles'
+import { articlePath, type Article } from '@/data/articles'
 import ArticleCover from './ArticleCover'
 import { UI, type Lang } from '@/lib/lang'
 
@@ -9,16 +9,27 @@ export function shortDate(date: string, lang: Lang = 'es') {
 
 type Props = { article: Article; level?: 'h2' | 'h3'; lang?: Lang }
 
-// Desde /en, la tarjeta avisa que el artículo está en español: el título y el resumen se marcan con lang="es".
+// Una tarjeta en otro idioma que la página (un artículo en español listado desde /en) lo avisa y marca su texto con lang.
+function linkProps(article: Article, lang: Lang) {
+  const foreign = article.language !== lang
+  return { href: articlePath(article), hrefLang: foreign ? article.language : undefined, textLang: foreign ? article.language : undefined, foreign }
+}
+function meta(article: Article, lang: Lang, withCategory: boolean) {
+  const { foreign } = linkProps(article, lang)
+  const t = UI[lang].articles
+  return `${withCategory && !foreign ? `${article.category} · ` : ''}${shortDate(article.date, lang)} · ${article.readingMinutes} ${t.minutes}${foreign ? ` · ${t.inSpanish}` : ''}`
+}
+
 function Card({ article, level = 'h3', className = '', lang = 'es' }: Props & { className?: string }) {
   const Title = level
+  const l = linkProps(article, lang)
   return (
-    <Link href={`/blog/${article.slug}`} hrefLang={lang === 'en' ? 'es' : undefined} data-event="article_open" className={`lamina articulo-tarjeta${className}`}>
+    <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-tarjeta${className}`}>
       <div className="articulo-portada"><ArticleCover slug={article.slug} /></div>
       <div className="articulo-texto">
-        <Title lang={lang === 'en' ? 'es' : undefined}>{article.title}</Title>
-        <p lang={lang === 'en' ? 'es' : undefined}>{article.description}</p>
-        <span className="meta pie-tarjeta">{shortDate(article.date, lang)} · {article.readingMinutes} {UI[lang].articles.minutes}</span>
+        <Title lang={l.textLang}>{article.title}</Title>
+        <p lang={l.textLang}>{article.description}</p>
+        <span className="meta pie-tarjeta">{meta(article, lang, false)}</span>
       </div>
     </Link>
   )
@@ -26,13 +37,14 @@ function Card({ article, level = 'h3', className = '', lang = 'es' }: Props & { 
 
 export function FeaturedArticle({ article, level = 'h2', compact = false, lang = 'es' }: Props & { compact?: boolean }) {
   const Title = level
+  const l = linkProps(article, lang)
   return (
-    <Link href={`/blog/${article.slug}`} hrefLang={lang === 'en' ? 'es' : undefined} data-event="article_open" className={`lamina articulo-destacado${compact ? ' compacto' : ''}`}>
+    <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-destacado${compact ? ' compacto' : ''}`}>
       <div className="articulo-portada"><ArticleCover slug={article.slug} cols={compact ? 18 : 16} rows={compact ? 8 : 11} /></div>
       <div className="articulo-texto">
-        <Title lang={lang === 'en' ? 'es' : undefined}>{article.title}</Title>
-        <p lang={lang === 'en' ? 'es' : undefined}>{article.description}</p>
-        <span className="meta pie-tarjeta">{lang === 'es' && `${article.category} · `}{shortDate(article.date, lang)} · {article.readingMinutes} {UI[lang].articles.minutes}</span>
+        <Title lang={l.textLang}>{article.title}</Title>
+        <p lang={l.textLang}>{article.description}</p>
+        <span className="meta pie-tarjeta">{meta(article, lang, true)}</span>
       </div>
     </Link>
   )

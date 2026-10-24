@@ -1,15 +1,10 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
 import DotField, { cascade, digitsAt } from '@/components/dots/DotField'
 
-export const metadata: Metadata = {
-  title: 'Página no encontrada',
-  robots: { index: false, follow: true },
-}
-
-export default function NotFound() {
+// Contenido de la 404, compartido por la 404 global (URLs que no existen) y la de cada grupo (notFound()).
+export default function NotFoundContent() {
   const digits = digitsAt('404', 3, 2)
   const taken = new Set(digits.map(c => c.join(',')))
   const dust = cascade(23, 11, 'arncof-404', 'abajo', 0.55).filter(([x, y]) => y > 9 && !taken.has(`${x},${y}`))

@@ -9,8 +9,10 @@ if(preview){
 }else{
   for(const a of articles.filter(a=>!visible.includes(a))){
     if(!/^[a-z0-9-]+$/.test(a.slug))throw new Error('Slug no valido');
-    for(const suffix of ['.html','.txt',''])fs.rmSync(path.join('out','blog',a.slug+suffix),{force:true,recursive:true});
+    for(const suffix of ['.html','.txt',''])fs.rmSync(path.join('out',a.language==='en'?'en/blog':'blog',a.slug+suffix),{force:true,recursive:true});
   }
+  // Marcador que generateStaticParams emite cuando un idioma todavía no tiene artículos visibles.
+  for(const dir of ['blog','en/blog'])for(const suffix of ['.html','.txt',''])fs.rmSync(path.join('out',dir,'sin-articulos'+suffix),{force:true,recursive:true});
   verifyPublicExport({articles});
 }
 console.log(preview?'Vista previa marcada: no desplegar.':`Exportacion final: ${visible.length} articulos publicables; borradores excluidos.`);
