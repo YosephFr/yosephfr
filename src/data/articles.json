@@ -1,5 +1,471 @@
 [
   {
+    "slug": "que-ve-un-agente-tarjeta-contrasena",
+    "title": "¿Qué ve un agente de IA de tu tarjeta o tu contraseña?",
+    "description": "Si escribes tu contraseña en el chat, el modelo la lee; con formularios seguros o gestores, no. Lo que documentan OpenAI, Anthropic, 1Password y Bitwarden.",
+    "category": "Seguridad",
+    "language": "es",
+    "translation": "what-an-ai-agent-sees-card-password",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:45:00-03:00",
+    "updated": "2026-10-24T18:45:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "tags": [
+      "agentes de IA",
+      "seguridad",
+      "contraseñas",
+      "gestores de contraseñas",
+      "privacidad"
+    ],
+    "faq": [
+      {
+        "q": "¿El agente de IA ve mi contraseña si la escribo en el chat?",
+        "a": "Sí. Todo lo que escribes en el chat entra en el contexto que lee el modelo. Por eso OpenAI pide no pegar contraseñas, códigos de seguridad ni datos de pago en la conversación, y Bitwarden no recomienda ingresar credenciales directamente en modelos o agentes."
+      },
+      {
+        "q": "¿ChatGPT ve la contraseña que escribo en su formulario seguro de inicio de sesión?",
+        "a": "Según OpenAI, no. Las credenciales del formulario seguro van directo al navegador remoto, el modelo no las ve y ChatGPT no las guarda. La sesión iniciada sí puede seguir activa para tareas futuras hasta que expire o borres los datos del sitio."
+      },
+      {
+        "q": "¿Claude in Chrome puede pagar con mi tarjeta?",
+        "a": "No. La guía de permisos de Anthropic indica que Claude in Chrome tiene prohibido hacer compras o transacciones financieras y manejar datos sensibles de tarjetas o documentos de identidad, sin importar el modo de permisos."
+      },
+      {
+        "q": "¿Puedo usar mi gestor de contraseñas con un agente sin que vea la clave?",
+        "a": "Hay opciones en etapa temprana. 1Password ofrece Secure Agentic Autofill en acceso anticipado vía Browserbase y anunció 1Password for Agents el 22/10/2026. Bitwarden publicó Agent Access SDK en fase alfa temprana. En todos, una persona aprueba cada uso de la credencial."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** si escribes tu contraseña o tu tarjeta en el chat, el modelo la ve, porque todo lo que escribes ahí entra en su contexto. Si la ingresas en un formulario seguro de inicio de sesión, como el del navegador en la nube de ChatGPT, o la rellena un gestor de contraseñas con tu aprobación, el dato va directo al sitio y, según la documentación oficial, el modelo no lo lee. Lo que decide si el agente ve tu secreto no es la marca del agente, sino el camino por el que entra el dato."
+      },
+      {
+        "type": "paragraph",
+        "text": "Uso agentes de IA a diario y la pregunta que más me hacen es \"¿el agente ve mi contraseña?\". Aquí reviso qué dicen hoy las páginas oficiales, sin suponer nada que no esté escrito en ellas."
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué pasa si escribes tu contraseña en el chat?"
+      },
+      {
+        "type": "paragraph",
+        "text": "El chat es la entrada del modelo: lo que escribes ahí, lo lee. 1Password lo resume así: quien entrega credenciales directamente a una app de IA que usa el navegador puede exponerlas al agente y al modelo subyacente, y esos secretos terminan repartidos entre agentes, *prompts* y registros ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "Los propios fabricantes lo desaconsejan:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI: \"Never paste passwords, security codes, or payment details into the conversation\" (\"nunca pegues contraseñas, códigos de seguridad ni datos de pago en la conversación\") ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)).",
+          "Bitwarden: no recomienda ingresar credenciales sensibles directamente en modelos o agentes de IA ([GitHub de Bitwarden](https://github.com/bitwarden/agent-access)).",
+          "Google, sobre Gemini: pide no ingresar información confidencial que no querrías que viera un revisor humano ([Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en))."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué ve ChatGPT cuando usas su formulario seguro?"
+      },
+      {
+        "type": "paragraph",
+        "text": "El navegador en la nube de ChatGPT Work se detiene cuando llega a una página de inicio de sesión compatible y te pide que entres con un formulario seguro. Según OpenAI ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Las credenciales del formulario seguro van directo al navegador remoto. El modelo no ve el usuario ni la contraseña, y ChatGPT no guarda esas credenciales.",
+          "Antes de pedirte que inicies sesión, un modelo de revisión adicional busca señales de *phishing*, y tú ves la dirección del sitio y una vista previa del formulario.",
+          "Antes de acciones difíciles de revertir, como confirmar una reserva o hacer un pago, ChatGPT te pide confirmación en el chat."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay un matiz: la sesión iniciada sigue activa para tareas futuras hasta que expire; puedes cerrarla antes borrando los datos del sitio en *Settings > Cloud browser*. OpenAI también indica que en iOS puedes usar un gestor de contraseñas compatible para iniciar sesión ([ChatGPT Learn](https://learn.chatgpt.com/docs/browser))."
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué permite Claude in Chrome con datos sensibles y tarjetas?"
+      },
+      {
+        "type": "paragraph",
+        "text": "La guía de permisos de Anthropic ([Claude Help Center](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)) establece dos reglas que aplican en cualquier modo de permisos:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Permiso explícito** antes de ingresar información potencialmente sensible en un sitio, incluso si marcaste un sitio como \"siempre permitir\".",
+          "**Acciones prohibidas**: hacer compras o transacciones financieras y manejar datos sensibles de tarjetas o de documentos de identidad, entre otras."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Para trabajo con dinero, mensajes en tu nombre o archivos importantes, recomienda supervisar de cerca o volver al modo manual. La guía no detalla si el modelo ve el valor que autorizas ingresar, así que no lo afirmo en ningún sentido."
+      },
+      {
+        "type": "heading",
+        "text": "¿Cómo funcionan los gestores de contraseñas con agentes?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Aquí el dato no lo escribes tú ni el agente: lo rellena el gestor después de que una persona aprueba."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1Password.** Su función Secure Agentic Autofill inyecta credenciales en el navegador mediante la extensión de 1Password, solo cuando hacen falta y siempre con autorización de una persona. 1Password afirma que las credenciales en bruto nunca entran en el contexto del modelo y que viajan por un canal cifrado de extremo a extremo basado en el Noise Framework ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)). Está en acceso anticipado desde el 8 de octubre de 2025 para clientes de 1Password que usan Browserbase ([nota de prensa](https://1password.com/press/2025/oct/browserbase-ai-security-partnership), [Marketplace](https://marketplace.1password.com/integration/browserbase)). El 22 de octubre de 2026, 1Password anunció además 1Password for Agents: el agente pide una credencial, tú apruebas y 1Password la rellena en el sitio sin que el agente tenga acceso a ella. Por ahora es para cuentas Individual y Family de 1Password.com, y la disponibilidad y las capacidades varían según cada integración ([1Password](https://1password.com/blog/1password-for-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bitwarden.** El 24 de marzo de 2026 publicó Agent Access SDK, un protocolo abierto con licencia Apache 2.0. Permite aprobar credenciales específicas solo cuando una tarea las necesita, en lugar de dar acceso a todo el baúl, con cifrado de extremo a extremo y aprobación humana. Hoy funciona por línea de comandos: el subcomando `run` inyecta la credencial como variables de entorno en un proceso; la extensión de navegador está anunciada como \"próximamente\" ([Bitwarden](https://bitwarden.com/blog/introducing-agent-access-sdk/)). El blog lo describe en fase alfa temprana y pide probarlo solo con datos de muestra; el repositorio lo llama \"early preview\" y recomienda la inyección por entorno para no exponer secretos en el contexto ([GitHub](https://github.com/bitwarden/agent-access))."
+      },
+      {
+        "type": "heading",
+        "text": "Comparación rápida"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Método",
+          "¿El modelo ve el valor?",
+          "¿Quién confirma?",
+          "Estado"
+        ],
+        "rows": [
+          [
+            "Escribirlo en el chat",
+            "Sí, entra en el contexto",
+            "Nadie",
+            "Desaconsejado por OpenAI y Bitwarden"
+          ],
+          [
+            "Formulario seguro de ChatGPT",
+            "No, según OpenAI",
+            "Tú inicias sesión; pagos y reservas se confirman en el chat",
+            "Disponible en planes pagos, salvo Free y Go"
+          ],
+          [
+            "Claude in Chrome",
+            "No documentado",
+            "Tú, con permiso explícito; tarjetas prohibidas",
+            "Disponible en planes pagos"
+          ],
+          [
+            "1Password Secure Agentic Autofill",
+            "No, según 1Password",
+            "Tú apruebas cada solicitud",
+            "Acceso anticipado (Browserbase)"
+          ],
+          [
+            "Bitwarden Agent Access SDK",
+            "No, si se usa inyección por entorno",
+            "Tú apruebas en la CLI",
+            "Alfa temprana / *early preview*"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist práctico"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**No pegues contraseñas, códigos ni datos de tarjeta en el chat.**",
+          "**Usa el formulario seguro** cuando el agente lo ofrezca, y revisa la dirección del sitio antes de escribir.",
+          "**Revisa cada confirmación** de pago o reserva antes de aceptar.",
+          "**Cierra la sesión del agente** cuando termines: en ChatGPT, borra los datos del sitio en *Settings > Cloud browser*.",
+          "**Usa el modo manual** para tareas con dinero o mensajes en tu nombre, como recomienda Anthropic.",
+          "**Usa un gestor de contraseñas** con claves únicas por cuenta. El NCSC del Reino Unido señala que el autocompletado también protege del *phishing*, porque la contraseña solo se rellena en el sitio correcto ([NCSC](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers)).",
+          "**Activa la verificación en dos pasos** y usa *passkeys* donde existan, como recomienda el NCSC.",
+          "**Trata como experimentales** las integraciones de gestores en acceso anticipado o alfa."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "La pregunta que me hago antes de compartir un dato ya no es \"¿confío en este agente?\", sino \"¿este dato pasa por el contexto del modelo?\". Si la respuesta es sí, busco otro camino."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿El agente de IA ve mi contraseña si la escribo en el chat?**\nSí. Lo que escribes en el chat entra en el contexto del modelo. OpenAI y Bitwarden desaconsejan hacerlo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿ChatGPT ve la contraseña que escribo en su formulario seguro?**\nSegún OpenAI, no: va directo al navegador remoto y ChatGPT no la guarda. La sesión sí puede seguir activa hasta que expire."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Claude in Chrome puede pagar con mi tarjeta?**\nNo. Tiene prohibido comprar y manejar datos sensibles de tarjetas, en cualquier modo de permisos."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Puedo usar mi gestor de contraseñas con un agente sin que vea la clave?**\nHay opciones en etapa temprana: 1Password Secure Agentic Autofill (acceso anticipado), 1Password for Agents (anunciado el 22/10/2026) y Bitwarden Agent Access SDK (alfa temprana). En todos, una persona aprueba cada uso."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consultadas el 24 de octubre de 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI Help Center, [Using cloud browser in ChatGPT](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)",
+          "ChatGPT Learn, [Browser](https://learn.chatgpt.com/docs/browser)",
+          "Claude Help Center, [Claude in Chrome permissions guide](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)",
+          "1Password, [Closing the credential risk gap for AI agents using a browser](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)",
+          "1Password, [1Password and Browserbase Partner to Secure Credential Access for Agentic AI Automation](https://1password.com/press/2025/oct/browserbase-ai-security-partnership) (8/10/2025)",
+          "1Password Marketplace, [Secure Agentic Autofill for Browserbase (Early Access)](https://marketplace.1password.com/integration/browserbase)",
+          "1Password, [Introducing 1Password for Agents](https://1password.com/blog/1password-for-ai-agents) (22/10/2026)",
+          "Bitwarden, [Introducing the Agent Access SDK](https://bitwarden.com/blog/introducing-agent-access-sdk/) (24/03/2026)",
+          "GitHub, [bitwarden/agent-access](https://github.com/bitwarden/agent-access)",
+          "Google, [Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en)",
+          "NCSC (Reino Unido), [Managing your passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) (revisada el 21/05/2026)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "what-an-ai-agent-sees-card-password",
+    "title": "What an AI Agent Sees When You Share a Card or Password",
+    "description": "Type a password into the chat and the model reads it. Use a secure sign-in form or password-manager autofill and, per the vendors, it does not.",
+    "category": "Security",
+    "language": "en",
+    "translation": "que-ve-un-agente-tarjeta-contrasena",
+    "author": "Yoseph Franco",
+    "date": "2026-10-24T18:45:00-03:00",
+    "updated": "2026-10-24T18:45:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "tags": [
+      "AI agents",
+      "security",
+      "passwords",
+      "password managers",
+      "privacy"
+    ],
+    "faq": [
+      {
+        "q": "Can an AI agent see my password if I type it into the chat?",
+        "a": "Yes. Anything you type into the chat becomes part of the context the model reads. That is why OpenAI says never to paste passwords, security codes or payment details into the conversation, and Bitwarden does not recommend entering sensitive credentials directly into LLMs or AI agents."
+      },
+      {
+        "q": "Does ChatGPT see the password I enter in its secure sign-in form?",
+        "a": "According to OpenAI, no. Credentials entered through the secure form go directly to the remote browser, are not visible to the model, and are not stored by ChatGPT. The signed-in session can persist for future tasks until it expires or you clear the site's data."
+      },
+      {
+        "q": "Can Claude in Chrome pay with my credit card?",
+        "a": "No. Anthropic's permissions guide says Claude in Chrome is prohibited from making purchases or financial transactions and from handling sensitive credit card or ID data, regardless of permission mode."
+      },
+      {
+        "q": "Can I use my password manager with an AI agent without exposing the password?",
+        "a": "There are early-stage options. 1Password offers Secure Agentic Autofill in early access through Browserbase and announced 1Password for Agents on October 22, 2026. Bitwarden released the Agent Access SDK as an early alpha. In each case, a person approves every credential use."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Short answer:** if you type a password or card number into the chat, the model sees it, because everything in the chat becomes part of its context. If you enter it in a secure sign-in form, like the one in ChatGPT's cloud browser, or a password manager fills it in after you approve, the value goes straight to the website and, according to the vendors' documentation, the model never reads it. Whether an agent sees your secret depends less on which agent you use and more on which path the data takes."
+      },
+      {
+        "type": "paragraph",
+        "text": "I use AI agents every day, and the question I hear most is \"can the agent see my password?\" Below is what the official documentation from OpenAI, Anthropic, 1Password and Bitwarden says today, and nothing it doesn't. All sources were checked on October 24, 2026."
+      },
+      {
+        "type": "heading",
+        "text": "What happens when you paste a password into the chat?"
+      },
+      {
+        "type": "paragraph",
+        "text": "The chat is the model's input. Whatever you type there, it reads. 1Password puts it plainly: when people hand credentials directly to a browser-use AI app, they may expose them to the agent and the underlying LLM, scattering secrets across agents, prompts and logs ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "The vendors themselves warn against it:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**OpenAI:** \"Never paste passwords, security codes, or payment details into the conversation. Use the secure sign-in flow for credentials.\" ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt))",
+          "**Bitwarden:** \"We do not recommend inputting sensitive credentials directly into LLMs or AI agents.\" ([GitHub](https://github.com/bitwarden/agent-access))",
+          "**Google, on Gemini:** \"Please don't enter confidential information that you wouldn't want a reviewer to see or Google to use to improve our services.\" ([Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en))"
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "What does ChatGPT see when you use its secure sign-in form?"
+      },
+      {
+        "type": "paragraph",
+        "text": "ChatGPT Work's cloud browser pauses when it reaches a supported sign-in page and asks you to sign in through a secure form. According to OpenAI ([OpenAI Help](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Credentials entered in the secure form go directly to the remote browser. The username and password are not visible to the model, and ChatGPT does not store them.",
+          "Before you're asked to sign in, an additional review model checks the request for signs of phishing, and you see the site address and a preview of the form.",
+          "Before actions that are hard to reverse, such as confirming a booking or making a payment, ChatGPT asks for confirmation in the chat."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "One catch: the signed-in session persists for future tasks until it expires. You can end it earlier by clearing that site's data under *Settings > Cloud browser*. OpenAI also notes that on iOS you can sign in with a supported password manager ([ChatGPT Learn](https://learn.chatgpt.com/docs/browser))."
+      },
+      {
+        "type": "heading",
+        "text": "What does Claude in Chrome allow with sensitive data and cards?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic's permissions guide ([Claude Help Center](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)) sets two rules that apply in every permission mode:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Explicit permission** before entering potentially sensitive information into a website, even on sites you've marked \"always allow.\"",
+          "**Prohibited actions**, including making purchases or financial transactions and handling sensitive credit card or ID data."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "For work involving money, messages sent as you, or important files, Anthropic suggests staying close or switching back to manual approval. The guide doesn't say whether the model sees a value you authorize it to enter, so I won't claim either way."
+      },
+      {
+        "type": "heading",
+        "text": "How do password managers work with agents?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Here neither you nor the agent types the secret. The password manager fills it in after a human approves."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1Password.** Secure Agentic Autofill injects credentials into the browser through the 1Password browser extension, only when needed and always authorized by a person. 1Password says raw credentials never enter the LLM context and travel over an end-to-end encrypted channel built on the Noise Framework ([1Password](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)). It has been in early access since October 8, 2025, for 1Password customers using Browserbase ([press release](https://1password.com/press/2025/oct/browserbase-ai-security-partnership), [Marketplace](https://marketplace.1password.com/integration/browserbase)). On October 22, 2026, 1Password also announced 1Password for Agents: the agent requests a credential, you approve it, and 1Password fills it into the site so the agent doesn't have access to it. It's currently available for Individual and Family accounts on 1Password.com, and availability and capabilities vary by integration ([1Password](https://1password.com/blog/1password-for-ai-agents))."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Bitwarden.** On March 24, 2026, Bitwarden released the Agent Access SDK, an open protocol under the Apache 2.0 license. You approve specific credentials only when a task needs them, instead of exposing your whole vault, with end-to-end encryption and human approval. For now it runs from the command line: the `run` subcommand injects the credential as environment variables into a child process, and a browser extension is listed as coming soon ([Bitwarden](https://bitwarden.com/blog/introducing-agent-access-sdk/)). The blog calls it an early alpha and recommends testing with sample data only; the repository calls it an \"early preview\" and recommends environment injection to keep secrets out of recorded context ([GitHub](https://github.com/bitwarden/agent-access))."
+      },
+      {
+        "type": "heading",
+        "text": "Side-by-side"
+      },
+      {
+        "type": "table",
+        "headers": [
+          "Method",
+          "Does the model see the value?",
+          "Who confirms",
+          "Status"
+        ],
+        "rows": [
+          [
+            "Typing it into the chat",
+            "Yes, it's in the context",
+            "No one",
+            "Discouraged by OpenAI and Bitwarden"
+          ],
+          [
+            "ChatGPT secure sign-in form",
+            "No, per OpenAI",
+            "You sign in; payments and bookings confirmed in chat",
+            "Paid plans, excluding Free and Go"
+          ],
+          [
+            "Claude in Chrome",
+            "Not documented",
+            "You, via explicit permission; card data prohibited",
+            "Paid plans"
+          ],
+          [
+            "1Password Secure Agentic Autofill",
+            "No, per 1Password",
+            "You approve each request",
+            "Early access (Browserbase)"
+          ],
+          [
+            "Bitwarden Agent Access SDK",
+            "No, when using environment injection",
+            "You approve in the CLI",
+            "Early alpha / early preview"
+          ]
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "A practical checklist"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Never paste passwords, codes or card numbers into the chat.**",
+          "**Use the secure sign-in form** when the agent offers one, and check the site address first.",
+          "**Read every payment or booking confirmation** before you approve it.",
+          "**End the agent's session** when you're done. In ChatGPT, clear the site's data under *Settings > Cloud browser*.",
+          "**Use manual approval** for tasks involving money or messages sent as you, as Anthropic recommends.",
+          "**Use a password manager** with a unique password per account. The UK's NCSC notes that autofill also helps against phishing, because the password only fills on the correct website ([NCSC](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers)).",
+          "**Turn on two-step verification** and use passkeys wherever they're offered, as the NCSC recommends.",
+          "**Treat early-access and alpha integrations as experimental.**"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Before I share anything with an agent, the question I ask isn't \"do I trust this agent?\" It's \"does this value pass through the model's context?\" If it does, I look for another route."
+      },
+      {
+        "type": "heading",
+        "text": "FAQ"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can an AI agent see my password if I type it into the chat?**\nYes. Anything in the chat is part of the model's context. OpenAI and Bitwarden both advise against it."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Does ChatGPT see the password I enter in its secure sign-in form?**\nAccording to OpenAI, no. It goes directly to the remote browser and isn't stored by ChatGPT. The session can stay active until it expires."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can Claude in Chrome pay with my credit card?**\nNo. It's prohibited from making purchases and handling sensitive card data in every permission mode."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can I use my password manager with an agent without exposing the password?**\nThere are early-stage options: 1Password Secure Agentic Autofill (early access), 1Password for Agents (announced October 22, 2026) and Bitwarden's Agent Access SDK (early alpha). In each, a person approves every use."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "paragraph",
+        "text": "Checked October 24, 2026."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "OpenAI Help Center, [Using cloud browser in ChatGPT](https://help.openai.com/en/articles/20001280-using-cloud-browser-in-chatgpt)",
+          "ChatGPT Learn, [Browser](https://learn.chatgpt.com/docs/browser)",
+          "Claude Help Center, [Claude in Chrome permissions guide](https://support.claude.com/en/articles/12902446-claude-in-chrome-permissions-guide)",
+          "1Password, [Closing the credential risk gap for AI agents using a browser](https://1password.com/blog/closing-the-credential-risk-gap-for-browser-use-ai-agents)",
+          "1Password, [1Password and Browserbase Partner to Secure Credential Access for Agentic AI Automation](https://1password.com/press/2025/oct/browserbase-ai-security-partnership) (Oct 8, 2025)",
+          "1Password Marketplace, [Secure Agentic Autofill for Browserbase (Early Access)](https://marketplace.1password.com/integration/browserbase)",
+          "1Password, [Introducing 1Password for Agents](https://1password.com/blog/1password-for-ai-agents) (Oct 22, 2026)",
+          "Bitwarden, [Introducing the Agent Access SDK](https://bitwarden.com/blog/introducing-agent-access-sdk/) (Mar 24, 2026)",
+          "GitHub, [bitwarden/agent-access](https://github.com/bitwarden/agent-access)",
+          "Google, [Gemini Apps Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en)",
+          "UK NCSC, [Managing your passwords](https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers) (reviewed May 21, 2026)"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "samsung-tv-privacy-listening",
     "title": "They said phones weren't listening.",
     "description": "Today it's a Samsung TV. Before that it was Apple, Google and Amazon. Here's what's proven, what's alleged, and what's still a rumor, plus the settings to change tonight.",
