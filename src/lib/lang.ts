@@ -5,7 +5,7 @@ export const isEnglishPath = (path: string) => path === '/en' || path.startsWith
 
 export const UI = {
   es: {
-    home: '/', blog: '/blog',
+    home: '/', blog: '/blog', cv: '/cv', contactPath: '/contacto',
     nav: { home: 'Inicio', articles: 'Artículos', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio' },
     hero: {
       title: 'IA que llega al trabajo real.',
@@ -32,7 +32,7 @@ export const UI = {
     footer: { tagline: 'Agentes de IA, software y automatización para el trabajo real.', sections: 'Secciones', profiles: 'Perfiles', other: 'English', otherHref: '/en' },
   },
   en: {
-    home: '/en', blog: '/en/blog',
+    home: '/en', blog: '/en/blog', cv: '/en/cv', contactPath: '/en/contact',
     nav: { home: 'Home', articles: 'Articles', cv: 'CV', contact: 'Contact', brand: 'Arncof, home' },
     hero: {
       title: 'AI that reaches real work.',

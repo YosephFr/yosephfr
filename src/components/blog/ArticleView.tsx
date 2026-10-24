@@ -104,8 +104,8 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
                   <p>{PROFILE.name}. {t.bio}</p>
                 </div>
                 <div className="acciones">
-                  <Link href="/cv" hrefLang={lang === 'en' ? 'es' : undefined} className="boton boton-tonal">{t.cv}</Link>
-                  <Link href="/contacto" hrefLang={lang === 'en' ? 'es' : undefined} className="boton boton-tonal">{t.contact}</Link>
+                  <Link href={UI[lang].cv} className="boton boton-tonal">{t.cv}</Link>
+                  <Link href={UI[lang].contactPath} className="boton boton-tonal">{t.contact}</Link>
                 </div>
               </aside>
             </div>

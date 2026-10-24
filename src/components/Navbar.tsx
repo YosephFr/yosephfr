@@ -11,8 +11,8 @@ function items(lang: 'es' | 'en'): { href: string; label: string; icon: GlyphNam
   return [
     { href: t.home, label: t.nav.home, icon: 'inicio' },
     { href: t.blog, label: t.nav.articles, icon: 'articulos' },
-    { href: '/cv', label: t.nav.cv, icon: 'cv' },
-    { href: '/contacto', label: t.nav.contact, icon: 'contacto' },
+    { href: t.cv, label: t.nav.cv, icon: 'cv' },
+    { href: t.contactPath, label: t.nav.contact, icon: 'contacto' },
   ]
 }
 
@@ -20,8 +20,8 @@ function activeIndex(raw: string) {
   const path = raw.replace(/\.html$/, '').replace(/\/$/, '') || '/'
   if (path === '/' || path === '/en') return 0
   if (path.startsWith('/blog') || path.startsWith('/en/blog')) return 1
-  if (path === '/cv' || path.startsWith('/experiencia') || path.startsWith('/skills')) return 2
-  if (path === '/contacto') return 3
+  if (path === '/cv' || path === '/en/cv' || path.startsWith('/experiencia') || path.startsWith('/skills')) return 2
+  if (path === '/contacto' || path === '/en/contact') return 3
   return -1
 }
 

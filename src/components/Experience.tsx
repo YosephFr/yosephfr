@@ -12,7 +12,7 @@ export default function Experience({ lang = 'es' }: { lang?: Lang }) {
     <section id="trabajo" className="marco seccion acento-naranja">
       <div className="seccion-cabeza">
         <h2>{t.heading}</h2>
-        <Link href="/cv" className="enlace" hrefLang={hrefLang}>{t.cv} <DotIcon name="flecha" size={13} /></Link>
+        <Link href={UI[lang].cv} className="enlace">{t.cv} <DotIcon name="flecha" size={13} /></Link>
       </div>
       <div className="trabajos">
         {roles.map(job => (

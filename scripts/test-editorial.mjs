@@ -79,7 +79,7 @@ test('El gate de exportación bloquea preview, rutas ocultas, texto en JS, fuent
   const options={root:directory,articles,now,preview:false};
   try {
     put('index.html','<html lang="es">Portada');put('blog.html','<html lang="es">Blog');put('blog/publicado.html','<html lang="es">Publicado');put('404.html','<html lang="es">404');
-    put('en.html','<html lang="en">Home');put('en/blog.html','<html lang="en">Blog');put('en/feed.xml','<rss><channel/></rss>');
+    put('en.html','<html lang="en">Home');put('en/blog.html','<html lang="en">Blog');put('cv.html','<html lang="es">CV');put('en/cv.html','<html lang="en">CV');put('en/contact.html','<html lang="en">Contact');put('en/feed.xml','<rss><channel/></rss>');
     put('feed.xml','<rss><channel><item><link>https://yosephfr.com/blog/publicado</link></item></channel></rss>');
     put('sitemap.xml','<urlset><url><loc>https://yosephfr.com/blog/publicado</loc></url></urlset>');
     assert.equal(verifyPublicExport(options).publicArticles,1);

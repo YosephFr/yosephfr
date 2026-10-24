@@ -7,9 +7,9 @@ export const dynamic='force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
   const articles=[...getPublicArticles('es'),...getPublicArticles('en')]
   const blogUpdated=new Date(Math.max(Date.parse(PROFILE.updated),...articles.map(article=>Date.parse(article.updated))))
-  const paths=['','/en','/cv','/contacto','/blog','/en/blog',...EXPERIENCE.map(e=>`/experiencia/${e.slug}`),...SKILLS.map(s=>`/skills/${s.slug}`)]
+  const paths=['','/en','/cv','/en/cv','/contacto','/en/contact','/blog','/en/blog',...EXPERIENCE.map(e=>`/experiencia/${e.slug}`),...SKILLS.map(s=>`/skills/${s.slug}`)]
   // Portada, blog y artículos traducidos existen en los dos idiomas: cada versión declara a la otra.
-  const pairs:Record<string,{es:string;en:string}>={'':{es:'',en:'/en'},'/en':{es:'',en:'/en'},'/blog':{es:'/blog',en:'/en/blog'},'/en/blog':{es:'/blog',en:'/en/blog'}}
+  const pairs:Record<string,{es:string;en:string}>={'':{es:'',en:'/en'},'/en':{es:'',en:'/en'},'/blog':{es:'/blog',en:'/en/blog'},'/en/blog':{es:'/blog',en:'/en/blog'},'/cv':{es:'/cv',en:'/en/cv'},'/en/cv':{es:'/cv',en:'/en/cv'},'/contacto':{es:'/contacto',en:'/en/contact'},'/en/contact':{es:'/contacto',en:'/en/contact'}}
   const languages=(route:string)=>pairs[route]?{alternates:{languages:{es:PROFILE.url+pairs[route].es,en:PROFILE.url+pairs[route].en}}}:{}
   const articleLanguages=(a:Article)=>{const other=getTranslation(a);return other?{alternates:{languages:{[a.language]:PROFILE.url+articlePath(a),[other.language]:PROFILE.url+articlePath(other)}}}:{}}
   return [...paths.map(route=>({url:PROFILE.url+route,lastModified:route.endsWith('/blog')?blogUpdated:new Date(PROFILE.updated),...languages(route)})),...articles.map(a=>({url:PROFILE.url+articlePath(a),lastModified:new Date(a.updated),...articleLanguages(a)}))]

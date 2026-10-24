@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PROFILE } from '@/data/profile'
 import { social } from '@/lib/seo'
+import { alternates } from '@/lib/lang'
 import { EXPERIENCE } from '@/data/experience'
 import DotIcon from '@/components/dots/DotIcon'
 import ContactActions from '@/components/ContactActions'
@@ -14,7 +15,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'CV de Yoseph Franco',
   description: 'Experiencia en ingeniería de IA, desarrollo de software, automatización e infraestructura. Prácticas actuales y formación.',
-  alternates: { canonical: '/cv' },
+  alternates: { canonical: '/cv', languages: alternates('/cv', '/en/cv') },
   ...social({ title: 'CV de Yoseph Franco | Arncof', description: 'Experiencia en ingeniería de IA, desarrollo de software, automatización e infraestructura.', url: '/cv', type: 'profile' }),
 }
 

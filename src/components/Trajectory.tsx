@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react'
 import { EXPERIENCE } from '@/data/experience'
 import { EDUCATION } from '@/data/education'
+import { EDUCATION_EN } from '@/data/cv-en'
+import { EXPERIENCE_EN, type Lang } from '@/lib/lang'
 
 function span(period: string, now: number) {
   const match = period.match(/(\d{4})\s*[–-]\s*(\d{4}|act)/i)
@@ -9,18 +11,21 @@ function span(period: string, now: number) {
 }
 
 // Años de trabajo y formación en una misma retícula de puntos.
-export default function Trajectory() {
+export default function Trajectory({ lang = 'es' }: { lang?: Lang }) {
   const now = new Date().getFullYear()
+  const en = lang === 'en'
+  // El período se interpreta siempre desde el dato en español («act»); solo la etiqueta visible cambia de idioma.
   const groups = [
-    { name: 'Trabajo', className: 'grupo-trabajo', rows: EXPERIENCE.map(e => ({ label: e.title, period: e.period })) },
-    { name: 'Formación', className: 'grupo-formacion', rows: EDUCATION.map(e => ({ label: e.degree, period: e.period })) },
+    { name: en ? 'Work' : 'Trabajo', className: 'grupo-trabajo', rows: EXPERIENCE.map(e => ({ label: en ? EXPERIENCE_EN[e.slug]?.title ?? e.title : e.title, period: e.period })) },
+    { name: en ? 'Education' : 'Formación', className: 'grupo-formacion', rows: EDUCATION.map(e => ({ label: en ? EDUCATION_EN[e.degree]?.degree ?? e.degree : e.degree, period: e.period })) },
   ].map(group => ({ ...group, rows: group.rows.map(row => ({ ...row, span: span(row.period, now) })).filter(row => row.span) }))
   const first = Math.min(...groups.flatMap(g => g.rows.map(r => r.span!.from)))
   const years = Array.from({ length: now - first + 1 }, (_, i) => first + i)
-  const pretty = (period: string) => period.replace(/\s*-\s*act$/i, '–actualidad').replace(/\s*-\s*/, '–')
+  const present = en ? 'present' : 'actualidad'
+  const pretty = (period: string) => period.replace(/\s*-\s*act$/i, `–${present}`).replace(/\s*-\s*/, '–').replace(/actualidad$/, present)
   return (
     <figure className="lamina trayectoria" style={{ '--anios': years.length } as CSSProperties}>
-      <h2>Trayectoria</h2>
+      <h2>{en ? 'Timeline' : 'Trayectoria'}</h2>
       {groups.map(group => (
         <div key={group.name} className={`trayectoria-grupo ${group.className}`}>
           {group.rows.map(row => (

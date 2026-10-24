@@ -3,6 +3,7 @@ import { SKILLS } from '@/data/skills'
 import DotIcon from '@/components/dots/DotIcon'
 import { skillGlyph } from '@/components/dots/maps'
 import { SKILLS_EN, UI, type Lang } from '@/lib/lang'
+import { SKILL_ITEMS_EN } from '@/data/cv-en'
 
 export default function Skills({ title, withItems = false, lang = 'es' }: { title?: string; withItems?: boolean; lang?: Lang }) {
   const skills = SKILLS.map(skill => (lang === 'en' ? { ...skill, ...SKILLS_EN[skill.slug] } : skill))
@@ -14,7 +15,7 @@ export default function Skills({ title, withItems = false, lang = 'es' }: { titl
           <Link key={skill.slug} href={`/skills/${skill.slug}`} className="lamina capacidad" hrefLang={lang === 'en' ? 'es' : undefined}>
             <DotIcon name={skillGlyph(skill.slug)} size={32} />
             <h3>{skill.name}</h3>
-            <p>{withItems ? skill.items.map(i => i.name).join(' · ') : skill.description}</p>
+            <p>{withItems ? skill.items.map(i => (lang === 'en' ? SKILL_ITEMS_EN[i.name] ?? i.name : i.name)).join(' · ') : skill.description}</p>
             <span className="flecha-pie"><DotIcon name="flecha" size={13} /></span>
           </Link>
         ))}

@@ -27,8 +27,8 @@ export function verifyPublicExport({root='out',articles=JSON.parse(fs.readFileSy
   if(preview) throw new Error('ARNCOF_PREVIEW=1: exportación privada; no transferir.');
   if(fs.existsSync(path.join(root,'ARNCOF_PREVIEW_DO_NOT_DEPLOY.txt'))) throw new Error('Marcador de vista previa: no transferir.');
   const files=exportFiles(root);
-  for(const required of ['index.html','feed.xml','sitemap.xml','en.html','en/feed.xml','en/blog.html','blog.html','404.html']) if(!files.includes(required)) throw new Error(`Exportación incompleta: falta ${required}`);
-  for(const [file,lang] of [['index.html','es'],['blog.html','es'],['en.html','en'],['en/blog.html','en'],['404.html','es']]) if(!new RegExp(`<html lang="${lang}"`).test(fs.readFileSync(path.join(root,file),'utf8'))) throw new Error(`${file}: <html lang> debería ser ${lang}`);
+  for(const required of ['index.html','feed.xml','sitemap.xml','en.html','en/feed.xml','en/blog.html','blog.html','404.html','cv.html','en/cv.html','en/contact.html']) if(!files.includes(required)) throw new Error(`Exportación incompleta: falta ${required}`);
+  for(const [file,lang] of [['index.html','es'],['blog.html','es'],['en.html','en'],['en/blog.html','en'],['404.html','es'],['cv.html','es'],['en/cv.html','en'],['en/contact.html','en']]) if(!new RegExp(`<html lang="${lang}"`).test(fs.readFileSync(path.join(root,file),'utf8'))) throw new Error(`${file}: <html lang> debería ser ${lang}`);
   const dir=a=>a.language==='en'?'en/blog':'blog';
   const visible=articles.filter(a=>a.publication==='published'&&Date.parse(a.date)<=now);
   const hidden=articles.filter(a=>!visible.includes(a));

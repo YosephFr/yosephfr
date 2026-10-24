@@ -8,8 +8,8 @@ export default function Footer({ lang = 'es' }: { lang?: Lang }) {
   const sections = [
     { href: t.home, label: t.nav.home },
     { href: t.blog, label: t.nav.articles },
-    { href: '/cv', label: t.nav.cv },
-    { href: '/contacto', label: t.nav.contact },
+    { href: t.cv, label: t.nav.cv },
+    { href: t.contactPath, label: t.nav.contact },
   ]
   return (
     <footer className="marco pie" lang={lang === 'en' ? 'en' : undefined}>

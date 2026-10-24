@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { PROFILE } from '@/data/profile'
 import { social } from '@/lib/seo'
+import { alternates } from '@/lib/lang'
 import ContactActions from '@/components/ContactActions'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
@@ -9,7 +10,7 @@ import DotField, { glyphAt } from '@/components/dots/DotField'
 export const metadata: Metadata = {
   title: 'Contacto',
   description: `Habla con Yoseph Franco sobre IA, software y automatización. ${PROFILE.email}`,
-  alternates: { canonical: '/contacto' },
+  alternates: { canonical: '/contacto', languages: alternates('/contacto', '/en/contact') },
   ...social({ title: 'Contacto | Arncof', url: '/contacto', description: 'Hablemos de tu producto o proceso.' }),
 }
 
