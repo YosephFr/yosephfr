@@ -26,6 +26,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Real-cost table of AI models](https://yosephfr.com/en/resources/real-cost-ai-models): time and USD per task to build a roadster game, from my own runs in October 2026
 
 ## Artículos
+- [La prueba de una reserva empieza antes del botón](https://yosephfr.com/blog/prueba-del-recorrido-completo): Cómo pedirle a un agente que pruebe una reserva de principio a fin, con cambios de idea y cortes de conexión incluidos, hasta el mensaje que recibe la persona.
 - [WhatsApp con IA: cómo agrupar mensajes antes de responder (parte 1)](https://yosephfr.com/blog/whatsapp-ia-agrupar-mensajes): Cómo agrupar los mensajes que llegan en ráfaga a un bot de WhatsApp con IA: ventana por persona, un turno a la vez, tope y bandeja durable.
 - [Delegar de noche sin quedarte sin margen para el día](https://yosephfr.com/blog/delegar-de-noche-con-margen): Antes de dejar a un agente trabajando mientras duermes, elige la forma del trabajo para despertar con el resultado y con margen para seguir.
 - [¿Qué ve un agente de IA de tu tarjeta o tu contraseña?](https://yosephfr.com/blog/que-ve-un-agente-tarjeta-contrasena): Si escribes tu contraseña en el chat, el modelo la lee; con formularios seguros o gestores, no. Lo que documentan OpenAI, Anthropic, 1Password y Bitwarden.

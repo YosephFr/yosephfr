@@ -1,5 +1,149 @@
 [
   {
+    "slug": "prueba-del-recorrido-completo",
+    "title": "La prueba de una reserva empieza antes del botón",
+    "description": "Cómo pedirle a un agente que pruebe una reserva de principio a fin, con cambios de idea y cortes de conexión incluidos, hasta el mensaje que recibe la persona.",
+    "category": "Diseño con agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-10-25T12:30:00-03:00",
+    "updated": "2026-10-25T12:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Un formulario de reserva puede pasar sus pruebas y la reserva fallar igual. Puede pasar que el botón responda, aparezca el mensaje de éxito y la confirmación que recibe la persona muestre una hora que ya había cambiado."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuando le pides a un agente que pruebe una reserva, conviene que empiece antes del botón de confirmar y termine después del mensaje de confirmación. Aquí tienes cómo plantear esa prueba, qué situaciones incluir y qué evidencia pedir al final."
+      },
+      {
+        "type": "heading",
+        "text": "Imagina una reserva concreta"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagina un taller de bicicletas que recibe reservas desde su sitio. La persona elige un servicio, busca un horario, escribe sus datos, confirma y recibe un correo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ese es el recorrido completo. La prueba tiene que cubrirlo entero, porque hay problemas que solo aparecen entre un paso y otro."
+      },
+      {
+        "type": "heading",
+        "text": "Usa datos como los de una persona"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pide al agente que use datos ficticios pero coherentes: un nombre, un teléfono con formato válido, una bicicleta descrita como la describiría alguien que la lleva al taller."
+      },
+      {
+        "type": "paragraph",
+        "text": "Un formulario lleno de «prueba» en cada campo no se parece a lo que escribe una persona. Con datos verosímiles, la prueba se parece más a lo que pasará de verdad."
+      },
+      {
+        "type": "heading",
+        "text": "Cambia de idea a mitad de camino"
+      },
+      {
+        "type": "paragraph",
+        "text": "Supongamos que la persona elige «revisión general» para el sábado a las 10, escribe sus datos y, antes de confirmar, cambia a las 12. Después de ese cambio, la prueba hace estas preguntas:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "¿Sus datos siguen ahí o tiene que escribirlos otra vez?",
+          "¿La pantalla de confirmación muestra las 12?",
+          "Si también cambia de servicio, ¿los horarios que ve siguen correspondiendo a ese servicio?"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Este recorrido revela campos que se pierden, horarios que ya no corresponden y confirmaciones que conservan una elección anterior. Un formulario recién abierto, sin nada elegido, no muestra ninguno de esos problemas."
+      },
+      {
+        "type": "heading",
+        "text": "Prueba el momento incierto"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ahora la persona toca «Confirmar» y la conexión se corta. Cuando vuelve, necesita poder averiguar si tiene una reserva."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si no puede saberlo, es razonable que reserve otra vez, y el taller termina con dos reservas para la misma bicicleta. Pide al agente que provoque ese corte a propósito y que revise los dos lados:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "lo que ve la persona al volver: si la reserva aparece, si puede consultarla y si tocar «Confirmar» otra vez crea una segunda;",
+          "lo que quedó guardado: la agenda del taller, donde tiene que haber una sola reserva para esa persona."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "La pantalla puede mostrar una reserva mientras la agenda guarda dos. Por eso la prueba también abre la agenda."
+      },
+      {
+        "type": "paragraph",
+        "text": "Este momento forma parte de la experiencia tanto como el camino sin tropiezos. Hay que provocarlo a propósito, porque en una prueba normal no ocurre."
+      },
+      {
+        "type": "heading",
+        "text": "Lee lo que recibe la persona"
+      },
+      {
+        "type": "paragraph",
+        "text": "La prueba sigue hasta lo que la persona ve cuando vuelve la conexión y hasta el mensaje que le llega, sea un correo o una notificación. Servicio, fecha, hora y estado tienen que coincidir con su elección final."
+      },
+      {
+        "type": "paragraph",
+        "text": "Pide al agente que copie ese mensaje en la evidencia y lo compare con lo que se eligió en el último paso. Ahí se ve si el cambio de hora llegó hasta el final del recorrido, también después del corte."
+      },
+      {
+        "type": "heading",
+        "text": "Pocas pruebas, las que protegen el resultado"
+      },
+      {
+        "type": "paragraph",
+        "text": "No hace falta probar cada botón por separado. Elige pocos recorridos importantes, como estos tres, y repítelos cada vez que un cambio pueda afectarlos:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Reservar de principio a fin con datos verosímiles.",
+          "Cambiar la hora antes de confirmar.",
+          "Cortar la conexión al confirmar y volver."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Una captura del botón funcionando prueba que el botón se ve. La evidencia del recorrido completo muestra si la persona consiguió lo que vino a hacer. Pide que el agente guarde esa evidencia: los datos que usó, lo que vio en cada paso, la agenda del taller después del corte y el mensaje final."
+      },
+      {
+        "type": "heading",
+        "text": "La comprobación final"
+      },
+      {
+        "type": "paragraph",
+        "text": "Junta las tres situaciones en una sola prueba. La persona elige una revisión general para el sábado a las 10, cambia a las 12, toca «Confirmar», la conexión se corta y vuelve. Después revisa dos cosas:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "En la agenda del taller hay una sola reserva para esa persona, a las 12, sin duplicado.",
+          "Lo que la persona ve al volver y el mensaje que recibe muestran revisión general, sábado, 12 y la reserva confirmada."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Si se cumplen las dos, la reserva resistió el recorrido completo. Si falla cualquiera, la prueba encontró justo lo que tenía que encontrar."
+      }
+    ]
+  },
+  {
     "slug": "whatsapp-ia-agrupar-mensajes",
     "title": "WhatsApp con IA: cómo agrupar mensajes antes de responder (parte 1)",
     "description": "Cómo agrupar los mensajes que llegan en ráfaga a un bot de WhatsApp con IA: ventana por persona, un turno a la vez, tope y bandeja durable.",
