@@ -7,6 +7,304 @@ CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 
+# Cómo multipliqué por 3 lo que gano como programador usando IA
+
+Mi flujo real con IA como programador: el problema de pagar IA que no rinde, 3 reglas para elegir herramienta, modelo y esfuerzo, el error que más dinero cuesta y una prueba de costo acotada.
+
+URL: https://yosephfr.com/blog/como-trabajo-programador-ia
+
+Publicado: 2026-10-25T14:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de un puesto de trabajo central conectado a varios hilos de agentes (https://yosephfr.com/blog/como-trabajo-programador-ia/header.webp)
+
+Respuesta corta: el "x3" es una estimación mía, aproximada y sacada de la experiencia, no de una planilla. Lo que sí puedo describir es de dónde sale: en una llamada de trabajo dije que esta forma de organizarme «podría aumentar la productividad al 100%», y además ahora puedo tomar más proyectos a la vez. Lo logré usando cada herramienta de IA para lo que mejor hace, eligiendo el modelo y el nivel de esfuerzo según la tarea, y organizando el trabajo con un agente orquestador y memoria en archivos. Hoy eso sostiene más de 30 clientes activos y unas 14 mil conversaciones atendidas con IA, siempre en números aproximados.
+
+Hace unos días mostré este flujo a dos colegas en una llamada larga. Este artículo ordena lo que les enseñé, con mis opiniones tal cual, sin humo.
+
+## ¿Pagas IA y sientes que no te rinde?
+
+Es el problema más común que veo. Pagas una o dos suscripciones, usas el modelo más caro para todo, dejas el esfuerzo en el máximo "por si acaso" y, aun así, el trabajo no avanza más rápido. A mitad de semana el plan ya está agotado y no sabes en qué se fue.
+
+El problema casi nunca es la IA. Es cómo la usas: una sola herramienta para todo, el mismo modelo para una lectura simple y para una tarea compleja, y agentes trabajando donde no los ves.
+
+## ¿Cómo se ve ese problema en una tarea real?
+
+En la llamada lo mostré en vivo, con dos herramientas lado a lado.
+
+- Le pedí a Codex que buscara ofertas de trabajo en una red profesional: abrió pestañas, movió el cursor solo, descargó mi currículum en PDF y siguió buscando, sin pedirme confirmación a cada paso.
+- Después le di la misma instrucción de iniciar sesión con mis credenciales guardadas a las dos. Claude se negó a escribir la contraseña. Codex inició sesión sin problemas.
+
+Y eso que Claude, para programar, es el mejor que uso. Donde flojea es controlando la computadora: hacer clic, llenar formularios, navegar. Ahí se atasca. Si solo tuvieras Claude, pensarías que "la IA no sirve para esto". En realidad, estarías usando la herramienta equivocada para ese trabajo.
+
+## ¿Cuánto cuesta usar mal la IA?
+
+Más de lo que parece, y casi nadie lo muestra:
+
+- Esfuerzo máximo en tareas que se repiten. Un modelo caro en max corriendo cada hora puede vaciar el plan en un día.
+- **El nivel ultra.** Empieza a enviar un montón de subagentes chiquitos para revisarse a sí mismo y el gasto se dispara.
+- El modelo intermedio en el esfuerzo alto. En Claude, Sonnet en extra sale casi igual de caro que Opus en extra. Si vas a subir tanto el esfuerzo, conviene pasar directamente a Opus.
+- Los números sin costo. Si alguien te promete un "x10" sin mostrar cuánto gastó ni cuánto tardó, desconfía. Ese es justamente el tipo de contenido que intento evitar.
+
+Lo que me ordenó el trabajo fueron tres reglas.
+
+## Regla 1: ¿qué herramienta uso para cada tarea?
+
+Cada herramienta para lo que mejor hace.
+
+- Grok Bot es mi número 1 ahora, pero para cosas de redes sociales, no para programación.
+- Claude es para programar. En mi experiencia es el mejor escribiendo código, guiones y todo lo que tiene que ver con estética.
+- Codex es para automatizar la computadora: hacer clic, llenar formularios, navegar y trabajar con más autonomía.
+
+¿Por qué no elegir una sola? Porque, en mi experiencia, hoy es prácticamente obligatorio tener Claude y Codex juntos: uno compensa las debilidades del otro. ¿Y Google? Hoy no lo puedo recomendar para este flujo. En mi uso se quedaron muy atrás.
+
+Un consejo práctico: usa las apps de escritorio, no la versión web. La versión web trabaja aislada y no puede tocar tus archivos ni tu sistema. La app de escritorio es el "arnés" que le da al modelo acceso a tus carpetas, al navegador y a tareas programadas.
+
+## Regla 2: ¿cómo elijo el modelo y el nivel de esfuerzo?
+
+El modelo y el esfuerzo se eligen según la tarea, no por costumbre. Los modelos tienen niveles (en la familia de OpenAI que uso: Luna, Sol y Astra, de más barato a más capaz) y cada uno tiene un esfuerzo de razonamiento: medium, extra, max, ultra.
+
+Mi receta, como opinión personal:
+
+- Uso general (investigar, crear archivos, seguimientos): el modelo intermedio, Sol, en medium. Si no alcanza, extra. Medium es lo que más ahorra.
+- Nunca max ni ultra para el día a día.
+- Luna solo para lecturas básicas y repetitivas. Es el más barato, pero también el menos inteligente.
+- En Claude: Sonnet en medium o extra para uso general, y Opus cuando la tarea de verdad lo necesita.
+- Para programar directo en el código: Opus, medium para todo y xhigh cuando tiene que pensar en serio.
+- Para lo que actúa solo: siempre el último modelo y el más capaz. Con modelos más baratos hay más riesgo.
+
+## Regla 3: ¿cómo organizo el trabajo con un orquestador?
+
+Un orquestador que no ejecuta, hilos visibles, tareas programadas y memoria en archivos. Para mí, esta es la clave de todo el flujo: es la recomendación que, como dije en la llamada, «podría aumentar la productividad al 100%».
+
+Diagrama abstracto de un orquestador central conectado a tareas, carpetas, herramientas y documentos (https://yosephfr.com/blog/como-trabajo-programador-ia/diagrama-flujo.webp)
+
+1. Instala las apps de escritorio y activa sus capacidades: control de la computadora, control del navegador y la extensión correspondiente.
+2. Abre el agente en tu carpeta de usuario, no dentro de un proyecto. Desde la carpeta raíz ve todos tus proyectos. Primero pídele un inventario de lo que hay.
+3. Crea un orquestador. Es un chat al que le das tus objetivos y tus negocios, y que no ejecuta: lanza otros chats. Pídele que cree hilos visibles, no subagentes. ¿De qué sirve un subagente con el que no puedes interactuar?
+4. Programa tareas recurrentes. Por ejemplo, un resumen semanal del correo y los mensajes, o un repaso de tendencias cada mañana. En mi experiencia, conviene dejar la computadora encendida y la app abierta para que corran.
+5. Agrega memoria física. Que el agente cree su bitácora y sus archivos de memoria. Así no importa cuántas veces se compacte el contexto.
+6. Muda chats con un archivo. Pide "créame un archivo con toda la conversación" y súbelo al chat nuevo.
+7. Guarda las credenciales en un archivo de entorno, nunca pegadas en el chat. Los modelos se niegan, con razón, a usar una contraseña que les pegas en la conversación.
+8. Pide entrevistas con opciones. Antes de una tarea grande, pide "hazme una entrevista con opciones". Así decides tú y la IA no se toma atribuciones.
+
+## ¿Cuál es el error que más dinero cuesta?
+
+No tengo una anécdota con un monto exacto para contarte, y no la voy a inventar. Lo que sí tengo son los dos errores que expliqué en la llamada, porque son los que más rápido vacían un plan.
+
+El primero: un modelo caro en una tarea que se repite. El ejemplo que di fue este: si a una tarea programada le pones Astra en max y le pides que se despierte cada hora a revisar qué mensajes de WhatsApp te llegaron, en cuestión de un día se acabó el límite. Si esa misma tarea la hace Luna, casi no consume.
+
+El segundo: retomar un chat de ayer sin compactarlo. Esto lo mostré en mi propia pantalla: un chat con el 65% del contexto usado, unos 651.000 tokens. Si le escribo "hola" así, vuelve a cargar todo ese contexto y lo paga mi consumo. Si antes lo compacto, la conversación pasa a pesar unos 100 mil tokens, y solo entonces le doy la instrucción.
+
+La corrección, en una línea: lo recurrente va con un modelo barato o en medium, lo que se retoma se compacta primero, y lo importante queda guardado en archivos de memoria.
+
+Otros errores que conviene evitar:
+
+- Subagentes invisibles. Si no los ves, no los puedes corregir.
+- Pegar claves en el chat. Usa un archivo de entorno.
+- Informarse solo por videos cortos. Las novedades salen primero en X. En otras redes, muchas veces es puro humo.
+
+## ¿Cuánto cuesta y cuánto tarda de verdad? Mi prueba acotada
+
+Para no hablar de memoria, hice una prueba propia: el mismo prompt (un pequeño juego de autos) en tres modelos.
+
+Modelo | Tiempo | Costo
+Astra | 5 min 50 s | USD 1,14
+Kimi | 34 min 42 s | USD 1,21
+Opus | 17 min 4 s | USD 3,10
+
+Es una sola prueba, con un solo prompt, no un benchmark. Pero muestra algo que muchos videos esconden: el costo por tarea y el tiempo importan tanto como el puntaje. Kimi está bien, pero hay mucho humo alrededor. Casi nadie muestra cuánto tarda ni cuánto cuesta llegar a esos resultados.
+
+## ¿De dónde sale el "x3"?
+
+No tengo un número exacto, y prefiero decirlo claramente. No voy a inventar tarifas ni horas. Lo que noto es esto:
+
+- Con el orquestador, los hilos visibles y las tareas programadas, el trabajo repetitivo lo hacen los agentes. Cuánto rinde eso es una estimación mía, a ojo, no una medición.
+- Uno de los dos colegas lo resumió después a su manera: sintió que pasó «de un diez a un veinte». La frase es suya, no mía.
+- Como el trabajo repetitivo ya no depende de mí, puedo sostener más proyectos en paralelo sin que se caiga la calidad.
+- Más proyectos con menos fricción se traducen, en mi caso, en ingresos que estimo cerca del triple. Es una estimación personal, no una promesa ni una fórmula.
+
+## ¿Por qué digo que esto es anti-humo?
+
+Porque todo lo de arriba puede cambiar en un mes, y lo digo literal. Los nombres de los modelos, los precios y cuál herramienta lidera cambian todo el tiempo. Lo que no cambia es el método: medir el costo por tarea, elegir el modelo según el trabajo, mantener el control sobre lo que hacen los agentes y desconfiar de cualquier número que no venga con su costo y su tiempo.
+
+Mis números son aproximados y los presento así: más de 30 clientes activos y unas 14 mil conversaciones atendidas con IA. No son una promesa. Son mi experiencia.
+
+Si te sirvió, sígueme para más: cuento cómo trabajo con IA, con costos y tiempos incluidos.
+
+## Preguntas frecuentes
+
+¿El "x3" es un dato exacto?
+No. Es una estimación personal y aproximada, basada en lo que noto en mi productividad y en que tomo más proyectos. No publico tarifas ni horas.
+
+¿Necesito pagar varias suscripciones?
+En mi experiencia, para programar y automatizar en serio conviene tener Claude y Codex. Empieza con una, mide qué tareas resuelve mal y suma la otra cuando lo justifique.
+
+¿Qué nivel de esfuerzo uso por defecto?
+Medium. Subo a extra o xhigh solo cuando la tarea lo pide, y nunca dejo ultra o max en tareas que se repiten solas.
+
+¿Esto sirve si no programo?
+La parte de orquestador, tareas programadas y memoria sirve para cualquier trabajo de oficina. La parte de código, obviamente, es para quien programa.
+
+## Fuentes
+
+- Llamada de trabajo propia con dos colegas, 19 de octubre de 2026 (notas y transcripción internas, no públicas).
+- Prueba propia de costo y tiempo, mismo prompt en tres modelos, octubre de 2026.
+- Opiniones y números aproximados del autor, actualizados al 24 de octubre de 2026.
+- Nota: las capacidades y precios de cada herramienta se describen como experiencia personal; consulta la documentación oficial de cada proveedor antes de decidir.
+
+---
+
+# How I Tripled What I Earn as a Developer Using AI
+
+My real AI workflow as a developer: the problem of paying for AI that doesn't pay off, 3 rules for picking tool, model and effort level, the mistake that burns the most money, and one bounded cost test.
+
+URL: https://yosephfr.com/en/blog/how-i-work-as-developer-with-ai
+
+Publicado: 2026-10-25T14:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Abstract illustration of a central workstation linked to several agent threads (https://yosephfr.com/blog/how-i-work-as-developer-with-ai/header.webp)
+
+Short answer: the "3x" is my own rough estimate, based on experience rather than a spreadsheet. What I can describe is where it comes from. On a work call I said this way of organizing my work "could increase productivity by 100%," and on top of that I can now take on more projects at once. I got there by using each AI tool for what it does best, picking the model and effort level to fit the task, and running my work through an orchestrator agent with file-based memory. Today that setup supports more than 30 active clients and about 14,000 AI-handled conversations. Both are approximate figures.
+
+A few days ago I walked two colleagues through this workflow on a long call. This post organizes what I showed them, with my opinions as they are and no hype.
+
+## Are you paying for AI that doesn't pay off?
+
+This is the most common problem I see. You pay for one or two subscriptions, use the most expensive model for everything, leave effort maxed out "just in case," and the work still doesn't move any faster. By midweek your plan is drained and you can't tell where it went.
+
+The problem is rarely the AI itself. It's how you use it: one tool for every job, the same model for a simple read and a complex task, and agents working where you can't see them.
+
+## What does that problem look like on a real task?
+
+On the call I showed it live, with two tools side by side.
+
+- I asked Codex to look for job openings on a professional network. It opened tabs, moved the cursor on its own, downloaded my résumé as a PDF and kept searching, without asking me to confirm every step.
+- Then I gave both tools the same instruction: log in using my saved credentials. Claude refused to type the password. Codex logged in without fuss.
+
+And Claude is the best coding model I use. Where it struggles is controlling the computer: clicking, filling in forms, navigating. It gets stuck there. If Claude were your only tool, you'd conclude "AI can't do this." In reality, you'd just be using the wrong tool for the job.
+
+## What does using AI badly actually cost?
+
+More than it looks like, and hardly anyone shows it:
+
+- Maximum effort on tasks that repeat. An expensive model on max, running every hour, can drain your plan in a day.
+- **The ultra setting.** It starts sending out a swarm of small subagents to check its own work, and costs shoot up.
+- The mid-tier model at high effort. In Claude, Sonnet on extra costs almost as much as Opus on extra. If you're going to push effort that high, go straight to Opus.
+- Numbers with no cost attached. If someone promises you "10x" without showing what it cost or how long it took, be skeptical. That's exactly the kind of content I try to stay away from.
+
+What got my work in order was three rules.
+
+## Rule 1: which tool do I use for which job?
+
+Use each tool for what it's best at.
+
+- Grok Bot is my number one right now, but for social media, not for programming.
+- Claude is for programming. In my experience it's the best at writing code, scripts and anything that needs a good eye for design.
+- Codex is for computer automation: clicking, filling in forms, navigating and working with more autonomy.
+
+Why not pick just one? Because in my experience, having Claude and Codex together is practically mandatory today: each one covers the other's weak spots. And Google? I can't recommend it for this workflow right now. In my use, they've fallen way behind.
+
+One practical tip: use the desktop apps, not the web version. The web version works in isolation and can't touch your files or your system. The desktop app is the "harness" that gives the model access to your folders, your browser and scheduled tasks.
+
+## Rule 2: how do I pick the model and effort level?
+
+Pick the model and effort for the task, not out of habit. Models come in tiers (in the OpenAI family I use: Luna, Sol and Astra, from cheapest to most capable), and each has a reasoning effort setting: medium, extra, max, ultra.
+
+My recipe, as personal opinion:
+
+- General work (research, creating files, follow-ups): the middle model, Sol, on medium. If that's not enough, extra. Medium saves the most.
+- Never max or ultra for everyday work.
+- Luna only for basic, repetitive reading. It's the cheapest, but also the least capable.
+- In Claude: Sonnet on medium or extra for general work, and Opus when the task genuinely needs it.
+- For writing code directly: Opus, medium for everything and xhigh when it has to think hard.
+- For anything that acts on its own: always the latest, most capable model. Cheaper models carry more risk.
+
+## Rule 3: how do I organize the work with an orchestrator?
+
+An orchestrator that doesn't do the work itself, visible threads, scheduled tasks and file-based memory. For me, this is the key to the whole workflow: it's the recommendation that, as I said on the call, "could increase productivity by 100%."
+
+Abstract diagram of a central orchestrator connected to tasks, folders, tools and documents (https://yosephfr.com/blog/how-i-work-as-developer-with-ai/diagrama-flujo.webp)
+
+1. Install the desktop apps and turn on their capabilities: computer control, browser control and the matching extension.
+2. Open the agent in your user folder, not inside a project. From the root it can see all your projects. Start by asking it for an inventory of what's there.
+3. Set up an orchestrator. It's a chat you feed your goals and your businesses to, and it doesn't do the work itself: it launches other chats. Ask it to create visible threads, not subagents. What's the point of a subagent you can't talk to?
+4. Schedule recurring tasks. For example, a weekly summary of your email and messages, or a trends roundup every morning. In my experience, it's best to leave the computer on and the app open so they run.
+5. Give it physical memory. Have the agent create its own log and memory files. That way it doesn't matter how many times the context gets compacted.
+6. Move chats with a file. Ask "create a file with this whole conversation" and upload it to the new chat.
+7. Keep credentials in an environment file, never pasted into the chat. Models refuse, rightly, to use a password you paste into the conversation.
+8. Ask for an interview with options. Before a big task, say "interview me with options." That way you make the decisions and the AI doesn't take liberties.
+
+## Which mistake burns the most money?
+
+I don't have a story with an exact dollar figure for you, and I'm not going to make one up. What I do have are the two mistakes I walked through on the call, because they're the fastest way to drain a plan.
+
+First: an expensive model on a task that repeats. The example I gave was this: set up a scheduled task on Astra at max and tell it to wake up every hour and check which WhatsApp messages came in, and within about a day the limit is gone. Give that same task to Luna and it barely uses anything.
+
+Second: picking up yesterday's chat without compacting it. This one I showed on my own screen: a chat with 65% of its context used, about 651,000 tokens. If I type "hi" as is, it reloads all of that context and it comes out of my usage. If I compact it first, the conversation drops to roughly 100,000 tokens, and only then do I give it the instruction.
+
+The fix, in one line: recurring work goes to a cheap model or medium effort, anything you return to gets compacted first, and anything important lives in memory files.
+
+Other mistakes worth avoiding:
+
+- Invisible subagents. If you can't see them, you can't correct them.
+- Pasting keys into the chat. Use an environment file.
+- Getting your news only from short videos. New releases show up on X first. On other platforms, a lot of it is pure hype.
+
+## What does it really cost, and how long does it take? My bounded test
+
+So I wouldn't be talking from memory, I ran my own test: the same prompt (a small car game) on three models.
+
+Model | Time | Cost
+Astra | 5 min 50 s | USD 1.14
+Kimi | 34 min 42 s | USD 1.21
+Opus | 17 min 4 s | USD 3.10
+
+It's a single run with a single prompt, not a benchmark. But it shows something a lot of videos leave out: cost per task and time matter as much as the score. Kimi is fine, but there's a lot of hype around it. Hardly anyone shows how long it takes or what it costs to get those results.
+
+## Where does the "3x" come from?
+
+I don't have an exact number, and I'd rather say so plainly. I'm not going to make up rates or hours. Here is what I actually see:
+
+- With the orchestrator, visible threads and scheduled tasks, agents handle the repetitive work. How much that adds up to is my own rough estimate, not a measurement.
+- One of the two colleagues summed it up afterwards his own way: he felt he'd gone "from a ten to a twenty." Those are his words, not mine.
+- Because the repetitive work no longer depends on me, I can keep more projects running in parallel without quality slipping.
+- More projects with less friction means, in my case, income I estimate at close to triple. That's a personal estimate, not a promise or a formula.
+
+## Why do I call this anti-hype?
+
+Because everything above could change within a month, and I mean that literally. Model names, prices and which tool is ahead change constantly. What doesn't change is the method: measure cost per task, pick the model for the job, stay in control of what your agents do, and distrust any number that doesn't come with its cost and its time.
+
+My numbers are approximate and I present them that way: more than 30 active clients and about 14,000 AI-handled conversations. They're not a promise. They're my experience.
+
+If this was useful, follow me for more: I share how I work with AI, costs and timings included.
+
+## FAQ
+
+Is the "3x" an exact figure?
+No. It's a personal, approximate estimate based on what I notice in my own productivity, plus taking on more projects. I don't publish rates or hours.
+
+Do I need to pay for several subscriptions?
+In my experience, if you're serious about coding and automation, it's worth having both Claude and Codex. Start with one, note which tasks it handles badly, and add the other when that justifies it.
+
+What effort level do I use by default?
+Medium. I go up to extra or xhigh only when the task calls for it, and I never leave ultra or max on tasks that repeat on their own.
+
+Is this useful if I don't code?
+The orchestrator, scheduled tasks and memory parts work for any office job. The coding part, obviously, is for people who write code.
+
+## Sources
+
+- My own working call with two colleagues, October 19, 2026 (internal notes and transcript, not public).
+- My own cost and time test, same prompt on three models, October 2026.
+- The author's opinions and approximate figures, current as of October 24, 2026.
+- Note: each tool's capabilities and pricing are described as personal experience; check each vendor's official documentation before deciding.
+
+---
+
 # La prueba de una reserva empieza antes del botón
 
 Cómo pedirle a un agente que pruebe una reserva de principio a fin, con cambios de idea y cortes de conexión incluidos, hasta el mensaje que recibe la persona.
