@@ -26,6 +26,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Real-cost table of AI models](https://yosephfr.com/en/resources/real-cost-ai-models): time and USD per task to build a roadster game, from my own runs in October 2026
 
 ## Artículos
+- [WhatsApp con IA: cómo agrupar mensajes antes de responder (parte 1)](https://yosephfr.com/blog/whatsapp-ia-agrupar-mensajes): Cómo agrupar los mensajes que llegan en ráfaga a un bot de WhatsApp con IA: ventana por persona, un turno a la vez, tope y bandeja durable.
 - [Delegar de noche sin quedarte sin margen para el día](https://yosephfr.com/blog/delegar-de-noche-con-margen): Antes de dejar a un agente trabajando mientras duermes, elige la forma del trabajo para despertar con el resultado y con margen para seguir.
 - [¿Qué ve un agente de IA de tu tarjeta o tu contraseña?](https://yosephfr.com/blog/que-ve-un-agente-tarjeta-contrasena): Si escribes tu contraseña en el chat, el modelo la lee; con formularios seguros o gestores, no. Lo que documentan OpenAI, Anthropic, 1Password y Bitwarden.
 - [La misma pantalla vacía puede significar tres cosas distintas](https://yosephfr.com/blog/pantallas-vacias-tres-motivos): Cuenta nueva, filtro sin resultados o carga fallida: cómo pedirle al agente que resuelva cada caso para que la persona sepa por qué no ve nada y qué hacer.
@@ -33,6 +34,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Cómo orientar a un agente antes de rediseñar una pantalla](https://yosephfr.com/blog/referencias-antes-de-redisenar): Dale al agente una situación de uso, referencias que resuelvan el mismo trabajo y una prueba final, para que la pantalla funcione mejor y no solo se vea mejor.
 
 ## Articles in English
+- [WhatsApp AI: How to Batch Messages Before Replying (Part 1)](https://yosephfr.com/en/blog/whatsapp-ai-message-batching): How to batch the bursts of messages a WhatsApp AI assistant receives: a per-person window, one turn at a time, a hard cap, and a durable inbox.
 - [What an AI Agent Sees When You Share a Card or Password](https://yosephfr.com/en/blog/what-an-ai-agent-sees-card-password): Type a password into the chat and the model reads it. Use a secure sign-in form or password-manager autofill and, per the vendors, it does not.
 - [They said phones weren't listening.](https://yosephfr.com/en/blog/samsung-tv-privacy-listening): Today it's a Samsung TV. Before that it was Apple, Google and Amazon. Here's what's proven, what's alleged, and what's still a rumor, plus the settings to change tonight.
 
