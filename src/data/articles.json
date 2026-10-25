@@ -1,5 +1,140 @@
 [
   {
+    "slug": "terminado-con-evidencia",
+    "title": "Qué significa «terminado» cuando un agente entrega un trabajo",
+    "description": "Cuatro estados que caben bajo la misma palabra y cómo pedir una entrega que diga cuál se alcanzó, con qué evidencia y qué falta.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Franco",
+    "date": "2026-10-25T19:30:00-03:00",
+    "updated": "2026-10-25T19:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 3,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Cuando un agente responde «terminado», la palabra puede describir cuatro situaciones distintas. Si no sabes cuál, tampoco sabes qué puedes hacer a continuación: pedir una prueba, publicar, avisar a tus clientes o esperar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Pedir que la entrega diga el estado real, con su evidencia, te ahorra esa duda. Aquí tienes los cuatro estados, cómo se ve una entrega que los distingue y una pregunta para comprobarla."
+      },
+      {
+        "type": "heading",
+        "text": "El caso: un código de descuento"
+      },
+      {
+        "type": "paragraph",
+        "text": "Imagina que le pediste a un agente agregar un campo de código de descuento en el pago de una tienda en línea. Al final del día responde: «Terminado»."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quieres anunciar la promoción el lunes. Antes de hacerlo, necesitas saber hasta dónde llegó el cambio."
+      },
+      {
+        "type": "heading",
+        "text": "Cuatro estados bajo la misma palabra"
+      },
+      {
+        "type": "paragraph",
+        "text": "«Terminado» puede querer decir cualquiera de estas cosas:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Escrito: el código existe, pero nadie recorrió todavía un pago con descuento.",
+          "Probado: se aplicó un código en un entorno de pruebas y el total cambió como se esperaba. Se sabe qué caso funcionó y dónde.",
+          "Disponible: el cambio llegó a la tienda que usan los clientes.",
+          "Comprobado en uso: una persona completó una compra con el código en la tienda real y pagó el total correcto."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cada estado habilita decisiones distintas. Con el primero puedes pedir una prueba. Con el segundo, decidir si se publica. Con el tercero, preparar el anuncio. Con el cuarto, anunciar sabiendo que al menos un recorrido real funcionó."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ninguno garantiza la ausencia de fallos. Cada estado dice qué se comprobó y dónde. Lo demás sigue siendo una suposición, y conviene tratarlo así."
+      },
+      {
+        "type": "heading",
+        "text": "Pide el estado en pocas frases"
+      },
+      {
+        "type": "paragraph",
+        "text": "Una entrega útil para el caso podría decir: «El campo de descuento está disponible en el entorno de pruebas. Se aplicó un código de prueba en una compra completa; el total y el correo de confirmación muestran el descuento. La tienda pública sigue con la versión anterior»."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con esas tres frases la siguiente decisión es clara. Falta publicar, y alguien tiene que decidir cuándo. El anuncio del lunes depende de eso."
+      },
+      {
+        "type": "heading",
+        "text": "La evidencia que importa"
+      },
+      {
+        "type": "paragraph",
+        "text": "La evidencia acompaña al estado y tiene tres partes:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "el escenario probado: qué se hizo y con qué datos;",
+          "el entorno: pruebas, una vista previa o la tienda pública;",
+          "el resultado observado: qué se vio, con una captura o un registro que lo muestre."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con esas tres partes, otra persona puede repetir la prueba o confiar en ella sabiendo qué cubre."
+      },
+      {
+        "type": "heading",
+        "text": "Que la respuesta quede arriba"
+      },
+      {
+        "type": "paragraph",
+        "text": "A veces la entrega llega como una lista larga de comandos ejecutados y archivos modificados. Puede ser correcta y aun así esconder la respuesta a la pregunta que importa: ¿alguien puede usar esto ya?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pide que la entrega empiece por el estado y la evidencia. El detalle técnico puede ir después, para quien lo necesite."
+      },
+      {
+        "type": "heading",
+        "text": "Deja visible lo que falta"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo pendiente necesita un responsable y un siguiente paso. «Falta publicar» queda corto. «Publicar el cambio en la tienda y repetir una compra con el código de prueba; decide quien administra la tienda» se puede ejecutar y cerrar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Así otra persona, u otra sesión del agente, puede continuar sin repetir toda la investigación ni confundir un borrador con una entrega final."
+      },
+      {
+        "type": "heading",
+        "text": "Inclúyelo en el encargo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Para no tener que preguntar cada vez, agrega una línea al final de tus encargos: «Al terminar, indica en qué estado quedó (escrito, probado, disponible o comprobado en uso), qué escenario probaste, en qué entorno, qué observaste y qué falta, con su responsable»."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con esa línea, el agente sabe desde el principio qué tiene que demostrar para cerrar."
+      },
+      {
+        "type": "heading",
+        "text": "La comprobación final"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lee la entrega y responde una sola pregunta: ¿puede alguien usar esto hoy, y dónde? Si la entrega te lo dice sin que tengas que preguntar ni abrir archivos, el estado está bien informado. Si tienes que adivinar, pide el estado antes de decidir."
+      }
+    ]
+  },
+  {
     "slug": "como-trabajo-programador-ia",
     "title": "Cómo multipliqué por 3 lo que gano como programador usando IA",
     "description": "Mi flujo real con IA como programador: el problema de pagar IA que no rinde, 3 reglas para elegir herramienta, modelo y esfuerzo, el error que más dinero cuesta y una prueba de costo acotada.",
