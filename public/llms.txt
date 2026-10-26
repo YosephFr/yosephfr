@@ -26,6 +26,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Real-cost table of AI models](https://yosephfr.com/en/resources/real-cost-ai-models): time and USD per task to build a roadster game, from my own runs in October 2026
 
 ## Artículos
+- [Un modelo de IA también es una dependencia, y caduca](https://yosephfr.com/blog/un-modelo-es-una-dependencia): Los modelos que usan tus automatizaciones tienen fecha de retiro, igual que una librería. Cómo encontrar cada uno, probar el reemplazo y no enterarte por un error.
 - [¿Qué pasó con la carrera de la IA? Quién programa de verdad con estos modelos](https://yosephfr.com/blog/carrera-ia-quien-programa): Mi opinión como programador que usa IA en producción todos los días: por qué hoy solo dos empresas compiten en la frontera, por qué los benchmarks no alcanzan y por qué no hay que casarse con ningún modelo.
 - [Qué significa «terminado» cuando un agente entrega un trabajo](https://yosephfr.com/blog/terminado-con-evidencia): Cuatro estados que caben bajo la misma palabra y cómo pedir una entrega que diga cuál se alcanzó, con qué evidencia y qué falta.
 - [Cómo multipliqué por 3 lo que gano como programador usando IA](https://yosephfr.com/blog/como-trabajo-programador-ia): Mi flujo real con IA como programador: el problema de pagar IA que no rinde, 3 reglas para elegir herramienta, modelo y esfuerzo, el error que más dinero cuesta y una prueba de costo acotada.

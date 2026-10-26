@@ -7,6 +7,69 @@ CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 
+# Un modelo de IA también es una dependencia, y caduca
+
+Los modelos que usan tus automatizaciones tienen fecha de retiro, igual que una librería. Cómo encontrar cada uno, probar el reemplazo y no enterarte por un error.
+
+URL: https://yosephfr.com/blog/un-modelo-es-una-dependencia
+
+Publicado: 2026-10-26T12:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+El modelo de lenguaje que usa una automatización es una dependencia, igual que una librería o una API de pagos. Tiene versión, tiene fecha de retiro y, cuando llega esa fecha, deja de responder. La diferencia es que casi nadie lo anota en el mismo lugar donde anota el resto de sus dependencias.
+
+El 23 de octubre de 2026 fue la fecha de apagado prevista en la API de OpenAI para una lista de versiones antiguas, entre ellas gpt-4-turbo, gpt-4o-2024-05-13 y gpt-image-1. El aviso se publicó el 22 de abril. Seis meses de margen alcanzan de sobra, siempre que alguien sepa qué flujo usa cada modelo.
+
+## El fallo no aparece donde miras
+
+Imagina un equipo con tres automatizaciones: una resume las solicitudes que llegan cada mañana, otra genera imágenes para un catálogo y otra arma un informe a fin de mes. Alguien actualizó el modelo de la primera hace tiempo y todos dan el tema por cerrado.
+
+Ahora mira dónde puede seguir vivo un modelo viejo:
+
+- El respaldo que entra cuando el modelo principal falla. Casi nunca se activa, así que casi nunca se revisa.
+- El trabajo que corre una vez por mes. Si la fecha de retiro cae entre dos ejecuciones, el error aparece semanas después.
+- Una configuración copiada de otro proyecto, con un ID escrito a mano que nadie volvió a leer.
+
+La ruta principal funciona y el problema queda escondido en los caminos que se usan poco.
+
+## Anota el ID exacto, no la familia
+
+«Usamos GPT-4o» no alcanza para saber si te afecta un retiro. Dentro de la misma familia, las versiones tienen fechas distintas. En la misma página de OpenAI, gpt-4o-2024-05-13 tenía fecha el 23 de octubre de 2026, mientras que gpt-4o-2024-08-06 tiene otra: el 14 de enero de 2027, anunciada el 14 de octubre.
+
+Por eso el inventario necesita el identificador que envía cada flujo, tal como aparece en el código o en la configuración. Con eso, comparar contra la página de retiros toma minutos.
+
+## Arma el inventario en una tabla
+
+No hace falta una herramienta nueva. Una tabla con cuatro columnas resuelve la mayor parte:
+
+1. Flujo: qué hace y dónde corre.
+2. Modelo: el ID exacto, también el del respaldo.
+3. Fecha de retiro: la que publica el proveedor, con el enlace.
+4. Responsable: quién prueba el reemplazo y cuándo.
+
+Si un flujo queda con el modelo «sin identificar», ese es el primer pendiente. Es justo el caso que suele terminar en un error un lunes a la mañana.
+
+## Prueba el reemplazo con la misma tarea
+
+El proveedor suele recomendar un modelo de reemplazo. Eso no garantiza que tu flujo siga funcionando igual. Antes de cambiarlo en producción, corre el modelo nuevo con la misma tarea real y revisa tres cosas:
+
+- El formato de salida. Si otro paso lee la respuesta, un cambio de estructura lo rompe aunque el texto sea bueno.
+- El contenido. Compara con lo que producía el modelo anterior en dos o tres casos conocidos.
+- Qué pasa si falla. El respaldo también tiene que apuntar a un modelo vigente.
+
+Deja registro de la prueba: qué flujo, qué ID, quién la hizo y dónde quedó la evidencia. Si el reemplazo cambia el comportamiento, esa nota explica por qué.
+
+## Un hábito pequeño
+
+Las páginas de retiro de los proveedores cambian varias veces al año. Revisarlas una vez por mes contra tu tabla lleva unos minutos y evita enterarte por un error. Si trabajas con un agente, puedes pedirle esa revisión con la tabla como entrada y la página de retiros como fuente, y que te devuelva solo los flujos con fecha en los próximos 90 días.
+
+La comprobación final es simple: para cada automatización, alguien puede decir qué modelo usa, hasta cuándo está disponible y quién se encarga del cambio.
+
+La lista de retiros y sus fechas está en la página de deprecaciones de OpenAI (https://developers.openai.com/api/docs/deprecations), consultada el 23 de octubre de 2026. El equipo y sus automatizaciones son un ejemplo para ilustrar el método.
+
+---
+
 # ¿Qué pasó con la carrera de la IA? Quién programa de verdad con estos modelos
 
 Mi opinión como programador que usa IA en producción todos los días: por qué hoy solo dos empresas compiten en la frontera, por qué los benchmarks no alcanzan y por qué no hay que casarse con ningún modelo.
