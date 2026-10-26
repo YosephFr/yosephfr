@@ -17,6 +17,9 @@ import ProfilePhoto from '@/components/ProfilePhoto'
 import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { UI, type Lang } from '@/lib/lang'
 
+// En estos dos el formulario queda junto al texto, antes de la ficha del autor. El resto lo mantiene al final.
+const NEWSLETTER_IN_BODY = new Set(['que-ve-un-agente-tarjeta-contrasena', 'what-an-ai-agent-sees-card-password'])
+
 const TEXT = {
   es: { home: 'Inicio', articles: 'Artículos', read: 'min de lectura', updated: 'Actualizado', by: 'Escrito por', bio: 'Agentes de IA, software y automatización para el trabajo real.', cv: 'Ver CV', contact: 'Contacto', more: 'Sigue leyendo', other: 'Read in English', locale: 'es_AR' },
   en: { home: 'Home', articles: 'Articles', read: 'min read', updated: 'Updated', by: 'Written by', bio: 'AI agents, software and automation for real work.', cv: 'View CV', contact: 'Contact', more: 'Keep reading', other: 'Leer en español', locale: 'en_US' },
@@ -34,11 +37,11 @@ export function articleMetadata(slug: string, lang: Lang): Metadata {
     : a.language === 'en'
       ? { en: path }
       : undefined
-  const socialTitle = a.ogTitle || a.title
+  const socialTitle = a.ogTitle || a.seoTitle || a.title
   const socialDescription = a.ogDescription || a.description
   const coverImage = a.cover ? [{ url: a.cover.src, width: a.cover.width, height: a.cover.height, alt: a.cover.alt, type: 'image/webp' as const }] : undefined
   return {
-    title: a.title,
+    title: a.seoTitle ? { absolute: a.seoTitle } : a.title,
     description: a.description,
     alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: og({ title: socialTitle, description: socialDescription, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale, ...(coverImage ? { images: coverImage } : {}) }),
@@ -128,6 +131,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
             <div>
               {headings.length > 1 && <ArticleToc headings={headings} variant="movil" lang={lang} />}
               <ArticleBody blocks={article.blocks} />
+              {NEWSLETTER_IN_BODY.has(article.slug) && <NewsletterCTA lang={lang} embedded />}
               <aside className="lamina autor" aria-label={t.by}>
                 <ProfilePhoto size={72} />
                 <div>
@@ -152,7 +156,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
             <ArticleCards articles={related} lang={lang} />
           </section>
         )}
-        <NewsletterCTA lang={lang} />
+        {!NEWSLETTER_IN_BODY.has(article.slug) && <NewsletterCTA lang={lang} />}
       </main>
       <Footer lang={lang} />
     </>

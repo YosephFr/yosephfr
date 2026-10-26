@@ -684,6 +684,8 @@ main { animation: pagina 0.45s var(--entrada) both; }
 
 /* Newsletter y tabla de costo real */
 .boletin-seccion { padding-top: 12px; }
+.boletin-en-cuerpo { margin-top: 40px; }
+.boletin-en-cuerpo .boletin { max-width: none; }
 .boletin {
   display: grid;
   gap: 0;

@@ -12,6 +12,8 @@ export type Article = {
   language: string; translation?: string; author: string; date: string; updated: string; publication: string;
   readingMinutes: number; blocks: ArticleBlock[]; faq?: ArticleFaq[]; keyword?: string; tags?: string[]
   ogTitle?: string; ogDescription?: string
+  // Título del documento, sin la plantilla «| Arncof». Solo cuando el título visible se pasa de 60 caracteres.
+  seoTitle?: string
   cover?: ArticleCover
   citation?: string
 }

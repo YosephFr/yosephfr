@@ -161,6 +161,10 @@
       },
       {
         "type": "paragraph",
+        "text": "Si buscas el precio y el uso por API, los reuní aparte en [Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API](/blog/kimi-k3-1-pro)."
+      },
+      {
+        "type": "paragraph",
         "text": "Mi regla es esta: **usa siempre el modelo de frontera que salga primero en tus propias pruebas**. No en las del influencer de turno. En las tuyas, con tus tareas y tu código."
       },
       {
@@ -3469,6 +3473,7 @@
   {
     "slug": "kimi-k3-1-pro",
     "title": "Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API",
+    "seoTitle": "Kimi K3.1 Pro: qué es, cuánto cuesta y API | Arncof",
     "description": "Kimi K3.1 Pro, el nuevo modelo de Moonshot (23/10/2026): precios por token, contexto de 1M, benchmarks con sus matices y guía paso a paso para usarlo por API.",
     "category": "Modelos de IA",
     "language": "es",

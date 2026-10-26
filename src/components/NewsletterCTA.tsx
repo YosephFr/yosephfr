@@ -11,7 +11,7 @@ const TEXT = {
 
 type Gtag = (command: string, name: string, params: { method: string; language: string }) => void
 
-export default function NewsletterCTA({ lang = 'es' }: { lang?: Lang }) {
+export default function NewsletterCTA({ lang = 'es', embedded = false }: { lang?: Lang; embedded?: boolean }) {
   const t = TEXT[lang]
   const titleId = useId()
   const emailId = useId()
@@ -23,7 +23,7 @@ export default function NewsletterCTA({ lang = 'es' }: { lang?: Lang }) {
   }
 
   return (
-    <section className="marco seccion boletin-seccion" aria-labelledby={titleId}>
+    <section className={embedded ? 'boletin-seccion boletin-en-cuerpo' : 'marco seccion boletin-seccion'} aria-labelledby={titleId}>
       <div className="boletin">
         <h2 id={titleId}>{t.title}</h2>
         <p className="entrada-texto">{LEAD_MAGNET[lang]}</p>

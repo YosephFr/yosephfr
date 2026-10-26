@@ -1,50 +1,66 @@
 User-agent: *
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Googlebot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Applebot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Claude-User
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Anthropic-AI
 Allow: /
+Disallow: /cgi-bin/
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /cgi-bin/
 
 # Feed: https://yosephfr.com/feed.xml
 # Feed (en): https://yosephfr.com/en/feed.xml

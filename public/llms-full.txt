@@ -79,6 +79,8 @@ Kimi, de Moonshot, y otros modelos chinos muestran muchos números. Gráficos, c
 
 ¿Por qué? Porque casi nadie muestra lo que importa: cuánto cuesta y cuánto tarda llegar a ese resultado. En una prueba propia, con el mismo prompt en varios modelos, Kimi tardó varias veces más que el modelo más rápido. Un benchmark que no dice cuánto gastó ni cuánto tardó no me sirve para decidir nada.
 
+Si buscas el precio y el uso por API, los reuní aparte en Kimi K3.1 Pro: qué es, cuánto cuesta y cómo usarlo por API (/blog/kimi-k3-1-pro).
+
 Mi regla es esta: usa siempre el modelo de frontera que salga primero en tus propias pruebas. No en las del influencer de turno. En las tuyas, con tus tareas y tu código.
 
 ## ¿Por qué no hay que casarse con un modelo ni con una empresa?
