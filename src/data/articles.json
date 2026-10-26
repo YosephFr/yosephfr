@@ -1,5 +1,511 @@
 [
   {
+    "slug": "carrera-ia-quien-programa",
+    "title": "¿Qué pasó con la carrera de la IA? Quién programa de verdad con estos modelos",
+    "description": "Mi opinión como programador que usa IA en producción todos los días: por qué hoy solo dos empresas compiten en la frontera, por qué los benchmarks no alcanzan y por qué no hay que casarse con ningún modelo.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "translation": "ai-race-who-actually-codes",
+    "author": "Yoseph Franco",
+    "date": "2026-10-26T10:00:00-03:00",
+    "updated": "2026-10-26T10:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 8,
+    "keyword": "carrera de la IA",
+    "faq": [
+      {
+        "q": "¿Dices que Gemini 4 Argon es malo?",
+        "a": "Digo que, en mi opinión y para mi trabajo de programación, hoy no me sirve. No publico puntajes ni porcentajes sobre él. Y creo que Google puede sacar un modelo bueno en cualquier momento."
+      },
+      {
+        "q": "¿Los benchmarks no sirven para nada?",
+        "a": "Sirven como referencia, pero no alcanzan. Si no dicen cuánto costó ni cuánto tardó cada tarea, no me alcanzan para decidir. Lo que decide es cómo rinde el modelo en tus propias pruebas."
+      },
+      {
+        "q": "¿Cuál es la cifra exacta que muestra CodexBar?",
+        "a": "No doy una cifra exacta. Es mi estimación: unos 18 a 30 mil dólares al mes en precio de API, según lo que veo en la herramienta. Lo que sí es exacto es lo que pago: 200 en Claude, 200 en Codex y 30 en Grok Bot, en dólares por mes."
+      },
+      {
+        "q": "¿Qué modelo debería usar yo?",
+        "a": "El de frontera que gane en tus propias pruebas, con tus tareas reales. Hoy, en mi caso, Claude para programar, Codex para automatizar la computadora y Grok Bot para redes sociales. Mañana puede ser otra combinación."
+      }
+    ],
+    "cover": {
+      "src": "/blog/carrera-ia-quien-programa/header.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Ilustración abstracta de una pista con formas geométricas: dos lideran hacia una ventana de código y otras quedan encerradas en círculos propios"
+    },
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** en mi opinión, la carrera de la IA para programar hoy la corren dos empresas: OpenAI y Anthropic. Meta y Google fueron pioneras, pero en mi trabajo diario no veo a nadie programando en producción con sus modelos. Sus modelos sí funcionan dentro de sus propios ecosistemas. Los modelos chinos muestran muchos números, pero para producción, en mi experiencia, son humo. Mi regla: usa el modelo de frontera que gane en tus propias pruebas y no te cases con ninguno."
+      },
+      {
+        "type": "paragraph",
+        "text": "Esto es una opinión. No es un ranking ni un benchmark. Es lo que veo trabajando todos los días con IA en proyectos reales, y lo escribo porque mucha gente me pregunta qué pasó con los que \"iban a ganar\"."
+      },
+      {
+        "type": "heading",
+        "text": "¿Por qué Meta y Google quedaron atrás si fueron pioneros?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Meta y Google estuvieron entre los primeros en esta carrera. Eso nadie se los quita. Pero ser pionero no es lo mismo que ser útil hoy."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que veo en el campo es simple: **nadie de mi entorno programa con sus modelos**. Ni yo, ni los colegas con los que trabajo, ni la gente que sigo y que muestra su flujo real. Un modelo puede salir muy bien en una tabla de benchmarks, pero la realidad es otra cosa. Programar en producción no es responder una pregunta de examen: es leer un repositorio entero, tocar diez archivos, correr comandos, romper algo, darse cuenta y arreglarlo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para eso no alcanza con un buen modelo. Hace falta un **arnés**."
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué es un \"arnés\" y por qué importa más que el benchmark?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Llamo arnés a la herramienta que envuelve al modelo y le permite trabajar de verdad: leer tu código, editar archivos, ejecutar comandos y seguir iterando. Los dos ejemplos que uso todos los días son **Claude Code** y **Codex**."
+      },
+      {
+        "type": "paragraph",
+        "text": "No es una impresión mía lo que hacen; está en su documentación oficial:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Anthropic describe Claude Code como una herramienta de programación agéntica que lee tu código, edita archivos, ejecuta comandos y se integra con tus herramientas de desarrollo, disponible en la terminal, el IDE, una app de escritorio y el navegador.",
+          "OpenAI presenta Codex CLI como una forma de inspeccionar, editar y ejecutar código desde tu terminal."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que sí es opinión mía: **Meta y Google no tienen hoy un arnés a esa altura**, o al menos no uno que yo vea usar en trabajo real. Y sin arnés, el mejor puntaje del mundo se queda en la tabla."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay otro detalle que casi nadie dice. El arnés no solo sirve al usuario: también genera uso real, y el uso real es lo que permite mejorar el modelo para tareas reales. Quien tiene a miles de programadores usando su herramienta todos los días aprende más rápido qué falla en producción."
+      },
+      {
+        "type": "heading",
+        "text": "¿Gemini 4 Argon sirve para programar?"
+      },
+      {
+        "type": "paragraph",
+        "text": "En mi opinión, hoy **no**. Lo digo desde mi experiencia, no desde una tabla de puntajes. Para mi trabajo de programación, Gemini 4 Argon no es una opción que use ni que recomiende hoy."
+      },
+      {
+        "type": "paragraph",
+        "text": "Creo que Google está atrás porque no tiene tantos datos de usuarios programando con su modelo que lo ayuden a mejorar. Es el círculo que mencioné antes: menos uso real, menos aprendizaje sobre lo que falla de verdad."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dicho eso, no doy a nadie por muerto. **Mañana Google puede sacar uno bueno**. Tiene los recursos para hacerlo. Si eso pasa, lo voy a probar como pruebo todo: en mis propias tareas, no en los gráficos del lanzamiento."
+      },
+      {
+        "type": "heading",
+        "text": "Entonces, ¿para qué sirven los modelos de Meta y Google?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Sirven, y mucho, **dentro de sus propios ecosistemas**. Esa es la parte que se pierde cuando todo se reduce a \"quién gana\"."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**En Meta:** búsqueda e imágenes dentro de sus productos.",
+          "**En Google:** resúmenes de reuniones, búsqueda dentro de Gmail y de Docs, ese tipo de ayudas integradas en herramientas que millones de personas ya usan."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Son usos reales y útiles. Pero no son la frontera. Una cosa es resumir una reunión y otra es dejar a un agente trabajando solo sobre un sistema en producción."
+      },
+      {
+        "type": "heading",
+        "text": "¿Por qué la programación es el motor de la IA?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Porque es donde la IA hace trabajo que se puede medir: el código compila o no compila, los tests pasan o no pasan, el sistema funciona o se cae. No hay mucho espacio para el humo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para mí, los motores de la IA hoy son tres: **programación, ciencia y ciberdefensa**. Y en esa frontera, según lo que veo, solo están trabajando de verdad **OpenAI y Anthropic**. El resto compite en otras ligas, que también son legítimas, pero no son esta."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mi forma de repartir el trabajo hoy refleja eso:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Claude** para programar.",
+          "**Codex** para automatizar la computadora.",
+          "**Grok Bot** para todo lo de redes sociales."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "¿Qué pasa con los modelos chinos como Kimi?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kimi, de Moonshot, y otros modelos chinos muestran muchos números. Gráficos, comparaciones, hilos virales. Yo lo probé y no digo que sea malo. Lo que digo es que, en mi experiencia, **para producción es humo**."
+      },
+      {
+        "type": "paragraph",
+        "text": "¿Por qué? Porque casi nadie muestra lo que importa: **cuánto cuesta y cuánto tarda** llegar a ese resultado. En una prueba propia, con el mismo prompt en varios modelos, Kimi tardó varias veces más que el modelo más rápido. Un benchmark que no dice cuánto gastó ni cuánto tardó no me sirve para decidir nada."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mi regla es esta: **usa siempre el modelo de frontera que salga primero en tus propias pruebas**. No en las del influencer de turno. En las tuyas, con tus tareas y tu código."
+      },
+      {
+        "type": "heading",
+        "text": "¿Por qué no hay que casarse con un modelo ni con una empresa?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Porque esto cambia todo el tiempo. El modelo que hoy uso para todo puede quedar atrás el mes que viene. Si me caso con una empresa, me quedo con su modelo aunque ya no sea el mejor, solo por costumbre o por fanatismo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que hago es lo contrario: pruebo cada lanzamiento importante en mis tareas reales, comparo costo, tiempo y calidad, y cambio sin drama cuando algo es mejor. Hoy mis herramientas principales son de OpenAI y Anthropic porque son las que ganan en mis pruebas. Si mañana gana otra, cambio."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Nunca te cases con un modelo ni con una empresa.**"
+      },
+      {
+        "type": "heading",
+        "text": "¿Las suscripciones están subsidiadas?"
+      },
+      {
+        "type": "paragraph",
+        "text": "En mi opinión, sí, y bastante."
+      },
+      {
+        "type": "paragraph",
+        "text": "Uso **CodexBar**, una app que muestra el uso de Codex y Claude Code y que, según su página oficial, puede escanear localmente el costo de ese uso. Según lo que me muestra, mi uso equivale aproximadamente a **unos 18 a 30 mil dólares al mes en precio de API**. Es una estimación mía, a partir de esa herramienta, no una factura."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que pago de verdad es esto:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Claude:** 200 dólares por mes.",
+          "**Codex:** 200 dólares por mes.",
+          "**Grok Bot:** 30 dólares por mes."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "La diferencia entre lo que pago y lo que costaría por API es enorme. Por eso creo que hoy las suscripciones están subsidiadas: las empresas de la frontera están pagando para que los programadores usen sus herramientas todos los días. Y tiene lógica, porque ese uso es justamente lo que las hace mejorar."
+      },
+      {
+        "type": "paragraph",
+        "text": "Un dato que sí es oficial: el plan Max de Claude tiene dos niveles, Max 5x a 100 dólares por mes y Max 20x a 200 dólares por mes, y Claude Code está incluido en los planes pagos, compartiendo los límites de uso del plan. La propia página de precios menciona que, para sesiones intensas de programación, también puedes pasar a créditos de API de pago por uso."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mi consejo práctico: si programas todos los días, **aprovecha el subsidio mientras dure**. No sé cuánto va a durar, y nadie lo sabe."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Dices que Gemini 4 Argon es malo?**\nDigo que, en mi opinión y para mi trabajo de programación, hoy no me sirve. No publico puntajes ni porcentajes sobre él. Y creo que Google puede sacar un modelo bueno en cualquier momento."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Los benchmarks no sirven para nada?**\nSirven como referencia, pero no alcanzan. Si no dicen cuánto costó ni cuánto tardó cada tarea, no me alcanzan para decidir. Lo que decide es cómo rinde el modelo en tus propias pruebas."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Cuál es la cifra exacta que muestra CodexBar?**\nNo doy una cifra exacta. Es mi estimación: unos 18 a 30 mil dólares al mes en precio de API, según lo que veo en la herramienta. Lo que sí es exacto es lo que pago: 200 en Claude, 200 en Codex y 30 en Grok Bot, en dólares por mes."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué modelo debería usar yo?**\nEl de frontera que gane en tus propias pruebas, con tus tareas reales. Hoy, en mi caso, Claude para programar, Codex para automatizar la computadora y Grok Bot para redes sociales. Mañana puede ser otra combinación."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Claude Code, documentación oficial (Anthropic)](https://code.claude.com/docs/en/overview): qué es y qué hace Claude Code.",
+          "[Codex CLI, documentación oficial (OpenAI)](https://learn.chatgpt.com/docs/codex/cli): inspeccionar, editar y ejecutar código desde la terminal.",
+          "[Precios de Claude (Anthropic)](https://claude.com/pricing): Claude Code incluido en los planes pagos y opción de créditos de API para sesiones intensas.",
+          "[¿Qué es el plan Max? (Centro de ayuda de Claude)](https://support.claude.com/en/articles/11049741-what-is-the-max-plan): Max 5x a 100 USD/mes y Max 20x a 200 USD/mes.",
+          "[CodexBar, sitio oficial](https://codexbar.app/) y [repositorio oficial](https://github.com/steipete/CodexBar): seguimiento de uso de Codex y Claude Code, con escaneo local de costos.",
+          "Opiniones, experiencia y estimaciones del autor, actualizadas al 24 de octubre de 2026. Las opiniones sobre Gemini 4 Argon, Meta y Kimi son personales y no se basan en benchmarks."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "ai-race-who-actually-codes",
+    "title": "What Happened to the AI Race? Who Actually Codes With These Models",
+    "description": "My take as a developer who uses AI in production every day: why only two companies compete at the coding frontier today, why benchmarks aren't enough, and why you should never marry a model.",
+    "category": "AI models",
+    "language": "en",
+    "translation": "carrera-ia-quien-programa",
+    "author": "Yoseph Franco",
+    "date": "2026-10-26T10:00:00-03:00",
+    "updated": "2026-10-26T10:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "keyword": "AI race",
+    "faq": [
+      {
+        "q": "Are you saying Gemini 4 Argon is bad?",
+        "a": "I'm saying that, in my opinion and for my coding work, it doesn't do the job for me today. I don't publish scores or percentages about it. And I think Google could ship a good model at any moment."
+      },
+      {
+        "q": "Are benchmarks useless?",
+        "a": "They're a reference, but they're not enough. If they don't say what each task cost and how long it took, I can't decide based on them. What decides is how the model performs in your own tests."
+      },
+      {
+        "q": "What's the exact number CodexBar shows?",
+        "a": "I'm not giving an exact number. It's my estimate: 18 to 30 thousand dollars a month at API prices, based on what I see in the tool. What is exact is what I pay: $200 for Claude, $200 for Codex and $30 for Grok Bot, per month."
+      },
+      {
+        "q": "Which model should I use?",
+        "a": "Whichever frontier model wins your own tests on your real tasks. For me today, that's Claude for coding, Codex for computer automation and Grok Bot for social media. Tomorrow it could be a different mix."
+      }
+    ],
+    "cover": {
+      "src": "/blog/ai-race-who-actually-codes/header.webp",
+      "width": 1280,
+      "height": 720,
+      "alt": "Abstract illustration of a track with geometric shapes: two lead toward a code window while others sit inside their own closed circles"
+    },
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Short answer:** in my opinion, the AI race for coding is being run by two companies right now: OpenAI and Anthropic. Meta and Google were pioneers, but in my day-to-day work I don't see anyone shipping production code with their models. Their models do work well inside their own ecosystems. Chinese models post a lot of numbers, but for production work, in my experience, it's mostly smoke. My rule: use whichever frontier model wins your own tests, and never marry any of them."
+      },
+      {
+        "type": "paragraph",
+        "text": "This is an opinion piece, not a ranking or a benchmark. It's what I see working with AI on real projects every day, and I'm writing it because people keep asking me what happened to the companies that were \"supposed to win.\""
+      },
+      {
+        "type": "heading",
+        "text": "Why did Meta and Google fall behind if they were pioneers?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Meta and Google were among the first in this race. Nobody can take that away from them. But being first isn't the same as being useful today."
+      },
+      {
+        "type": "paragraph",
+        "text": "What I see in the field is simple: **nobody around me codes with their models**. Not me, not the developers I work with, not the people I follow who show their real workflow. A model can look great on a benchmark chart, and reality can still be something else. Shipping production code isn't answering an exam question. It's reading a whole repo, touching ten files, running commands, breaking something, noticing, and fixing it."
+      },
+      {
+        "type": "paragraph",
+        "text": "A good model isn't enough for that. You need a **harness**."
+      },
+      {
+        "type": "heading",
+        "text": "What's a \"harness,\" and why does it matter more than the benchmark?"
+      },
+      {
+        "type": "paragraph",
+        "text": "By harness I mean the tool wrapped around the model that lets it actually do the work: read your code, edit files, run commands and keep iterating. The two I use every day are **Claude Code** and **Codex**."
+      },
+      {
+        "type": "paragraph",
+        "text": "What they do isn't my impression; it's in their official docs:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Anthropic describes Claude Code as an agentic coding tool that reads your codebase, edits files, runs commands and integrates with your development tools, available in the terminal, your IDE, a desktop app and the browser.",
+          "OpenAI pitches Codex CLI as a way to inspect, edit and run code from your terminal."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's the opinion part: **Meta and Google don't have a harness at that level today**, or at least not one I see people using for real work. And without a harness, the best score in the world stays on the chart."
+      },
+      {
+        "type": "paragraph",
+        "text": "There's another piece people rarely mention. A harness doesn't just help the user; it generates real usage, and real usage is what lets a model get better at real tasks. Whoever has thousands of developers in their tool every day learns faster what breaks in production."
+      },
+      {
+        "type": "heading",
+        "text": "Is Gemini 4 Argon good for coding?"
+      },
+      {
+        "type": "paragraph",
+        "text": "In my opinion, not today. I'm speaking from my own experience, not from a scoreboard. For my coding work, Gemini 4 Argon isn't something I use or recommend right now."
+      },
+      {
+        "type": "paragraph",
+        "text": "I think Google is behind because it doesn't have as much data from developers coding with its model to help it improve. Same loop as before: less real usage, less learning about what actually fails."
+      },
+      {
+        "type": "paragraph",
+        "text": "That said, I'm not writing anyone off. **Google could ship a good one tomorrow.** It has the resources. If it does, I'll test it the way I test everything: on my own tasks, not on launch-day charts."
+      },
+      {
+        "type": "heading",
+        "text": "So what are Meta's and Google's models good for?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Plenty, **inside their own ecosystems**. That's the part that gets lost when everything is framed as \"who's winning.\""
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**At Meta:** search and images inside their products.",
+          "**At Google:** meeting summaries, search inside Gmail and Docs, the kind of built-in help in tools millions of people already use."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Those are real, useful jobs. They're just not the frontier. Summarizing a meeting is one thing; leaving an agent to work on its own against a production system is another."
+      },
+      {
+        "type": "heading",
+        "text": "Why is coding the engine of AI?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because it's where AI does work you can check: the code compiles or it doesn't, the tests pass or they don't, the system runs or it goes down. There isn't much room for smoke."
+      },
+      {
+        "type": "paragraph",
+        "text": "As I see it, AI has three engines right now: **coding, science and cyberdefense**. And at that frontier, from what I see, only **OpenAI and Anthropic** are really doing the work. Everyone else is playing in other leagues, which are legitimate too, just not this one."
+      },
+      {
+        "type": "paragraph",
+        "text": "My own tool split reflects that:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Claude** for coding.",
+          "**Codex** for computer automation.",
+          "**Grok Bot** for everything social media."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "What about Chinese models like Kimi?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Kimi, from Moonshot, and other Chinese models post a lot of numbers: charts, comparisons, viral threads. I've tried it, and I'm not saying it's bad. I'm saying that, in my experience, **for production it's smoke**."
+      },
+      {
+        "type": "paragraph",
+        "text": "Why? Because almost nobody shows what actually matters: **how much it costs and how long it takes** to get that result. In a test of my own, same prompt across several models, Kimi took several times longer than the fastest one. A benchmark that doesn't tell me what it cost or how long it took doesn't help me decide anything."
+      },
+      {
+        "type": "paragraph",
+        "text": "My rule: **always use the frontier model that comes out on top in your own tests.** Not the influencer's tests. Yours, with your tasks and your code."
+      },
+      {
+        "type": "heading",
+        "text": "Why shouldn't you marry a model or a company?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Because this changes all the time. The model I use for everything today might fall behind next month. If I marry a company, I'm stuck with its model even when it's no longer the best, out of habit or loyalty."
+      },
+      {
+        "type": "paragraph",
+        "text": "I do the opposite: I test every major release on real work, compare cost, time and quality, and switch without drama when something is better. Right now my main tools come from OpenAI and Anthropic because they win my tests. If someone else wins tomorrow, I switch."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Never marry a model or a company.**"
+      },
+      {
+        "type": "heading",
+        "text": "Are subscriptions subsidized?"
+      },
+      {
+        "type": "paragraph",
+        "text": "In my opinion, yes, heavily."
+      },
+      {
+        "type": "paragraph",
+        "text": "I use **CodexBar**, an app that tracks Codex and Claude Code usage and, according to its official site, can run local cost scans on that usage. Based on what it shows me, my usage works out to roughly **18 to 30 thousand dollars a month at API prices**. That's my own estimate from the tool, not an invoice."
+      },
+      {
+        "type": "paragraph",
+        "text": "Here's what I actually pay:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Claude:** $200 a month.",
+          "**Codex:** $200 a month.",
+          "**Grok Bot:** $30 a month."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The gap between what I pay and what the API would cost is huge. That's why I believe subscriptions are subsidized today: frontier companies are paying for developers to use their tools every day. It makes sense, because that usage is exactly what makes them better."
+      },
+      {
+        "type": "paragraph",
+        "text": "One fact that is official: Claude's Max plan comes in two tiers, Max 5x at $100 a month and Max 20x at $200 a month, and Claude Code is included in paid plans, drawing from the same usage limits. Anthropic's pricing page also notes that for heavy coding sessions you can switch to pay-as-you-go API credits."
+      },
+      {
+        "type": "paragraph",
+        "text": "My practical advice: if you code every day, **take advantage of the subsidy while it lasts**. I don't know how long that will be, and neither does anyone else."
+      },
+      {
+        "type": "heading",
+        "text": "FAQ"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Are you saying Gemini 4 Argon is bad?**\nI'm saying that, in my opinion and for my coding work, it doesn't do the job for me today. I don't publish scores or percentages about it. And I think Google could ship a good model at any moment."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Are benchmarks useless?**\nThey're a reference, but they're not enough. If they don't say what each task cost and how long it took, I can't decide based on them. What decides is how the model performs in your own tests."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What's the exact number CodexBar shows?**\nI'm not giving an exact number. It's my estimate: 18 to 30 thousand dollars a month at API prices, based on what I see in the tool. What is exact is what I pay: $200 for Claude, $200 for Codex and $30 for Grok Bot, per month."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Which model should I use?**\nWhichever frontier model wins your own tests on your real tasks. For me today, that's Claude for coding, Codex for computer automation and Grok Bot for social media. Tomorrow it could be a different mix."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Claude Code, official docs (Anthropic)](https://code.claude.com/docs/en/overview): what Claude Code is and does.",
+          "[Codex CLI, official docs (OpenAI)](https://learn.chatgpt.com/docs/codex/cli): inspect, edit and run code from your terminal.",
+          "[Claude pricing (Anthropic)](https://claude.com/pricing): Claude Code included in paid plans, plus the API-credits option for heavy coding sessions.",
+          "[What is the Max plan? (Claude Help Center)](https://support.claude.com/en/articles/11049741-what-is-the-max-plan): Max 5x at $100/month and Max 20x at $200/month.",
+          "[CodexBar, official site](https://codexbar.app/) and [official repository](https://github.com/steipete/CodexBar): usage tracking for Codex and Claude Code, with local cost scans.",
+          "The author's opinions, experience and estimates, current as of October 24, 2026. Opinions about Gemini 4 Argon, Meta and Kimi are personal and not based on benchmarks."
+        ]
+      }
+    ]
+  },
+  {
     "slug": "terminado-con-evidencia",
     "title": "Qué significa «terminado» cuando un agente entrega un trabajo",
     "description": "Cuatro estados que caben bajo la misma palabra y cómo pedir una entrega que diga cuál se alcanzó, con qué evidencia y qué falta.",

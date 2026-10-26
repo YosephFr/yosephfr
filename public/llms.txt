@@ -26,6 +26,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Real-cost table of AI models](https://yosephfr.com/en/resources/real-cost-ai-models): time and USD per task to build a roadster game, from my own runs in October 2026
 
 ## Artículos
+- [¿Qué pasó con la carrera de la IA? Quién programa de verdad con estos modelos](https://yosephfr.com/blog/carrera-ia-quien-programa): Mi opinión como programador que usa IA en producción todos los días: por qué hoy solo dos empresas compiten en la frontera, por qué los benchmarks no alcanzan y por qué no hay que casarse con ningún modelo.
 - [Qué significa «terminado» cuando un agente entrega un trabajo](https://yosephfr.com/blog/terminado-con-evidencia): Cuatro estados que caben bajo la misma palabra y cómo pedir una entrega que diga cuál se alcanzó, con qué evidencia y qué falta.
 - [Cómo multipliqué por 3 lo que gano como programador usando IA](https://yosephfr.com/blog/como-trabajo-programador-ia): Mi flujo real con IA como programador: el problema de pagar IA que no rinde, 3 reglas para elegir herramienta, modelo y esfuerzo, el error que más dinero cuesta y una prueba de costo acotada.
 - [La prueba de una reserva empieza antes del botón](https://yosephfr.com/blog/prueba-del-recorrido-completo): Cómo pedirle a un agente que pruebe una reserva de principio a fin, con cambios de idea y cortes de conexión incluidos, hasta el mensaje que recibe la persona.
@@ -39,6 +40,7 @@ Datos clave: AI Engineer · idiomas: español e inglés · contacto: https://yos
 - [Cómo orientar a un agente antes de rediseñar una pantalla](https://yosephfr.com/blog/referencias-antes-de-redisenar): Dale al agente una situación de uso, referencias que resuelvan el mismo trabajo y una prueba final, para que la pantalla funcione mejor y no solo se vea mejor.
 
 ## Articles in English
+- [What Happened to the AI Race? Who Actually Codes With These Models](https://yosephfr.com/en/blog/ai-race-who-actually-codes): My take as a developer who uses AI in production every day: why only two companies compete at the coding frontier today, why benchmarks aren't enough, and why you should never marry a model.
 - [How I Tripled What I Earn as a Developer Using AI](https://yosephfr.com/en/blog/how-i-work-as-developer-with-ai): My real AI workflow as a developer: the problem of paying for AI that doesn't pay off, 3 rules for picking tool, model and effort level, the mistake that burns the most money, and one bounded cost test.
 - [WhatsApp AI: How to Batch Messages Before Replying (Part 1)](https://yosephfr.com/en/blog/whatsapp-ai-message-batching): How to batch the bursts of messages a WhatsApp AI assistant receives: a per-person window, one turn at a time, a hard cap, and a durable inbox.
 - [What an AI Agent Sees When You Share a Card or Password](https://yosephfr.com/en/blog/what-an-ai-agent-sees-card-password): Type a password into the chat and the model reads it. Use a secure sign-in form or password-manager autofill and, per the vendors, it does not.
