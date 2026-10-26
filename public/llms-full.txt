@@ -80,6 +80,8 @@ Publicado: 2026-10-26T19:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Abstract illustration of a code window beside a warning triangle and a broken chain (https://yosephfr.com/blog/auditar-codigo-con-ia-cuenta-bloqueada/header.webp)
+
 PHP shipped a critical security advisory on October 21, and since then AI code audit prompts have been making the rounds on X. Using one makes sense: a model can go through in minutes what takes a person an afternoon.
 
 The assumption underneath is that if the code is yours, asking a model to review it carries no risk. Two things that surfaced over the weekend test that assumption without breaking it. An OpenAI employee said blocks on reverse engineering requests in Codex were mostly accidental. And a well-known user got a warning from Google about his Gemini usage, which he suspects came from auditing his own code.
@@ -234,6 +236,8 @@ URL: https://yosephfr.com/blog/auditar-codigo-con-ia-cuenta-bloqueada
 Publicado: 2026-10-26T19:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de una ventana de código junto a un triángulo de advertencia y una cadena rota (https://yosephfr.com/blog/auditar-codigo-con-ia-cuenta-bloqueada/header.webp)
 
 Desde que PHP publicó su aviso de seguridad crítico del 21 de octubre, en X circulan prompts para auditar código con IA. Tiene sentido usarlos: un modelo revisa en minutos lo que a una persona le lleva una tarde.
 
@@ -390,6 +394,8 @@ Publicado: 2026-10-26T19:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Abstract illustration of a financial document with a rising chart and figures in red (https://yosephfr.com/blog/anthropic-s1-numeros-reales/header.webp)
+
 On Monday, October 26, Anthropic filed its Form S-1 with the SEC for its initial public offering. EDGAR shows the filing accepted at 9:00 a.m. ET, and the company announced it on its blog (https://www.anthropic.com/news/s1-sec) the same day.
 
 The number making the rounds on X is the loss: $80.7 billion in six months. The quick read is that Anthropic is burning cash at an impossible pace. The prospectus tells a different story, and it is worth reading with the table open.
@@ -539,6 +545,8 @@ URL: https://yosephfr.com/blog/anthropic-s1-numeros-reales
 Publicado: 2026-10-26T19:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de un documento financiero con un gráfico al alza y cifras en rojo (https://yosephfr.com/blog/anthropic-s1-numeros-reales/header.webp)
 
 Este lunes 26 de octubre Anthropic presentó ante la SEC el formulario S-1 para su salida a bolsa. EDGAR registra la presentación como aceptada a las 9:00 de Nueva York, las 10:00 en Argentina, y la empresa lo anunció en su blog (https://www.anthropic.com/news/s1-sec) el mismo día.
 

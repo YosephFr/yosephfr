@@ -17,8 +17,8 @@ import ProfilePhoto from '@/components/ProfilePhoto'
 import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { UI, type Lang } from '@/lib/lang'
 
-// En estos dos el formulario queda junto al texto, antes de la ficha del autor. El resto lo mantiene al final.
-const NEWSLETTER_IN_BODY = new Set(['que-ve-un-agente-tarjeta-contrasena', 'what-an-ai-agent-sees-card-password'])
+// En estos el formulario queda junto al texto, antes de la ficha del autor. El resto lo mantiene al final.
+const NEWSLETTER_IN_BODY = new Set(['que-ve-un-agente-tarjeta-contrasena', 'what-an-ai-agent-sees-card-password', 'anthropic-s1-numeros-reales', 'anthropic-s1-real-numbers'])
 
 const TEXT = {
   es: { home: 'Inicio', articles: 'Artículos', read: 'min de lectura', updated: 'Actualizado', by: 'Escrito por', bio: 'Agentes de IA, software y automatización para el trabajo real.', cv: 'Ver CV', contact: 'Contacto', more: 'Sigue leyendo', other: 'Read in English', locale: 'es_AR' },

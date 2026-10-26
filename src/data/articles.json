@@ -126,6 +126,12 @@
     "updated": "2026-10-26T19:30:00-03:00",
     "publication": "published",
     "readingMinutes": 10,
+    "cover": {
+      "src": "/blog/auditar-codigo-con-ia-cuenta-bloqueada/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a code window beside a warning triangle and a broken chain"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -396,6 +402,12 @@
     "updated": "2026-10-26T19:30:00-03:00",
     "publication": "published",
     "readingMinutes": 11,
+    "cover": {
+      "src": "/blog/auditar-codigo-con-ia-cuenta-bloqueada/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de una ventana de código junto a un triángulo de advertencia y una cadena rota"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -666,6 +678,12 @@
     "updated": "2026-10-26T19:30:00-03:00",
     "publication": "published",
     "readingMinutes": 10,
+    "cover": {
+      "src": "/blog/anthropic-s1-numeros-reales/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a financial document with a rising chart and figures in red"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -945,6 +963,12 @@
     "updated": "2026-10-26T19:30:00-03:00",
     "publication": "published",
     "readingMinutes": 11,
+    "cover": {
+      "src": "/blog/anthropic-s1-numeros-reales/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de un documento financiero con un gráfico al alza y cifras en rojo"
+    },
     "blocks": [
       {
         "type": "paragraph",
