@@ -26,7 +26,7 @@ export default function Avatar({ size = 100, className = "" }: AvatarProps) {
   return (
     <Image
       src={PROFILE.photo}
-      alt={PROFILE.name}
+      alt={PROFILE.photoAlt}
       width={size}
       height={size}
       sizes={`${size}px`}

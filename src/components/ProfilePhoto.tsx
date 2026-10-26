@@ -9,7 +9,7 @@ export default function ProfilePhoto({ size = 72, priority = false, egg }: { siz
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={PROFILE.photo}
-      alt={PROFILE.name}
+      alt={PROFILE.photoAlt}
       width={size}
       height={size}
       decoding="async"

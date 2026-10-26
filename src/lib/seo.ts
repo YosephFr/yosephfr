@@ -53,7 +53,7 @@ export function personNode() {
       url: `${PROFILE.url}${PROFILE.photo}`,
       width: PROFILE.photoWidth,
       height: PROFILE.photoHeight,
-      caption: PROFILE.name,
+      caption: PROFILE.photoAlt,
     },
     sameAs: PROFILE.socials.map(s => s.href),
     knowsAbout: ['Agentes de IA', 'MCP', 'Orquestación de agentes', 'Desarrollo de software', 'Automatización', 'Diseño de interfaces', 'Infraestructura cloud'],
