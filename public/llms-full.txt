@@ -7,6 +7,679 @@ CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 
+# Deja de exprimir milisegundos y muestra qué está pasando
+
+Toda acción tarda algo. Cuando la interfaz responde en el momento y dice qué está haciendo, la espera se tolera mejor que con una optimización extrema y silenciosa.
+
+URL: https://yosephfr.com/blog/feedback-entre-acciones
+
+Publicado: 2026-10-26T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Toda acción en una interfaz tiene un tiempo de espera, por rápido que sea el sistema. Lo que más pesa en cómo se vive esa espera es si la pantalla responde en el momento y deja claro qué está pasando, más que bajar unos milisegundos.
+
+Es fácil pasar semanas optimizando una consulta y dejar el botón igual que antes: se toca, no cambia nada durante un segundo y medio, y después aparece el resultado. En ese segundo y medio la persona no sabe si el toque se registró. Vuelve a tocar, recarga o se va.
+
+## Tres umbrales que conviene tener a mano
+
+Jakob Nielsen resumió hace décadas tres límites de tiempo de respuesta que siguen siendo una buena guía:
+
+- Hasta una décima de segundo, la respuesta se siente instantánea y basta con mostrar el resultado.
+- Hasta un segundo, la persona nota la demora pero no pierde el hilo. Pasado ese punto conviene indicar que el sistema está trabajando.
+- Hacia los diez segundos se pierde la atención. Una espera así necesita mostrar avance y, si se puede, cuánto falta.
+
+La conclusión práctica es que casi ninguna acción real queda por debajo de la décima de segundo cuando hay red, base de datos o un modelo de lenguaje de por medio. Así que casi todas necesitan alguna señal.
+
+## Responde al toque, no al resultado
+
+Imagina una app para reservar citas. La persona elige un horario y toca «Confirmar». El servidor tarda dos segundos en guardar la reserva y enviar el correo.
+
+Sin feedback, esos dos segundos se viven como un fallo. Con feedback, se ven así:
+
+1. Al instante, el botón cambia de estado: se desactiva y dice «Confirmando…». Eso responde al toque y evita la segunda reserva por un doble clic.
+2. Si la espera pasa de un segundo, aparece una línea que dice qué está ocurriendo: «Guardando tu cita».
+3. Al terminar, la pantalla confirma lo concreto: el servicio, el día y la hora reservados.
+4. Si falla, el mensaje dice qué pasó y qué hacer, y conserva lo que la persona ya eligió.
+
+Ninguno de esos pasos hace más rápido al servidor. Lo que cambian es que la persona sabe en todo momento que su acción está en curso.
+
+## Dónde poner feedback primero
+
+No hace falta revisar toda la interfaz de una vez. Empieza por las acciones donde una duda cuesta más:
+
+- Las que crean algo: una reserva, un pago, un pedido. Ahí un segundo toque duplica.
+- Las que dependen de un modelo de IA. Sus tiempos varían mucho entre una respuesta y otra, y un indicador que muestre las etapas (leyendo, redactando, revisando) hace tolerable una espera larga.
+- Las que cambian de pantalla. Un esqueleto con la forma del contenido dice «ya viene» mejor que una pantalla en blanco.
+
+## Cómo pedírselo a un agente
+
+Si un agente construye o modifica la interfaz, incluye el feedback en el encargo en lugar de esperar que aparezca solo. Una forma de pedirlo:
+
+- Lista las acciones que tardan más de una décima de segundo.
+- Para cada una, define el estado inmediato, el mensaje si pasa de un segundo, la confirmación final y el mensaje de error.
+- Prueba cada acción con la red lenta del navegador y con un fallo forzado.
+
+La última línea es la que más se omite y la que más encuentra. Con la red simulada lenta se ven los botones que no responden y los dobles envíos.
+
+## La comprobación final
+
+Toma la acción más importante de tu producto, activa la red lenta y úsala como lo haría alguien por primera vez. Si en ningún momento te preguntas si el toque funcionó, el feedback está bien resuelto. Solo entonces vale la pena volver a mirar los milisegundos.
+
+Los tres límites vienen de Response Times: The 3 Important Limits (https://www.nngroup.com/articles/response-times-3-important-limits/), de Jakob Nielsen, en Nielsen Norman Group. La app de citas es un ejemplo para ilustrar el método.
+
+---
+
+# Before you ask an AI to audit your code: is your account at risk?
+
+An OpenAI employee said on X there's no ban on reverse engineering with Codex, and a well-known user got a Gemini account warning after an AI code audit. What's proven, what's a guess, and what to check before you run one.
+
+URL: https://yosephfr.com/en/blog/ai-code-audit-account-warning
+
+Publicado: 2026-10-26T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+PHP shipped a critical security advisory on October 21, and since then AI code audit prompts have been making the rounds on X. Using one makes sense: a model can go through in minutes what takes a person an afternoon.
+
+The assumption underneath is that if the code is yours, asking a model to review it carries no risk. Two things that surfaced over the weekend test that assumption without breaking it. An OpenAI employee said blocks on reverse engineering requests in Codex were mostly accidental. And a well-known user got a warning from Google about his Gemini usage, which he suspects came from auditing his own code.
+
+One thing up front: neither case is a new policy, and nobody here reports a banned account. Below I keep what's documented apart from what's a guess or an opinion.
+
+## Update, Oct 26
+
+At 1:20 AM ET on October 26, Varun Mohan (https://x.com/_mohansolo/status/2114588009056322018), who leads the Antigravity team at Google DeepMind according to Google's I/O 2026 speaker page (https://google-i-o-2026-press-site.prezly.com/io-2026-google-speakers), replied to Artem on X: "Let's DM, the email is extremely unclear but Antigravity should not be banning you from any service other than AGY given misuse". In other words, if there was misuse in Antigravity, the consequence should stay inside Antigravity.
+
+At 4:41 AM ET, Artem said (https://x.com/ArtemR/status/2114638539308863667) two Googlers had reached out and that they'd soon get to the bottom of what happened and whether Antigravity was involved. Digit (https://www.digit.in/news/general/google-warns-gemini-user-of-policy-violations-but-does-not-explain-why-here-is-what-happened.html) wrote the story up with the same facts and notes that it's still unclear what triggered the warning.
+
+That changes the tone, not the substance. Mohan is an employee posting on X. It isn't a Google statement or a published policy. He doesn't say what triggered the warning or confirm it was Antigravity, and that's exactly what's still unknown. What's new is that the person running the product publicly calls the email unclear and says misuse in Antigravity shouldn't spill over into the rest of your Google services.
+
+## What an OpenAI employee said about Codex and reverse engineering
+
+On October 25 at 7:46 PM ET (20:46 in Argentina), Eric S. Raymond (https://x.com/esrtweet/status/2114503984576680153) complained on X that OpenAI and Anthropic were blocking people who use their models to strip spyware out of smart TVs, work that requires reverse engineering. He framed it himself as something he'd heard secondhand.
+
+Under an hour later, roon (https://x.com/tszzl/status/2114518259139846578), who works at OpenAI, replied: "these blocks are mostly accidental and a result of difficult decision boundaries; there is no prohibition against reverse engineering with codex. it's getting fixed".
+
+That's encouraging, but it's a personal post on X. It isn't a published policy or a company statement, and it doesn't say what's being fixed or when.
+
+What is published is OpenAI's usage policies (https://openai.com/policies/usage-policies/). The version updated on October 21 prohibits the destruction, compromise, or breach of another's system or property, including malicious or abusive cyber activity, as well as unsolicited safety testing. The only mention of reverse engineering I found is about extracting the protected reasoning of OpenAI's own models, not about analyzing your devices or your code. The operative word is "another's". Auditing your own stuff isn't prohibited, but an automated filter can't always tell it's yours.
+
+## What happened to one Gemini user
+
+Artem Russakovskii (https://x.com/ArtemR/status/2114514441702420740), founder of Android Police and APKMirror, posted that he'd received several notifications from Google. Per the text he shared, the notice read "Service: Gemini" and gave the reason as "Trying to interfere with or disrupt Google's services or infrastructure, or attempting to use Google services for disrupting others' infrastructure or services". It also said his access hadn't been restricted, but that he could lose it if he continued.
+
+Two details matter. He says he was driving and not using Gemini when the notices arrived, so this wasn't a live reaction to something he was doing. And the email didn't say what triggered it. In a follow-up (https://x.com/ArtemR/status/2114517838186835968) he said Google's own page confirmed the notice was legitimate but showed no details.
+
+Later that evening he shared his best guess (https://x.com/ArtemR/status/2114523694681014598). The day before, he'd installed Google Antigravity for the first time to run a security analysis of his own code, using version 2 of the Black October Prompt (https://x.com/franzbruckhoff/status/2113556206111318171), an audit prompt circulating on X that builds on Cloudflare's security-audit-skill (https://github.com/cloudflare/security-audit-skill). He ran it with Gemini 4 Argon, which he says ran out of credits and killed the task. He presents it as the only guess he has.
+
+One reply (https://x.com/DiyarGn/status/2114547349049528558) came from another user who said he got the same warning, and that the only security topic he'd asked about was the PHP2Shell CVE. That's a second account from the person involved, not a pattern.
+
+As of the morning of October 26, Google hadn't issued a statement. What did happen is a reply from an employee, covered in the update above.
+
+## What Google's policy says
+
+Google's Generative AI Prohibited Use Policy (https://policies.google.com/terms/generative-ai/use-policy) asks you not to compromise the security of Google's or others' services, and lists "interference with, or disruption to Google's or others' infrastructure or services". The reason on Artem's notice uses almost the same words. The same page says exceptions can be made for educational, documentary, scientific, or artistic reasons, but not how those are evaluated.
+
+## The nuance X skipped
+
+On X the story got compressed into "Codex allows reverse engineering, Gemini bans you." Neither half is proven. roon isn't speaking for a written policy, and neither is Varun Mohan. Artem wasn't banned. He got a warning, and the link to his audit is his own suspicion.
+
+In the same thread, TokenGremlin (https://x.com/TokenGremlin/status/2114537791165984873) said Claude is "still a gray area" and will assume you're a state hacker going after a power grid. That's a joke-flavored opinion, not a report.
+
+## Timeline (US Eastern Time)
+
+- Oct 21: php.net posts a critical security advisory (https://www.php.net/archive/2026.php#2026-10-21-5) covering two remote code execution flaws and asks everyone to update to 8.5.12, 8.4.27, 8.3.36, or 8.2.35.
+- Oct 23: version 2 of the Black October Prompt starts circulating. The same day php.net adds an informational advisory (https://www.php.net/archive/2026.php#2026-10-23-1) about a separate issue.
+- Oct 25, 7:46 PM: Eric S. Raymond complains about blocks at OpenAI and Anthropic.
+- Oct 25, 8:28 PM: Artem Russakovskii posts the Gemini warning.
+- Oct 25, 8:43 PM: roon replies that reverse engineering with Codex isn't prohibited.
+- Oct 25, 9:05 PM: Artem shares his theory about the Antigravity audit.
+- Oct 25, 10:39 PM: another user says he got the same warning.
+- Oct 26, 1:20 AM: Varun Mohan of Antigravity replies that the email is extremely unclear.
+- Oct 26, 4:41 AM: Artem says two Googlers have reached out.
+
+## Proven, alleged, rumor
+
+Proven (a document or original post shows it):
+
+- An OpenAI employee wrote that reverse engineering with Codex isn't prohibited and that the blocks are being fixed. What's proven is that he wrote it, not that it's policy.
+- OpenAI's usage policies prohibit attacking other people's systems and unsolicited safety testing.
+- Google's policy prohibits interfering with its own or others' infrastructure, in the same language as Artem's notice.
+- Artem got a Gemini warning with no details and no restriction on his access.
+- Varun Mohan, who leads Antigravity, wrote on X that the email is extremely unclear and that Antigravity shouldn't ban you from other services over misuse. What's proven is that he wrote it, not that it's Google policy.
+- PHP disclosed critical vulnerabilities on October 21, with patched versions.
+
+Alleged (someone says so, unconfirmed):
+
+- That the warning came from using Gemini to audit his own code. That's Artem's theory.
+- That another user got the same warning for asking about PHP2Shell. One testimony.
+- That the Codex blocks were accidental. An employee says so, not the company.
+- That two Googlers reached out to Artem. He says so.
+- That misuse in Antigravity only affects Antigravity. The product lead says so on X; no published policy states it.
+
+Rumor or opinion:
+
+- That Gemini bans accounts for code audits. These threads don't contain a single banned account.
+- That Claude treats any audit as an attack. An opinion.
+- That OpenAI and Anthropic block people from cleaning up TVs. Raymond described it as secondhand.
+
+## What I'd do before asking an AI to audit your code
+
+This isn't legal advice. It's what makes sense given what's published today.
+
+1. Use an account that isn't the one holding your email and files. If a warning ever turns into a locked account, it shouldn't take anything important with it. The user who replied to Artem landed on the same idea.
+2. Only audit code and devices you own or have written permission to test. Both companies' policies draw the line at other people's systems and unsolicited testing.
+3. Put that context in the prompt: which repository it is and that it's yours. It guarantees nothing, but it gives the model, and any human reviewer, the missing piece.
+4. Ask for findings and fixes, not ready-to-run exploits against servers you don't control.
+5. Don't paste keys or customer data into the prompt. An audit doesn't need them.
+6. Save the exact prompt and note which model you used and when. If a warning shows up with no details, you can reconstruct what happened and appeal with facts. OpenAI's policies say you can appeal if you think they got an enforcement decision wrong.
+7. If a Gemini filter starts refusing every prompt, a moderator with a Google badge on the Google AI Developers Forum (https://discuss.ai.google.dev/t/random-false-positive-gemini-filters/183337) recommended starting a new chat, stating in the prompt that you're doing defensive security research, and reporting the false positive through the feedback link on the block message. That reply is from September and covers prompts blocked inside a chat, not account warnings.
+8. If PHP is your problem, AI isn't step one. Update to the patched versions from the October 21 advisory.
+
+## Bottom line
+
+Running an AI code audit is still a good idea, and nothing here says otherwise. What these cases show is that automated filters can't tell whether the code is yours, and that warnings can arrive with no explanation. With a separate account and a record of what you asked, the worst case shrinks from a loss to an annoyance.
+
+## FAQ
+
+Does OpenAI prohibit reverse engineering with Codex?
+
+An OpenAI employee wrote on X that it doesn't, and that the blocks were mostly accidental. That isn't published policy. The written usage policies prohibit attacking other people's systems but say nothing about reverse engineering your own devices.
+
+Does Google ban accounts for auditing code with Gemini?
+
+There's no evidence of that. One user got a Gemini account warning without any access restriction, and another says he got the same one. The link to code auditing is the affected user's own theory. Google hasn't issued a statement; the Antigravity lead replied on X that the email is extremely unclear and that Antigravity shouldn't ban you from other services over misuse, but that isn't published policy.
+
+What does the Gemini account warning mean?
+
+Based on the text Artem shared, Google flagged an attempt to interfere with its own or others' services. The notice doesn't say what triggered it and states that access wasn't restricted. What triggered it is still unknown; Artem says two Googlers are looking into it with him.
+
+Should I use a separate account for AI code audits?
+
+It's a cheap precaution. If something goes wrong, the problem stays in an account that doesn't hold your email or your files.
+
+What should I do if I run a PHP site?
+
+Update to 8.5.12, 8.4.27, 8.3.36, or 8.2.35 depending on your branch, as the October 21 php.net advisory asks. An AI audit can come after that.
+
+## Sources
+
+- roon (OpenAI employee) on X, Oct 25 (https://x.com/tszzl/status/2114518259139846578)
+- Eric S. Raymond on X, Oct 25 (https://x.com/esrtweet/status/2114503984576680153)
+- Artem Russakovskii: the Gemini warning (https://x.com/ArtemR/status/2114514441702420740)
+- Artem Russakovskii: the notice is real, no details (https://x.com/ArtemR/status/2114517838186835968)
+- Artem Russakovskii: his theory about the audit (https://x.com/ArtemR/status/2114523694681014598)
+- Reply from another user with the same warning (https://x.com/DiyarGn/status/2114547349049528558)
+- TokenGremlin on Claude (https://x.com/TokenGremlin/status/2114537791165984873)
+- Black October Prompt v2 (https://x.com/franzbruckhoff/status/2113556206111318171)
+- Cloudflare security-audit-skill on GitHub (https://github.com/cloudflare/security-audit-skill)
+- OpenAI usage policies (https://openai.com/policies/usage-policies/)
+- Google Generative AI Prohibited Use Policy (https://policies.google.com/terms/generative-ai/use-policy)
+- php.net: October 21 security advisory (https://www.php.net/archive/2026.php#2026-10-21-5)
+- php.net: October 23 informational advisory (https://www.php.net/archive/2026.php#2026-10-23-1)
+- Varun Mohan (Antigravity) on X, Oct 26 (https://x.com/_mohansolo/status/2114588009056322018)
+- Google I/O 2026 speakers, with Varun Mohan's role (https://google-i-o-2026-press-site.prezly.com/io-2026-google-speakers)
+- Artem Russakovskii: two Googlers reached out (https://x.com/ArtemR/status/2114638539308863667)
+- Digit's coverage of the case (https://www.digit.in/news/general/google-warns-gemini-user-of-policy-violations-but-does-not-explain-why-here-is-what-happened.html)
+- Google AI Developers Forum: false positives in Gemini filters (https://discuss.ai.google.dev/t/random-false-positive-gemini-filters/183337)
+
+---
+
+# Antes de pedirle a una IA que audite tu código: ¿tu cuenta corre riesgo?
+
+Un empleado de OpenAI dijo en X que no hay prohibición de ingeniería inversa con Codex, y un usuario recibió una advertencia de cuenta Gemini tras auditar código con IA. Qué está probado, qué es hipótesis y qué revisar antes de pedir una auditoría.
+
+URL: https://yosephfr.com/blog/auditar-codigo-con-ia-cuenta-bloqueada
+
+Publicado: 2026-10-26T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Desde que PHP publicó su aviso de seguridad crítico del 21 de octubre, en X circulan prompts para auditar código con IA. Tiene sentido usarlos: un modelo revisa en minutos lo que a una persona le lleva una tarde.
+
+La suposición de fondo es simple: si el código es tuyo, pedirle a un modelo que lo revise no tiene ningún riesgo. El fin de semana aparecieron dos episodios que ponen esa idea en duda, aunque ninguno la derriba. En uno, un empleado de OpenAI dijo que los bloqueos a pedidos de ingeniería inversa en Codex fueron mayormente accidentales. En el otro, un usuario conocido recibió una advertencia de Google por su uso de Gemini y sospecha que la causa fue una auditoría de su propio código.
+
+Antes de seguir, una aclaración: ninguno de los dos casos es una política nueva ni una ola de cuentas bloqueadas. Abajo separo lo que está documentado de lo que es hipótesis u opinión.
+
+## Actualización 26/10
+
+A las 2:20 del 26 de octubre (hora de Argentina), Varun Mohan (https://x.com/_mohansolo/status/2114588009056322018), que lidera el equipo de Antigravity en Google DeepMind según la página de oradores de Google I/O 2026 (https://google-i-o-2026-press-site.prezly.com/io-2026-google-speakers), le respondió a Artem en X: "Let's DM, the email is extremely unclear but Antigravity should not be banning you from any service other than AGY given misuse". En español: hablemos por mensaje privado; el correo es muy poco claro, pero ante un mal uso Antigravity no debería bloquearte ningún servicio que no sea el propio Antigravity.
+
+A las 5:41, Artem contó (https://x.com/ArtemR/status/2114638539308863667) que ya lo habían contactado dos personas de Google y que pronto se iba a saber qué pasó y si Antigravity tuvo que ver. El sitio Digit (https://www.digit.in/news/general/google-warns-gemini-user-of-policy-violations-but-does-not-explain-why-here-is-what-happened.html) publicó el caso con esos mismos datos y concluye que todavía no está claro qué disparó el aviso.
+
+Esto cambia el tono, pero no el fondo. Mohan escribe como empleado en X: no es un comunicado de Google ni una política publicada. Su respuesta no dice qué disparó la advertencia ni confirma que haya sido Antigravity, y eso es justamente lo que sigue sin saberse. Lo nuevo es que alguien a cargo del producto reconoce en público que el correo es poco claro y que, si hubo un mal uso en Antigravity, la consecuencia no debería alcanzar al resto de tus servicios de Google.
+
+## Qué dijo alguien de OpenAI sobre Codex e ingeniería inversa
+
+El 25 de octubre a las 20:46 (hora de Argentina), Eric S. Raymond (https://x.com/esrtweet/status/2114503984576680153) se quejó en X de que OpenAI y Anthropic estarían bloqueando a quienes usan sus modelos para limpiar software espía de televisores, un trabajo que exige ingeniería inversa. Él mismo lo presentó como algo que le llegó de oídas.
+
+A las 21:43, roon (https://x.com/tszzl/status/2114518259139846578), empleado de OpenAI, le respondió: "these blocks are mostly accidental and a result of difficult decision boundaries; there is no prohibition against reverse engineering with codex. it's getting fixed". En español: los bloqueos son mayormente accidentales, salen de límites de decisión difíciles, no hay prohibición de hacer ingeniería inversa con Codex y se está corrigiendo.
+
+Es una buena señal, pero es un post personal en X. No es una política publicada ni un comunicado de la empresa, y no dice qué se corrige ni cuándo.
+
+Lo que sí está publicado son las políticas de uso de OpenAI (https://openai.com/policies/usage-policies/). La versión actualizada el 21 de octubre prohíbe la destrucción, el compromiso o la intrusión en sistemas o bienes de otra persona, incluida la actividad cibernética maliciosa o abusiva, y también las pruebas de seguridad no solicitadas. La única mención a la ingeniería inversa que encontré se refiere a extraer el razonamiento protegido de los propios modelos, no a analizar tus dispositivos o tu código. La clave está en "de otra persona": auditar lo tuyo no aparece prohibido, pero un filtro automático no siempre sabe que es tuyo.
+
+## Qué le pasó a un usuario con Gemini
+
+Artem Russakovskii (https://x.com/ArtemR/status/2114514441702420740), fundador de Android Police y APKMirror, publicó a las 21:28 que había recibido varias notificaciones de Google. Según el texto que compartió, el aviso decía "Service: Gemini" y daba como motivo "Trying to interfere with or disrupt Google's services or infrastructure, or attempting to use Google services for disrupting others' infrastructure or services". También aclaraba que su acceso no estaba restringido por ahora, pero que podía perderlo si seguía.
+
+Dos detalles importan. Él dice que en ese momento iba manejando y no estaba usando Gemini, así que el aviso no fue una reacción en vivo a algo que estaba haciendo. Y el correo no explicaba qué conducta lo disparó: en un segundo post (https://x.com/ArtemR/status/2114517838186835968) contó que la página de Google confirmaba que el aviso era real, pero sin ningún detalle.
+
+A las 22:05 compartió su hipótesis (https://x.com/ArtemR/status/2114523694681014598). El día anterior había instalado Google Antigravity por primera vez para hacer un análisis de seguridad de su propio código con la segunda versión del Black October Prompt (https://x.com/franzbruckhoff/status/2113556206111318171), un prompt de auditoría que circula en X y que se basa en el security-audit-skill de Cloudflare (https://github.com/cloudflare/security-audit-skill). Lo corrió con Gemini 4 Argon, que según él se quedó sin créditos y cortó la tarea. Él mismo lo plantea como la única suposición que tiene.
+
+Hubo una respuesta (https://x.com/DiyarGn/status/2114547349049528558) de otro usuario que dijo haber recibido la misma advertencia y que lo único de ciberseguridad que había preguntado era sobre la CVE de PHP2Shell. Es un segundo caso contado por su protagonista, no un patrón.
+
+Hasta la mañana del 26 de octubre no había un comunicado de Google sobre el caso. Lo que sí hubo es la respuesta de un empleado que cuento en la actualización de arriba.
+
+## Lo que dice la política de Google
+
+La política de uso prohibido de IA generativa de Google (https://policies.google.com/terms/generative-ai/use-policy) pide no comprometer la seguridad de servicios propios o ajenos, e incluye "interference with, or disruption to Google's or others' infrastructure or services". El motivo del aviso que recibió Artem usa casi las mismas palabras. La misma página aclara que puede haber excepciones por razones educativas, documentales, científicas o artísticas, pero no explica cómo se evalúan.
+
+## El matiz que se pierde en X
+
+En X el caso se resumió rápido: Codex permite la ingeniería inversa y Gemini te banea. Ninguna de las dos mitades está probada así. roon no habla en nombre de una política escrita, y lo mismo vale para Varun Mohan. Artem no fue bloqueado: recibió una advertencia, y la relación con la auditoría es una sospecha suya.
+
+En la misma conversación, TokenGremlin (https://x.com/TokenGremlin/status/2114537791165984873) opinó que Claude sigue siendo "una zona gris" y que te trata como si fueras un hacker estatal atacando una red eléctrica. Es una opinión con tono de chiste, no un reporte.
+
+## Cronología (hora de Argentina)
+
+- 21 de octubre: php.net publica un aviso de seguridad crítico (https://www.php.net/archive/2026.php#2026-10-21-5) con dos vulnerabilidades de ejecución remota de código y pide actualizar a 8.5.12, 8.4.27, 8.3.36 o 8.2.35.
+- 23 de octubre: circula la versión 2 del Black October Prompt para auditar código con IA. Ese día php.net suma un aviso informativo (https://www.php.net/archive/2026.php#2026-10-23-1) sobre otro problema.
+- 25 de octubre, 20:46: Eric S. Raymond se queja de bloqueos en OpenAI y Anthropic.
+- 25 de octubre, 21:28: Artem Russakovskii publica la advertencia de Gemini.
+- 25 de octubre, 21:43: roon responde que no hay prohibición de ingeniería inversa con Codex.
+- 25 de octubre, 22:05: Artem comparte su hipótesis sobre la auditoría con Antigravity.
+- 25 de octubre, 23:39: otro usuario dice haber recibido la misma advertencia.
+- 26 de octubre, 2:20: Varun Mohan, de Antigravity, responde que el correo es muy poco claro.
+- 26 de octubre, 5:41: Artem dice que lo contactaron dos personas de Google.
+
+## Probado, alegado y rumor
+
+Probado (hay un documento o un post original que lo muestra):
+
+- Un empleado de OpenAI escribió que no hay prohibición de ingeniería inversa con Codex y que los bloqueos se están corrigiendo. Lo probado es que lo escribió, no que sea una política.
+- Las políticas de uso de OpenAI prohíben atacar sistemas ajenos y hacer pruebas de seguridad no solicitadas.
+- La política de Google prohíbe interferir con infraestructura propia o ajena, con el mismo lenguaje que el aviso que recibió Artem.
+- Artem recibió una advertencia de Gemini sin detalles y sin restricción de acceso.
+- Varun Mohan, que lidera Antigravity, escribió en X que el correo es muy poco claro y que Antigravity no debería bloquear otros servicios ante un mal uso. Lo probado es que lo escribió, no que sea una política de Google.
+- PHP publicó vulnerabilidades críticas el 21 de octubre, con versiones corregidas.
+
+Alegado (lo dice alguien, sin confirmación):
+
+- Que la advertencia vino de usar Gemini para auditar su propio código. Es la hipótesis de Artem.
+- Que a otro usuario le pasó lo mismo por preguntar sobre PHP2Shell. Es un solo testimonio.
+- Que los bloqueos en Codex fueron accidentales. Lo dice un empleado, no la empresa.
+- Que dos personas de Google se contactaron con Artem. Lo dice él.
+- Que un mal uso en Antigravity solo afecta a Antigravity. Lo dice el responsable del producto en X; no hay una política publicada que lo establezca.
+
+Rumor u opinión:
+
+- Que Gemini banea cuentas por auditar código. En estos hilos no aparece ni un solo caso de cuenta bloqueada.
+- Que Claude trata cualquier auditoría como un ataque. Es una opinión.
+- Que OpenAI y Anthropic bloquean la limpieza de televisores. Raymond lo presentó como algo que le llegó de oídas.
+
+## Lo que yo haría antes de pedirle a una IA que audite tu código
+
+Esto no es asesoría legal. Es lo que tiene sentido con lo que hay publicado hoy.
+
+1. Usa una cuenta separada de la que tiene tu correo y tus archivos. Si una advertencia termina en cuenta bloqueada, que no se lleve lo importante. Es lo mismo que propuso el usuario que respondió a Artem.
+2. Audita solo código y equipos que son tuyos o que tienes permiso escrito para probar. Las políticas de las dos empresas trazan la línea en los sistemas ajenos y en las pruebas no solicitadas.
+3. Escribe ese contexto en el prompt: qué repositorio es y que es tuyo. No garantiza nada, pero le da al modelo, y a cualquier revisión humana, la información que falta.
+4. Pide hallazgos y correcciones, no exploits listos para usar contra servidores que no controlas.
+5. No pegues claves ni datos de clientes en el prompt. Una auditoría no los necesita.
+6. Guarda el prompt exacto y anota qué modelo usaste y cuándo. Si llega un aviso sin detalles, vas a poder reconstruir qué pasó y apelar con hechos. OpenAI indica en sus políticas que puedes apelar si crees que se equivocaron al aplicar una sanción.
+7. Si un filtro de Gemini empieza a rechazar todos tus prompts, en un hilo del foro de desarrolladores de Google AI (https://discuss.ai.google.dev/t/random-false-positive-gemini-filters/183337) un moderador con distintivo de Google recomendó abrir un chat nuevo, aclarar en el prompt que el análisis es de seguridad defensiva y reportar el falso positivo con el enlace de feedback del mensaje de bloqueo. Esa respuesta es de septiembre y habla de prompts bloqueados dentro de un chat, no de advertencias de cuenta.
+8. Si tu problema es PHP, lo primero no es la IA: actualiza a las versiones corregidas del aviso del 21 de octubre.
+
+## Conclusión
+
+Auditar código con IA sigue siendo una buena idea, y ninguno de estos casos demuestra lo contrario. Lo que muestran es que los filtros automáticos no saben si el código es tuyo y que los avisos pueden llegar sin explicación. Con una cuenta separada y un registro de lo que pediste, el peor escenario pasa de pérdida a molestia.
+
+## Preguntas frecuentes
+
+¿OpenAI prohíbe hacer ingeniería inversa con Codex?
+
+Un empleado de OpenAI escribió en X que no, y que los bloqueos fueron mayormente accidentales. No es una política publicada. Las políticas de uso escritas prohíben atacar sistemas ajenos, pero no mencionan la ingeniería inversa de tus propios dispositivos.
+
+¿Google bloquea cuentas por auditar código con Gemini?
+
+No hay evidencia de eso. Hay un usuario que recibió una advertencia de cuenta Gemini sin restricción de acceso y otro que dice haber recibido la misma. La relación con la auditoría es una hipótesis del propio afectado. Google no publicó un comunicado; el responsable de Antigravity respondió en X que el correo es muy poco claro y que, ante un mal uso, Antigravity no debería bloquear otros servicios, pero eso no es una política publicada.
+
+¿Qué significa la advertencia de cuenta Gemini que recibió Artem?
+
+Según el texto que compartió, Google consideró que hubo un intento de interferir con servicios propios o ajenos. El aviso no detalla qué conducta lo disparó y aclara que el acceso no fue restringido. Hasta ahora no se sabe qué lo disparó; Artem dice que dos personas de Google lo están revisando con él.
+
+¿Conviene usar una cuenta aparte para auditar código con IA?
+
+Es una precaución barata. Si algo sale mal, el problema queda en una cuenta que no tiene tu correo ni tus archivos.
+
+¿Qué hago si tengo un sitio en PHP?
+
+Actualiza a 8.5.12, 8.4.27, 8.3.36 o 8.2.35 según tu rama, como pide el aviso de php.net del 21 de octubre. Una auditoría con IA puede venir después.
+
+## Fuentes
+
+- roon (empleado de OpenAI) en X, 25 de octubre (https://x.com/tszzl/status/2114518259139846578)
+- Eric S. Raymond en X, 25 de octubre (https://x.com/esrtweet/status/2114503984576680153)
+- Artem Russakovskii: aviso de Gemini (https://x.com/ArtemR/status/2114514441702420740)
+- Artem Russakovskii: el aviso es real y sin detalles (https://x.com/ArtemR/status/2114517838186835968)
+- Artem Russakovskii: su hipótesis sobre la auditoría (https://x.com/ArtemR/status/2114523694681014598)
+- Respuesta de otro usuario con la misma advertencia (https://x.com/DiyarGn/status/2114547349049528558)
+- TokenGremlin sobre Claude (https://x.com/TokenGremlin/status/2114537791165984873)
+- Black October Prompt v2 (https://x.com/franzbruckhoff/status/2113556206111318171)
+- Cloudflare security-audit-skill en GitHub (https://github.com/cloudflare/security-audit-skill)
+- Políticas de uso de OpenAI (https://openai.com/policies/usage-policies/)
+- Política de uso prohibido de IA generativa de Google (https://policies.google.com/terms/generative-ai/use-policy)
+- php.net: aviso de seguridad del 21 de octubre (https://www.php.net/archive/2026.php#2026-10-21-5)
+- php.net: aviso informativo del 23 de octubre (https://www.php.net/archive/2026.php#2026-10-23-1)
+- Varun Mohan (Antigravity) en X, 26 de octubre (https://x.com/_mohansolo/status/2114588009056322018)
+- Google I/O 2026: oradores de Google, con el cargo de Varun Mohan (https://google-i-o-2026-press-site.prezly.com/io-2026-google-speakers)
+- Artem Russakovskii: lo contactaron dos personas de Google (https://x.com/ArtemR/status/2114638539308863667)
+- Digit: cobertura del caso (https://www.digit.in/news/general/google-warns-gemini-user-of-policy-violations-but-does-not-explain-why-here-is-what-happened.html)
+- Foro de desarrolladores de Google AI: falsos positivos de los filtros de Gemini (https://discuss.ai.google.dev/t/random-false-positive-gemini-filters/183337)
+
+---
+
+# Anthropic S-1: did it really lose $80.7 billion?
+
+I read Anthropic's S-1 for its IPO: revenue, the $80.7 billion loss broken down, compute spending and who controls the company. With the section for every figure.
+
+URL: https://yosephfr.com/en/blog/anthropic-s1-real-numbers
+
+Publicado: 2026-10-26T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+On Monday, October 26, Anthropic filed its Form S-1 with the SEC for its initial public offering. EDGAR shows the filing accepted at 9:00 a.m. ET, and the company announced it on its blog (https://www.anthropic.com/news/s1-sec) the same day.
+
+The number making the rounds on X is the loss: $80.7 billion in six months. The quick read is that Anthropic is burning cash at an impossible pace. The prospectus tells a different story, and it is worth reading with the table open.
+
+I downloaded the full document from EDGAR and searched the text for every number below. Next to each figure I name the S-1 section where it appears, so you can check it yourself. Anything that is my own math or my own reading is labeled as such.
+
+## Revenue: from $41 million to $16.3 billion in one half-year
+
+The "Consolidated Statements of Operations Data" table, inside "Summary Consolidated Financial and Other Data", shows this revenue (in millions of dollars):
+
+- 2023: 41
+- 2024: 386
+- 2025: 4,585
+- First half of 2025: 1,163
+- First half of 2026: 16,286
+
+In "Risk Factors", the item that starts with "We are at an early stage of our revenue growth" turns that into growth rates: 841% year over year in 2024, 1,088% in 2025 and 1,300% in the first half of 2026. In the same paragraph the company says it does not expect revenue to keep growing at comparable rates and expects its growth rate to decline over time.
+
+"Management's Discussion and Analysis of Financial Condition and Results of Operations" (MD&A), under "Comparison of the Six Months Ended June 30, 2025 and 2026", adds detail: first-half revenue rose $15.1 billion, with $12.1 billion from consumption-based revenue and $3.0 billion from subscriptions.
+
+There is customer data too. Per the "Prospectus Summary" ("Enterprise Adoption of Claude") and the MD&A ("Adoption of Claude"), as of September 30, 2026 Anthropic had more than 11,900 customers paying $100,000 or more on a trailing twelve-month basis, up from more than 950 a year earlier. More than 1,900 are above $1 million and about 250 are above $10 million. The "Prospectus Summary" ("Strengths of Our Financial Model") reports Net Revenue Retention of approximately 900% as of that date.
+
+## The $80.7 billion loss, taken apart
+
+This is the part the quick read skips. In the same "Summary Consolidated Financial and Other Data" table, the first half of 2026 looks like this (in millions of dollars):
+
+- Operating loss: 693
+- Interest income: 1,111
+- Change in fair value of convertible notes, derivative liabilities, and SAFEs: a loss of 72,388
+- Other income (expense), net: a loss of 8,757
+- Net loss: 80,748
+
+Footnote 2 of that table explains the $72.4 billion line: the changes were primarily driven by an increase in the fair value of outstanding convertible notes, resulting from an increase in the company's valuation. Put simply, Anthropic owes shares to investors who lent it money through convertible notes, and the more the company is worth, the more that debt "costs" on paper. It is an accounting charge, not cash that left the bank in the half-year.
+
+The $8.8 billion line has a similar explanation. The MD&A, under "Other Income (Expense), Net" for the half-year, attributes it primarily to the initial fair value recognition and change in fair value of assets and liabilities tied to note purchase agreements.
+
+My math with those figures: the $72.4 billion fair value charge is about 90% of the half-year net loss. The loss from the business itself, the operating loss, was $693 million.
+
+The quarterly view is even more striking. In "Quarterly Results of Operations" (MD&A), the quarter ended June 30, 2026 shows operating income of $974 million, alongside a net loss of $66.3 billion in the same quarter. It is the only one of the six quarters in the table with positive operating income.
+
+Cash moved too. In "Liquidity and Capital Resources" (under "Cash Flows"), operating activities provided $3.9 billion in the first half of 2026, compared with $1.5 billion used in the same half of 2025.
+
+The annual trend points the same way. The operating loss was $551 million in 2023, $3.0 billion in 2024 and $8.1 billion in 2025, while the fair value line went from $1.0 billion to $5.4 billion and then $34.3 billion ("Summary Consolidated Financial and Other Data"). The 2025 net loss was $42.0 billion.
+
+The S-1 also publishes non-GAAP measures. Under "Non-GAAP Financial Measures" in the summary, Adjusted Operating Income for the first half of 2026 is a positive $1.6 billion. The company defines these numbers itself, so I treat them with more caution than the GAAP table.
+
+## Compute: the spending that is operational
+
+The "Compute and infrastructure" line is the largest operating expense. In "Summary Consolidated Financial and Other Data" (in millions of dollars): 433 in 2023, 2,522 in 2024, 7,326 in 2025, 2,334 in the first half of 2025 and 8,945 in the first half of 2026.
+
+The MD&A, under "Compute and Infrastructure" in the half-year comparison, says this expense grew 283% and fell from 201% of revenue to 55%. It attributes the increase to the delivery of committed compute from its cloud providers during the first half.
+
+The efficiency line the company leads with is in the "Prospectus Summary" ("Strengths of Our Financial Model") and the MD&A ("Compute Efficiency"): revenue for the quarter ended June 2026 grew 1,368% year over year, while compute and infrastructure expenses grew 300%. I checked it against "Quarterly Results of Operations": revenue of $787 million versus $11.6 billion, and compute of $1.4 billion versus $5.6 billion. The numbers add up.
+
+The same summary says Claude Opus 5.5 reduced customer costs per task by approximately 40% compared to Claude Opus 5. That is a company claim, without detail on how it was measured.
+
+What you cannot read yet is the size of future compute commitments. In "Risk Factors" and in the MD&A ("Compute Investments" and "Contractual Obligations"), the total is blank: "aggregate committed spend of more than $ ", with no number. The contractual obligations table is empty, including its as-of date.
+
+## Who is in charge: the PBC, the Long-Term Benefit Trust and the Class F share
+
+The cover page, "Our Governance Structure and Its Goals" and the "Management" section lay out the control structure:
+
+- Anthropic is a Delaware public benefit corporation (PBC). Its stated purpose is "the responsible development and maintenance of advanced AI for the long-term benefit of humanity", and the board must balance it against stockholders' financial interests and the interests of those affected by its conduct.
+- The Long-Term Benefit Trust (LTBT), set up in 2023, has five financially disinterested trustees. Through Class T stock it elects and removes the Class T directors. Today the board has six members and the LTBT elected three of them, so it does not yet hold a majority. After the IPO the board will have seven seats and the LTBT will elect four, which is a majority ("Management", under "Board of Directors").
+- One of those four seats comes with a condition. To nominate, remove without cause or change the "Specified Class T Director", the LTBT needs the concurrence of the board's nominating and corporate governance committee. If the committee does not concur within 15 days, the matter goes to a vote of the Class E stockholders, which are employees other than the co-founders ("Our Governance Structure and Its Goals", under "Election and Removal of Directors").
+- Class T stock has no economic rights and no vote on other matters.
+- Right before the offering, an entity owned by the seven co-founders will receive a single Class F share carrying 50.1% of the votes on matters put to stockholders, including the election of the non-Class T directors. It has no economic rights either.
+- The stock offered to the public is Class A, with one vote per share. Anthropic has applied to list on the Nasdaq Global Select Market under the symbol "ANT", and Goldman Sachs and Morgan Stanley appear on the cover.
+
+My reading: buyers of Class A shares will not decide who runs the company. After the IPO, that is split between the LTBT, with a majority of the board, and the co-founders, with 50.1% of the votes. The S-1 itself says Anthropic will be a "controlled company" under Nasdaq governance rules.
+
+One more detail, in "Our Commitment to Public Benefit": the company contributed 846,840,960 Class N shares, 5% of its fully diluted shares as of June 30, 2026, to a wholly owned fund dedicated to that purpose.
+
+## What the S-1 leaves blank
+
+This is a preliminary prospectus and it has gaps. I confirmed these in the text:
+
+- The price range per share (cover: "between $ and $").
+- The number of shares sold by the company and by selling stockholders (cover).
+- Revenue for the quarter ended September 2026 ("Prospectus Summary" and "Risk Factors").
+- Run-Rate Revenue as of October 31, 2026 ("Business", under "Significant Revenue Growth").
+- Total compute commitments and the "Contractual Obligations" table.
+- The pro forma balance sheet columns and pro forma net loss per share ("Summary Consolidated Financial and Other Data").
+
+## What is proven and what is interpretation
+
+Proven in the S-1: the revenue, operating loss, fair value charge, net loss and compute figures cited above, along with the PBC structure, the LTBT's seats (3 of 6 today, 4 of 7 after the IPO), the Class F share and the blank fields.
+
+Company claims inside the S-1: the 40% cost-per-task reduction with Opus 5.5 and the roughly 900% net revenue retention. The non-GAAP measures belong in the same group. They sit in a document filed with the SEC, but Anthropic defines and calculates them.
+
+My interpretation: that the $80.7 billion loss says little about the operating business, and that after the IPO control stays with the LTBT and the co-founders. Both follow from the S-1, but the conclusion is mine.
+
+## What I would watch in the next S-1 amendment
+
+1. The price range and share count, once an amendment fills them in.
+2. Third-quarter 2026 revenue, to see whether the curve holds or flattens.
+3. The total compute commitments and their payment schedule.
+4. Whether the quarter with operating income repeats or was a one-off.
+5. The pro forma adjustment that removes the fair value charge tied to the convertible notes conversion. The S-1 already has the line, with no amount.
+
+## Bottom line
+
+The $80.7 billion figure is real and it is in the S-1, but about 90% of it is an accounting adjustment driven by a higher valuation. The more useful signal in the document is elsewhere: a business that went from $41 million in revenue in 2023 to $16.3 billion in a single half-year, with compute shrinking as a share of that revenue. The price and the compute commitments, which are what you would need to judge the offering, are still blank.
+
+Disclaimer: this article summarizes a public document. It is not investment advice or a recommendation to buy or sell any security.
+
+## Frequently asked questions
+
+How much revenue does Anthropic report in its S-1?
+
+$16.3 billion in the first half of 2026 and $4.6 billion for all of 2025, per "Summary Consolidated Financial and Other Data".
+
+Why did Anthropic lose $80.7 billion in six months?
+
+Mainly because of a $72.4 billion charge for the change in fair value of convertible notes, derivative liabilities and SAFEs, which the S-1 attributes to its higher valuation. The half-year operating loss was $693 million.
+
+How much does Anthropic spend on compute?
+
+$8.9 billion in the first half of 2026, or 55% of revenue for the period. Total future compute commitments are blank in this S-1.
+
+What is the price of Anthropic's IPO?
+
+Not known yet. The price range and the number of shares are blank in the preliminary prospectus.
+
+What is the Long-Term Benefit Trust?
+
+A five-member trust with no financial interest in the company that, through Class T stock, elects and removes Anthropic directors: 3 of 6 today, and 4 of 7 after the IPO, which is a majority. For one of those four seats it needs the agreement of the board's nominating committee or, failing that, the approval of employees holding Class E stock.
+
+What ticker would Anthropic trade under?
+
+Anthropic has applied to list its Class A stock on the Nasdaq Global Select Market under the symbol "ANT".
+
+## Sources
+
+- Anthropic, PBC: preliminary prospectus (Form S-1) on EDGAR (https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+- EDGAR filing index, accepted October 26, 2026 (https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/0001628280-26-067168-index.htm)
+- Anthropic: official announcement of the S-1 filing (https://www.anthropic.com/news/s1-sec)
+
+---
+
+# S-1 de Anthropic: ¿de verdad perdió 80.700 millones?
+
+Leí el S-1 de Anthropic para su IPO: ingresos, la pérdida de 80.748 millones desarmada, el gasto en cómputo y quién controla la empresa. Con la sección de cada cifra.
+
+URL: https://yosephfr.com/blog/anthropic-s1-numeros-reales
+
+Publicado: 2026-10-26T19:30:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Este lunes 26 de octubre Anthropic presentó ante la SEC el formulario S-1 para su salida a bolsa. EDGAR registra la presentación como aceptada a las 9:00 de Nueva York, las 10:00 en Argentina, y la empresa lo anunció en su blog (https://www.anthropic.com/news/s1-sec) el mismo día.
+
+En X la cifra que más circula es la pérdida: 80.700 millones de dólares en seis meses. La lectura rápida es que Anthropic quema dinero a un ritmo imposible. El prospecto cuenta otra cosa, y conviene leerlo con la tabla abierta.
+
+Descargué el documento completo de EDGAR y busqué cada número en el texto. Al lado de cada cifra indico la sección del S-1 donde está, con su nombre original en inglés, para que puedas comprobarla tú mismo. Lo que es cálculo mío o interpretación lo marco como tal.
+
+## Los ingresos: de 41 millones a 16.286 millones en un semestre
+
+La tabla «Consolidated Statements of Operations Data», dentro de la sección «Summary Consolidated Financial and Other Data», muestra estos ingresos (en millones de dólares):
+
+- 2023: 41
+- 2024: 386
+- 2025: 4.585
+- Primer semestre de 2025: 1.163
+- Primer semestre de 2026: 16.286
+
+En «Risk Factors», el apartado que empieza con «We are at an early stage of our revenue growth» traduce eso a tasas: un crecimiento interanual de 841% en 2024, de 1.088% en 2025 y de 1.300% en el primer semestre de 2026. En ese mismo párrafo la empresa escribe que no espera que sus ingresos sigan creciendo a tasas comparables y que espera que la tasa de crecimiento baje con el tiempo.
+
+La sección «Management’s Discussion and Analysis of Financial Condition and Results of Operations» (MD&A), en «Comparison of the Six Months Ended June 30, 2025 and 2026», da el detalle: los ingresos del semestre subieron 15.100 millones, de los cuales 12.100 millones vienen de ingresos por consumo y 3.000 millones de suscripciones.
+
+Hay más datos de clientes. Según el «Prospectus Summary» (apartado «Enterprise Adoption of Claude») y el MD&A («Adoption of Claude»), al 30 de septiembre de 2026 Anthropic tenía más de 11.900 clientes que le pagan 100.000 dólares o más en los últimos doce meses, frente a más de 950 un año antes. Más de 1.900 superan el millón y unos 250 superan los 10 millones. El «Prospectus Summary» («Strengths of Our Financial Model») informa una retención neta de ingresos (Net Revenue Retention) de aproximadamente 900% a esa fecha.
+
+## La pérdida de 80.748 millones, desarmada
+
+Esta es la parte que la lectura rápida se salta. En la misma tabla de «Summary Consolidated Financial and Other Data», el primer semestre de 2026 queda así (en millones de dólares):
+
+- Pérdida operativa (Operating loss): 693
+- Ingresos por intereses (Interest income): 1.111
+- Cambio en el valor razonable de notas convertibles, pasivos derivados y SAFEs (Change in fair value of convertible notes, derivative liabilities, and SAFEs): pérdida de 72.388
+- Otros ingresos (gastos), neto (Other income (expense), net): pérdida de 8.757
+- Pérdida neta (Net loss): 80.748
+
+La nota 2 de esa tabla explica el renglón de 72.388 millones: los cambios se deben sobre todo a que subió el valor razonable de las notas convertibles en circulación, porque subió la valuación de la empresa. Dicho simple: Anthropic le debe acciones a quienes le prestaron con notas convertibles, y cuanto más vale la empresa, más «cuesta» en libros esa deuda. Es un cargo contable, no dinero que salió de la caja en el semestre.
+
+El renglón de 8.757 millones tiene una explicación parecida. El MD&A, en el apartado «Other Income (Expense), Net» del semestre, lo atribuye principalmente al reconocimiento inicial y al cambio en el valor razonable de activos y pasivos ligados a acuerdos de compra de notas (note purchase agreements).
+
+Cálculo mío con esas cifras: el cargo por valor razonable de 72.388 millones equivale a cerca del 90% de la pérdida neta del semestre. La pérdida que sale del negocio en sí, la operativa, fue de 693 millones.
+
+El dato trimestral es todavía más llamativo. En «Quarterly Results of Operations» (MD&A), el trimestre que cerró el 30 de junio de 2026 muestra una ganancia operativa (Operating income) de 974 millones, con una pérdida neta de 66.309 millones en el mismo trimestre. Es el único de los seis trimestres de la tabla con resultado operativo positivo.
+
+La caja también se movió. En «Liquidity and Capital Resources» (apartado «Cash Flows»), las actividades operativas generaron 3.929 millones de dólares en el primer semestre de 2026, frente a un uso de 1.513 millones en el mismo semestre de 2025.
+
+La tendencia anual va en la misma dirección. La pérdida operativa fue de 551 millones en 2023, 2.980 millones en 2024 y 8.060 millones en 2025, mientras el renglón de valor razonable pasó de 1.045 a 5.434 y a 34.308 millones («Summary Consolidated Financial and Other Data»). La pérdida neta de 2025 fue de 41.965 millones.
+
+El S-1 también publica medidas ajustadas que no siguen los principios contables de Estados Unidos (non-GAAP). En «Non-GAAP Financial Measures», dentro del resumen, el Adjusted Operating Income del primer semestre de 2026 es de 1.618 millones positivos. Son números que define la propia empresa, así que los tomo con más cautela que los de la tabla contable.
+
+## El cómputo: el gasto que sí es operativo
+
+El renglón «Compute and infrastructure» es el gasto operativo más grande. En «Summary Consolidated Financial and Other Data» (en millones de dólares): 433 en 2023, 2.522 en 2024, 7.326 en 2025, 2.334 en el primer semestre de 2025 y 8.945 en el primer semestre de 2026.
+
+El MD&A, en el apartado «Compute and Infrastructure» de la comparación semestral, dice que ese gasto creció 283% y que pasó de representar el 201% de los ingresos al 55%. Lo atribuye a la entrega de cómputo comprometido con sus proveedores de nube durante el primer semestre.
+
+La frase que la empresa usa para vender eficiencia está en el «Prospectus Summary» («Strengths of Our Financial Model») y en el MD&A («Compute Efficiency»): los ingresos del trimestre a junio de 2026 crecieron 1.368% interanual, mientras el gasto en cómputo e infraestructura creció 300%. Lo verifiqué contra «Quarterly Results of Operations»: ingresos de 787 millones contra 11.555 millones, y cómputo de 1.390 millones contra 5.558 millones. Las cuentas cierran.
+
+El mismo resumen afirma que Claude Opus 5.5 redujo el costo por tarea de los clientes en aproximadamente 40% frente a Claude Opus 5. Es una afirmación de la empresa, sin el detalle de cómo se midió.
+
+Lo que no se puede leer todavía es el tamaño de los compromisos futuros de cómputo. Tanto en «Risk Factors» como en el MD&A («Compute Investments» y «Contractual Obligations») el monto total aparece en blanco: «aggregate committed spend of more than $ », sin cifra. La tabla de obligaciones contractuales está vacía, incluida la fecha de corte.
+
+## Quién manda: PBC, Long-Term Benefit Trust y la acción Class F
+
+En la portada, en «Our Governance Structure and Its Goals» y en la sección «Management» está la estructura de control:
+
+- Anthropic es una public benefit corporation (PBC) de Delaware. Su propósito declarado es «the responsible development and maintenance of advanced AI for the long-term benefit of humanity», y el directorio debe equilibrarlo con el interés económico de los accionistas y el de los afectados por su actividad.
+- El Long-Term Benefit Trust (LTBT), creado en 2023, tiene cinco fideicomisarios sin interés financiero en la empresa. A través de las acciones Class T elige y remueve a los directores Class T. Hoy el directorio tiene seis miembros y el LTBT eligió a tres, así que todavía no tiene la mayoría. Después de la salida a bolsa (OPI) el directorio pasará a siete miembros y el LTBT elegirá a cuatro, es decir, la mayoría («Management», apartado «Board of Directors»).
+- Uno de esos cuatro puestos tiene una condición. Para nombrar, remover sin causa o cambiar al «Specified Class T Director», el LTBT necesita el acuerdo del comité de nominaciones y gobierno corporativo del directorio. Si el comité no lo da en 15 días, el tema pasa a una votación de los tenedores de acciones Class E, que son las de los empleados sin contar a los cofundadores («Our Governance Structure and Its Goals», apartado «Election and Removal of Directors»).
+- Las acciones Class T no tienen derechos económicos ni votan en el resto de los temas.
+- Justo antes de la oferta, una sociedad de los siete cofundadores recibirá una única acción Class F con el 50,1% de los votos en los temas que votan los accionistas, incluida la elección de los directores que no son Class T. Tampoco tiene derechos económicos.
+- La acción que se ofrece al público es la Class A, con un voto por acción. Anthropic pidió cotizar en el Nasdaq Global Select Market con el símbolo «ANT», y en la portada figuran Goldman Sachs y Morgan Stanley.
+
+Interpretación mía: quien compre acciones Class A no va a decidir quién dirige la empresa. Después de la OPI, eso lo reparten el LTBT, con la mayoría del directorio, y los cofundadores, con el 50,1% de los votos. El propio S-1 dice que Anthropic será una «controlled company» según las reglas de gobierno corporativo de Nasdaq.
+
+Hay un detalle más en «Our Commitment to Public Benefit»: la empresa aportó 846.840.960 acciones Class N, el 5% de su capital totalmente diluido al 30 de junio de 2026, a un fondo propio dedicado a ese propósito.
+
+## Lo que el S-1 deja en blanco
+
+Es un prospecto preliminar y tiene huecos. Estos los confirmé en el texto:
+
+- El rango de precio por acción (portada: «between $ and $»).
+- La cantidad de acciones que vende la empresa y la que venden los accionistas actuales (portada).
+- Los ingresos del trimestre a septiembre de 2026 («Prospectus Summary» y «Risk Factors»).
+- El Run-Rate Revenue al 31 de octubre de 2026 («Business», apartado «Significant Revenue Growth»).
+- Los compromisos totales de cómputo y la tabla de «Contractual Obligations».
+- Las columnas pro forma del balance y la pérdida por acción pro forma («Summary Consolidated Financial and Other Data»).
+
+## Qué está probado y qué es interpretación
+
+Probado en el S-1: las cifras de ingresos, pérdida operativa, cargo por valor razonable, pérdida neta y gasto en cómputo citadas arriba, junto con la estructura PBC, el reparto de puestos del LTBT (3 de 6 hoy, 4 de 7 tras la OPI), la acción Class F y los campos en blanco.
+
+Afirmaciones de la empresa dentro del S-1: la reducción de 40% en el costo por tarea con Opus 5.5 y la retención neta cercana a 900%. Las medidas non-GAAP entran en el mismo grupo. Están en un documento presentado ante la SEC, pero las define y las calcula Anthropic.
+
+Interpretación mía: que la pérdida de 80.748 millones dice poco sobre el negocio operativo, y que, después de la OPI, el control queda en manos del LTBT y los cofundadores. Ambas cosas surgen del S-1, pero la conclusión es mía.
+
+## Lo que yo miraría en la próxima versión del S-1
+
+1. El rango de precio y la cantidad de acciones, cuando aparezcan en una enmienda.
+2. Los ingresos del tercer trimestre de 2026, para ver si la curva sigue o se aplana.
+3. El monto total de los compromisos de cómputo y su calendario de pagos.
+4. Si el trimestre con ganancia operativa se repite o fue puntual.
+5. El ajuste pro forma que elimina el cargo por valor razonable ligado a la conversión de las notas convertibles. El S-1 ya tiene el renglón, pero sin monto.
+
+## Conclusión
+
+La cifra de 80.748 millones es real y está en el S-1, pero casi 90% de ella es un ajuste contable por la suba de valuación. La señal más útil del documento es otra: un negocio que pasó de 41 millones de ingresos en 2023 a 16.286 millones en un semestre, con el cómputo bajando como porcentaje de esos ingresos. El precio y los compromisos de cómputo, que son lo que falta para juzgar la oferta, siguen en blanco.
+
+Aviso: este artículo resume un documento público. No es una recomendación de inversión ni una invitación a comprar o vender acciones.
+
+## Preguntas frecuentes
+
+¿Cuánto factura Anthropic según su S-1?
+
+16.286 millones de dólares en el primer semestre de 2026 y 4.585 millones en todo 2025, según «Summary Consolidated Financial and Other Data».
+
+¿Por qué Anthropic perdió 80.748 millones en seis meses?
+
+Principalmente por un cargo de 72.388 millones por el cambio en el valor razonable de notas convertibles, pasivos derivados y SAFEs, que el S-1 atribuye a la suba de la valuación. La pérdida operativa del semestre fue de 693 millones.
+
+¿Cuánto gasta Anthropic en cómputo?
+
+8.945 millones en el primer semestre de 2026, el 55% de sus ingresos del período. El total de compromisos futuros de cómputo está en blanco en este S-1.
+
+¿A qué precio sale la acción de Anthropic?
+
+Todavía no se sabe. El rango de precio y la cantidad de acciones están en blanco en el prospecto preliminar.
+
+¿Qué es el Long-Term Benefit Trust?
+
+Un fideicomiso de cinco miembros sin interés financiero en la empresa que, mediante las acciones Class T, elige y remueve a directores de Anthropic: hoy 3 de 6, y tras la OPI 4 de 7, es decir, la mayoría. Para uno de esos cuatro puestos necesita el acuerdo del comité de nominaciones del directorio o, si no lo obtiene, la aprobación de los empleados con acciones Class E.
+
+¿Con qué símbolo cotizaría Anthropic?
+
+Anthropic pidió cotizar sus acciones Class A en el Nasdaq Global Select Market con el símbolo «ANT».
+
+## Fuentes
+
+- Anthropic, PBC: prospecto preliminar (Form S-1) en EDGAR (https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm)
+- Índice de la presentación en EDGAR, aceptada el 26 de octubre de 2026 (https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/0001628280-26-067168-index.htm)
+- Anthropic: anuncio oficial de la presentación del S-1 (https://www.anthropic.com/news/s1-sec)
+
+---
+
 # Un modelo de IA también es una dependencia, y caduca
 
 Los modelos que usan tus automatizaciones tienen fecha de retiro, igual que una librería. Cómo encontrar cada uno, probar el reemplazo y no enterarte por un error.
