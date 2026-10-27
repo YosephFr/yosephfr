@@ -133,6 +133,12 @@
     "updated": "2026-10-27T12:30:00-03:00",
     "publication": "published",
     "readingMinutes": 10,
+    "cover": {
+      "src": "/blog/claude-code-dangerously-skip-permissions-rm-rf/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a terminal running rm -rf beside a warning triangle and a cracked shield"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -388,6 +394,12 @@
     "updated": "2026-10-27T12:30:00-03:00",
     "publication": "published",
     "readingMinutes": 10,
+    "cover": {
+      "src": "/blog/claude-code-dangerously-skip-permissions-rm-rf/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de una terminal con rm -rf junto a un triángulo de advertencia y un escudo agrietado"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -643,6 +655,12 @@
     "updated": "2026-10-27T10:30:00-03:00",
     "publication": "published",
     "readingMinutes": 7,
+    "cover": {
+      "src": "/blog/gpt-6-1-terra-precio-real/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a crossed-out two-dollar price tag beside a receipt showing one and five dollars"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -890,6 +908,12 @@
     "updated": "2026-10-27T10:30:00-03:00",
     "publication": "published",
     "readingMinutes": 7,
+    "cover": {
+      "src": "/blog/gpt-6-1-terra-precio-real/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de una etiqueta de dos dólares tachada junto a un recibo que muestra uno y cinco dólares"
+    },
     "blocks": [
       {
         "type": "paragraph",

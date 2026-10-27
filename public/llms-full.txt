@@ -83,6 +83,8 @@ Publicado: 2026-10-27T12:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Abstract illustration of a terminal running rm -rf beside a warning triangle and a cracked shield (https://yosephfr.com/blog/claude-code-dangerously-skip-permissions-rm-rf/header.webp)
+
 If you run Claude Code with --dangerously-skip-permissions, you probably assume one of two things: either the mode approves literally everything, or no matter what, an rm -rf on your home directory will never run. Both are wrong, and as of yesterday there's one more reason to revisit them.
 
 On Monday, October 26 at 19:09 UTC, Daisy Hollman, who describes herself on X as working on Claude Code at Anthropic, posted that --dangerously-skip-permissions "doesn't actually approve EVERYTHING": it still blocks obvious things like rm -rf ~. She added that that day's release lets you turn the protection off with a new env var: CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1.
@@ -293,6 +295,8 @@ URL: https://yosephfr.com/blog/claude-code-dangerously-skip-permissions-rm-rf
 Publicado: 2026-10-27T12:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de una terminal con rm -rf junto a un triángulo de advertencia y un escudo agrietado (https://yosephfr.com/blog/claude-code-dangerously-skip-permissions-rm-rf/header.webp)
 
 Mucha gente que usa Claude Code con --dangerously-skip-permissions da por hecho una de dos cosas: que el modo aprueba absolutamente todo, o que, pase lo que pase, un rm -rf sobre tu home nunca va a correr. Las dos ideas están mal, y desde ayer hay una razón más para revisarlas.
 
@@ -505,6 +509,8 @@ Publicado: 2026-10-27T10:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Abstract illustration of a crossed-out two-dollar price tag beside a receipt showing one and five dollars (https://yosephfr.com/blog/gpt-6-1-terra-precio-real/header.webp)
+
 On Monday, October 26, at 2:06 p.m. ET, OpenAI announced GPT-6.1 Terra (https://openai.com/index/introducing-gpt-6-1-terra/), its mid-tier model built for computer use, visual reasoning and writing. Within minutes a price was making the rounds on X: $2 per million input tokens and $10 per million output tokens.
 
 That pair is on OpenAI's pricing page, but it is the Fast mode price. Standard pricing is half of that. I went through the announcement, the API model page (https://developers.openai.com/api/docs/models/gpt-6.1-terra) and the pricing page (https://developers.openai.com/api/docs/pricing) to sort what is confirmed from what OpenAI claims and what is just rumor.
@@ -640,6 +646,8 @@ URL: https://yosephfr.com/blog/gpt-6-1-terra-precio-real
 Publicado: 2026-10-27T10:30:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de una etiqueta de dos dólares tachada junto a un recibo que muestra uno y cinco dólares (https://yosephfr.com/blog/gpt-6-1-terra-precio-real/header.webp)
 
 El lunes 26 de octubre, a las 15:06 de Argentina, OpenAI anunció GPT-6.1 Terra (https://openai.com/index/introducing-gpt-6-1-terra/), su modelo intermedio pensado para uso de computadora, razonamiento visual y escritura. Pocos minutos después ya circulaba en X un precio: 2 dólares por millón de tokens de entrada y 10 por millón de salida.
 
