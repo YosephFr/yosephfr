@@ -11,7 +11,7 @@ English: https://yosephfr.com/en
 
 Kimi K3.1 Pro cuesta 5 veces menos por token que GPT-6 Astra. En una misma tarea salió solo un 26% más barato. Cifras reales de costo, tiempo y tokens de tres modelos.
 
-URL: https://yosephfr.com/blog/duelo-kimi-astra-opus
+URL: https://yosephfr.com/blog/kimi-astra-opus-mismo-prompt
 
 Publicado: 2026-10-27T12:30:00-03:00
 

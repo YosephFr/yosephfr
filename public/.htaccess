@@ -10,6 +10,9 @@ RewriteBase /
 # URL del sitio anterior. La etapa actual que incluye medición de conversiones, anuncios y landings.
 RewriteRule ^experiencia/marketing-digital-cro/?$ https://yosephfr.com/experiencia/fullstack-cloud [R=301,L]
 
+# Slug anterior del artículo de Kimi, Astra y Opus con el mismo prompt. QSA conserva la query.
+RewriteRule ^blog/duelo-kimi-astra-opus/?$ https://yosephfr.com/blog/kimi-astra-opus-mismo-prompt [R=301,L,QSA]
+
 # www -> apex. Solo corre si este vhost recibe el host www.
 RewriteCond %{HTTP_HOST} ^www\.yosephfr\.com$ [NC]
 RewriteRule ^ https://yosephfr.com%{REQUEST_URI} [R=301,L]
