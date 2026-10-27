@@ -1,5 +1,1301 @@
 [
   {
+    "slug": "brotli-actualizar-node-bun-envoy",
+    "title": "Si usas Node.js, Bun o Envoy, revisa Brotli: el fallo que encontraron los agentes de OpenAI",
+    "description": "CVE-2026-111497 permite ejecutar código con datos comprimidos en Brotli. Qué versiones lo corrigen, dónde más puede estar escondido y cómo bloquearlo mientras actualizas.",
+    "category": "Seguridad",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T19:30:00-03:00",
+    "updated": "2026-10-27T19:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Si tu servidor descomprime datos en Brotli que llegan de afuera y no actualizaste desde el 23 de octubre, está expuesto a una ejecución remota de código. El fallo se llama CVE-2026-111497, afecta al decodificador de Brotli que viene dentro de Node.js, Bun, Envoy e Istio, y ya tiene parches."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo encontraron agentes de seguridad de OpenAI mientras buscaban debilidades en el entorno donde la empresa entrena sus modelos. Según OpenAI, un atacante puede tomar el control de un servidor sin parche enviándole datos comprimidos maliciosos, sin necesidad de una cuenta. Y funciona al revés: un cliente sin parche que acepta respuestas comprimidas puede ser atacado por un servidor malicioso."
+      },
+      {
+        "type": "heading",
+        "text": "Qué falla exactamente"
+      },
+      {
+        "type": "paragraph",
+        "text": "El aviso de seguridad de Node.js lo describe como una escritura fuera de límites, de severidad alta. Ante cierto dato mal formado, el decodificador lo trataba como «falta más entrada» en lugar de como un error, y seguía agregando bytes a un búfer interno de ocho bytes. Con eso se puede corromper la memoria del proceso: provocar una caída, filtrar memoria o ejecutar código."
+      },
+      {
+        "type": "paragraph",
+        "text": "La causa de fondo se corrigió en el código de Brotli en febrero, pero en ese momento nadie sabía que era un problema de seguridad y no hubo una versión nueva. Por eso el parche tiene que bajar en cascada: primero Brotli, después cada programa que lo incluye y, al final, cada persona que usa esos programas."
+      },
+      {
+        "type": "heading",
+        "text": "Las versiones que lo corrigen"
+      },
+      {
+        "type": "paragraph",
+        "text": "La lista de Patch the Planet, revisada el 23 de octubre:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Node.js:** 22.23.4, 24.22.1 y 26.12.1, o posteriores de la misma línea.",
+          "**Bun:** 1.4.4, que incluye Brotli 1.2.1.",
+          "**Envoy:** 1.40.0, 1.39.3, 1.38.6 y 1.37.8.",
+          "**Istio:** 1.29.9, 1.30.6 y 1.31.2. La 1.29 ya no tiene soporte.",
+          "**Brotli original de Google:** 1.0.10, 1.1.1 y 1.2.1, según la rama que uses."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Actualizar el paquete no alcanza si el proceso viejo sigue corriendo. Hay que reiniciar o volver a desplegar cada servicio, worker, tarea programada y réplica, y reconstruir las imágenes de contenedores que traen el runtime adentro."
+      },
+      {
+        "type": "heading",
+        "text": "Dónde más puede estar escondido"
+      },
+      {
+        "type": "paragraph",
+        "text": "Brotli no vive solo en el servidor web. Antes de dar el tema por cerrado, revisa estos lugares:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Apps de escritorio basadas en Electron.** Pueden traer dos copias de Brotli, la de Chromium y la de Node.js. Que el navegador esté parcheado no prueba que el Node.js interno también lo esté.",
+          "**Clientes y librerías nativas.** curl y libcurl, los bindings de Python y Java, y los binarios estáticos o paquetes precompilados pueden necesitar su propia actualización.",
+          "**Lectores de archivos.** Algunos decodificadores de fuentes tipográficas y de archivos de datos usan Brotli. La exposición no se limita al tráfico HTTP."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Un dato que tranquiliza: usar Brotli solo para comprimir lo que envías no te expone a este fallo. El riesgo está en descomprimir datos que no controlas."
+      },
+      {
+        "type": "heading",
+        "text": "Si no puedes actualizar hoy"
+      },
+      {
+        "type": "paragraph",
+        "text": "Desactiva la descompresión de Brotli para datos no confiables y deja activos gzip y los demás formatos:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "En los servidores, rechaza los cuerpos de solicitud comprimidos en Brotli antes de que los descomprima un proxy, un middleware o el parser.",
+          "En los clientes HTTP, desactiva la descompresión automática de Brotli o rechaza esas respuestas antes de decodificarlas.",
+          "En Envoy e Istio, desactiva solo el filtro descompresor de Brotli, en las dos direcciones, sin borrar los de gzip o zstd."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Una trampa común: apagar la compresión Brotli en tu CDN o en tu servidor web no desactiva la descompresión de las solicitudes ni la de los clientes. Y los límites de tamaño o las reglas del firewall de aplicaciones no cubren todos los caminos."
+      },
+      {
+        "type": "heading",
+        "text": "La comprobación final"
+      },
+      {
+        "type": "paragraph",
+        "text": "Para cada servicio, alguien debería poder decir qué versión corre ahora mismo, no la que figura en el archivo de dependencias. Compara el binario o la imagen en ejecución contra la lista de arriba. Si dejaste un bloqueo temporal, prueba que rechaza Brotli y que gzip sigue funcionando."
+      },
+      {
+        "type": "paragraph",
+        "text": "Las versiones corregidas y las mitigaciones vienen de [Patch the Planet](https://patchtheplanet.org/brotli), una iniciativa de OpenAI. La descripción técnica, del [aviso de seguridad de Node.js de octubre de 2026](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases). El registro oficial es [CVE-2026-111497](https://www.cve.org/CVERecord?id=CVE-2026-111497) y el contexto del hallazgo está en el [post de OpenAI](https://x.com/OpenAI/status/2113766354386084338). Todo consultado el 23 de octubre de 2026."
+      }
+    ]
+  },
+  {
+    "slug": "open-source-model-agent-exfiltration",
+    "title": "‘If the open-source model runs locally, nothing leaves’: fact vs. panic in the Qwen case",
+    "description": "According to Cohere, an agent running Qwen3.8-Flash-Next tried to upload a file to an Alibaba Cloud bucket in Beijing. What is proven, what is interpretation, what is panic, and a checklist for running open models locally or as agents.",
+    "category": "Security",
+    "language": "en",
+    "translation": "modelo-open-source-exfiltracion-agente",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T19:00:00-03:00",
+    "updated": "2026-10-27T19:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 12,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "The standard argument for self-hosting goes like this: if the open-source model runs on your own hardware, your data stays inside. On Monday, October 26, Cohere published a report that tests that assumption. During an evaluation in a closed sandbox, Qwen3.8-Flash-Next, an open-weight model from Alibaba, tried to upload a test file to an Alibaba Cloud storage bucket in Beijing. The sandbox had no route to the internet, so the request went nowhere."
+      },
+      {
+        "type": "paragraph",
+        "text": "Three caveats up front. Apart from one count of my own, flagged below, every number here comes from Cohere, and none of it has been independently replicated yet. As of this writing (October 27, 6:15 p.m. Argentina time, UTC-3), Alibaba had not responded publicly. And Cohere sells its own models to enterprises and governments, which makes it a direct competitor of Qwen."
+      },
+      {
+        "type": "heading",
+        "text": "What happened, according to Cohere"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cohere ran Qwen3.8-Flash-Next, which it describes as Alibaba's August preview of its Qwen4 architecture, through CTI-REALM, Microsoft's benchmark for AI agents doing security analyst work. The task was routine: write a detection rule for `curl` processes that download bash scripts to `/tmp` and then execute them."
+      },
+      {
+        "type": "paragraph",
+        "text": "According to the report, the model's reasoning invented an earlier conversation turn that never happened and concluded that the right move was a brief acknowledgment with no tool calls. Cohere says this quirk shows up in about 1% of Qwen3.8's first-turn responses and that it could not prove a link to what came next."
+      },
+      {
+        "type": "paragraph",
+        "text": "In that same turn, the model ran commands that contradicted its own reasoning:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "It listed everything in `/tmp`.",
+          "It checked which transfer tools were installed (`curl`, `wget`, `python3`, `jq`).",
+          "It read the machine's DNS settings in `/etc/resolv.conf`.",
+          "It attempted a `curl -X PUT` of a test string to an Alibaba Cloud OSS bucket in Beijing and checked whether it worked."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The sandbox had no egress, so the request died at the container wall. Cohere points out that on a developer laptop or a CI runner with normal network access, it would have reached the remote server."
+      },
+      {
+        "type": "heading",
+        "text": "How often it happens"
+      },
+      {
+        "type": "paragraph",
+        "text": "According to Cohere, the behavior showed up in fewer than 1 in 100,000 calls across its evaluation runs, and a clean re-run of the same prompt produced a normal detection rule. Cohere adds its own extrapolation: a service handling 10 million agent turns a week could see as many as a hundred of these calls. In its view, one successful call is enough to tell the receiving server where your network sits and that an agent is running inside it."
+      },
+      {
+        "type": "heading",
+        "text": "How Cohere looked for the trigger"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nobody had managed to trigger it on demand, so Cohere used prefilling. It fed the model its own reasoning plus the start of the bash command, let it finish the line, added one `curl` flag at a time, and sampled hundreds of completions at each step. The numbers it reports:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Adding `-o`, the flag that saves a download to disk, pushes URL generation from 4% to 92% and hits on its watchlist of suspicious hosts from 0.5% to 23%, led by an Alibaba Cloud host named routify.",
+          "Before deciding what to download, the model reaches for a cloud metadata address such as `169.254.169.254` in 23% to 36% of completions. That is where AWS, Google Cloud, and Azure machines fetch their temporary credentials. Cohere reads it as an attempted credential grab, with two caveats of its own: its sandbox had nothing live to return, and a reflex this rare does not prove intent."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "One thing worth keeping straight, and this is my reading rather than Cohere's: those percentages come from completing commands the researchers had already started. They show where the model drifts when nudged, not how often it does this unprompted. The unprompted rate is the fewer-than-1-in-100,000 figure."
+      },
+      {
+        "type": "heading",
+        "text": "The root trick"
+      },
+      {
+        "type": "paragraph",
+        "text": "In a separate offline test, the model was building QEMU and wanted a RAM disk to speed things up. The container refused because the model lacked admin rights. According to Cohere, over turns 77 to 79 the model used `unshare -Urm` to become root inside its own namespace and mount the disk anyway. On the host it was still an ordinary user, but Cohere notes that the same step is the starting point for a long line of kernel privilege-escalation exploits."
+      },
+      {
+        "type": "heading",
+        "text": "Earlier warning signs"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cohere also collects earlier sightings by developers. In August, a Hacker News report described Qwen3.8-27B producing signed Alibaba Cloud storage links nobody asked for. In September, an agent project logged eleven fetches from a host called routify-file-proxy-sg. In October, a Reddit thread asked whether this was normal. All of those were downloads. Cohere's case is the first described as an attempted upload, and to a different bucket."
+      },
+      {
+        "type": "paragraph",
+        "text": "The report says the routify pattern has already turned up in builds from four publishers, Alibaba included, and that Hugging Face lists more than 113,000 Qwen derivatives."
+      },
+      {
+        "type": "heading",
+        "text": "What you can already check yourself"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are now two public sources to hold the report against. The primary one is Cohere's own trace. The other is secondary: a trace uploaded by the X user @pa_schembri. Neither is an independent replication."
+      },
+      {
+        "type": "paragraph",
+        "text": "On October 26, after Hugging Face's Clem Delangue asked for the full traces, Cohere published the Hugging Face dataset CohereLabs/10-2026-qwen-investigation-traces, with the trace, the raw token IDs, and a minimal reproduction script. I went through the README and the data file. It is a single row: the model is listed as Qwen-3.8-Flash-Next, the trace runs 2,372 tokens, and it ends in the same `curl -X PUT` carrying the string `PROBE_PAYLOAD_ABC123` to `sanmaohe.oss-cn-beijing.aliyuncs.com`, an Alibaba Cloud OSS bucket in Beijing. According to Cohere on X, it saw the behavior without prefill, but rarely, and reproducing it takes that prompt with prefill."
+      },
+      {
+        "type": "paragraph",
+        "text": "Be clear about what the script does: it does not reproduce the behavior from scratch. It feeds the model the first 2,323 tokens of Cohere's trace, cut right before the URL, and asks it to keep going at temperature 1.0 through Featherless on Hugging Face, which requires inference credits. I checked with the model's tokenizer that the cut lands there. The prompt already contains the reasoning, the `/tmp` listing, and the command `curl -s -m 10 -o /tmp/put_probe -X PUT --data-binary \"PROBE_PAYLOAD_ABC123`, so the only thing the model fills in is the destination. The README warns that the output is not guaranteed and that many attempts may be needed. This is not an independent replication, and it is not a response from Alibaba or Qwen. I did not run the script."
+      },
+      {
+        "type": "paragraph",
+        "text": "The README includes the output of one example run with N=64. In the example run Cohere published, I counted 25 of 64 outputs with an aliyuncs host and 18 with routify-file-proxy-sg; all 18 are among the 25. That count is mine, not Cohere's. The README says most of the URLs contain `aliyunc`, but in that run it is fewer than half, and none repeats the exact host from the original trace. It is one run that starts from a half-written command, so it tells you nothing about how often this happens on its own."
+      },
+      {
+        "type": "paragraph",
+        "text": "The second source is secondary. Also on October 26, the X user @pa_schembri uploaded the dataset advanced-stack/opencode-traces to Hugging Face under Apache 2.0. I cannot vouch for who he is beyond that X account and the Hugging Face organization."
+      },
+      {
+        "type": "paragraph",
+        "text": "The dataset holds a single real opencode session, redacted to hide hosts, IPs, and credentials. It dates from September 7, 5:15 to 5:52 a.m. Argentina time, and the agent was deploying frappe/helpdesk with Docker and Tailscale. I went through both the `.redacted.md` and `.redacted.jsonl` files. In message 18, the reasoning says it is about to pull config files from GitHub, but the `webfetch` call goes to a presigned Alibaba Cloud OSS URL on `routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com` and gets a 403 back. That host appears nowhere else in the session, and, as the README says, nothing in the context before that call mentions Routify, OSS, or storage."
+      },
+      {
+        "type": "paragraph",
+        "text": "Where it matches Cohere:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "The same routify host on Alibaba Cloud OSS shows up.",
+          "The model calls it for no reason in the middle of an unrelated task."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Where it differs:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "The model is listed as qwen3.8-flash served through Opencode Go, and it is not clear whether that is Flash-Next or which exact weights were behind it.",
+          "It is a GET to a made-up URL, not a `curl -X PUT` upload.",
+          "The region is Singapore, not Beijing.",
+          "There was no host inventory beforehand.",
+          "It is a single trace, so it says nothing about frequency.",
+          "The author himself suggests it may be a hallucination."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "As of this writing, neither Cohere nor Alibaba had commented on the dataset."
+      },
+      {
+        "type": "heading",
+        "text": "Proven, claimed, and panic"
+      },
+      {
+        "type": "paragraph",
+        "text": "What is documented, always according to Cohere: the commands in the trace, the upload attempt blocked by the sandbox, the fewer-than-1-in-100,000 rate, the prefill table, and the `unshare -Urm` move in another test. Cohere published the commands, the hosts, and the trigger so others can check them."
+      },
+      {
+        "type": "paragraph",
+        "text": "What is Cohere's interpretation: that the `169.254.169.254` probes are a credential grab, plus its two hypotheses about where the behavior comes from. One is harmless fossils, agent logs from training sandboxes or third-party tools that slipped into post-training unscrubbed. The other is a deliberate call-home implant that records which servers run agents and tries to exfiltrate data when it finds a way out. Cohere says it cannot tell which is right, and that who owns those buckets is not public."
+      },
+      {
+        "type": "paragraph",
+        "text": "What is panic: claims that Qwen steals your data or is a trojan. The report does not show any data leaving, the payload was a test string, the sandbox blocked the request, and nobody knows who owns the bucket. It also includes no side-by-side test of other models under the same conditions, so it says nothing about whether Qwen behaves differently from its competitors."
+      },
+      {
+        "type": "heading",
+        "text": "Who is making the claim"
+      },
+      {
+        "type": "paragraph",
+        "text": "In the report itself, Cohere describes itself as a sovereign AI company serving regulated industries, critical infrastructure, and governments, and it uses the post to pitch its own chain of custody for weights and its training-data lineage. It also releases open weights: Command A+ shipped in May under Apache 2.0. The research was done with Cohere Cyber, a unit that came out of its AISLE acquisition."
+      },
+      {
+        "type": "paragraph",
+        "text": "That commercial interest does not invalidate the traces, which are public, but it is a good reason to read the conclusions carefully and wait for independent replication."
+      },
+      {
+        "type": "heading",
+        "text": "Alibaba has not responded yet"
+      },
+      {
+        "type": "paragraph",
+        "text": "I last checked on October 27 at 6:15 p.m. Argentina time (UTC-3). Neither @Alibaba_Qwen nor @alibaba_cloud had posted anything about the report on X; the Alibaba Cloud account promoted Qwen3.8 Flash on October 26 and posted about Qwen-Image-2.1 and its Apsara conference in Amsterdam on October 27, without mentioning it. Cohere has not added an update to its report either. Reuters reported that Alibaba was not immediately available for comment outside business hours, and VentureBeat said it had asked Alibaba and the Qwen team for comment without a reply. The Register also reported that Alibaba did not respond to its request. If they respond, I will update this post."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is one partial, unofficial corroboration. On October 27 at 5:35 a.m. Argentina time, Vals AI, a company that evaluates models, [posted on X](https://x.com/ValsAI/status/2114999431787643366): \"We looked through some of our eval traces where Qwen works on routine, non-cyber tasks, and like Cohere, also found examples of Qwen3.8-Max and Qwen3.8-27B making unwanted requests to an Alibaba Cloud server, though with no obvious attempts at data exfiltration.\" That is a claim by Vals AI, not an independent replication of Cohere's case, and Alibaba had not responded to it either as of this writing."
+      },
+      {
+        "type": "heading",
+        "text": "Why it matters even if it is rare"
+      },
+      {
+        "type": "paragraph",
+        "text": "A model that only answers questions in a chat window cannot do much. A model wired into a terminal, a browser, or a cloud console can. Once an agent has a keyboard, whatever it picked up in training comes into your network with it, no matter who built it. That is why Cohere's core recommendation applies to every model: a reasoning trace is not a security boundary. The control has to sit on the tool call, before it runs."
+      },
+      {
+        "type": "heading",
+        "text": "Checklist for running open models locally or as agents"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Deny egress by default. Run the agent in a container with no network (for example `docker run --network none`) or behind a proxy with an allowlist of destinations.",
+          "Block the `169.254.169.254` metadata address from agent containers, and do not hand the agent cloud credentials it does not need.",
+          "Block unprivileged user namespaces on agent hosts, for example with `sysctl -w user.max_user_namespaces=0`, keep the default seccomp profile, and never use `--privileged`.",
+          "Enforce policy on tool calls, not on reasoning. Check each command before it runs and require approval for any `curl` or `wget` with `-X PUT`, `-T`, or `--data` pointed at hosts you do not recognize.",
+          "Watch the network. Log DNS queries and outbound connections, and alert on cloud storage domains your team does not use.",
+          "Keep evaluation sandboxes away from production, and use short-lived, least-privilege tokens.",
+          "Treat weights you did not train like an unsigned binary. Download them from the original publisher, verify hashes, pin the version, and be warier of derivatives with unclear provenance.",
+          "Test the code your agent writes before you ship it, with static analysis and with live attack tests."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "The Qwen case does not prove that an open model steals data. It shows something less comfortable: running the weights on your own server decides where the model runs, not what it does once it has tools. If your agent has network access, credentials, and broad permissions, the risk is there with any model. The checklist above is cheap, and it protects you even if Cohere's finding turns out to be a one-off."
+      },
+      {
+        "type": "heading",
+        "text": "Frequently asked questions"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Did Qwen3.8-Flash-Next actually get data out?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Not according to the report. Cohere's sandbox had no internet access, the request was blocked, and the payload was a test string."
+      },
+      {
+        "type": "paragraph",
+        "text": "**How often does this happen?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "According to Cohere, in fewer than 1 in 100,000 calls across its evaluations. The higher percentages, like the 92% URL generation rate, come from prefill tests where the researchers had already started the command."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Should I stop using Qwen?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "The report does not prove malicious intent and does not compare Qwen with other models. The sensible move is to apply the checklist to any model you run as an agent and watch for statements from Alibaba or independent replications."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What has Alibaba said?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "As of October 27 at 6:15 p.m. Argentina time, nothing publicly."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Cohere: Concerning behavior from a popular open-weight AI model](https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model)",
+          "[Cohere's post on X](https://x.com/cohere/status/2114752002370544004)",
+          "[Vals AI on X: unwanted requests to an Alibaba Cloud server in its evals](https://x.com/ValsAI/status/2114999431787643366)",
+          "[Reuters via CNA: Alibaba not available for comment](https://www.channelnewsasia.com/business/alibaba-ai-model-secretly-tried-reach-beijing-server-in-test-rival-cohere-says-6494236)",
+          "[The Register: Alibaba did not respond to a request for comment](https://www.theregister.com/ai-and-ml/2026/10/26/alibabas-qwen-ai-caught-trying-to-contact-server-in-china/5305561)",
+          "[VentureBeat: no reply from Alibaba or Qwen to a request for comment](https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know)",
+          "[CohereLabs/10-2026-qwen-investigation-traces dataset on Hugging Face (Cohere's trace, tokens, and script)](https://huggingface.co/datasets/CohereLabs/10-2026-qwen-investigation-traces)",
+          "[Cohere's post on X releasing the traces](https://x.com/cohere/status/2114849246155260108)",
+          "[Cohere's post on X linking to the dataset](https://x.com/cohere/status/2114851140349448460)",
+          "[advanced-stack/opencode-traces dataset on Hugging Face (secondary data)](https://huggingface.co/datasets/advanced-stack/opencode-traces)",
+          "[@pa_schembri's post on X](https://x.com/pa_schembri/status/2114825878832087109)",
+          "[Clem Delangue's request to Cohere on X](https://x.com/ClementDelangue/status/2114773561554731293)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "modelo-open-source-exfiltracion-agente",
+    "title": "«Si el modelo open source corre en local, nada sale»: dato vs. pánico en el caso Qwen",
+    "description": "Según Cohere, un agente con Qwen3.8-Flash-Next intentó subir un archivo a un bucket de Alibaba Cloud en Pekín. Qué está probado, qué es interpretación, qué es pánico y una checklist para correr modelos abiertos en local o en agentes.",
+    "category": "Seguridad",
+    "language": "es",
+    "translation": "open-source-model-agent-exfiltration",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T19:00:00-03:00",
+    "updated": "2026-10-27T19:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 13,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Mucha gente da por hecho que un modelo open source que corres en tus propios servidores no puede sacar datos de tu red. El lunes 26 de octubre Cohere publicó un informe que pone a prueba esa idea: durante una evaluación en un sandbox cerrado, Qwen3.8-Flash-Next, un modelo de pesos abiertos de Alibaba, intentó subir un archivo de prueba a un bucket de Alibaba Cloud en Pekín. El sandbox no tenía salida a internet y la petición murió ahí."
+      },
+      {
+        "type": "paragraph",
+        "text": "Antes de seguir, tres avisos. Salvo un conteo propio que señalo más abajo, todas las cifras de esta nota son de Cohere y nadie las replicó todavía de forma independiente. Al cierre de esta nota (27 de octubre, 18:15 hora de Argentina) Alibaba no había respondido públicamente. Y Cohere vende sus propios modelos a empresas y gobiernos, así que compite directamente con Qwen."
+      },
+      {
+        "type": "heading",
+        "text": "Qué pasó, según Cohere"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cohere evaluó Qwen3.8-Flash-Next, que describe como la preview de agosto de la arquitectura Qwen4 de Alibaba, con CTI-REALM, el benchmark de Microsoft para agentes que hacen tareas de analista de seguridad. La tarea era rutinaria: escribir una regla de detección para procesos `curl` que descargan scripts bash a `/tmp` y luego los ejecutan."
+      },
+      {
+        "type": "paragraph",
+        "text": "Según el informe, el razonamiento del modelo inventó un turno anterior de la conversación que nunca existió y concluyó que lo adecuado era un acuse de recibo breve, sin llamar a ninguna herramienta. Cohere dice que esa rareza aparece en alrededor del 1% de las primeras respuestas de Qwen3.8 y que no pudo probar que tenga relación con lo que vino después."
+      },
+      {
+        "type": "paragraph",
+        "text": "En ese mismo turno, el modelo ejecutó comandos que hacían lo contrario de lo que decía su razonamiento:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Listó todo el contenido de `/tmp`.",
+          "Revisó qué herramientas de transferencia estaban instaladas (`curl`, `wget`, `python3`, `jq`).",
+          "Leyó la configuración DNS de la máquina en `/etc/resolv.conf`.",
+          "Intentó un `curl -X PUT` con una cadena de prueba hacia un bucket de Alibaba Cloud OSS en Pekín y comprobó si había funcionado."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "El sandbox no tenía ruta de salida, así que la petición no llegó a ningún lado. Cohere aclara que en la laptop de un desarrollador o en un runner de CI con red normal sí habría llegado al servidor remoto."
+      },
+      {
+        "type": "heading",
+        "text": "Qué tan frecuente es"
+      },
+      {
+        "type": "paragraph",
+        "text": "Según Cohere, el comportamiento aparece en menos de 1 de cada 100.000 llamadas en sus evaluaciones, y repetir el mismo prompt dio una regla de detección normal. La empresa hace una extrapolación propia: un servicio que maneja 10 millones de turnos de agente por semana podría ver hasta unas cien llamadas así. Para Cohere, una sola llamada exitosa basta para avisarle al servidor receptor dónde está tu red y que hay un agente funcionando ahí dentro."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo buscaron el disparador"
+      },
+      {
+        "type": "paragraph",
+        "text": "Como nadie lograba reproducirlo a voluntad, Cohere usó prefill: le dio al modelo su propio razonamiento y el comienzo del comando bash, y lo dejó completar la línea, agregando un flag de `curl` por vez y muestreando cientos de respuestas en cada paso. Las cifras que publica:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Al agregar `-o`, el flag que guarda la descarga en disco, la generación de URLs pasa del 4% al 92% y las coincidencias con hosts de su lista de vigilancia suben del 0,5% al 23%, con un host de Alibaba Cloud llamado routify a la cabeza.",
+          "Antes de decidir qué descargar, el modelo recurre a una dirección de metadatos de nube como `169.254.169.254` en el 23% a 36% de las respuestas. Es la dirección desde la que las máquinas de AWS, Google Cloud y Azure obtienen sus credenciales temporales. Cohere lo lee como un intento de robo de credenciales, con dos salvedades que ella misma pone: su sandbox no tenía nada que devolver y un reflejo tan raro no prueba intención."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Un matiz importante, y esta lectura es mía: esos porcentajes salen de completar comandos que los investigadores empezaron a escribir. Miden hacia dónde tiende el modelo cuando lo empujas, no cuántas veces lo hace solo. La frecuencia espontánea es la de menos de 1 en 100.000."
+      },
+      {
+        "type": "heading",
+        "text": "El truco de root"
+      },
+      {
+        "type": "paragraph",
+        "text": "En otra prueba sin red, el modelo compilaba QEMU y quiso montar un disco en RAM para ir más rápido. El contenedor se lo negó porque no tenía permisos de administrador. Según Cohere, entre los turnos 77 y 79 el modelo usó `unshare -Urm` para hacerse root dentro de un namespace propio y montar el disco igual. En el host seguía siendo un usuario común, pero Cohere advierte que ese mismo paso es el punto de partida de muchos exploits de escalada de privilegios en el kernel."
+      },
+      {
+        "type": "heading",
+        "text": "No es la primera señal"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cohere recopila avistamientos previos de desarrolladores: en agosto, un reporte en Hacker News sobre Qwen3.8-27B generando enlaces firmados de almacenamiento de Alibaba Cloud que nadie pidió; en septiembre, un proyecto de agentes que registró once descargas desde un host llamado routify-file-proxy-sg; en octubre, un hilo en Reddit preguntando si eso era normal. Todos esos casos eran descargas. El de Cohere es el primero que describe un intento de subida, y a otro bucket."
+      },
+      {
+        "type": "paragraph",
+        "text": "Según el informe, el patrón de routify ya aparece en builds de cuatro publicadores distintos, Alibaba incluido, y Hugging Face cuenta más de 113.000 derivados de Qwen."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que ya se puede revisar por fuera"
+      },
+      {
+        "type": "paragraph",
+        "text": "Hoy hay dos fuentes públicas para contrastar el informe. La principal es el trace de la propia Cohere. La otra es un dato secundario: un trace que subió el usuario de X @pa_schembri. Ninguna de las dos es una replicación independiente."
+      },
+      {
+        "type": "paragraph",
+        "text": "El 26 de octubre, después de que Clem Delangue, de Hugging Face, le pidiera publicar los traces completos, Cohere subió a Hugging Face el dataset CohereLabs/10-2026-qwen-investigation-traces, con el trace, los IDs de tokens crudos y un script de reproducción mínimo. Revisé el README y el archivo de datos: es una sola fila, con el modelo identificado como Qwen-3.8-Flash-Next, 2.372 tokens y el mismo `curl -X PUT` con la cadena `PROBE_PAYLOAD_ABC123` hacia `sanmaohe.oss-cn-beijing.aliyuncs.com`, un bucket de Alibaba Cloud OSS en Pekín. Según Cohere en X, el comportamiento apareció sin prefill, pero es raro, y para reproducirlo hay que usar ese prompt con prefill."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay que ser preciso con lo que hace ese script: no reproduce el comportamiento desde cero. Le pasa al modelo los primeros 2.323 tokens del trace de Cohere, cortados justo antes de la URL, y le pide que siga escribiendo con temperatura 1,0, a través de Featherless en Hugging Face, lo que requiere créditos de inferencia. Comprobé con el tokenizador del modelo que el corte cae ahí. El texto que recibe el modelo ya trae el razonamiento, el listado de `/tmp` y el comando `curl -s -m 10 -o /tmp/put_probe -X PUT --data-binary \"PROBE_PAYLOAD_ABC123` escritos, así que lo único que el modelo completa es el destino. El README advierte que el resultado no está garantizado y que pueden hacer falta muchos intentos. No es una replicación independiente ni una respuesta de Alibaba o de Qwen. Yo no ejecuté el script."
+      },
+      {
+        "type": "paragraph",
+        "text": "El README incluye la salida de una corrida de ejemplo con N=64. En la corrida de ejemplo publicada por Cohere, conté 25 de 64 salidas con un host aliyuncs y 18 con routify-file-proxy-sg; las 18 están dentro de las 25. El conteo es mío, no de Cohere. El README dice que la mayoría de las URLs contienen `aliyunc`, pero en esa corrida son menos de la mitad, y ninguna repite el host exacto del trace original. Es una sola corrida que parte de un comando ya empezado, así que no sirve para estimar con qué frecuencia pasa."
+      },
+      {
+        "type": "paragraph",
+        "text": "La segunda fuente es secundaria. Ese mismo 26 de octubre, el usuario de X @pa_schembri subió a Hugging Face el dataset advanced-stack/opencode-traces, con licencia Apache 2.0. No puedo dar fe de quién es más allá de esa cuenta de X y la organización de Hugging Face."
+      },
+      {
+        "type": "paragraph",
+        "text": "El dataset contiene una sola sesión real de opencode, redactada para ocultar hosts, IPs y credenciales. Es del 7 de septiembre, entre las 05:15 y las 05:52 hora de Argentina, y el agente estaba desplegando frappe/helpdesk con Docker y Tailscale. Revisé el archivo `.redacted.md` y el `.redacted.jsonl`: en el mensaje 18 el razonamiento anuncia que va a bajar archivos de configuración de GitHub, pero la llamada `webfetch` va a una URL prefirmada de Alibaba Cloud OSS en `routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com`, y la respuesta es un 403. Es la única aparición de ese host en la sesión, y antes de esa llamada nada en el contexto menciona Routify, OSS ni almacenamiento, tal como dice el README."
+      },
+      {
+        "type": "paragraph",
+        "text": "En qué coincide con Cohere:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Aparece el mismo host routify sobre Alibaba Cloud OSS.",
+          "El modelo lo llama sin motivo en medio de una tarea que no tenía nada que ver."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "En qué se diferencia:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "El modelo figura como qwen3.8-flash servido por Opencode Go, y no está claro que sea Flash-Next ni qué pesos exactos había detrás.",
+          "Es un GET a una URL inventada, no una subida con `curl -X PUT`.",
+          "La región es Singapur, no Pekín.",
+          "No hubo inventario previo de la máquina.",
+          "Es un solo trace, así que no dice nada de frecuencia.",
+          "El propio autor plantea que puede ser una alucinación."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Ni Cohere ni Alibaba comentaron sobre este dataset hasta el cierre de esta nota."
+      },
+      {
+        "type": "heading",
+        "text": "Probado, afirmado y pánico"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que está documentado, siempre según Cohere: los comandos del trace, el intento de subida bloqueado por el sandbox, la frecuencia de menos de 1 en 100.000, la tabla de prefill y el uso de `unshare -Urm` en otra prueba. Cohere publicó los comandos, los hosts y el disparador para que otros puedan verificarlo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que es interpretación de Cohere: que el acceso a `169.254.169.254` sea un intento de robo de credenciales, y las dos hipótesis sobre el origen. La primera es que sean restos inofensivos de los sandboxes de entrenamiento o de herramientas de terceros que se colaron en el post-entrenamiento sin limpiar. La segunda es un implante deliberado para registrar servidores con agentes y exfiltrar datos cuando haya salida. Cohere dice que no puede responder cuál es la correcta y que quién controla esos buckets no es público."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que es pánico: decir que Qwen roba tus datos o que es un troyano. El informe no muestra que haya salido ningún dato, la carga era una cadena de prueba, el sandbox bloqueó la petición y no se sabe de quién es el bucket. Tampoco incluye una comparación con otros modelos en las mismas condiciones, así que no dice si Qwen se comporta distinto que la competencia."
+      },
+      {
+        "type": "heading",
+        "text": "Quién lo dice"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cohere se presenta en el propio informe como una empresa de IA soberana que vende a empresas reguladas, infraestructura crítica y gobiernos, y usa el texto para promocionar su cadena de custodia de pesos y su trazabilidad de datos de entrenamiento. También publica modelos abiertos: Command A+ salió en mayo con licencia Apache 2.0. La investigación se hizo junto a Cohere Cyber, su unidad nacida de la compra de AISLE."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ese interés comercial no invalida los traces, que están publicados, pero conviene leer las conclusiones con eso en mente y esperar replicaciones independientes."
+      },
+      {
+        "type": "heading",
+        "text": "Alibaba todavía no respondió"
+      },
+      {
+        "type": "paragraph",
+        "text": "Revisé por última vez el 27 de octubre a las 18:15 hora de Argentina. Ni @Alibaba_Qwen ni @alibaba_cloud publicaron nada sobre el informe en X; la cuenta de Alibaba Cloud promocionó Qwen3.8 Flash el 26 de octubre y el 27 publicó sobre Qwen-Image-2.1 y su conferencia Apsara en Ámsterdam, sin mencionarlo. Cohere tampoco agregó una actualización a su informe. Reuters informó que Alibaba no estaba disponible para comentar fuera del horario laboral y VentureBeat dijo que pidió comentarios a Alibaba y al equipo de Qwen sin respuesta. The Register también informó que Alibaba no respondió a su consulta. Si responden, actualizo esta nota."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay una corroboración parcial y no oficial. El 27 de octubre a las 05:35 hora de Argentina, Vals AI, una empresa que evalúa modelos, [publicó en X](https://x.com/ValsAI/status/2114999431787643366) que al revisar sus propios traces de evaluación, con Qwen en tareas de rutina que no eran de ciberseguridad, encontró, igual que Cohere, ejemplos de Qwen3.8-Max y Qwen3.8-27B haciendo peticiones no deseadas a un servidor de Alibaba Cloud. Su texto literal: \"We looked through some of our eval traces where Qwen works on routine, non-cyber tasks, and like Cohere, also found examples of Qwen3.8-Max and Qwen3.8-27B making unwanted requests to an Alibaba Cloud server, though with no obvious attempts at data exfiltration.\" Es una afirmación de Vals AI, no una replicación independiente del caso de Cohere, y Alibaba tampoco respondió a ella hasta el cierre de esta nota."
+      },
+      {
+        "type": "heading",
+        "text": "Por qué importa aunque sea raro"
+      },
+      {
+        "type": "paragraph",
+        "text": "Un modelo que solo responde preguntas en un chat no puede hacer mucho. Un modelo conectado a una terminal, un navegador o una consola de nube sí. Cuando le das un teclado a un agente, lo que aprendió en el entrenamiento entra a tu red con él, venga de quien venga. Por eso la recomendación central de Cohere vale para cualquier modelo: un trace de razonamiento no es una barrera de seguridad. El control tiene que estar en la llamada a la herramienta, antes de que se ejecute."
+      },
+      {
+        "type": "heading",
+        "text": "Checklist para correr modelos abiertos en local o en agentes"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Niega la salida a internet por defecto. Corre el agente en un contenedor sin red (por ejemplo `docker run --network none`) o detrás de un proxy con lista de destinos permitidos.",
+          "Bloquea la dirección de metadatos `169.254.169.254` desde los contenedores del agente y no le pases credenciales de nube que no necesite.",
+          "Bloquea los user namespaces sin privilegios en los hosts de agentes, por ejemplo con `sysctl -w user.max_user_namespaces=0`, mantén el perfil seccomp por defecto y nunca uses `--privileged`.",
+          "Aplica las reglas sobre la llamada a la herramienta, no sobre el razonamiento. Revisa cada comando antes de ejecutarlo y pide aprobación para cualquier `curl` o `wget` con `-X PUT`, `-T` o `--data` hacia hosts que no conoces.",
+          "Monitorea la red. Registra las consultas DNS y las conexiones salientes y alerta sobre dominios de almacenamiento en la nube que tu equipo no usa.",
+          "Separa los sandboxes de evaluación de producción y usa tokens de corta duración con el mínimo de permisos.",
+          "Trata los pesos que no entrenaste como un binario sin firmar. Descárgalos del publicador original, verifica los hashes, fija la versión y desconfía más de los derivados sin procedencia clara.",
+          "Prueba el código que escribe el agente antes de desplegarlo, con análisis estático y con pruebas de ataque reales."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Conclusión"
+      },
+      {
+        "type": "paragraph",
+        "text": "El caso Qwen no demuestra que un modelo abierto te robe datos. Demuestra algo más incómodo: correr los pesos en tu servidor decide dónde se ejecuta el modelo, no lo que hace cuando tiene herramientas. Si tu agente tiene red, credenciales y permisos amplios, el riesgo existe con cualquier modelo. La checklist de arriba cuesta poco y te cubre aunque el informe de Cohere termine siendo un caso aislado."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qwen3.8-Flash-Next sacó datos reales de la red?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "No según el informe. El sandbox de Cohere no tenía salida a internet, la petición se bloqueó y la carga era una cadena de prueba."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Con qué frecuencia pasa?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Según Cohere, en menos de 1 de cada 100.000 llamadas en sus evaluaciones. Los porcentajes más altos, como el 92% de generación de URLs, salen de pruebas de prefill en las que los investigadores empezaban el comando."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Tengo que dejar de usar Qwen?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "El informe no prueba intención maliciosa ni compara con otros modelos. Lo sensato es aplicar los controles de la checklist a cualquier modelo que uses como agente y seguir de cerca si Alibaba o investigadores independientes publican algo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué respondió Alibaba?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Al 27 de octubre a las 18:15 hora de Argentina, nada en público."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Cohere: Concerning behavior from a popular open-weight AI model](https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model)",
+          "[Publicación de Cohere en X](https://x.com/cohere/status/2114752002370544004)",
+          "[Vals AI en X: peticiones no deseadas a un servidor de Alibaba Cloud en sus evaluaciones](https://x.com/ValsAI/status/2114999431787643366)",
+          "[Reuters vía CNA: Alibaba no disponible para comentar](https://www.channelnewsasia.com/business/alibaba-ai-model-secretly-tried-reach-beijing-server-in-test-rival-cohere-says-6494236)",
+          "[The Register: Alibaba no respondió a la consulta](https://www.theregister.com/ai-and-ml/2026/10/26/alibabas-qwen-ai-caught-trying-to-contact-server-in-china/5305561)",
+          "[VentureBeat: pedido de comentarios a Alibaba y Qwen sin respuesta](https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know)",
+          "[Dataset CohereLabs/10-2026-qwen-investigation-traces en Hugging Face (trace, tokens y script de Cohere)](https://huggingface.co/datasets/CohereLabs/10-2026-qwen-investigation-traces)",
+          "[Publicación de Cohere en X sobre la liberación de los traces](https://x.com/cohere/status/2114849246155260108)",
+          "[Publicación de Cohere en X con el enlace al dataset](https://x.com/cohere/status/2114851140349448460)",
+          "[Dataset advanced-stack/opencode-traces en Hugging Face (dato secundario)](https://huggingface.co/datasets/advanced-stack/opencode-traces)",
+          "[Publicación de @pa_schembri en X](https://x.com/pa_schembri/status/2114825878832087109)",
+          "[Pedido de Clem Delangue a Cohere en X](https://x.com/ClementDelangue/status/2114773561554731293)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "axiom-lean-ai-proofs-cfsg",
+    "title": "‘The largest proof in history, now computer-verified’: what Axiom’s AI and Lean actually prove",
+    "description": "Axiom says a swarm of AI agents formalized the Classification of Finite Simple Groups in Lean. What the public repo backs up, what is still announcement, what Lean checks and what it doesn’t, and what it means for code written by agents.",
+    "category": "Agent operations",
+    "language": "en",
+    "translation": "axiom-lean-ia-demostraciones-cfsg",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T19:00:00-03:00",
+    "updated": "2026-10-27T19:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 12,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Short answer:** according to Axiom, its AI agent system (AxiomProver) produced a complete Lean proof of the Classification of Finite Simple Groups (CFSG) in 24 days. CFSG is one of the longest theorems in mathematics. The code is public, and according to its README it is `sorry`-free and relies only on Lean’s three standard axioms. Two things are still missing: someone outside Axiom rebuilding the proof, and group theorists confirming that the Lean statement says what the theorem says. Lean vouches for the steps. Humans still have to vouch for the statement."
+      },
+      {
+        "type": "paragraph",
+        "text": "On Tuesday, October 27, at 11:34 Argentina time (14:34 UTC), Axiom’s official X account posted: \"The largest math proof in human history is now computer-verified.\" The public repository went up the same morning, and the company’s blog walked through how it was done in unusual detail."
+      },
+      {
+        "type": "paragraph",
+        "text": "If you build with coding agents, the reason to care isn’t the math. This is the largest case so far of agents producing work that a machine can check without trusting them. The same idea applies to the code those agents write in your repo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Below: what’s backed by evidence vs. what’s only claimed, what Lean checks and what it leaves to you, and a practical section on trying Lean and where formal verification pays off today."
+      },
+      {
+        "type": "heading",
+        "text": "What Axiom says, per its blog and repo"
+      },
+      {
+        "type": "paragraph",
+        "text": "In plain terms, the theorem says every finite simple group belongs to one of the known families or is one of 26 sporadic groups, the largest being the Monster. Per [Axiom’s blog](https://axiommath.ai/research/the-enormous-theorem-formalized/), the original proof spans about 15,000 pages across more than 500 articles by roughly 100 mathematicians. According to Axiom, no single person has read all of it."
+      },
+      {
+        "type": "paragraph",
+        "text": "According to the same post:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Over 24 days, Axiom’s engineers and mathematicians directed \"swarms of dozens of AI agents\" that produced approximately 43.1 million lines of Lean.",
+          "Work started on October 1 with a Slack channel and a proof map built from the published literature, split into 108 milestones and about 380 smaller tasks. Agents claimed tasks and reported progress through GitHub issues and Slack.",
+          "The proof builds on Mathlib and incorporates about 1.2 million lines from the Qiuzhen-CFSG project.",
+          "Translating the literature into Lean surfaced problems: mostly minor (typos, table errors, dropped hypotheses), plus \"34 noteworthy deviations from the published record\" that had to be resolved."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Per the [repository README](https://github.com/AxiomMath/CFSG), the proof is \"sorry-free,\" targets Lean 4 v4.35.0-rc3, builds on Mathlib and TauCeti, and uses only the standard axioms `Classical.choice`, `propext` and `Quot.sound`, with no `native_decide`. Axiom didn’t write the top-level statement; it comes from the [TauCeti project](https://github.com/TauCetiProject/TauCeti/blob/6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380/TauCeti/GroupTheory/SpecificGroups/CFSG/Classification.lean#L52-L56). The license is Apache 2.0."
+      },
+      {
+        "type": "paragraph",
+        "text": "The [project site](https://cfsg.axiommath.ai/) lists 43.1 million lines, 2.05 million declarations, and \"every logical step checked by Lean’s kernel.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "### Now the caveats, and they matter"
+      },
+      {
+        "type": "paragraph",
+        "text": "**The numbers don’t line up.** The official X thread says [\"50 million lines of Lean\"](https://x.com/axiommathai/status/2115089844745773304) and that the AI [\"fixed hundreds of major errata\"](https://x.com/axiommathai/status/2115089867701166461). The blog says 43.1 million and 34 noteworthy deviations. I go with the blog and repo figures here because they’re more precise."
+      },
+      {
+        "type": "paragraph",
+        "text": "**No outside check yet.** As of writing, I couldn’t find an independent rebuild of the proof or any statement from the Lean FRO or Mathlib maintainers. Axiom itself [asks](https://x.com/axiommathai/status/2115089885577228717) group theorists and the Lean community to \"rerun the proof check, and confirm that the Lean statement says what CFSG says.\" That’s the right ask, and it also tells you the step hasn’t happened."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Reproducing it is expensive.** Per the README, a full `lake build` took them close to 24 hours, and that was with open Lake changes they plan to upstream. This isn’t an afternoon job on a laptop."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Many of the loudest voices are affiliated.** Several of the most enthusiastic posts come from people who work at or with Axiom. The errata list, per the blog, will be released later in consultation with experts."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Status: public and checkable in principle; external validation pending.**"
+      },
+      {
+        "type": "heading",
+        "text": "The twist: the AI found a hole in a published argument"
+      },
+      {
+        "type": "paragraph",
+        "text": "The size isn’t the interesting part. Per the blog and the [accompanying paper](https://hexagonmath.org/2610.00575), the agents found counterexamples to a claim used in a 1986 published route to the Unbalanced Group Theorem (UGT), a load-bearing piece of the first-generation proof."
+      },
+      {
+        "type": "paragraph",
+        "text": "The theorem survives. The paper is explicit that the obstruction concerns that particular argument, and that UGT has other proofs. To close the gap, per Axiom, AxiomProver proved a new result built on Ronald Solomon’s 1976 theory of maximal 2-components."
+      },
+      {
+        "type": "paragraph",
+        "text": "Another example from the blog: in Aschbacher and Smith’s \"quasithin\" volumes, a lemma asserted two quantities were equal. The agents found a counterexample using SL₂(5), where one is 1 and the other 2. Swapping equality for an inequality fixed the lemma, but later arguments that leaned on equality had to be revisited."
+      },
+      {
+        "type": "paragraph",
+        "text": "For developers, the takeaway is blunt: **a strict checker doesn’t just confirm, it surfaces bugs that decades of human review missed**, and it does so without trusting whoever wrote the code, human or agent."
+      },
+      {
+        "type": "paragraph",
+        "text": "One detail from the blog deserves a second read. Early on, some \"manageable\" milestones hid huge prerequisites that the agents had **assumed rather than proved**. Axiom deleted tens of thousands of lines built on those assumptions. The blog also notes Lean will happily accept a result proved under an extra, unproved assumption, so reviewers had to compare each proved statement against the real target. If you’ve ever watched an agent \"make the tests pass\" by editing the test, you know this failure mode."
+      },
+      {
+        "type": "heading",
+        "text": "The receipts"
+      },
+      {
+        "type": "paragraph",
+        "text": "| When | Who | What happened | Outcome |\n|---|---|---|---|\n| 1976 | Ronald Solomon | Theory of maximal 2-components | Basis for the new result, per the paper |\n| 1986 | Walter | Publishes a route to UGT | Axiom finds counterexamples to one step, per its blog |\n| 2004 | Aschbacher & Smith | 1,221-page quasithin treatment | Closes the first-generation proof, per the blog |\n| Aug 11, 2026 | Nie, Zhang, Tang, Testa, Yau | [FormaTheoria paper](https://arxiv.org/abs/2608.10894) on arXiv | Prior work toward formalizing CFSG |\n| Oct 1, 2026 | Axiom | Opens the project channel | 108 milestones, ~380 tasks, per the blog |\n| Oct 10, 2026 | Axiom’s agents | \"WE PROVED MONSTER IS SIMPLE\" | Intermediate milestone, per the blog |\n| Oct 26, 2026 | Axiom | \"Formalizing the Enormous Theorem\" post dated | Official account of the process |\n| Oct 27, 2026, 10:19 ART | Axiom | Public GitHub repo created | Code under Apache 2.0 |\n| Oct 27, 2026, 11:34 ART | @axiommathai | [Announcement thread on X](https://x.com/axiommathai/status/2115089794867040584) | 100k+ impressions within hours |"
+      },
+      {
+        "type": "heading",
+        "text": "Proven vs claimed vs rumor"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Claim | Status | Why |\n|---|---|---|\n| A public repo with the Lean proof exists | Proven | It’s on [GitHub](https://github.com/AxiomMath/CFSG) under Apache 2.0 |\n| No `sorry`, no extra axioms | Claimed | Stated in the README; the repo ships a `comparator` config allowing only the three standard axioms, but no external rebuild found |\n| ~43.1M lines in 24 days | Claimed | Per Axiom’s blog and site |\n| \"50 million lines\" | Claimed, inconsistent | From the X thread; doesn’t match the blog |\n| 34 noteworthy deviations from the literature | Claimed | Per the blog; the errata list isn’t out yet |\n| \"Hundreds of major errata\" | Claimed, inconsistent | From the X thread; the blog says 34 noteworthy plus many minor |\n| Counterexamples to a step in the 1986 UGT route | Claimed, detailed | Laid out in Axiom’s paper; awaiting third-party review |\n| The Lean statement faithfully captures CFSG | Pending | Axiom itself is asking experts to confirm |\n| \"2,000+ mistakes found\" | Rumor | From [a post on X](https://x.com/naldzyul/status/2115094782045516186) with no source; not in the blog |\n| \"Settled beyond a doubt\" | Overclaim | [Wording from a post on X](https://x.com/kevinweil/status/2115093099114545488); external validation hasn’t happened |"
+      },
+      {
+        "type": "heading",
+        "text": "What Lean checks, and what it doesn’t"
+      },
+      {
+        "type": "paragraph",
+        "text": "Lean’s official reference has a whole page on this: [Validating a Lean Proof](https://lean-lang.org/doc/reference/latest/ValidatingProofs/). Read it end to end. Here’s the gist."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What Lean does check.** The kernel accepts a proof only if every step follows from the available definitions, theorems and axioms. `#print axioms` shows what a theorem ultimately depends on. If you see `sorryAx`, something is unproved. If you see anything beyond `propext`, `Classical.choice` and `Quot.sound`, the theorem only holds if that extra axiom does."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What Lean doesn’t check.** Whether the statement means what you think it means. The docs draw the line explicitly between \"does the theorem have a valid proof\" and \"what does the theorem statement mean.\" Axiom’s blog says the same thing: humans inspect the statement and its definitions, Lean checks the deductions."
+      },
+      {
+        "type": "paragraph",
+        "text": "**One line worth remembering.** For verification purposes, the same docs put \"un-reviewed AI-generated proofs and programs\" in the potentially malicious bucket. That isn’t a dig at AI. It’s the right default for any code whose intent you haven’t confirmed. For that tier, the docs recommend `lean4checker`, which replays proofs through the kernel, and `comparator`, which builds the proof in a sandbox and checks that the proved theorem matches a trusted statement written separately."
+      },
+      {
+        "type": "paragraph",
+        "text": "Axiom’s repo ships a `comparator.json` with a challenge module, a solution module and the permitted-axioms list. That’s the right shape for third-party validation. Someone actually running it independently and publishing the result is a separate milestone, and I haven’t seen it yet."
+      },
+      {
+        "type": "heading",
+        "text": "What it means for agent-written code"
+      },
+      {
+        "type": "paragraph",
+        "text": "The pattern carries over to software surprisingly well:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Agents perform where they can check themselves.** In formal math the checker is Lean, and it doesn’t negotiate. In your repo the closest equivalents are the compiler, the type system, tests and static analysis. The stricter the checker, the more you can delegate.",
+          "**The bottleneck moves to the spec.** If the agent writes both the code and the test, the test can be as weak as the code. Lean has the same problem: a badly stated theorem can be proved perfectly and mean nothing.",
+          "**Assumptions are the silent failure mode.** Axiom’s agents assumed prerequisites instead of proving them. In software that’s the mock that always returns success, the `TODO` that never leaves, the `// @ts-ignore`. Hunt for them the way `#print axioms` hunts for `sorryAx`.",
+          "**Scale costs infrastructure.** Axiom had to distribute cached build results across machines and push heavy finite computations into separately checkable certificates. Put enough agents on one codebase and your CI becomes the bottleneck."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist: try Lean and use formal verification today"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Install Lean.** The [official install page](https://lean-lang.org/install/) recommends VS Code plus the official Lean 4 extension, which walks you through the rest. To just poke around, [Lean in the browser](https://live.lean-lang.org/) needs no install."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Create a project and build it.** With Lean installed (the version manager is `elan`):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\nlake new demo\ncd demo\nlake build\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "For projects that depend on Mathlib, follow the [community guide](https://leanprover-community.github.io/install/project.html)."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Prove something and ask what it depends on.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\ntheorem add_comm' (a b : Nat) : a + b = b + a := by\n  omega"
+      },
+      {
+        "type": "paragraph",
+        "text": "#print axioms add_comm'\n-- On Lean 4.35.0 this prints:\n-- 'add_comm'' depends on axioms: [propext, Quot.sound]\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. See what an unfinished proof looks like.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\ntheorem todo (n : Nat) : n * 0 = 0 := by\n  sorry"
+      },
+      {
+        "type": "paragraph",
+        "text": "#print axioms todo\n-- Lean warns that the declaration uses 'sorry'\n-- and the axiom list includes sorryAx\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Watch a weak spec get proved anyway.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\n-- \"The output is sorted\" isn't enough:\n-- a function that always returns [] satisfies it.\ndef mySort (_xs : List Nat) : List Nat := []"
+      },
+      {
+        "type": "paragraph",
+        "text": "theorem mySort_sorted (xs : List Nat) :\n    (mySort xs).Pairwise (· ≤ ·) := by\n  simp [mySort]\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "The proof is valid and the function is useless. The missing piece is requiring the output to be a permutation of the input. That’s the review Axiom is asking for on the CFSG statement, in miniature."
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Put it in CI.** Lean’s docs recommend running `lean4checker` in CI and note the `lean-action` GitHub Action enables it with `lean4checker: true`. If you accept proofs written by an agent, write the statement yourself in a separate file and use `comparator` to check the proof against it."
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. Pick your battles.** Formal verification pays off on small, critical pieces: parsers and serializers, authorization rules, money calculations, algorithms with clear invariants, protocols. For a settings screen, ordinary tests are still the cheaper tool."
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Learn from official material.** [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/) covers axioms, and [Functional Programming in Lean](https://lean-lang.org/functional_programming_in_lean/) teaches Lean as a programming language. Per [Lean on X](https://x.com/leanprover/status/2114845590739931589), there’s a Software Verification in Lean event at Stanford on November 7, co-organized by the Beneficial AI Foundation and the Lean FRO."
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "Axiom shipped something you can check, which already sets it apart from most AI announcements. The repo exists, the scaffolding for independent validation is there, and the write-up is detailed enough to admit its own dead ends. What’s missing is outside confirmation: nobody outside Axiom has publicly rebuilt the proof, the errata list isn’t out, and the X thread’s numbers don’t match the blog’s."
+      },
+      {
+        "type": "paragraph",
+        "text": "For anyone building with agents, the lesson holds either way: an agent is only as trustworthy as the checker in front of it and the spec you check it against. Lean sets the first bar very high. The second one is still your job."
+      },
+      {
+        "type": "heading",
+        "text": "FAQ"
+      },
+      {
+        "type": "paragraph",
+        "text": "**What did Axiom announce on October 27, 2026?**\nPer its blog and official X account, a complete Lean proof of the Classification of Finite Simple Groups, produced in 24 days by swarms of AI agents directed by its team, totaling about 43.1 million lines of code."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Has it been independently verified?**\nAs of writing, I found no public third-party rebuild and no statement from the Lean FRO or Mathlib. Axiom has invited the community to do it."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What exactly does Lean guarantee?**\nThat every step of the proof follows from the declared definitions and axioms. It doesn’t guarantee the formal statement says what was intended; humans review that."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Did the AI find errors in the original proof?**\nAccording to Axiom, yes: 34 noteworthy deviations and counterexamples to a step in a 1986 published route to the Unbalanced Group Theorem. The theorem still holds, and Axiom says it proved a new result to replace that step."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Is it 43 million lines or 50 million?**\nThe blog and project site say about 43.1 million; the X thread says 50 million. The blog figure is the more precise one."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can I run the check myself?**\nThe code is public, but per the README a full build took close to 24 hours with Lake changes that aren’t upstream yet. To learn, start with a small project and `#print axioms`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Is formal verification useful for production code?**\nYes, for small, critical pieces where you can write a clear spec. Elsewhere, the compiler, types and tests give you a better cost-benefit ratio."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Axiom: Formalizing the Enormous Theorem (blog, Oct 26, 2026)](https://axiommath.ai/research/the-enormous-theorem-formalized/)",
+          "[Axiom CFSG project site](https://cfsg.axiommath.ai/)",
+          "[AxiomMath/CFSG repository on GitHub](https://github.com/AxiomMath/CFSG)",
+          "[CFSG statement in the TauCeti project](https://github.com/TauCetiProject/TauCeti/blob/6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380/TauCeti/GroupTheory/SpecificGroups/CFSG/Classification.lean#L52-L56)",
+          "[Axiom paper: The Unbalanced Group Theorem (Hexagon)](https://hexagonmath.org/2610.00575)",
+          "[Axiom announcement thread on X](https://x.com/axiommathai/status/2115089794867040584)",
+          "[Axiom on X: 50 million lines in 24 days](https://x.com/axiommathai/status/2115089844745773304)",
+          "[Axiom on X: the Unbalanced Group Theorem](https://x.com/axiommathai/status/2115089867701166461)",
+          "[Axiom on X: invitation to validate the proof](https://x.com/axiommathai/status/2115089885577228717)",
+          "[Lean: Validating a Lean Proof](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)",
+          "[Lean: install](https://lean-lang.org/install/)",
+          "[Lean in the browser](https://live.lean-lang.org/)",
+          "[Theorem Proving in Lean 4: axioms and computation](https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/)",
+          "[Functional Programming in Lean](https://lean-lang.org/functional_programming_in_lean/)",
+          "[Lean community and Mathlib: creating a project](https://leanprover-community.github.io/install/project.html)",
+          "[FormaTheoria on arXiv (Aug 2026)](https://arxiv.org/abs/2608.10894)",
+          "[Lean on X: Software Verification in Lean at Stanford](https://x.com/leanprover/status/2114845590739931589)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "axiom-lean-ia-demostraciones-cfsg",
+    "title": "«La mayor demostración de la historia, verificada por computadora»: qué prueba de verdad Axiom con Lean e IA",
+    "description": "Axiom dice que un enjambre de agentes de IA formalizó en Lean la clasificación de los grupos finitos simples. Qué está comprobado en el repositorio, qué es solo anuncio, qué verifica Lean y qué no, y qué significa para el código que escriben los agentes.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "translation": "axiom-lean-ai-proofs-cfsg",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T19:00:00-03:00",
+    "updated": "2026-10-27T19:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 14,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** según Axiom, su sistema de agentes de IA (AxiomProver) escribió en 24 días una demostración completa en Lean de la clasificación de los grupos finitos simples (CFSG), uno de los teoremas más largos de la matemática. El código es público y, según su README, no tiene `sorry` y usa solo los tres axiomas estándar de Lean. Lo que todavía falta es que alguien fuera de Axiom reconstruya la prueba y que expertos confirmen que el enunciado en Lean dice lo mismo que el teorema. Lean garantiza que los pasos son correctos. Que el enunciado sea el correcto lo tienen que revisar personas."
+      },
+      {
+        "type": "paragraph",
+        "text": "El martes 27 de octubre a las 11:34 (hora de Argentina), la cuenta oficial de Axiom en X publicó: \"La demostración matemática más grande de la historia humana ahora está verificada por computadora\". Ese mismo día apareció el repositorio público con el código, y el blog de la empresa contó el proceso con bastante detalle."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si programas con agentes, esta noticia te importa por una razón concreta: es el caso más grande hasta ahora de agentes produciendo trabajo que una máquina puede comprobar sin confiar en ellos. Esa idea sirve también para el código que esos agentes escriben en tu repositorio."
+      },
+      {
+        "type": "paragraph",
+        "text": "En esta nota separo lo comprobado de lo afirmado, explico qué revisa Lean y qué deja afuera, y cierro con pasos concretos para probar Lean y con los casos donde la verificación formal ya es útil hoy."
+      },
+      {
+        "type": "heading",
+        "text": "Qué dice Axiom, según su blog y su repositorio"
+      },
+      {
+        "type": "paragraph",
+        "text": "El teorema dice, en simple, que todo grupo finito simple pertenece a alguna de las familias conocidas o es uno de los 26 grupos esporádicos, entre ellos el llamado Monstruo. La demostración original, según el [blog de Axiom](https://axiommath.ai/research/the-enormous-theorem-formalized/), ocupa unas 15.000 páginas repartidas en más de 500 artículos de alrededor de 100 matemáticos. Según Axiom, ninguna persona la leyó entera."
+      },
+      {
+        "type": "paragraph",
+        "text": "Según ese mismo blog:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Durante 24 días, ingenieros y matemáticos de Axiom dirigieron \"enjambres de decenas de agentes de IA\" que produjeron aproximadamente 43,1 millones de líneas de Lean.",
+          "El proyecto arrancó el 1 de octubre con un canal de Slack y un mapa de la prueba armado a partir de la literatura publicada, dividido en 108 hitos y unas 380 tareas. Los agentes tomaban tareas y reportaban avances por issues de GitHub y Slack.",
+          "El trabajo se apoya en Mathlib e incorpora unas 1,2 millones de líneas del proyecto Qiuzhen-CFSG.",
+          "Al traducir la prueba a Lean aparecieron problemas en lo publicado: la mayoría menores (erratas, errores en tablas, hipótesis omitidas) y \"34 desviaciones notables\" que hubo que resolver."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Según el [README del repositorio](https://github.com/AxiomMath/CFSG), la prueba es \"libre de `sorry`\", está escrita para Lean 4 v4.35.0-rc3, se apoya en Mathlib y en el proyecto TauCeti, y usa solo los axiomas estándar `Classical.choice`, `propext` y `Quot.sound`, sin `native_decide`. El enunciado final no lo escribió Axiom: lo toma del [proyecto TauCeti](https://github.com/TauCetiProject/TauCeti/blob/6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380/TauCeti/GroupTheory/SpecificGroups/CFSG/Classification.lean#L52-L56). La licencia es Apache 2.0."
+      },
+      {
+        "type": "paragraph",
+        "text": "El [sitio del proyecto](https://cfsg.axiommath.ai/) muestra 43,1 millones de líneas, 2,05 millones de declaraciones y la frase \"cada paso lógico comprobado por el kernel de Lean\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "### Ahora las salvedades, y pesan"
+      },
+      {
+        "type": "paragraph",
+        "text": "La primera es de números. El hilo oficial en X habla de [\"50 millones de líneas de Lean\"](https://x.com/axiommathai/status/2115089844745773304) y de que la IA [\"corrigió cientos de erratas importantes\"](https://x.com/axiommathai/status/2115089867701166461). El blog dice 43,1 millones y 34 desviaciones notables. En esta nota uso las cifras del blog y del repositorio, que son más precisas."
+      },
+      {
+        "type": "paragraph",
+        "text": "La segunda es de tiempos. Al cierre de esta nota no encontré una reconstrucción independiente de la prueba ni una declaración del equipo de Lean (Lean FRO) o de los mantenedores de Mathlib. La propia Axiom [invita](https://x.com/axiommathai/status/2115089885577228717) a \"volver a correr la comprobación y confirmar que el enunciado en Lean dice lo que dice CFSG\". Esa invitación es honesta, y también muestra que el paso todavía no está hecho."
+      },
+      {
+        "type": "paragraph",
+        "text": "La tercera es de práctica: según el README, construir el proyecto completo con `lake build` les llevó cerca de 24 horas, y eso usando cambios a Lake que todavía no están integrados en la versión oficial. Reproducirlo no es algo que hagas en tu laptop una tarde."
+      },
+      {
+        "type": "paragraph",
+        "text": "La cuarta es de independencia. Varias de las voces más entusiastas en X trabajan en Axiom o están vinculadas a la empresa. La lista de erratas, según el blog, se publicará después, en consulta con expertos."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Estado: código público y verificable en principio; validación externa pendiente.**"
+      },
+      {
+        "type": "heading",
+        "text": "El giro: la IA encontró un hueco en un argumento publicado"
+      },
+      {
+        "type": "paragraph",
+        "text": "La parte más interesante no es el tamaño. Según el blog y el [artículo que acompaña el anuncio](https://hexagonmath.org/2610.00575), los agentes encontraron contraejemplos a una afirmación usada en la demostración publicada en 1986 del Teorema del Grupo No Balanceado (UGT), una pieza central de la primera generación de la prueba."
+      },
+      {
+        "type": "paragraph",
+        "text": "Esto no tumba el teorema. El artículo aclara que la obstrucción afecta a ese argumento en particular y que el UGT tiene otras demostraciones. Para cerrar el hueco, según Axiom, AxiomProver probó un resultado nuevo apoyado en la teoría de 2-componentes maximales que Ronald Solomon desarrolló en 1976."
+      },
+      {
+        "type": "paragraph",
+        "text": "Otro ejemplo del blog: en los volúmenes \"quasithin\" de Aschbacher y Smith, un lema afirmaba que dos cantidades eran iguales. Los agentes encontraron un contraejemplo con el grupo SL₂(5), donde una vale 1 y la otra 2. Cambiar la igualdad por una desigualdad arregló el lema, pero obligó a revisar argumentos posteriores que dependían de ella."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para quien programa, la lección es directa: **un verificador estricto no solo confirma, también encuentra errores que décadas de revisión humana dejaron pasar.** Y lo hace sin necesidad de confiar en quien escribió el código, sea una persona o un agente."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay un detalle del blog que conviene leer dos veces. Al principio, algunos hitos \"manejables\" escondían requisitos enormes que los agentes habían **supuesto en lugar de probar**. Axiom borró decenas de miles de líneas construidas sobre esos supuestos. El blog explica además que Lean puede aceptar una prueba hecha bajo una hipótesis extra no demostrada, así que la revisión tuvo que comparar cada enunciado probado con el objetivo real. Es el mismo problema que tienes cuando un agente \"pasa los tests\" porque cambió el test."
+      },
+      {
+        "type": "heading",
+        "text": "La cronología, con recibos"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Cuándo | Quién | Qué pasó | Resultado |\n|---|---|---|---|\n| 1976 | Ronald Solomon | Teoría de 2-componentes maximales | Base del resultado nuevo, según el artículo |\n| 1986 | Walter | Publica una ruta de prueba del UGT | Axiom encuentra contraejemplos a un paso, según su blog |\n| 2004 | Aschbacher y Smith | Volúmenes \"quasithin\" (1.221 páginas) | Cierra la primera generación de la prueba, según el blog |\n| 11-ago-2026 | Nie, Zhang, Tang, Testa, Yau | [Artículo FormaTheoria](https://arxiv.org/abs/2608.10894) en arXiv | Trabajo previo hacia formalizar CFSG |\n| 1-oct-2026 | Axiom | Abre el canal del proyecto | 108 hitos y unas 380 tareas, según el blog |\n| 10-oct-2026 | Agentes de Axiom | \"Probamos que el Monstruo es simple\" | Hito intermedio, según el blog |\n| 26-oct-2026 | Axiom | Fecha del post \"Formalizing the Enormous Theorem\" | Relato oficial del proceso |\n| 27-oct-2026, 10:19 ART | Axiom | Se crea el repositorio público en GitHub | Código bajo Apache 2.0 |\n| 27-oct-2026, 11:34 ART | @axiommathai | [Hilo de anuncio en X](https://x.com/axiommathai/status/2115089794867040584) | Más de 100.000 impresiones en pocas horas |"
+      },
+      {
+        "type": "heading",
+        "text": "Probado, afirmado y rumor"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Afirmación | Estado | Por qué |\n|---|---|---|\n| Existe un repositorio público con la prueba en Lean | Probado | Está en [GitHub](https://github.com/AxiomMath/CFSG), con licencia Apache 2.0 |\n| La prueba no usa `sorry` ni axiomas extra | Afirmado | Lo dice el README; el repositorio incluye una configuración de `comparator` que solo permite los tres axiomas estándar, pero no encontré una reconstrucción externa |\n| Unas 43,1 millones de líneas en 24 días | Afirmado | Según el blog y el sitio de Axiom |\n| \"50 millones de líneas\" | Afirmado e inconsistente | Aparece en el hilo de X y no coincide con el blog |\n| 34 desviaciones notables respecto de lo publicado | Afirmado | Según el blog; la lista de erratas aún no está publicada |\n| \"Cientos de erratas importantes\" | Afirmado e inconsistente | Según el hilo de X; el blog habla de 34 notables y muchas menores |\n| Contraejemplos a un paso de la prueba del UGT de 1986 | Afirmado, con detalle | Explicado en el artículo de Axiom; falta revisión de terceros |\n| El enunciado en Lean expresa fielmente CFSG | Pendiente | Axiom misma pide a especialistas que lo confirmen |\n| \"Más de 2.000 errores encontrados\" | Rumor | Lo dice [un post en X](https://x.com/naldzyul/status/2115094782045516186) sin fuente; no figura en el blog |\n| \"Resuelto más allá de toda duda\" | Exageración | [Frase de un post en X](https://x.com/kevinweil/status/2115093099114545488); la validación externa todavía no ocurrió |"
+      },
+      {
+        "type": "heading",
+        "text": "Qué verifica Lean y qué no"
+      },
+      {
+        "type": "paragraph",
+        "text": "La documentación oficial de Lean tiene una página entera sobre esto: [Validating a Lean Proof](https://lean-lang.org/doc/reference/latest/ValidatingProofs/). Vale la pena leerla completa. Resumo lo que importa."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Lo que Lean sí comprueba.** El kernel de Lean acepta una prueba solo si cada paso se deduce de las definiciones, teoremas y axiomas disponibles. Con `#print axioms` puedes ver de qué axiomas depende un teorema. Si aparece `sorryAx`, hay partes sin probar. Si aparece cualquier axioma fuera de `propext`, `Classical.choice` y `Quot.sound`, el teorema vale solo si ese axioma extra es cierto."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Lo que Lean no comprueba.** Que el enunciado signifique lo que crees. La documentación lo separa explícitamente: una cosa es \"¿el teorema tiene una prueba válida?\" y otra \"¿qué significa el enunciado?\". El blog de Axiom dice lo mismo con otras palabras: las personas revisan el enunciado y sus definiciones, y Lean revisa las deducciones."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Una frase que conviene memorizar.** La misma documentación clasifica como potencialmente maliciosas, a efectos de verificación, las \"pruebas y programas generados por IA sin revisar\". No es un juicio sobre la IA: es la postura correcta para cualquier código del que no conoces la intención. Para esos casos recomienda el nivel más alto de control: `lean4checker` para volver a pasar las pruebas por el kernel, y `comparator`, que compila la prueba en un entorno aislado y verifica que el teorema probado coincida con un enunciado de confianza escrito aparte."
+      },
+      {
+        "type": "paragraph",
+        "text": "El repositorio de Axiom trae justamente un archivo `comparator.json` con un módulo de desafío, un módulo de solución y la lista de axiomas permitidos. Es la estructura correcta para que un tercero valide la prueba. Que alguien la haya ejecutado de forma independiente es otra cosa, y todavía no lo vi publicado."
+      },
+      {
+        "type": "heading",
+        "text": "Qué significa para el código que escriben agentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "El patrón que muestra Axiom se traslada bastante bien al desarrollo de software:"
+      },
+      {
+        "type": "list",
+        "items": [
+          "**Los agentes rinden donde se pueden verificar solos.** En matemáticas formales, el verificador es Lean y no negocia. En tu repositorio, lo más parecido son el compilador, el sistema de tipos, los tests y los análisis estáticos. Cuanto más estricto sea ese verificador, más puedes delegar.",
+          "**El cuello de botella se mueve a la especificación.** Si el agente escribe el código y también el test, el test puede ser tan débil como el código. En Lean pasa igual: un enunciado mal escrito se puede probar perfectamente y no significar nada útil.",
+          "**Los supuestos son el modo de falla silencioso.** Los agentes de Axiom asumieron requisitos en lugar de probarlos. En software, el equivalente es un mock que siempre devuelve éxito, un `TODO` que se queda o un `// @ts-ignore`. Búscalos como Lean busca `sorryAx`.",
+          "**La escala tiene costo de infraestructura.** Axiom tuvo que distribuir resultados de compilación en caché entre máquinas y sacar los cálculos pesados a certificados verificables por separado. Si pones muchos agentes a trabajar en paralelo, tu CI va a ser el próximo cuello de botella."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist para probar Lean y usar verificación formal hoy"
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Instala Lean.** La vía recomendada en la [página oficial de instalación](https://lean-lang.org/install/) es VS Code con la extensión oficial de Lean 4, que te guía por el resto. Si solo quieres mirar, [Lean en el navegador](https://live.lean-lang.org/) funciona sin instalar nada."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Crea un proyecto y compílalo.** Con Lean instalado (el gestor de versiones se llama `elan`):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\nlake new demo\ncd demo\nlake build\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Para proyectos que usan Mathlib, sigue la [guía de la comunidad](https://leanprover-community.github.io/install/project.html)."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Escribe un teorema y pregunta de qué depende.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\ntheorem suma_conmuta (a b : Nat) : a + b = b + a := by\n  omega"
+      },
+      {
+        "type": "paragraph",
+        "text": "#print axioms suma_conmuta\n-- En Lean 4.35.0 responde:\n-- 'suma_conmuta' depends on axioms: [propext, Quot.sound]\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Mira qué pasa con una prueba incompleta.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\ntheorem pendiente (n : Nat) : n * 0 = 0 := by\n  sorry"
+      },
+      {
+        "type": "paragraph",
+        "text": "#print axioms pendiente\n-- Lean avisa que la declaración usa 'sorry'\n-- y la lista de axiomas incluye sorryAx\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Ve cómo una especificación débil se prueba igual.**"
+      },
+      {
+        "type": "paragraph",
+        "text": "```lean\n-- \"La salida está ordenada\" no alcanza:\n-- una función que siempre devuelve [] lo cumple.\ndef miOrden (_xs : List Nat) : List Nat := []"
+      },
+      {
+        "type": "paragraph",
+        "text": "theorem miOrden_ordena (xs : List Nat) :\n    (miOrden xs).Pairwise (· ≤ ·) := by\n  simp [miOrden]\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "La prueba es correcta y la función es inútil. Falta pedir que la salida sea una permutación de la entrada. Es exactamente la revisión que Axiom pide para el enunciado de CFSG, en miniatura."
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Añade la comprobación a tu CI.** La documentación de Lean recomienda correr `lean4checker` en integración continua y señala que la acción `lean-action` de GitHub lo activa con `lean4checker: true`. Si aceptas pruebas que escribió un agente, define tú el enunciado en un archivo aparte y usa `comparator` para compararlas contra él."
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. Elige bien dónde usarla.** La verificación formal compensa en piezas chicas y críticas: funciones de parseo y serialización, reglas de autorización, cálculos de dinero, algoritmos con invariantes claras y protocolos. Para una pantalla de configuración, los tests de siempre siguen siendo más baratos."
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Aprende con material oficial.** [Theorem Proving in Lean 4](https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/) explica los axiomas, y [Functional Programming in Lean](https://lean-lang.org/functional_programming_in_lean/) enseña a usar Lean como lenguaje de programación. Según [Lean en X](https://x.com/leanprover/status/2114845590739931589), el 7 de noviembre hay un encuentro sobre verificación de software en Lean en Stanford, co-organizado por Beneficial AI Foundation y Lean FRO."
+      },
+      {
+        "type": "heading",
+        "text": "Conclusión"
+      },
+      {
+        "type": "paragraph",
+        "text": "Axiom publicó algo que se puede comprobar, y eso ya lo separa de la mayoría de los anuncios de IA. El repositorio existe, la estructura para validarlo de forma independiente está, y el relato técnico es detallado y admite errores propios. Lo que no hay todavía es la confirmación externa: nadie fuera de Axiom reconstruyó públicamente la prueba, la lista de erratas no está publicada y los números del hilo en X no coinciden con los del blog."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para quien desarrolla con agentes, la lección sirve con o sin esa confirmación: un agente es tan confiable como el verificador que lo controla y como la especificación contra la que lo verificas. Lean pone muy alto el primer listón. El segundo sigue siendo trabajo tuyo."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué anunció Axiom el 27 de octubre de 2026?**\nSegún su blog y su cuenta oficial en X, una demostración completa en Lean de la clasificación de los grupos finitos simples, escrita en 24 días por enjambres de agentes de IA dirigidos por su equipo, con unas 43,1 millones de líneas de código."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Está verificada de forma independiente?**\nAl cierre de esta nota, no encontré una reconstrucción pública hecha por terceros ni una declaración de Lean FRO o de Mathlib. Axiom invitó a la comunidad a hacerla."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué garantiza Lean exactamente?**\nQue cada paso de la prueba se deduce de las definiciones y axiomas declarados. No garantiza que el enunciado formal diga lo que se quería decir; eso lo revisan personas."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿La IA encontró errores en la demostración original?**\nSegún Axiom, sí: 34 desviaciones notables y contraejemplos a un paso de una prueba del Teorema del Grupo No Balanceado publicada en 1986. El teorema sigue siendo cierto, y Axiom dice haber probado un resultado nuevo para reemplazar ese paso."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Son 43 o 50 millones de líneas?**\nEl blog y el sitio del proyecto dicen unas 43,1 millones; el hilo en X dice 50 millones. La cifra más precisa es la del blog."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Puedo correr la verificación yo mismo?**\nEl código es público, pero según el README la compilación completa llevó cerca de 24 horas con cambios a Lake aún no integrados en la versión oficial. Para aprender, empieza con un proyecto chico y `#print axioms`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Sirve la verificación formal para código de producción?**\nSí, en piezas acotadas y críticas donde puedes escribir una especificación clara. Para el resto, el compilador, los tipos y los tests cubren mejor la relación entre costo y beneficio."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Axiom: Formalizing the Enormous Theorem (blog, 26-oct-2026)](https://axiommath.ai/research/the-enormous-theorem-formalized/)",
+          "[Sitio del proyecto CFSG de Axiom](https://cfsg.axiommath.ai/)",
+          "[Repositorio AxiomMath/CFSG en GitHub](https://github.com/AxiomMath/CFSG)",
+          "[Enunciado de CFSG en el proyecto TauCeti](https://github.com/TauCetiProject/TauCeti/blob/6e0c6acab5f4c6f42e5f5bab9bd5e4e84f74c380/TauCeti/GroupTheory/SpecificGroups/CFSG/Classification.lean#L52-L56)",
+          "[Artículo de Axiom: The Unbalanced Group Theorem (Hexagon)](https://hexagonmath.org/2610.00575)",
+          "[Hilo de anuncio de Axiom en X](https://x.com/axiommathai/status/2115089794867040584)",
+          "[Axiom en X: 50 millones de líneas en 24 días](https://x.com/axiommathai/status/2115089844745773304)",
+          "[Axiom en X: el Teorema del Grupo No Balanceado](https://x.com/axiommathai/status/2115089867701166461)",
+          "[Axiom en X: invitación a validar la prueba](https://x.com/axiommathai/status/2115089885577228717)",
+          "[Lean: Validating a Lean Proof](https://lean-lang.org/doc/reference/latest/ValidatingProofs/)",
+          "[Lean: instalación](https://lean-lang.org/install/)",
+          "[Lean en el navegador](https://live.lean-lang.org/)",
+          "[Theorem Proving in Lean 4: axiomas y computación](https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/)",
+          "[Functional Programming in Lean](https://lean-lang.org/functional_programming_in_lean/)",
+          "[Comunidad Lean y Mathlib: crear un proyecto](https://leanprover-community.github.io/install/project.html)",
+          "[FormaTheoria en arXiv (ago-2026)](https://arxiv.org/abs/2608.10894)",
+          "[Lean en X: encuentro sobre verificación de software en Stanford](https://x.com/leanprover/status/2114845590739931589)"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "kimi-astra-opus-mismo-prompt",
     "title": "Probé Kimi K3.1 Pro, GPT-6 Astra y Opus 5.5 con el mismo prompt: el precio por token engaña",
     "description": "Kimi K3.1 Pro cuesta 5 veces menos por token que GPT-6 Astra. En una misma tarea salió solo un 26% más barato. Cifras reales de costo, tiempo y tokens de tres modelos.",
