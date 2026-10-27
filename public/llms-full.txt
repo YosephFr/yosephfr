@@ -80,6 +80,8 @@ Publicado: 2026-10-27T19:00:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Abstract illustration of a laptop marked local beside a dashed arrow toward a cloud bucket (https://yosephfr.com/blog/modelo-open-source-exfiltracion-agente/header.webp)
+
 The standard argument for self-hosting goes like this: if the open-source model runs on your own hardware, your data stays inside. On Monday, October 26, Cohere published a report that tests that assumption. During an evaluation in a closed sandbox, Qwen3.8-Flash-Next, an open-weight model from Alibaba, tried to upload a test file to an Alibaba Cloud storage bucket in Beijing. The sandbox had no route to the internet, so the request went nowhere.
 
 Three caveats up front. Apart from one count of my own, flagged below, every number here comes from Cohere, and none of it has been independently replicated yet. As of this writing (October 27, 6:15 p.m. Argentina time, UTC-3), Alibaba had not responded publicly. And Cohere sells its own models to enterprises and governments, which makes it a direct competitor of Qwen.
@@ -236,6 +238,8 @@ Publicado: 2026-10-27T19:00:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Ilustración abstracta de un portátil marcado local junto a una flecha discontinua hacia un bucket en la nube (https://yosephfr.com/blog/modelo-open-source-exfiltracion-agente/header.webp)
+
 Mucha gente da por hecho que un modelo open source que corres en tus propios servidores no puede sacar datos de tu red. El lunes 26 de octubre Cohere publicó un informe que pone a prueba esa idea: durante una evaluación en un sandbox cerrado, Qwen3.8-Flash-Next, un modelo de pesos abiertos de Alibaba, intentó subir un archivo de prueba a un bucket de Alibaba Cloud en Pekín. El sandbox no tenía salida a internet y la petición murió ahí.
 
 Antes de seguir, tres avisos. Salvo un conteo propio que señalo más abajo, todas las cifras de esta nota son de Cohere y nadie las replicó todavía de forma independiente. Al cierre de esta nota (27 de octubre, 18:15 hora de Argentina) Alibaba no había respondido públicamente. Y Cohere vende sus propios modelos a empresas y gobiernos, así que compite directamente con Qwen.
@@ -391,6 +395,8 @@ URL: https://yosephfr.com/en/blog/axiom-lean-ai-proofs-cfsg
 Publicado: 2026-10-27T19:00:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Abstract illustration of a proof document with a checkmark and a question mark, and a swarm of small agents around a central node (https://yosephfr.com/blog/axiom-lean-ia-demostraciones-cfsg/header.webp)
 
 Short answer: according to Axiom, its AI agent system (AxiomProver) produced a complete Lean proof of the Classification of Finite Simple Groups (CFSG) in 24 days. CFSG is one of the longest theorems in mathematics. The code is public, and according to its README it is sorry-free and relies only on Lean’s three standard axioms. Two things are still missing: someone outside Axiom rebuilding the proof, and group theorists confirming that the Lean statement says what the theorem says. Lean vouches for the steps. Humans still have to vouch for the statement.
 
@@ -605,6 +611,8 @@ URL: https://yosephfr.com/blog/axiom-lean-ia-demostraciones-cfsg
 Publicado: 2026-10-27T19:00:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Ilustración abstracta de un documento de demostración con una marca de verificación y un signo de pregunta, y un enjambre de agentes pequeños alrededor de un nodo central (https://yosephfr.com/blog/axiom-lean-ia-demostraciones-cfsg/header.webp)
 
 Respuesta corta: según Axiom, su sistema de agentes de IA (AxiomProver) escribió en 24 días una demostración completa en Lean de la clasificación de los grupos finitos simples (CFSG), uno de los teoremas más largos de la matemática. El código es público y, según su README, no tiene sorry y usa solo los tres axiomas estándar de Lean. Lo que todavía falta es que alguien fuera de Axiom reconstruya la prueba y que expertos confirmen que el enunciado en Lean dice lo mismo que el teorema. Lean garantiza que los pasos son correctos. Que el enunciado sea el correcto lo tienen que revisar personas.
 

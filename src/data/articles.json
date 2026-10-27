@@ -119,6 +119,12 @@
     "updated": "2026-10-27T19:00:00-03:00",
     "publication": "published",
     "readingMinutes": 12,
+    "cover": {
+      "src": "/blog/modelo-open-source-exfiltracion-agente/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a laptop marked local beside a dashed arrow toward a cloud bucket"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -406,6 +412,12 @@
     "updated": "2026-10-27T19:00:00-03:00",
     "publication": "published",
     "readingMinutes": 13,
+    "cover": {
+      "src": "/blog/modelo-open-source-exfiltracion-agente/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de un portátil marcado local junto a una flecha discontinua hacia un bucket en la nube"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -693,6 +705,12 @@
     "updated": "2026-10-27T19:00:00-03:00",
     "publication": "published",
     "readingMinutes": 12,
+    "cover": {
+      "src": "/blog/axiom-lean-ia-demostraciones-cfsg/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a proof document with a checkmark and a question mark, and a swarm of small agents around a central node"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -1000,6 +1018,12 @@
     "updated": "2026-10-27T19:00:00-03:00",
     "publication": "published",
     "readingMinutes": 14,
+    "cover": {
+      "src": "/blog/axiom-lean-ia-demostraciones-cfsg/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de un documento de demostración con una marca de verificación y un signo de pregunta, y un enjambre de agentes pequeños alrededor de un nodo central"
+    },
     "blocks": [
       {
         "type": "paragraph",
