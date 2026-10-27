@@ -1,5 +1,1131 @@
 [
   {
+    "slug": "duelo-kimi-astra-opus",
+    "title": "Probé Kimi K3.1 Pro, GPT-6 Astra y Opus 5.5 con el mismo prompt: el precio por token engaña",
+    "description": "Kimi K3.1 Pro cuesta 5 veces menos por token que GPT-6 Astra. En una misma tarea salió solo un 26% más barato. Cifras reales de costo, tiempo y tokens de tres modelos.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T12:30:00-03:00",
+    "updated": "2026-10-27T12:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Kimi K3.1 Pro cuesta 5 veces menos por token que GPT-6 Astra. En mi prueba salió apenas un 26% más barato. La diferencia entre esas dos cifras es lo más útil que dejó el lanzamiento de la semana pasada, y casi nadie la está mirando."
+      },
+      {
+        "type": "paragraph",
+        "text": "El 23 de octubre Moonshot presentó Kimi K3.1 Pro y en pocas horas X se llenó de comparaciones que lo llamaban «el asesino de Astra». La mayoría comparaba precio por token y minutos, y declaraba la calidad a ojo. Así que hice la prueba con nuestras propias cifras."
+      },
+      {
+        "type": "heading",
+        "text": "Las reglas de la prueba"
+      },
+      {
+        "type": "paragraph",
+        "text": "Le di a los tres modelos el mismo encargo, palabra por palabra: un único archivo HTML con una escena 3D animada de un faro en un acantilado durante una tormenta nocturna, con olas, lluvia, rayos, el haz de luz girando y una cámara que vuelve al inicio cada 20 segundos."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Kimi K3.1 Pro corrió en OpenCode.",
+          "GPT-6 Astra corrió en Codex CLI, con esfuerzo medium.",
+          "Claude Opus 5.5 corrió en Claude Code.",
+          "Cada uno empezó en una carpeta vacía, en un solo intento y sin correcciones."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "El primer intento de Opus se cortó por un error de red, sin dejar archivos. Lo reinicié desde cero. Las cifras de abajo son del intento que terminó."
+      },
+      {
+        "type": "heading",
+        "text": "Los resultados"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Kimi K3.1 Pro:** US$0,93 y 12,7 minutos.",
+          "**GPT-6 Astra:** US$1,26 y 4,8 minutos.",
+          "**Opus 5.5:** US$2,99 y 16,4 minutos."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "El costo es el de lista: los tokens que registró cada agente multiplicados por el precio oficial de cada proveedor. En el caso de Kimi lo comparé contra el saldo real de la cuenta, que bajó US$0,94, prácticamente lo mismo. Opus y Astra corrieron con suscripción, así que su cifra es el equivalente a lo que costaría por API."
+      },
+      {
+        "type": "paragraph",
+        "text": "El más barato no fue el más rápido. El más rápido no fue el más barato. Y el más caro también fue el más lento."
+      },
+      {
+        "type": "heading",
+        "text": "Por qué el precio por token no predice la factura"
+      },
+      {
+        "type": "paragraph",
+        "text": "Por millón de tokens, Kimi cobra US$2 de entrada y US$10 de salida. Astra cobra US$10 y US$50. Con esos números, Kimi debería haber costado una quinta parte. No pasó, por una razón simple: escribió mucho más."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Kimi generó unos 50.000 tokens de salida: 24.000 de respuesta y 26.000 de razonamiento.",
+          "Astra terminó con unos 10.800.",
+          "Opus generó unos 90.400."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Kimi escribió 4,6 veces más que Astra. Tokens baratos, pero muchos. Y la salida es lo que más pesa en la cuenta: fue el 53% del costo de Kimi, el 43% del de Astra y el 61% del de Opus."
+      },
+      {
+        "type": "paragraph",
+        "text": "Artificial Analysis ve el mismo patrón a gran escala. En su índice describe a Kimi K3.1 Pro como «muy verboso»: usó 150 millones de tokens de salida para completar sus pruebas, frente a una mediana de 87 millones. GPT-6 Astra usó 60 millones y Opus 5.5, 260 millones."
+      },
+      {
+        "type": "heading",
+        "text": "¿Mata a Astra? ¿Alcanza a Opus?"
+      },
+      {
+        "type": "paragraph",
+        "text": "En el índice independiente de Artificial Analysis, Kimi K3.1 Pro marca 55 puntos, GPT-6 Astra 53 y Opus 5.5 58. Con eso:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**«Asesino de Astra» es exagerado.** Queda apenas por encima en el índice, y en mi prueba Astra fue 2,6 veces más rápido. Lo que sí se sostiene es que es un rival de Astra que sale más barato.",
+          "**«Todavía no al nivel de Opus» se sostiene, por poco.** Opus va adelante en el índice y también en la tabla del propio Moonshot: 66,4% contra 65,7% en Terminal-Bench 4.0. Ningún modelo de pesos abiertos había llegado tan cerca."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Dos matices. El 53 de Astra en Artificial Analysis corresponde a su variante Max, y yo lo corrí con esfuerzo medium. Y las cifras de Terminal-Bench las publica Moonshot, no un tercero."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que esta prueba no dice"
+      },
+      {
+        "type": "paragraph",
+        "text": "Es una sola tarea, en un solo intento. No es un benchmark. Tampoco medí cuál escena quedó mejor: no hubo una evaluación ciega de la calidad visual, y no voy a declarar un ganador a ojo, que es justo lo que critico arriba."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo que sí deja claro es el método. Antes de cambiar de modelo para ahorrar, corre tu tarea real con los candidatos y mide tres cosas: el costo final, el tiempo y los tokens de salida. El precio por token es solo una de las variables de la cuenta."
+      },
+      {
+        "type": "paragraph",
+        "text": "Los precios salen de las páginas oficiales de [Kimi](https://platform.kimi.ai/docs/pricing/chat), [OpenAI](https://developers.openai.com/api/docs/pricing) y [Anthropic](https://platform.claude.com/docs/en/about-claude/pricing). Los puntajes y la verbosidad, de las fichas de Artificial Analysis de [Kimi K3.1 Pro](https://artificialanalysis.ai/models/kimi-k3-1-pro), [GPT-6 Astra](https://artificialanalysis.ai/models/gpt-6-astra) y [Claude Opus 5.5](https://artificialanalysis.ai/models/claude-opus-5-5). Terminal-Bench 4.0, del [anuncio de Moonshot](https://kimi.ai/blog/kimi-k3-1-pro). Todo consultado el 23 de octubre de 2026; la prueba se corrió ese mismo día."
+      }
+    ]
+  },
+  {
+    "slug": "claude-code-dangerously-skip-permissions-rm-rf-protect",
+    "title": "‘--dangerously-skip-permissions still won’t let rm -rf through’: what’s actually proven, and how to protect your machine",
+    "description": "A Claude Code engineer announced CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, an env var that turns off the safety net against rm -rf ~. What the docs and changelog say, what only comes from a post, and a checklist for running --dangerously-skip-permissions without risking your machine.",
+    "category": "Security",
+    "language": "en",
+    "translation": "claude-code-dangerously-skip-permissions-rm-rf",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T12:30:00-03:00",
+    "updated": "2026-10-27T12:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 10,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "If you run Claude Code with `--dangerously-skip-permissions`, you probably assume one of two things: either the mode approves literally everything, or no matter what, an `rm -rf` on your home directory will never run. Both are wrong, and as of yesterday there's one more reason to revisit them."
+      },
+      {
+        "type": "paragraph",
+        "text": "On Monday, October 26 at 19:09 UTC, Daisy Hollman, who describes herself on X as working on Claude Code at Anthropic, posted that `--dangerously-skip-permissions` \"doesn't actually approve EVERYTHING\": it still blocks obvious things like `rm -rf ~`. She added that that day's release lets you turn the protection off with a new env var: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`."
+      },
+      {
+        "type": "paragraph",
+        "text": "Two caveats up front. First, as of this writing (October 27, 11:45 UTC) that variable is not in the official Claude Code docs or in the public changelog; the only source is the post. Second, I did not test what the variable does. I did run one check of my own on the published package, covered below. Everything else here comes from the official docs and changelog."
+      },
+      {
+        "type": "heading",
+        "text": "What the post says, according to Daisy Hollman"
+      },
+      {
+        "type": "paragraph",
+        "text": "The full text: \"Fun fact: `--dangerously-skip-permissions` doesn't actually approve EVERYTHING—we still block some obvious things like `rm -rf ~`. But today's release will let you disable this if you really want, by setting a new env var `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Her bio says views are her own. When someone replied that they hoped it wasn't a joke, she answered: \"Not a joke!\" When I checked, the post had about 190,000 impressions and 1,900 likes."
+      },
+      {
+        "type": "paragraph",
+        "text": "### What's missing before you call it official"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Status: claimed, not officially confirmed.** Version 2.1.311 of `@anthropic-ai/claude-code` was published to npm on October 26 at 19:47 UTC, about 38 minutes after the post. The 2.1.311 section of the [official CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) doesn't mention the variable, and searching the whole file for `EVEN_MORE` returns nothing. It's also absent from the [environment variables](https://code.claude.com/docs/en/env-vars), [permission modes](https://code.claude.com/docs/en/permission-modes), and [settings](https://code.claude.com/docs/en/settings) pages."
+      },
+      {
+        "type": "paragraph",
+        "text": "### My own check on the package"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Status: my own check, not documentation.** I downloaded the Linux x64 binary for [version 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) from npm and searched it. The string `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` shows up several times, right next to other variables that tune the dangerous-`rm` prompt. It does not appear in the 2.1.310 binary. So the variable exists in shipped code. That tells you nothing about exactly what it does, when it applies, or whether it will stick around."
+      },
+      {
+        "type": "heading",
+        "text": "What is documented: the rm -rf safety net"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is the useful part, because it tells you what the variable would switch off. Per the [permission modes docs](https://code.claude.com/docs/en/permission-modes):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "`bypassPermissions`, the mode `--dangerously-skip-permissions` turns on, \"disables permission prompts and safety checks\", and the docs recommend it only for \"isolated containers and VMs\".",
+          "Even so, some actions are never auto-approved in any mode. One of them is what the docs call critical-path removals: `rm` and `rmdir` commands aimed at a critical path. No `allow` rule and no `PreToolUse` hook returning `\"allow\"` approves them.",
+          "Critical paths include the filesystem root, top-level directories like `/usr` or `/etc`, your home directory, your working directory and its parents, plus traps like `rm -rf \"$DIR\"/*`, which becomes a wipe from root if the variable is empty.",
+          "In `bypassPermissions`, in the terminal, Claude Code asks you to confirm with a two-minute countdown. If nobody answers, it denies the command and tells Claude what to do instead. After three unanswered prompts in a session, it denies further ones immediately."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "So the post says \"block\", while the docs describe a prompt that ends in a denial if you don't answer. In practice the outcome is similar. The difference matters when someone is watching the terminal and hits \"yes\" on autopilot."
+      },
+      {
+        "type": "heading",
+        "text": "The twist: the safety net was never a sandbox"
+      },
+      {
+        "type": "paragraph",
+        "text": "The docs say it plainly: the check \"can miss some commands, so it doesn't replace an operating-system control such as sandboxing.\" A command the check misses gets no special handling, so `bypassPermissions` approves it without asking. And the check only looks at `rm` and `rmdir`; other approved commands can delete critical paths too."
+      },
+      {
+        "type": "paragraph",
+        "text": "The [changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) shows that net being patched release after release. The new variable doesn't switch off something airtight. It switches off something that already had gaps and was still being tightened."
+      },
+      {
+        "type": "heading",
+        "text": "Receipts"
+      },
+      {
+        "type": "paragraph",
+        "text": "| When | Who | What | Outcome |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` stops prompting for writes to `.claude/`, `.git/`, and shell config files | Catastrophic removals still prompt \"as a safety net\" |\n| v2.1.154 | Anthropic (changelog) | Fix: `rm -rf $HOME` wasn't blocked when `HOME` had a trailing slash | Gap closed |\n| v2.1.208 | Anthropic (changelog) | Removals like `rm -rf ~` inside `$(…)`, backticks, or `<(…)` | Now prompt like the plain form |\n| v2.1.281 | Anthropic (changelog) | The dangerous-`rm` prompt waits 2 minutes, then denies | New `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` to remove the limit |\n| v2.1.288 | Anthropic (changelog) | Fix: a dangerous `rm` inside `bash -c` or `sh -c` ran unprompted in bypass mode | Gap closed |\n| v2.1.304 | Anthropic (changelog) | Fix: `rm -r` on mounted drives (`/Volumes`, `/media`, `/mnt/c`) didn't prompt | Gap closed |\n| Oct 26, 19:09 UTC | Daisy Hollman (X) | Announces `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | No changelog entry, no docs |\n| Oct 26, 19:47 UTC | npm | v2.1.311 published | Variable name present in the binary (my own check) |"
+      },
+      {
+        "type": "heading",
+        "text": "Proven vs claimed vs myth"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Claim | Status | Why |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` approves everything | False | The docs list actions no mode auto-approves, including critical-path removals |\n| `deny` rules still work in bypass mode | Proven | Docs: \"Deny rules block in every mode, including `bypassPermissions`\" |\n| There's a variable that turns off the `rm -rf ~` protection | Claimed | The post says so; the name is in the 2.1.311 binary, but there are no docs and no changelog entry |\n| The safety net protects you from any deletion | False | The docs say it can miss commands and only covers `rm` and `rmdir` |\n| A container solves everything | False | The [dev container guide](https://code.claude.com/docs/en/devcontainer) warns that in bypass mode a container doesn't stop exfiltration of anything inside it, including Claude Code's credentials in `~/.claude` |\n| Claude Code refuses bypass mode as root | Proven | On Linux and macOS it rejects `--dangerously-skip-permissions` under root or `sudo`, except inside a recognized sandbox |"
+      },
+      {
+        "type": "heading",
+        "text": "Checklist: running --dangerously-skip-permissions without handing over your machine"
+      },
+      {
+        "type": "paragraph",
+        "text": "The idea is simple: if you're switching off a safety net, put a different floor under it. The snippets are generic; adapt them to your project."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Never on your daily machine.** The docs limit this mode to containers, VMs, or dev containers. If you don't have one set up, use `auto` mode or the Bash sandbox instead of bypass."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. A container with an unprivileged user.** Claude Code already refuses bypass as root. Pin it yourself anyway:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\ndocker run --rm -it \\\n  --user 1000:1000 \\\n  -v \"$PWD\":/workspace -w /workspace \\\n  your-image-with-claude-code \\\n  claude --dangerously-skip-permissions\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Mount only the project folder. No `-v \"$HOME\":...`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. No mounted credentials.** No `~/.ssh`, no `~/.aws`, no cloud credential files. The [dev container guide](https://code.claude.com/docs/en/devcontainer) recommends repo-scoped or short-lived tokens passed in as environment variables."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. An egress allowlist, not open network.** Claude Code has to reach its API, so cutting the network entirely doesn't work. The [reference container](https://github.com/anthropics/claude-code/tree/main/.devcontainer) ships an `init-firewall.sh` script that restricts outbound traffic. For Bash commands, the [sandbox](https://code.claude.com/docs/en/sandboxing) takes a domain list:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"sandbox\": {\n    \"enabled\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"network\": {\n      \"allowedDomains\": [\"github.com\", \"*.npmjs.org\"]\n    }\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "`allowUnsandboxedCommands: false` disables the retry-outside-the-sandbox escape hatch, which bypass mode would otherwise approve silently."
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Work in a worktree or from a clean commit.** Before you let the agent loose, make sure `git status` is clean and commit. Better yet, use a separate branch with the [worktree flag](https://code.claude.com/docs/en/worktrees):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\ngit status            # nothing uncommitted\nclaude --worktree refactor-task\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Note that a worktree isolates git changes, not your disk. `rm -rf` is still `rm -rf`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. `deny` rules in `settings.json`.** They apply even in bypass mode. Syntax per the [permissions docs](https://code.claude.com/docs/en/permissions):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"permissions\": {\n    \"deny\": [\n      \"Bash(rm -rf *)\",\n      \"Bash(rm -fr *)\",\n      \"Read(./.env)\",\n      \"Read(./.env.*)\",\n      \"Read(./secrets/**)\"\n    ]\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Documented limit: a Bash rule matches the command text. `Bash(rm *)` stops `rm -rf build/` but not `/bin/rm -rf build/` or `bash -c 'rm -rf build/'`. It's a speed bump, not a wall."
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. A `PreToolUse` hook that blocks `rm -rf`.** The [hooks guide](https://code.claude.com/docs/en/hooks-guide) uses exactly this case: a script that exits with code 2 denies the call and feeds its stderr back to Claude. In `.claude/settings.json`:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/.claude/hooks/block-rm-rf.sh\" }\n        ]\n      }\n    ]\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "And the script at `.claude/hooks/block-rm-rf.sh` (needs `jq` and execute permission):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\n#!/bin/bash\nCOMMAND=$(jq -r '.tool_input.command // empty')\nif echo \"$COMMAND\" | grep -Eq '(^|[^[:alnum:]_])rm[[:space:]]+-[[:alpha:]]*[rR]'; then\n  echo \"Blocked: recursive rm is not allowed in this session\" >&2\n  exit 2\nfi\nexit 0\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Same limit as the rules: it reads text. A Python script that deletes files sails right past it."
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Backups the agent can't reach.** Push to a remote before you start and keep disk backups outside the container's reach. When everything else fails, that's what saves your afternoon."
+      },
+      {
+        "type": "paragraph",
+        "text": "**9. If you run a team, turn bypass off.** Setting `permissions.disableBypassPermissionsMode` to `\"disable\"` in managed settings makes Claude Code reject `--dangerously-skip-permissions`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**10. Don't flip the new variable out of curiosity.** If you really need it, use it inside a throwaway VM, like the user who replied to Daisy saying they spin up a fresh VM per task. Outside of that, there's no good reason to remove the last net you have."
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "The news isn't that Anthropic now lets you switch off the `rm -rf ~` protection. The news is that a lot of people learned yesterday that the protection existed, and almost nobody knew it has documented gaps. If your safety with `--dangerously-skip-permissions` rested on Claude Code \"not letting\" an `rm -rf` through, it already rested on something the official docs tell you not to treat as a boundary. Real isolation lives in the container, the egress allowlist, the missing credentials, and the backups. The new variable just makes that harder to ignore."
+      },
+      {
+        "type": "heading",
+        "text": "FAQ"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Does --dangerously-skip-permissions let rm -rf through?**\nIt depends on the target. Per the docs, an `rm` or `rmdir` aimed at a critical path (root, home, working directory) prompts in the terminal and is denied if nobody answers within two minutes. An `rm -rf` on any other folder, or one the check doesn't recognize, runs without asking."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What does CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS do?**\nAccording to Daisy Hollman's post, it disables the protection against removals like `rm -rf ~` when you use `--dangerously-skip-permissions`. As of October 27 it isn't in the official docs or changelog. The name appears in the 2.1.311 binary, but I haven't tested its behavior."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Do permissions.deny rules work in bypass mode?**\nYes. The docs say deny rules block in every mode, including `bypassPermissions`. But they match command text, so variants like `/bin/rm` or `bash -c '...'` can slip past."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Is a Docker container enough?**\nIt helps a lot, but not on its own. The docs warn that in bypass mode a container doesn't stop exfiltration of what's inside, including Claude Code's credentials. Add an unprivileged user, an egress allowlist, no mounted credentials, and backups."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Can I stop my team from using --dangerously-skip-permissions?**\nYes: set `permissions.disableBypassPermissionsMode` to `\"disable\"` in managed settings."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Daisy Hollman's post on X (Oct 26, 2026)](https://x.com/The_Whole_Daisy/status/2114796466850202103)",
+          "[Daisy Hollman's reply: \"Not a joke!\"](https://x.com/The_Whole_Daisy/status/2114954983858901325)",
+          "[Claude Code: permission modes and critical paths](https://code.claude.com/docs/en/permission-modes)",
+          "[Claude Code: configure permissions and Bash rule limits](https://code.claude.com/docs/en/permissions)",
+          "[Claude Code: settings](https://code.claude.com/docs/en/settings)",
+          "[Claude Code: settings reference (permissions.disableBypassPermissionsMode)](https://code.claude.com/docs/en/settings-reference)",
+          "[Claude Code: hooks guide](https://code.claude.com/docs/en/hooks-guide)",
+          "[Claude Code: sandboxing](https://code.claude.com/docs/en/sandboxing)",
+          "[Claude Code: dev containers](https://code.claude.com/docs/en/devcontainer)",
+          "[Claude Code: worktrees](https://code.claude.com/docs/en/worktrees)",
+          "[Claude Code: environment variables](https://code.claude.com/docs/en/env-vars)",
+          "[Claude Code CHANGELOG on GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)",
+          "[Reference dev container with init-firewall.sh](https://github.com/anthropics/claude-code/tree/main/.devcontainer)",
+          "[@anthropic-ai/claude-code-linux-x64 v2.1.311 on npm](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "claude-code-dangerously-skip-permissions-rm-rf",
+    "title": "«Con --dangerously-skip-permissions igual no pasa un rm -rf»: lo que está probado y cómo proteger tu máquina",
+    "description": "Una ingeniera de Claude Code anunció CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, una variable que apaga la red de seguridad contra rm -rf ~. Qué dicen la documentación y el changelog, qué es solo un post y una checklist para usar --dangerously-skip-permissions sin arriesgar tu máquina.",
+    "category": "Seguridad",
+    "language": "es",
+    "translation": "claude-code-dangerously-skip-permissions-rm-rf-protect",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T12:30:00-03:00",
+    "updated": "2026-10-27T12:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 10,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Mucha gente que usa Claude Code con `--dangerously-skip-permissions` da por hecho una de dos cosas: que el modo aprueba absolutamente todo, o que, pase lo que pase, un `rm -rf` sobre tu home nunca va a correr. Las dos ideas están mal, y desde ayer hay una razón más para revisarlas."
+      },
+      {
+        "type": "paragraph",
+        "text": "El lunes 26 de octubre a las 16:09 (hora de Argentina), Daisy Hollman, que se presenta en X como parte del equipo de Claude Code en Anthropic, escribió que `--dangerously-skip-permissions` \"no aprueba realmente TODO\": sigue bloqueando cosas obvias como `rm -rf ~`. Y agregó que la versión de ese día permite desactivar esa protección con una variable nueva: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`."
+      },
+      {
+        "type": "paragraph",
+        "text": "Dos avisos antes de seguir. Primero: al cierre de esta nota (27 de octubre, 08:45 hora de Argentina) esa variable no aparece ni en la documentación oficial de Claude Code ni en su changelog público; la única fuente es el post. Segundo: no probé el comportamiento de la variable. Lo que sí hice fue una comprobación propia sobre el paquete publicado, que explico abajo. Todo lo demás de esta nota sale de la documentación y del changelog oficiales."
+      },
+      {
+        "type": "heading",
+        "text": "Qué dijo el post, según Daisy Hollman"
+      },
+      {
+        "type": "paragraph",
+        "text": "El texto original, traducido: \"Dato curioso: `--dangerously-skip-permissions` no aprueba realmente TODO; todavía bloqueamos algunas cosas obvias como `rm -rf ~`. Pero la versión de hoy te va a permitir desactivar esto si de verdad quieres, con una nueva variable de entorno `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "Su bio aclara que las opiniones son personales. Cuando alguien le respondió que esperaba que no fuera una broma, ella contestó: \"¡No es una broma!\". En el momento en que lo revisé, el post tenía unas 190.000 impresiones y 1.900 \"me gusta\"."
+      },
+      {
+        "type": "paragraph",
+        "text": "### Lo que falta para darlo por oficial"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Estado: afirmado, sin confirmación oficial.** La versión 2.1.311 del paquete `@anthropic-ai/claude-code` se publicó en npm el 26 de octubre a las 16:47 (hora de Argentina), unos 38 minutos después del post. La sección 2.1.311 del [CHANGELOG oficial](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) no menciona la variable, y buscar `EVEN_MORE` en todo el archivo no da resultados. Tampoco aparece en las páginas de [variables de entorno](https://code.claude.com/docs/en/env-vars), [modos de permisos](https://code.claude.com/docs/en/permission-modes) ni [configuración](https://code.claude.com/docs/en/settings)."
+      },
+      {
+        "type": "paragraph",
+        "text": "### Mi comprobación sobre el paquete"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Estado: comprobación propia, no documentación.** Descargué de npm el binario para Linux x64 de [la versión 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) y busqué el texto. El nombre `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` aparece varias veces, junto a otras variables que ajustan el aviso de `rm` peligroso. En el binario de la 2.1.310 no aparece. Eso confirma que la variable existe en el código publicado. No confirma qué hace exactamente, en qué casos aplica ni si va a seguir en versiones futuras."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que sí está documentado: la red de seguridad para rm -rf"
+      },
+      {
+        "type": "paragraph",
+        "text": "Esta es la parte más útil, porque explica qué apagaría la variable. Según la [documentación de modos de permisos](https://code.claude.com/docs/en/permission-modes):"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "`bypassPermissions` (el modo que activa `--dangerously-skip-permissions`) \"desactiva los avisos de permisos y los controles de seguridad\", y la documentación lo recomienda solo para \"contenedores y máquinas virtuales aislados\".",
+          "Aun así, hay acciones que ningún modo aprueba solo. Una es lo que la documentación llama *critical-path removals*: comandos `rm` y `rmdir` cuyo objetivo es una ruta crítica. Ninguna regla `allow` ni ningún hook `PreToolUse` que responda `\"allow\"` las aprueba.",
+          "Las rutas críticas incluyen la raíz del sistema de archivos, los directorios de primer nivel como `/usr` o `/etc`, tu home, tu directorio de trabajo y sus carpetas padre, y casos trampa como `rm -rf \"$DIR\"/*`, que se convierte en un borrado desde la raíz si la variable está vacía.",
+          "En `bypassPermissions`, dentro de la terminal, Claude Code te pide confirmar con una cuenta regresiva de dos minutos. Si nadie responde, deniega el comando y le dice a Claude qué hacer en su lugar. Después de tres avisos sin respuesta en una sesión, deniega los siguientes directamente."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "O sea: el post dice \"bloqueamos\", pero la documentación habla de un aviso que, sin respuesta, termina en denegación. El resultado práctico es parecido. El matiz importa si alguien está mirando la terminal y aprieta \"sí\" por reflejo."
+      },
+      {
+        "type": "heading",
+        "text": "El giro: la red de seguridad nunca fue un sandbox"
+      },
+      {
+        "type": "paragraph",
+        "text": "La propia documentación lo dice con todas las letras: el control \"puede pasar por alto algunos comandos, así que no reemplaza un control del sistema operativo como el sandboxing\". Y agrega que un comando que el control no detecta no recibe ningún trato especial, de modo que `bypassPermissions` lo aprueba sin preguntar. El control solo mira `rm` y `rmdir`; otros comandos aprobados también pueden borrar rutas críticas."
+      },
+      {
+        "type": "paragraph",
+        "text": "El [changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) muestra que esa red se fue remendando versión por versión. La variable nueva no apaga algo perfecto: apaga algo que ya tenía huecos y que se iba cerrando."
+      },
+      {
+        "type": "heading",
+        "text": "La cronología, con recibos"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Cuándo | Quién | Qué | Resultado |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` deja de preguntar por escrituras en `.claude/`, `.git/` y archivos de configuración del shell | Los borrados catastróficos siguen pidiendo confirmación \"como red de seguridad\" |\n| v2.1.154 | Anthropic (changelog) | Arreglo: `rm -rf $HOME` no se bloqueaba si `HOME` terminaba en barra | Hueco cerrado |\n| v2.1.208 | Anthropic (changelog) | Borrados como `rm -rf ~` dentro de `$(…)`, backticks o `<(…)` | Ahora piden confirmación igual que la forma simple |\n| v2.1.281 | Anthropic (changelog) | El aviso de `rm` peligroso espera 2 minutos y después deniega | Nueva variable `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` para quitar el límite |\n| v2.1.288 | Anthropic (changelog) | Arreglo: un `rm` peligroso dentro de `bash -c` o `sh -c` corría sin aviso en bypass | Hueco cerrado |\n| v2.1.304 | Anthropic (changelog) | Arreglo: `rm -r` de unidades montadas (`/Volumes`, `/media`, `/mnt/c`) no pedía confirmación | Hueco cerrado |\n| 26-oct, 16:09 ART | Daisy Hollman (X) | Anuncia `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | Sin entrada en changelog ni en la documentación |\n| 26-oct, 16:47 ART | npm | Se publica la v2.1.311 | El nombre de la variable aparece en el binario (comprobación propia) |"
+      },
+      {
+        "type": "heading",
+        "text": "Probado, afirmado y rumor"
+      },
+      {
+        "type": "paragraph",
+        "text": "| Afirmación | Estado | Por qué |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` aprueba todo | Falso | La documentación lista acciones que ningún modo aprueba solo, incluidos los borrados de rutas críticas |\n| Las reglas `deny` siguen funcionando en bypass | Probado | La documentación: \"Las reglas deny bloquean en todos los modos, incluido `bypassPermissions`\" |\n| Existe una variable que apaga la protección de `rm -rf ~` | Afirmado | Lo dice el post; el nombre está en el binario 2.1.311, pero no hay documentación ni entrada en el changelog |\n| La red de seguridad te protege de cualquier borrado | Falso | La documentación dice que puede pasar por alto comandos y que solo mira `rm` y `rmdir` |\n| Un contenedor resuelve todo | Falso | La [guía de dev containers](https://code.claude.com/docs/en/devcontainer) advierte que, con bypass, el contenedor no impide sacar lo que haya adentro, incluidas las credenciales de Claude Code en `~/.claude` |\n| Claude Code se niega a correr en bypass como root | Probado | En Linux y macOS rechaza `--dangerously-skip-permissions` con root o `sudo`, salvo dentro de un sandbox reconocido |"
+      },
+      {
+        "type": "heading",
+        "text": "Checklist para usar --dangerously-skip-permissions sin regalar tu máquina"
+      },
+      {
+        "type": "paragraph",
+        "text": "La lógica es simple: si vas a desactivar una red de seguridad, que el piso sea otro. Los fragmentos son genéricos; ajústalos a tu proyecto."
+      },
+      {
+        "type": "paragraph",
+        "text": "**1. Nunca en tu máquina de todos los días.** La documentación lo limita a contenedores, máquinas virtuales o dev containers. Si no tienes eso armado, usa el modo `auto` o el sandbox de Bash antes que el bypass."
+      },
+      {
+        "type": "paragraph",
+        "text": "**2. Contenedor con usuario sin privilegios.** Claude Code ya rechaza el bypass como root. Igual conviene fijarlo tú:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\ndocker run --rm -it \\\n  --user 1000:1000 \\\n  -v \"$PWD\":/workspace -w /workspace \\\n  tu-imagen-con-claude-code \\\n  claude --dangerously-skip-permissions\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Monta solo la carpeta del proyecto. Nada de `-v \"$HOME\":...`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**3. Sin credenciales montadas.** Ni `~/.ssh`, ni `~/.aws`, ni archivos de cloud. La [guía de dev containers](https://code.claude.com/docs/en/devcontainer) recomienda tokens con alcance al repositorio o de vida corta, pasados como variables de entorno."
+      },
+      {
+        "type": "paragraph",
+        "text": "**4. Red con lista blanca, no red abierta.** Claude Code necesita llegar a la API, así que cortar toda la red no sirve. El [contenedor de referencia](https://github.com/anthropics/claude-code/tree/main/.devcontainer) trae un script `init-firewall.sh` que limita el tráfico de salida. Para los comandos Bash, el [sandbox](https://code.claude.com/docs/en/sandboxing) acepta una lista de dominios:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"sandbox\": {\n    \"enabled\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"network\": {\n      \"allowedDomains\": [\"github.com\", \"*.npmjs.org\"]\n    }\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "`allowUnsandboxedCommands: false` apaga el reintento fuera del sandbox, que en bypass se aprobaría sin preguntar."
+      },
+      {
+        "type": "paragraph",
+        "text": "**5. Trabaja en un worktree o desde un commit limpio.** Antes de soltar al agente, `git status` sin cambios pendientes y un commit. O mejor, una rama aparte con el [flag de worktrees](https://code.claude.com/docs/en/worktrees):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\ngit status            # que no quede nada sin commitear\nclaude --worktree tarea-refactor\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ojo: un worktree aísla cambios de git, no protege el disco. `rm -rf` sigue siendo `rm -rf`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**6. Reglas `deny` en `settings.json`.** Funcionan incluso en bypass. Sintaxis según la [documentación de permisos](https://code.claude.com/docs/en/permissions):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"permissions\": {\n    \"deny\": [\n      \"Bash(rm -rf *)\",\n      \"Bash(rm -fr *)\",\n      \"Read(./.env)\",\n      \"Read(./.env.*)\",\n      \"Read(./secrets/**)\"\n    ]\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Límite documentado: una regla Bash compara el texto del comando. `Bash(rm *)` frena `rm -rf build/`, pero no `/bin/rm -rf build/` ni `bash -c 'rm -rf build/'`. Es un freno, no una pared."
+      },
+      {
+        "type": "paragraph",
+        "text": "**7. Un hook `PreToolUse` que bloquee `rm -rf`.** La [guía de hooks](https://code.claude.com/docs/en/hooks-guide) usa justo este caso: un script que sale con código 2 deniega la llamada y le pasa a Claude el mensaje de stderr. En `.claude/settings.json`:"
+      },
+      {
+        "type": "paragraph",
+        "text": "```json\n{\n  \"hooks\": {\n    \"PreToolUse\": [\n      {\n        \"matcher\": \"Bash\",\n        \"hooks\": [\n          { \"type\": \"command\", \"command\": \"\\\"$CLAUDE_PROJECT_DIR\\\"/.claude/hooks/block-rm-rf.sh\" }\n        ]\n      }\n    ]\n  }\n}\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Y el script, en `.claude/hooks/block-rm-rf.sh` (necesita `jq` y permiso de ejecución):"
+      },
+      {
+        "type": "paragraph",
+        "text": "```bash\n#!/bin/bash\nCOMMAND=$(jq -r '.tool_input.command // empty')\nif echo \"$COMMAND\" | grep -Eq '(^|[^[:alnum:]_])rm[[:space:]]+-[[:alpha:]]*[rR]'; then\n  echo \"Bloqueado: rm recursivo no permitido en esta sesión\" >&2\n  exit 2\nfi\nexit 0\n```"
+      },
+      {
+        "type": "paragraph",
+        "text": "Tiene el mismo límite que las reglas: lee texto. Un script de Python que borra archivos pasa de largo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**8. Respaldos que el agente no pueda tocar.** Push a un remoto antes de empezar y copias del disco fuera del alcance del contenedor. Si todo lo demás falla, eso es lo que te salva la tarde."
+      },
+      {
+        "type": "paragraph",
+        "text": "**9. Si administras un equipo, apaga el bypass.** `permissions.disableBypassPermissionsMode: \"disable\"` en la configuración administrada hace que Claude Code rechace `--dangerously-skip-permissions`."
+      },
+      {
+        "type": "paragraph",
+        "text": "**10. No actives la variable nueva por curiosidad.** Si de verdad la necesitas, que sea dentro de una máquina virtual descartable, como el usuario que le respondió a Daisy diciendo que levanta una VM nueva por tarea. Fuera de eso, no hay ninguna razón para quitar la última red que queda."
+      },
+      {
+        "type": "heading",
+        "text": "Conclusión"
+      },
+      {
+        "type": "paragraph",
+        "text": "La noticia no es que Anthropic deje apagar la protección contra `rm -rf ~`. La noticia es que mucha gente se enteró ayer de que esa protección existía, y casi nadie sabía que tiene huecos documentados. Si tu seguridad con `--dangerously-skip-permissions` dependía de que Claude Code \"no deja pasar\" un `rm -rf`, ya dependía de algo que la documentación oficial te dice que no uses como barrera. El aislamiento real está en el contenedor, la red con lista blanca, la falta de credenciales y los respaldos. La variable nueva solo deja eso más a la vista."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿--dangerously-skip-permissions deja pasar un rm -rf?**\nDepende del objetivo. Según la documentación, un `rm` o `rmdir` sobre una ruta crítica (raíz, home, directorio de trabajo) pide confirmación en la terminal y se deniega si nadie responde en dos minutos. Un `rm -rf` sobre otra carpeta, o uno que el control no reconoce, corre sin preguntar."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué hace CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS?**\nSegún el post de Daisy Hollman, desactiva esa protección contra borrados como `rm -rf ~` cuando usas `--dangerously-skip-permissions`. Al 27 de octubre no está en la documentación ni en el changelog oficiales. El nombre aparece en el binario de la versión 2.1.311, pero no probé su comportamiento."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Las reglas permissions.deny funcionan en modo bypass?**\nSí. La documentación dice que las reglas deny bloquean en todos los modos, incluido `bypassPermissions`. Pero comparan el texto del comando, así que una variante como `/bin/rm` o `bash -c '...'` puede esquivarlas."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Basta con un contenedor Docker?**\nAyuda mucho, pero no alcanza solo. La documentación advierte que, con bypass, el contenedor no impide sacar lo que esté adentro, incluidas las credenciales de Claude Code. Súmale usuario sin privilegios, red con lista blanca, nada de credenciales montadas y respaldos."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Puedo impedir que alguien de mi equipo use --dangerously-skip-permissions?**\nSí, con `permissions.disableBypassPermissionsMode` en `\"disable\"` dentro de la configuración administrada."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[Post de Daisy Hollman en X (26-oct-2026)](https://x.com/The_Whole_Daisy/status/2114796466850202103)",
+          "[Respuesta de Daisy Hollman: \"Not a joke!\"](https://x.com/The_Whole_Daisy/status/2114954983858901325)",
+          "[Claude Code: modos de permisos y rutas críticas](https://code.claude.com/docs/en/permission-modes)",
+          "[Claude Code: configurar permisos y límites de las reglas Bash](https://code.claude.com/docs/en/permissions)",
+          "[Claude Code: configuración](https://code.claude.com/docs/en/settings)",
+          "[Claude Code: referencia de configuración (permissions.disableBypassPermissionsMode)](https://code.claude.com/docs/en/settings-reference)",
+          "[Claude Code: guía de hooks](https://code.claude.com/docs/en/hooks-guide)",
+          "[Claude Code: sandboxing](https://code.claude.com/docs/en/sandboxing)",
+          "[Claude Code: dev containers](https://code.claude.com/docs/en/devcontainer)",
+          "[Claude Code: worktrees](https://code.claude.com/docs/en/worktrees)",
+          "[Claude Code: variables de entorno](https://code.claude.com/docs/en/env-vars)",
+          "[CHANGELOG de Claude Code en GitHub](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)",
+          "[Contenedor de referencia con init-firewall.sh](https://github.com/anthropics/claude-code/tree/main/.devcontainer)",
+          "[Paquete @anthropic-ai/claude-code-linux-x64 v2.1.311 en npm](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "gpt-6-1-terra-real-pricing",
+    "title": "GPT-6.1 Terra: does it really cost $2 per million tokens?",
+    "description": "GPT-6.1 Terra costs $1 input and $5 output per million tokens. The $2/$10 going around is Fast mode. What it ships with, what OpenAI claims and when it is worth using.",
+    "category": "AI models",
+    "language": "en",
+    "translation": "gpt-6-1-terra-precio-real",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T10:30:00-03:00",
+    "updated": "2026-10-27T10:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "On Monday, October 26, at 2:06 p.m. ET, OpenAI [announced GPT-6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/), its mid-tier model built for computer use, visual reasoning and writing. Within minutes a price was making the rounds on X: $2 per million input tokens and $10 per million output tokens."
+      },
+      {
+        "type": "paragraph",
+        "text": "That pair is on OpenAI's pricing page, but it is the Fast mode price. Standard pricing is half of that. I went through the announcement, the [API model page](https://developers.openai.com/api/docs/models/gpt-6.1-terra) and the [pricing page](https://developers.openai.com/api/docs/pricing) to sort what is confirmed from what OpenAI claims and what is just rumor."
+      },
+      {
+        "type": "heading",
+        "text": "The price, per OpenAI's own pages"
+      },
+      {
+        "type": "paragraph",
+        "text": "Standard API pricing per million tokens, from the model page and the pricing page:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Input: $1.",
+          "Cached input: $0.05, which is 5% of the regular input rate.",
+          "Cache writes: $1.25 with 30-minute retention, $2.50 with 12-hour retention.",
+          "Output: $5."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "The variants, from the same model page:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Batch and Flex: 50% below standard, so $0.50 input and $2.50 output.",
+          "Fast mode: twice standard, so $2 input and $10 output. The pricing page notes that what used to be priority processing was renamed Fast mode on July 30, 2026.",
+          "Prompts over 272K input tokens: twice the input and cache rates and 1.5 times the output rate, for the whole request. At standard, that is $2 input and $7.50 output.",
+          "Regional processing (data residency): a 10% premium where available."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Where \"$2/$10\" comes from"
+      },
+      {
+        "type": "paragraph",
+        "text": "The post I saw reshared most lists \"GPT-6.1 Terra: $2/$10\", \"GPT-6.1 Sol: $4/$20\" and \"GPT-6 Astra: $20/$100\". All three pairs match the Fast table on the pricing page. The post even says so in its last line (\"at Fast speed\"), but what gets copied is the number at the top."
+      },
+      {
+        "type": "paragraph",
+        "text": "There is a second coincidence that makes it worse: $2 input and $10 output is also GPT-6.1 Sol's standard price. Read the wrong row and you get the same pair."
+      },
+      {
+        "type": "paragraph",
+        "text": "A generic example to make the gap concrete: a request with 10,000 input tokens and 1,000 output tokens, no cache, costs $0.015 at standard and $0.03 in Fast mode. That is my own math from the published prices. At volume, leaving Fast on when you do not need it doubles the bill."
+      },
+      {
+        "type": "heading",
+        "text": "\"50% cheaper\": right, with a caveat"
+      },
+      {
+        "type": "paragraph",
+        "text": "The announcement says Terra's standard prices are 50% lower than GPT-5.6 Terra's and GPT-6.1 Sol's. Against Sol, the math is exact: $2/$10 versus $1/$5. Against GPT-5.6 Terra, which the pricing page lists at $2 input and $12 output, input drops 50% and output drops a bit more, roughly 58% by my math."
+      },
+      {
+        "type": "heading",
+        "text": "What Terra ships with"
+      },
+      {
+        "type": "paragraph",
+        "text": "From the model page:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "A 1,050,000-token context window, with up to 922,000 input tokens and 128,000 output tokens.",
+          "Knowledge cutoff: June 1, 2026.",
+          "Text and image in, text out. No audio or video.",
+          "Configurable `reasoning.effort`: none, low, medium (the default), high, xhigh and max.",
+          "The `computer_use` tool in the Responses API, alongside web search, file search, hosted shell, MCP and others. Tool calling requires the Responses API.",
+          "No fine-tuning."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Per the announcement, it is available to Plus, Pro, Enterprise and Edu users in ChatGPT Work and Codex, and in the API as `gpt-6.1-terra`."
+      },
+      {
+        "type": "paragraph",
+        "text": "One practical point about that 1.05M window: once a request goes past 272K input tokens, the whole request is billed at the long-context rate. Fitting in the window and being worth filling are two separate questions."
+      },
+      {
+        "type": "heading",
+        "text": "Proven, claimed, rumored"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Confirmed on official pages:** standard, Batch, Flex and Fast pricing; the surcharge above 272K tokens; context window, input and output limits, knowledge cutoff, modalities and tools; availability in ChatGPT Work, Codex and the API."
+      },
+      {
+        "type": "paragraph",
+        "text": "**According to OpenAI, not independently verified yet:**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "On Agents' Last Exam, a benchmark of professional computer-use tasks, Terra at medium effort scores 15 percentage points higher than GPT-5.6 Terra at about a third of the cost, and performs on par with GPT-6 Astra at a tenth of its price per token.",
+          "At max effort, it is over three times as token-efficient as Claude Opus 5.5 at a quarter of the price per token, which OpenAI says works out to about 9 times lower cost per task.",
+          "It completes tasks over three times faster than GPT-6 Astra and GPT-6.1 Sol.",
+          "On Terminal-Bench 4.0 at max effort, it solves 50.3% of tasks, versus 21.5% published for GPT-5.6 Terra.",
+          "On an internal benchmark of error-inducing prompts, the error rate at low effort drops from 53.6% with GPT-5.6 Terra to 16.7%; at max effort it is 4.3%.",
+          "It meets the \"Critical\" cybersecurity threshold under OpenAI's Preparedness Framework and keeps the safeguards built for GPT-6 Astra."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "These are the vendor's own numbers, run on the vendor's own setup. Useful for orientation; a run on your own tasks counts for more."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Rumor:** that Terra costs $2 input and $10 output. That pair is Terra's Fast mode, or GPT-6.1 Sol at standard."
+      },
+      {
+        "type": "heading",
+        "text": "When it is worth it and when it is not"
+      },
+      {
+        "type": "paragraph",
+        "text": "Worth testing for:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Repetitive screen work: entering invoice data into a system, filling out forms, reviewing screenshots.",
+          "Reading images with judgment: technical drawings, product photos against a catalog, scanned documents.",
+          "High-volume jobs where cost per task matters more than the last bit of quality, especially if they can run through Batch or Flex.",
+          "Drafting and editing everyday work writing."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Not the first pick for:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "The hardest coding and research work. OpenAI says so itself: GPT-6.1 Sol and GPT-6 Astra remain the better choice there.",
+          "Pipelines that need audio or video in, or images out directly from the model.",
+          "Jobs where latency does not matter but Fast mode is on by default. You pay double for nothing.",
+          "Huge prompts just because \"it all fits\". Past 272K input tokens the whole request costs more."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist before you switch"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Budget from the [pricing page](https://developers.openai.com/api/docs/pricing) and the model page, not from a screenshot of them.",
+          "Check which mode your account or provider runs: standard, Batch, Flex or Fast.",
+          "Measure how many input tokens your requests use and how many go past 272K.",
+          "Turn on caching for the prefix that repeats: cached input is 5% of the regular rate.",
+          "Run 20 or 30 real tasks on your current model and on `gpt-6.1-terra`, same reasoning effort, and compare output, time and cost.",
+          "If you plan to use computer use, start in an isolated environment with minimal permissions. The [official computer use guide](https://developers.openai.com/api/docs/guides/tools-computer-use) covers how the tool works.",
+          "For complex code, benchmark Terra against what you already use before switching: OpenAI itself points to other models for that work."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Bottom line"
+      },
+      {
+        "type": "paragraph",
+        "text": "GPT-6.1 Terra's standard price is $1 input, $0.05 cached input and $5 output per million tokens. The $2/$10 going around is Fast mode. What is new and checkable is the combination of a low price, a 1.05M-token window and computer use in the API. The benchmarks come from OpenAI, so test them against your own work."
+      },
+      {
+        "type": "heading",
+        "text": "Frequently asked questions"
+      },
+      {
+        "type": "paragraph",
+        "text": "**How much does GPT-6.1 Terra cost in the API?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "At standard, $1 per million input tokens, $0.05 per million cached input tokens and $5 per million output tokens, per OpenAI's model page and pricing page."
+      },
+      {
+        "type": "paragraph",
+        "text": "**So does GPT-6.1 Terra cost $2/$10?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Only in Fast mode, which is twice the standard price. It is also the standard price of a different model, GPT-6.1 Sol."
+      },
+      {
+        "type": "paragraph",
+        "text": "**What is GPT-6.1 Terra's context window?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "1,050,000 tokens, with up to 922,000 input and 128,000 output tokens. Requests above 272K input tokens are billed at a higher rate."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Is GPT-6.1 Terra better than GPT-6.1 Sol for coding?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "According to OpenAI, GPT-6.1 Sol and GPT-6 Astra remain the better choice for the most complex coding. Against GPT-5.6 Terra it does improve, 50.3% versus 21.5% on Terminal-Bench 4.0, also according to OpenAI."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Where can I use GPT-6.1 Terra?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "In ChatGPT Work and Codex for Plus, Pro, Enterprise and Edu users, and in the OpenAI API as `gpt-6.1-terra`."
+      },
+      {
+        "type": "heading",
+        "text": "Sources"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[OpenAI: Introducing GPT-6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/)",
+          "[OpenAI API: gpt-6.1-terra model page](https://developers.openai.com/api/docs/models/gpt-6.1-terra)",
+          "[OpenAI API: pricing](https://developers.openai.com/api/docs/pricing)",
+          "[OpenAI API: computer use tool guide](https://developers.openai.com/api/docs/guides/tools-computer-use)",
+          "[OpenAI on X: availability announcement](https://x.com/OpenAI/status/2114780720170164735)"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "gpt-6-1-terra-precio-real",
+    "title": "GPT-6.1 Terra: ¿de verdad cuesta 2 dólares por millón de tokens?",
+    "description": "GPT-6.1 Terra cuesta 1 dólar de entrada y 5 de salida por millón de tokens. Los 2 y 10 que circularon son el modo Fast. Qué trae, qué afirma OpenAI y cuándo conviene usarlo.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "translation": "gpt-6-1-terra-real-pricing",
+    "author": "Yoseph Franco",
+    "date": "2026-10-27T10:30:00-03:00",
+    "updated": "2026-10-27T10:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 7,
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "El lunes 26 de octubre, a las 15:06 de Argentina, OpenAI [anunció GPT-6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/), su modelo intermedio pensado para uso de computadora, razonamiento visual y escritura. Pocos minutos después ya circulaba en X un precio: 2 dólares por millón de tokens de entrada y 10 por millón de salida."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ese número existe en la página de precios de OpenAI, pero corresponde al modo Fast. El precio estándar es la mitad. Revisé el anuncio, la [ficha del modelo en la API](https://developers.openai.com/api/docs/models/gpt-6.1-terra) y la [página de precios](https://developers.openai.com/api/docs/pricing) para separar lo que está confirmado, lo que afirma OpenAI y lo que es rumor."
+      },
+      {
+        "type": "heading",
+        "text": "El precio, según las páginas oficiales"
+      },
+      {
+        "type": "paragraph",
+        "text": "Precio estándar de la API por millón de tokens, según la ficha del modelo y la página de precios:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Entrada: 1 dólar.",
+          "Entrada en caché: 0,05 dólares, el 5% de la entrada normal.",
+          "Escritura en caché: 1,25 dólares con retención de 30 minutos y 2,50 con retención de 12 horas.",
+          "Salida: 5 dólares."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Las variantes de esa tarifa, en la misma ficha:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Batch y Flex: 50% menos que el estándar, es decir, 0,50 dólares de entrada y 2,50 de salida.",
+          "Modo Fast: el doble del estándar, es decir, 2 dólares de entrada y 10 de salida. La página de precios aclara que el antiguo procesamiento prioritario pasó a llamarse Fast mode el 30 de julio de 2026.",
+          "Prompts de más de 272.000 tokens de entrada: el doble en entrada y caché y 1,5 veces en salida, para toda la solicitud. En estándar quedan 2 dólares de entrada y 7,50 de salida.",
+          "Procesamiento regional (residencia de datos): 10% más donde está disponible."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "De dónde sale el «2 y 10 dólares»"
+      },
+      {
+        "type": "paragraph",
+        "text": "El post que más vi repetido lista «GPT-6.1 Terra: $2/$10», «GPT-6.1 Sol: $4/$20» y «GPT-6 Astra: $20/$100». Los tres pares coinciden con la tabla Fast de la página de precios. El propio post lo aclara en la última línea («at Fast speed»), pero lo que se copia es el número del principio, sin la aclaración."
+      },
+      {
+        "type": "paragraph",
+        "text": "Hay una segunda coincidencia que suma confusión: 2 dólares de entrada y 10 de salida es también el precio estándar de GPT-6.1 Sol. Quien mire la fila equivocada encuentra el mismo par."
+      },
+      {
+        "type": "paragraph",
+        "text": "Un caso genérico para ver la diferencia: una solicitud de 10.000 tokens de entrada y 1.000 de salida, sin caché, cuesta 0,015 dólares en estándar y 0,03 en Fast. Es un cálculo mío con los precios publicados. Con mucho volumen, usar Fast sin necesitarlo duplica la factura."
+      },
+      {
+        "type": "heading",
+        "text": "«50% más barato»: correcto, con un matiz"
+      },
+      {
+        "type": "paragraph",
+        "text": "El anuncio dice que el precio estándar de Terra es 50% menor que el de GPT-5.6 Terra y el de GPT-6.1 Sol. Contra Sol la cuenta es exacta: 2 y 10 dólares contra 1 y 5. Contra GPT-5.6 Terra, que en la página de precios figura a 2 dólares de entrada y 12 de salida, la entrada baja 50% y la salida baja algo más, cerca de 58% según mi cálculo."
+      },
+      {
+        "type": "heading",
+        "text": "Qué trae Terra"
+      },
+      {
+        "type": "paragraph",
+        "text": "Datos de la ficha del modelo:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Ventana de contexto de 1.050.000 tokens, con un máximo de 922.000 de entrada y 128.000 de salida.",
+          "Corte de conocimiento: 1 de junio de 2026.",
+          "Entrada de texto e imagen; salida solo de texto. No acepta audio ni video.",
+          "Esfuerzo de razonamiento configurable con `reasoning.effort`: none, low, medium (el valor por defecto), high, xhigh y max.",
+          "La herramienta `computer_use` en la Responses API, junto con búsqueda web, búsqueda en archivos, shell, MCP y otras. Las llamadas a herramientas requieren la Responses API.",
+          "No admite fine-tuning."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Según el anuncio, está disponible para los usuarios Plus, Pro, Enterprise y Edu en ChatGPT Work y en Codex, y en la API como `gpt-6.1-terra`."
+      },
+      {
+        "type": "paragraph",
+        "text": "Un detalle práctico sobre la ventana de 1,05 millones: a partir de los 272.000 tokens de entrada, toda la solicitud se cobra con el recargo de contexto largo. Que el contexto quepa en la ventana no significa que convenga llenarla."
+      },
+      {
+        "type": "heading",
+        "text": "Probado, afirmado y rumor"
+      },
+      {
+        "type": "paragraph",
+        "text": "**Confirmado en las páginas oficiales:** los precios estándar, Batch, Flex y Fast; el recargo por encima de 272.000 tokens; la ventana de contexto, los límites de entrada y salida, el corte de conocimiento, las modalidades y las herramientas; la disponibilidad en ChatGPT Work, Codex y la API."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Según OpenAI, sin verificación independiente todavía:**"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "En Agents’ Last Exam, un benchmark de tareas profesionales con uso de computadora, Terra a esfuerzo medio saca 15 puntos porcentuales más que GPT-5.6 Terra con cerca de un tercio del costo, y rinde a la par de GPT-6 Astra con un décimo de su precio por token.",
+          "A esfuerzo máximo, es más de tres veces más eficiente en tokens que Claude Opus 5.5 y cuesta un cuarto de su precio por token, lo que según OpenAI da un costo por tarea unas 9 veces menor.",
+          "Completa las tareas más de tres veces más rápido que GPT-6 Astra y GPT-6.1 Sol.",
+          "En Terminal-Bench 4.0, a esfuerzo máximo, resuelve el 50,3% de las tareas, frente al 21,5% publicado para GPT-5.6 Terra.",
+          "En un benchmark interno de prompts que inducen errores, la tasa de error a esfuerzo bajo pasa de 53,6% con GPT-5.6 Terra a 16,7%; a esfuerzo máximo queda en 4,3%.",
+          "En ciberseguridad alcanza el umbral «Critical» de su Preparedness Framework y mantiene las protecciones desarrolladas para GPT-6 Astra."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Son mediciones de la propia empresa, con su configuración. Sirven para orientarse, pero una prueba con tus tareas pesa más."
+      },
+      {
+        "type": "paragraph",
+        "text": "**Rumor:** que el precio de Terra es de 2 dólares de entrada y 10 de salida. Ese par corresponde al modo Fast de Terra o al precio estándar de GPT-6.1 Sol."
+      },
+      {
+        "type": "heading",
+        "text": "Cuándo conviene y cuándo no"
+      },
+      {
+        "type": "paragraph",
+        "text": "Conviene probarlo en:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "Tareas de pantalla repetitivas: pasar datos de facturas a un sistema, completar formularios, revisar capturas.",
+          "Lectura de imágenes con criterio: planos técnicos, fotos de producto contra un catálogo, documentos escaneados.",
+          "Trabajo de alto volumen donde el costo por tarea pesa más que la última décima de calidad, sobre todo si puede ir por Batch o Flex.",
+          "Redacción y revisión de textos de trabajo."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "No es la primera opción para:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "La programación más compleja y la investigación. Lo dice la propia OpenAI: para eso siguen siendo mejores GPT-6.1 Sol y GPT-6 Astra.",
+          "Flujos que necesitan audio o video como entrada, o imágenes como salida directa del modelo.",
+          "Procesos donde la latencia da igual y alguien dejó Fast activado por defecto: pagas el doble sin ganar nada.",
+          "Prompts enormes solo porque «entra todo»: por encima de 272.000 tokens sube el precio de la solicitud completa."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Checklist antes de cambiar de modelo"
+      },
+      {
+        "type": "list",
+        "items": [
+          "Toma el precio de la [página de precios](https://developers.openai.com/api/docs/pricing) y de la ficha del modelo antes de hacer un presupuesto.",
+          "Revisa en qué modo corre tu cuenta o tu proveedor: estándar, Batch, Flex o Fast.",
+          "Mide cuántos tokens de entrada usan tus solicitudes y cuántas pasan de 272.000.",
+          "Activa la caché para el prefijo que se repite: la entrada cacheada cuesta el 5% de la normal.",
+          "Corre 20 o 30 tareas reales con tu modelo actual y con `gpt-6.1-terra`, con el mismo esfuerzo de razonamiento, y compara resultado, tiempo y costo.",
+          "Si vas a usar uso de computadora, empieza en un entorno aislado y con permisos mínimos. La [guía oficial de computer use](https://developers.openai.com/api/docs/guides/tools-computer-use) explica cómo funciona la herramienta.",
+          "Para código complejo, compara Terra con el modelo que ya usas antes de cambiar: la propia OpenAI recomienda otros modelos para ese trabajo."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Conclusión"
+      },
+      {
+        "type": "paragraph",
+        "text": "El precio estándar de GPT-6.1 Terra es de 1 dólar de entrada, 0,05 en caché y 5 de salida por millón de tokens. Los 2 y 10 dólares que circularon son el modo Fast. Lo nuevo y verificable es la combinación de precio bajo, ventana de 1,05 millones de tokens y uso de computadora en la API. Los benchmarks son de OpenAI y conviene contrastarlos con tareas propias."
+      },
+      {
+        "type": "heading",
+        "text": "Preguntas frecuentes"
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Cuánto cuesta GPT-6.1 Terra en la API?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "En modo estándar, 1 dólar por millón de tokens de entrada, 0,05 por millón de tokens en caché y 5 por millón de salida, según la ficha del modelo y la página de precios de OpenAI."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Entonces GPT-6.1 Terra cuesta 2 y 10 dólares?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Solo en modo Fast, que cuesta el doble del estándar. También es el precio estándar de GPT-6.1 Sol, otro modelo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Qué ventana de contexto tiene GPT-6.1 Terra?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "1.050.000 tokens, con un máximo de 922.000 de entrada y 128.000 de salida. Por encima de 272.000 tokens de entrada, la solicitud se cobra con recargo."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿GPT-6.1 Terra es mejor que GPT-6.1 Sol para programar?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "Según OpenAI, para la programación más compleja siguen siendo mejores GPT-6.1 Sol y GPT-6 Astra. Frente a GPT-5.6 Terra sí mejora: 50,3% contra 21,5% en Terminal-Bench 4.0, también según OpenAI."
+      },
+      {
+        "type": "paragraph",
+        "text": "**¿Dónde se puede usar GPT-6.1 Terra?**"
+      },
+      {
+        "type": "paragraph",
+        "text": "En ChatGPT Work y Codex para usuarios Plus, Pro, Enterprise y Edu, y en la API de OpenAI como `gpt-6.1-terra`."
+      },
+      {
+        "type": "heading",
+        "text": "Fuentes"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "[OpenAI: anuncio de GPT-6.1 Terra](https://openai.com/index/introducing-gpt-6-1-terra/)",
+          "[OpenAI API: ficha del modelo gpt-6.1-terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra)",
+          "[OpenAI API: página de precios](https://developers.openai.com/api/docs/pricing)",
+          "[OpenAI API: guía de la herramienta computer use](https://developers.openai.com/api/docs/guides/tools-computer-use)",
+          "[OpenAI en X: anuncio de disponibilidad](https://x.com/OpenAI/status/2114780720170164735)"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "feedback-entre-acciones",
     "title": "Deja de exprimir milisegundos y muestra qué está pasando",
     "description": "Toda acción tarda algo. Cuando la interfaz responde en el momento y dice qué está haciendo, la espera se tolera mejor que con una optimización extrema y silenciosa.",
