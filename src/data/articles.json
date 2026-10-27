@@ -124,13 +124,13 @@
   {
     "slug": "claude-code-dangerously-skip-permissions-rm-rf-protect",
     "title": "‘--dangerously-skip-permissions still won’t let rm -rf through’: what’s actually proven, and how to protect your machine",
-    "description": "A Claude Code engineer announced CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, an env var that turns off the safety net against rm -rf ~. What the docs and changelog say, what only comes from a post, and a checklist for running --dangerously-skip-permissions without risking your machine.",
+    "description": "A Claude Code engineer announced CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, an env var that turns off the safety net against rm -rf ~. It first appeared in a post and in npm 2.1.311; the official docs now describe it. Checklist for --dangerously-skip-permissions.",
     "category": "Security",
     "language": "en",
     "translation": "claude-code-dangerously-skip-permissions-rm-rf",
     "author": "Yoseph Franco",
     "date": "2026-10-27T12:30:00-03:00",
-    "updated": "2026-10-27T12:30:00-03:00",
+    "updated": "2026-10-27T14:01:41-03:00",
     "publication": "published",
     "readingMinutes": 10,
     "cover": {
@@ -146,11 +146,24 @@
       },
       {
         "type": "paragraph",
+        "text": "Update, October 27, 2026: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` is now in the official Claude Code docs, on the [environment variables](https://code.claude.com/docs/en/env-vars) page and in [permission modes](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode). It requires Claude Code v2.1.311 or later. Set to `1`, it runs Bash `rm` and `rmdir` commands that target critical paths with no prompt, only in `bypassPermissions` mode itself, not in plan mode or any other mode. It applies only to what the critical-path check flags in the Bash and Monitor tools, including commands Claude Code cannot fully parse. Claude Code reads it from the launch environment only and ignores it in a settings file's `env` block. At startup it prints a line that says one of these: \"is set, so dangerous rm commands can run without a prompt\", \"has no effect in this session\", or \"has no effect while the Windows registry cannot be read for managed settings\". Official warning: \"With this variable set, you lose a safety prompt for destructive deletes: a command such as `rm -rf ~` can run without asking you. Set it only in an isolated environment whose contents you can afford to lose.\""
+      },
+      {
+        "type": "paragraph",
+        "text": "The docs show this generic launch on macOS, Linux, or WSL. Set the variable in that shell, then start Claude Code from there:"
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "text": "export CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1\nclaude --permission-mode bypassPermissions"
+      },
+      {
+        "type": "paragraph",
         "text": "On Monday, October 26 at 19:09 UTC, Daisy Hollman, who describes herself on X as working on Claude Code at Anthropic, posted that `--dangerously-skip-permissions` \"doesn't actually approve EVERYTHING\": it still blocks obvious things like `rm -rf ~`. She added that that day's release lets you turn the protection off with a new env var: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`."
       },
       {
         "type": "paragraph",
-        "text": "Two caveats up front. First, as of this writing (October 27, 11:45 UTC) that variable is not in the official Claude Code docs or in the public changelog; the only source is the post. Second, I did not test what the variable does. I did run one check of my own on the published package, covered below. Everything else here comes from the official docs and changelog."
+        "text": "Two notes up front. First, the variable first appeared in that post on October 26 and in npm 2.1.311. When this note went up (October 27, 11:45 UTC), neither the official docs nor the public changelog listed it yet. Later the same day the docs added it. The public changelog still does not mention the name: the 2.1.311 section is silent, and searching the file for `EVEN_MORE` returns nothing. Second, I did not test what the variable does. I did run one check of my own on the published package, covered below. What the variable does, in the update above, comes from the official docs. The rest of this note comes from the official docs and the changelog."
       },
       {
         "type": "heading",
@@ -166,11 +179,11 @@
       },
       {
         "type": "paragraph",
-        "text": "### What's missing before you call it official"
+        "text": "### From the post and npm to the official docs"
       },
       {
         "type": "paragraph",
-        "text": "**Status: claimed, not officially confirmed.** Version 2.1.311 of `@anthropic-ai/claude-code` was published to npm on October 26 at 19:47 UTC, about 38 minutes after the post. The 2.1.311 section of the [official CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) doesn't mention the variable, and searching the whole file for `EVEN_MORE` returns nothing. It's also absent from the [environment variables](https://code.claude.com/docs/en/env-vars), [permission modes](https://code.claude.com/docs/en/permission-modes), and [settings](https://code.claude.com/docs/en/settings) pages."
+        "text": "**Status: documented on October 27, 2026.** Version 2.1.311 of `@anthropic-ai/claude-code` was published to npm on October 26 at 19:47 UTC, about 38 minutes after the post. That was the first published package where the name shows up. The [environment variables](https://code.claude.com/docs/en/env-vars) page and the [permission modes](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode) page now describe it. The 2.1.311 section of the [official CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) still does not mention the variable, and searching the whole file for `EVEN_MORE` returns nothing. The [settings](https://code.claude.com/docs/en/settings) page still does not name it; the other two pages say a settings `env` block is ignored."
       },
       {
         "type": "paragraph",
@@ -178,7 +191,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Status: my own check, not documentation.** I downloaded the Linux x64 binary for [version 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) from npm and searched it. The string `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` shows up several times, right next to other variables that tune the dangerous-`rm` prompt. It does not appear in the 2.1.310 binary. So the variable exists in shipped code. That tells you nothing about exactly what it does, when it applies, or whether it will stick around."
+        "text": "**Status: my own check, not documentation.** I downloaded the Linux x64 binary for [version 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) from npm and searched it. The string `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` shows up several times, right next to other variables that tune the dangerous-`rm` prompt. It does not appear in the 2.1.310 binary. So the name shipped in 2.1.311. That check does not say what it does. The docs now do, and I still have not run it."
       },
       {
         "type": "heading",
@@ -186,7 +199,7 @@
       },
       {
         "type": "paragraph",
-        "text": "This is the useful part, because it tells you what the variable would switch off. Per the [permission modes docs](https://code.claude.com/docs/en/permission-modes):"
+        "text": "This is the prompt the variable turns off in `bypassPermissions` mode. Per the [permission modes docs](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode):"
       },
       {
         "type": "bullets",
@@ -219,7 +232,7 @@
       },
       {
         "type": "paragraph",
-        "text": "| When | Who | What | Outcome |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` stops prompting for writes to `.claude/`, `.git/`, and shell config files | Catastrophic removals still prompt \"as a safety net\" |\n| v2.1.154 | Anthropic (changelog) | Fix: `rm -rf $HOME` wasn't blocked when `HOME` had a trailing slash | Gap closed |\n| v2.1.208 | Anthropic (changelog) | Removals like `rm -rf ~` inside `$(…)`, backticks, or `<(…)` | Now prompt like the plain form |\n| v2.1.281 | Anthropic (changelog) | The dangerous-`rm` prompt waits 2 minutes, then denies | New `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` to remove the limit |\n| v2.1.288 | Anthropic (changelog) | Fix: a dangerous `rm` inside `bash -c` or `sh -c` ran unprompted in bypass mode | Gap closed |\n| v2.1.304 | Anthropic (changelog) | Fix: `rm -r` on mounted drives (`/Volumes`, `/media`, `/mnt/c`) didn't prompt | Gap closed |\n| Oct 26, 19:09 UTC | Daisy Hollman (X) | Announces `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | No changelog entry, no docs |\n| Oct 26, 19:47 UTC | npm | v2.1.311 published | Variable name present in the binary (my own check) |"
+        "text": "| When | Who | What | Outcome |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` stops prompting for writes to `.claude/`, `.git/`, and shell config files | Catastrophic removals still prompt \"as a safety net\" |\n| v2.1.154 | Anthropic (changelog) | Fix: `rm -rf $HOME` wasn't blocked when `HOME` had a trailing slash | Gap closed |\n| v2.1.208 | Anthropic (changelog) | Removals like `rm -rf ~` inside `$(…)`, backticks, or `<(…)` | Now prompt like the plain form |\n| v2.1.281 | Anthropic (changelog) | The dangerous-`rm` prompt waits 2 minutes, then denies | New `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` to remove the limit |\n| v2.1.288 | Anthropic (changelog) | Fix: a dangerous `rm` inside `bash -c` or `sh -c` ran unprompted in bypass mode | Gap closed |\n| v2.1.304 | Anthropic (changelog) | Fix: `rm -r` on mounted drives (`/Volumes`, `/media`, `/mnt/c`) didn't prompt | Gap closed |\n| Oct 26, 19:09 UTC | Daisy Hollman (X) | Announces `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | First public mention, in a post |\n| Oct 26, 19:47 UTC | npm | v2.1.311 published | Variable name present in the binary (my own check) |\n| Oct 27, 2026 | Anthropic (docs) | Environment variables and permission modes document the variable | Changelog still has no entry |"
       },
       {
         "type": "heading",
@@ -227,7 +240,7 @@
       },
       {
         "type": "paragraph",
-        "text": "| Claim | Status | Why |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` approves everything | False | The docs list actions no mode auto-approves, including critical-path removals |\n| `deny` rules still work in bypass mode | Proven | Docs: \"Deny rules block in every mode, including `bypassPermissions`\" |\n| There's a variable that turns off the `rm -rf ~` protection | Claimed | The post says so; the name is in the 2.1.311 binary, but there are no docs and no changelog entry |\n| The safety net protects you from any deletion | False | The docs say it can miss commands and only covers `rm` and `rmdir` |\n| A container solves everything | False | The [dev container guide](https://code.claude.com/docs/en/devcontainer) warns that in bypass mode a container doesn't stop exfiltration of anything inside it, including Claude Code's credentials in `~/.claude` |\n| Claude Code refuses bypass mode as root | Proven | On Linux and macOS it rejects `--dangerously-skip-permissions` under root or `sudo`, except inside a recognized sandbox |"
+        "text": "| Claim | Status | Why |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` approves everything | False | The docs list actions no mode auto-approves, including critical-path removals |\n| `deny` rules still work in bypass mode | Proven | Docs: \"Deny rules block in every mode, including `bypassPermissions`\" |\n| There's a variable that turns off the `rm -rf ~` prompt in `bypassPermissions` | Documented | The permission-modes page says so, for Claude Code v2.1.311 or later, and only in that mode. It first appeared in the Oct 26 post and in the 2.1.311 binary. The changelog still has no entry |\n| The safety net protects you from any deletion | False | The docs say it can miss commands and only covers `rm` and `rmdir` |\n| A container solves everything | False | The [dev container guide](https://code.claude.com/docs/en/devcontainer) warns that in bypass mode a container doesn't stop exfiltration of anything inside it, including Claude Code's credentials in `~/.claude` |\n| Claude Code refuses bypass mode as root | Proven | On Linux and macOS it rejects `--dangerously-skip-permissions` under root or `sudo`, except inside a recognized sandbox |"
       },
       {
         "type": "heading",
@@ -323,7 +336,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**10. Don't flip the new variable out of curiosity.** If you really need it, use it inside a throwaway VM, like the user who replied to Daisy saying they spin up a fresh VM per task. Outside of that, there's no good reason to remove the last net you have."
+        "text": "**10. Don't flip the new variable out of curiosity.** The official warning says: \"Set it only in an isolated environment whose contents you can afford to lose.\" If you really need it, use it inside a throwaway VM, like the user who replied to Daisy saying they spin up a fresh VM per task. Outside of that, there's no good reason to remove the last net you have."
       },
       {
         "type": "heading",
@@ -343,7 +356,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**What does CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS do?**\nAccording to Daisy Hollman's post, it disables the protection against removals like `rm -rf ~` when you use `--dangerously-skip-permissions`. As of October 27 it isn't in the official docs or changelog. The name appears in the 2.1.311 binary, but I haven't tested its behavior."
+        "text": "**What does CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS do?**\nPer the permission-modes docs, set to `1` in the launch environment it lets Bash and Monitor `rm` and `rmdir` commands that the critical-path check flags run with no prompt, only in `bypassPermissions` mode, not in plan mode. It requires Claude Code v2.1.311 or later, and a settings `env` block is ignored. It first appeared in Daisy Hollman's post and in npm 2.1.311. The public changelog still does not mention it. I have not tested its behavior."
       },
       {
         "type": "paragraph",
@@ -367,6 +380,7 @@
           "[Daisy Hollman's post on X (Oct 26, 2026)](https://x.com/The_Whole_Daisy/status/2114796466850202103)",
           "[Daisy Hollman's reply: \"Not a joke!\"](https://x.com/The_Whole_Daisy/status/2114954983858901325)",
           "[Claude Code: permission modes and critical paths](https://code.claude.com/docs/en/permission-modes)",
+          "[Claude Code: turn off the critical-path removal prompt in bypassPermissions mode](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode)",
           "[Claude Code: configure permissions and Bash rule limits](https://code.claude.com/docs/en/permissions)",
           "[Claude Code: settings](https://code.claude.com/docs/en/settings)",
           "[Claude Code: settings reference (permissions.disableBypassPermissionsMode)](https://code.claude.com/docs/en/settings-reference)",
@@ -385,13 +399,13 @@
   {
     "slug": "claude-code-dangerously-skip-permissions-rm-rf",
     "title": "«Con --dangerously-skip-permissions igual no pasa un rm -rf»: lo que está probado y cómo proteger tu máquina",
-    "description": "Una ingeniera de Claude Code anunció CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, una variable que apaga la red de seguridad contra rm -rf ~. Qué dicen la documentación y el changelog, qué es solo un post y una checklist para usar --dangerously-skip-permissions sin arriesgar tu máquina.",
+    "description": "Una ingeniera de Claude Code anunció CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS, una variable que apaga la red de seguridad contra rm -rf ~. Apareció primero en un post y en npm 2.1.311; ahora la documentación oficial la describe. Checklist para --dangerously-skip-permissions.",
     "category": "Seguridad",
     "language": "es",
     "translation": "claude-code-dangerously-skip-permissions-rm-rf-protect",
     "author": "Yoseph Franco",
     "date": "2026-10-27T12:30:00-03:00",
-    "updated": "2026-10-27T12:30:00-03:00",
+    "updated": "2026-10-27T14:01:41-03:00",
     "publication": "published",
     "readingMinutes": 10,
     "cover": {
@@ -407,11 +421,24 @@
       },
       {
         "type": "paragraph",
+        "text": "Actualización 27 de octubre de 2026: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` ya está en la documentación oficial de Claude Code, en [variables de entorno](https://code.claude.com/docs/en/env-vars) y en [modos de permisos](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode). Exige Claude Code v2.1.311 o posterior. Con el valor `1`, los comandos `rm` y `rmdir` de Bash que apuntan a una ruta crítica corren sin aviso, solo en el modo `bypassPermissions`, no en el modo plan ni en ningún otro modo. Aplica solo a lo que el control de rutas críticas marca en las herramientas Bash y Monitor, incluidos los comandos que Claude Code no llega a analizar por completo. Hay que definirla en el entorno que lanza Claude Code; si está en el bloque `env` de un archivo de configuración, se ignora. Al iniciar imprime una línea que dice una de estas frases: \"is set, so dangerous rm commands can run without a prompt\", \"has no effect in this session\", o \"has no effect while the Windows registry cannot be read for managed settings\". Advertencia oficial, citada en inglés: \"With this variable set, you lose a safety prompt for destructive deletes: a command such as `rm -rf ~` can run without asking you. Set it only in an isolated environment whose contents you can afford to lose.\" Traducción: con esta variable definida se pierde un aviso de seguridad para borrados destructivos; un comando como `rm -rf ~` puede ejecutarse sin preguntar. Hay que definirla solo en un entorno aislado cuyo contenido se pueda perder."
+      },
+      {
+        "type": "paragraph",
+        "text": "La documentación muestra este arranque genérico en macOS, Linux o WSL. La variable se define en esa shell y Claude Code se inicia desde ahí:"
+      },
+      {
+        "type": "code",
+        "lang": "bash",
+        "text": "export CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1\nclaude --permission-mode bypassPermissions"
+      },
+      {
+        "type": "paragraph",
         "text": "El lunes 26 de octubre a las 16:09 (hora de Argentina), Daisy Hollman, que se presenta en X como parte del equipo de Claude Code en Anthropic, escribió que `--dangerously-skip-permissions` \"no aprueba realmente TODO\": sigue bloqueando cosas obvias como `rm -rf ~`. Y agregó que la versión de ese día permite desactivar esa protección con una variable nueva: `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1`."
       },
       {
         "type": "paragraph",
-        "text": "Dos avisos antes de seguir. Primero: al cierre de esta nota (27 de octubre, 08:45 hora de Argentina) esa variable no aparece ni en la documentación oficial de Claude Code ni en su changelog público; la única fuente es el post. Segundo: no probé el comportamiento de la variable. Lo que sí hice fue una comprobación propia sobre el paquete publicado, que explico abajo. Todo lo demás de esta nota sale de la documentación y del changelog oficiales."
+        "text": "Dos avisos antes de seguir. Primero: la variable apareció en ese post el 26 de octubre y en npm 2.1.311. Cuando se publicó esta nota (27 de octubre, 08:45 hora de Argentina) no estaba en la documentación oficial ni en el changelog público. Más tarde, el mismo día, la documentación la incorporó. El changelog público sigue sin mencionar el nombre: la sección 2.1.311 no la nombra, y buscar `EVEN_MORE` en todo el archivo no da resultados. Segundo: no probé el comportamiento de la variable. Lo que sí hice fue una comprobación propia sobre el paquete publicado, que explico abajo. Lo que hace la variable, en la actualización de arriba, sale de la documentación oficial. El resto de esta nota sale de la documentación y del changelog oficiales."
       },
       {
         "type": "heading",
@@ -427,11 +454,11 @@
       },
       {
         "type": "paragraph",
-        "text": "### Lo que falta para darlo por oficial"
+        "text": "### Del post y de npm a la documentación oficial"
       },
       {
         "type": "paragraph",
-        "text": "**Estado: afirmado, sin confirmación oficial.** La versión 2.1.311 del paquete `@anthropic-ai/claude-code` se publicó en npm el 26 de octubre a las 16:47 (hora de Argentina), unos 38 minutos después del post. La sección 2.1.311 del [CHANGELOG oficial](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) no menciona la variable, y buscar `EVEN_MORE` en todo el archivo no da resultados. Tampoco aparece en las páginas de [variables de entorno](https://code.claude.com/docs/en/env-vars), [modos de permisos](https://code.claude.com/docs/en/permission-modes) ni [configuración](https://code.claude.com/docs/en/settings)."
+        "text": "**Estado: documentada el 27 de octubre de 2026.** La versión 2.1.311 del paquete `@anthropic-ai/claude-code` se publicó en npm el 26 de octubre a las 16:47 (hora de Argentina), unos 38 minutos después del post. Ese fue el primer paquete publicado donde aparece el nombre. Las páginas de [variables de entorno](https://code.claude.com/docs/en/env-vars) y de [modos de permisos](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode) ahora la describen. La sección 2.1.311 del [CHANGELOG oficial](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) sigue sin mencionar la variable, y buscar `EVEN_MORE` en todo el archivo no da resultados. La página de [configuración](https://code.claude.com/docs/en/settings) sigue sin nombrarla; las otras dos dicen que un bloque `env` de la configuración se ignora."
       },
       {
         "type": "paragraph",
@@ -439,7 +466,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**Estado: comprobación propia, no documentación.** Descargué de npm el binario para Linux x64 de [la versión 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) y busqué el texto. El nombre `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` aparece varias veces, junto a otras variables que ajustan el aviso de `rm` peligroso. En el binario de la 2.1.310 no aparece. Eso confirma que la variable existe en el código publicado. No confirma qué hace exactamente, en qué casos aplica ni si va a seguir en versiones futuras."
+        "text": "**Estado: comprobación propia, no documentación.** Descargué de npm el binario para Linux x64 de [la versión 2.1.311](https://www.npmjs.com/package/@anthropic-ai/claude-code-linux-x64/v/2.1.311) y busqué el texto. El nombre `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS` aparece varias veces, junto a otras variables que ajustan el aviso de `rm` peligroso. En el binario de la 2.1.310 no aparece. Eso confirma que el nombre ya iba en la 2.1.311. Esa comprobación no dice qué hace. Ahora lo dice la documentación, y yo sigo sin haberla ejecutado."
       },
       {
         "type": "heading",
@@ -447,7 +474,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Esta es la parte más útil, porque explica qué apagaría la variable. Según la [documentación de modos de permisos](https://code.claude.com/docs/en/permission-modes):"
+        "text": "Este es el aviso que la variable apaga en el modo `bypassPermissions`. Según la [documentación de modos de permisos](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode):"
       },
       {
         "type": "bullets",
@@ -480,7 +507,7 @@
       },
       {
         "type": "paragraph",
-        "text": "| Cuándo | Quién | Qué | Resultado |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` deja de preguntar por escrituras en `.claude/`, `.git/` y archivos de configuración del shell | Los borrados catastróficos siguen pidiendo confirmación \"como red de seguridad\" |\n| v2.1.154 | Anthropic (changelog) | Arreglo: `rm -rf $HOME` no se bloqueaba si `HOME` terminaba en barra | Hueco cerrado |\n| v2.1.208 | Anthropic (changelog) | Borrados como `rm -rf ~` dentro de `$(…)`, backticks o `<(…)` | Ahora piden confirmación igual que la forma simple |\n| v2.1.281 | Anthropic (changelog) | El aviso de `rm` peligroso espera 2 minutos y después deniega | Nueva variable `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` para quitar el límite |\n| v2.1.288 | Anthropic (changelog) | Arreglo: un `rm` peligroso dentro de `bash -c` o `sh -c` corría sin aviso en bypass | Hueco cerrado |\n| v2.1.304 | Anthropic (changelog) | Arreglo: `rm -r` de unidades montadas (`/Volumes`, `/media`, `/mnt/c`) no pedía confirmación | Hueco cerrado |\n| 26-oct, 16:09 ART | Daisy Hollman (X) | Anuncia `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | Sin entrada en changelog ni en la documentación |\n| 26-oct, 16:47 ART | npm | Se publica la v2.1.311 | El nombre de la variable aparece en el binario (comprobación propia) |"
+        "text": "| Cuándo | Quién | Qué | Resultado |\n| :- | :- | :- | :- |\n| v2.1.126 | Anthropic (changelog) | `--dangerously-skip-permissions` deja de preguntar por escrituras en `.claude/`, `.git/` y archivos de configuración del shell | Los borrados catastróficos siguen pidiendo confirmación \"como red de seguridad\" |\n| v2.1.154 | Anthropic (changelog) | Arreglo: `rm -rf $HOME` no se bloqueaba si `HOME` terminaba en barra | Hueco cerrado |\n| v2.1.208 | Anthropic (changelog) | Borrados como `rm -rf ~` dentro de `$(…)`, backticks o `<(…)` | Ahora piden confirmación igual que la forma simple |\n| v2.1.281 | Anthropic (changelog) | El aviso de `rm` peligroso espera 2 minutos y después deniega | Nueva variable `CLAUDE_CODE_DISABLE_DANGEROUS_RM_TIMEOUT=1` para quitar el límite |\n| v2.1.288 | Anthropic (changelog) | Arreglo: un `rm` peligroso dentro de `bash -c` o `sh -c` corría sin aviso en bypass | Hueco cerrado |\n| v2.1.304 | Anthropic (changelog) | Arreglo: `rm -r` de unidades montadas (`/Volumes`, `/media`, `/mnt/c`) no pedía confirmación | Hueco cerrado |\n| 26-oct, 16:09 ART | Daisy Hollman (X) | Anuncia `CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS=1` | Primera mención pública, en un post |\n| 26-oct, 16:47 ART | npm | Se publica la v2.1.311 | El nombre de la variable aparece en el binario (comprobación propia) |\n| 27-oct-2026 | Anthropic (documentación) | Variables de entorno y modos de permisos documentan la variable | El changelog sigue sin entrada |"
       },
       {
         "type": "heading",
@@ -488,7 +515,7 @@
       },
       {
         "type": "paragraph",
-        "text": "| Afirmación | Estado | Por qué |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` aprueba todo | Falso | La documentación lista acciones que ningún modo aprueba solo, incluidos los borrados de rutas críticas |\n| Las reglas `deny` siguen funcionando en bypass | Probado | La documentación: \"Las reglas deny bloquean en todos los modos, incluido `bypassPermissions`\" |\n| Existe una variable que apaga la protección de `rm -rf ~` | Afirmado | Lo dice el post; el nombre está en el binario 2.1.311, pero no hay documentación ni entrada en el changelog |\n| La red de seguridad te protege de cualquier borrado | Falso | La documentación dice que puede pasar por alto comandos y que solo mira `rm` y `rmdir` |\n| Un contenedor resuelve todo | Falso | La [guía de dev containers](https://code.claude.com/docs/en/devcontainer) advierte que, con bypass, el contenedor no impide sacar lo que haya adentro, incluidas las credenciales de Claude Code en `~/.claude` |\n| Claude Code se niega a correr en bypass como root | Probado | En Linux y macOS rechaza `--dangerously-skip-permissions` con root o `sudo`, salvo dentro de un sandbox reconocido |"
+        "text": "| Afirmación | Estado | Por qué |\n| :- | :- | :- |\n| `--dangerously-skip-permissions` aprueba todo | Falso | La documentación lista acciones que ningún modo aprueba solo, incluidos los borrados de rutas críticas |\n| Las reglas `deny` siguen funcionando en bypass | Probado | La documentación: \"Las reglas deny bloquean en todos los modos, incluido `bypassPermissions`\" |\n| Existe una variable que apaga el aviso de `rm -rf ~` en `bypassPermissions` | Documentado | Lo dice la página de modos de permisos, para Claude Code v2.1.311 o posterior, y solo en ese modo. Apareció primero en el post del 26 de octubre y en el binario 2.1.311. El changelog sigue sin entrada |\n| La red de seguridad te protege de cualquier borrado | Falso | La documentación dice que puede pasar por alto comandos y que solo mira `rm` y `rmdir` |\n| Un contenedor resuelve todo | Falso | La [guía de dev containers](https://code.claude.com/docs/en/devcontainer) advierte que, con bypass, el contenedor no impide sacar lo que haya adentro, incluidas las credenciales de Claude Code en `~/.claude` |\n| Claude Code se niega a correr en bypass como root | Probado | En Linux y macOS rechaza `--dangerously-skip-permissions` con root o `sudo`, salvo dentro de un sandbox reconocido |"
       },
       {
         "type": "heading",
@@ -584,7 +611,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**10. No actives la variable nueva por curiosidad.** Si de verdad la necesitas, que sea dentro de una máquina virtual descartable, como el usuario que le respondió a Daisy diciendo que levanta una VM nueva por tarea. Fuera de eso, no hay ninguna razón para quitar la última red que queda."
+        "text": "**10. No actives la variable nueva por curiosidad.** La advertencia oficial dice, en inglés: \"Set it only in an isolated environment whose contents you can afford to lose.\" Si de verdad la necesitas, que sea dentro de una máquina virtual descartable, como el usuario que le respondió a Daisy diciendo que levanta una VM nueva por tarea. Fuera de eso, no hay ninguna razón para quitar la última red que queda."
       },
       {
         "type": "heading",
@@ -604,7 +631,7 @@
       },
       {
         "type": "paragraph",
-        "text": "**¿Qué hace CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS?**\nSegún el post de Daisy Hollman, desactiva esa protección contra borrados como `rm -rf ~` cuando usas `--dangerously-skip-permissions`. Al 27 de octubre no está en la documentación ni en el changelog oficiales. El nombre aparece en el binario de la versión 2.1.311, pero no probé su comportamiento."
+        "text": "**¿Qué hace CLAUDE_CODE_EVEN_MORE_DANGEROUSLY_SKIP_PERMISSIONS?**\nSegún la documentación de modos de permisos, con el valor `1` en el entorno de arranque deja correr sin aviso los `rm` y `rmdir` de Bash y Monitor que el control de rutas críticas marca, solo en el modo `bypassPermissions`, no en el modo plan. Exige Claude Code v2.1.311 o posterior, y un bloque `env` de la configuración se ignora. Apareció primero en el post de Daisy Hollman y en npm 2.1.311. El changelog público sigue sin mencionarla. No probé su comportamiento."
       },
       {
         "type": "paragraph",
@@ -628,6 +655,7 @@
           "[Post de Daisy Hollman en X (26-oct-2026)](https://x.com/The_Whole_Daisy/status/2114796466850202103)",
           "[Respuesta de Daisy Hollman: \"Not a joke!\"](https://x.com/The_Whole_Daisy/status/2114954983858901325)",
           "[Claude Code: modos de permisos y rutas críticas](https://code.claude.com/docs/en/permission-modes)",
+          "[Claude Code: apagar el aviso de borrado de rutas críticas en bypassPermissions](https://code.claude.com/docs/en/permission-modes#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode)",
           "[Claude Code: configurar permisos y límites de las reglas Bash](https://code.claude.com/docs/en/permissions)",
           "[Claude Code: configuración](https://code.claude.com/docs/en/settings)",
           "[Claude Code: referencia de configuración (permissions.disableBypassPermissionsMode)](https://code.claude.com/docs/en/settings-reference)",

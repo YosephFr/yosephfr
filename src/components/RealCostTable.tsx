@@ -1,8 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import InternalLink from '@/components/InternalLink'
 import { REAL_COST_ROWS, realCostCopy } from '@/data/real-cost'
 import type { Lang } from '@/lib/lang'
+
+const OTHER_TEST = '/blog/kimi-astra-opus-mismo-prompt'
 
 type Key = 'model' | 'seconds' | 'usd'
 type Dir = 'asc' | 'desc'
@@ -28,31 +31,45 @@ export default function RealCostTable({ lang }: { lang: Lang }) {
   }
 
   return (
-    <div className="tabla-medicion">
-      <table>
-        <caption className="solo-lector">{t.caption}</caption>
-        <thead>
-          <tr>
-            {(['model', 'seconds', 'usd'] as const).map(key => (
-              <th key={key} scope="col" aria-sort={ariaSort(key)}>
-                <button type="button" onClick={() => toggle(key)} aria-label={`${t.sort} ${t.columns[COLUMN[key]]}`}>
-                  {t.columns[COLUMN[key]]}
-                  {sort?.key === key && <span className="orden" aria-hidden="true">{sort.dir === 'asc' ? '↑' : '↓'}</span>}
-                </button>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(row => (
-            <tr key={row.model}>
-              <th scope="row">{row.model}</th>
-              <td>{row.time}</td>
-              <td>{row.cost}</td>
+    <div className="medicion-bloque">
+      <p className="nota">{t.taskLabel}</p>
+      <div className="tabla-medicion">
+        <table>
+          <caption className="solo-lector">{t.caption}</caption>
+          <thead>
+            <tr>
+              {(['model', 'seconds', 'usd'] as const).map(key => (
+                <th key={key} scope="col" aria-sort={ariaSort(key)}>
+                  <button type="button" onClick={() => toggle(key)} aria-label={`${t.sort} ${t.columns[COLUMN[key]]}`}>
+                    {t.columns[COLUMN[key]]}
+                    {sort?.key === key && <span className="orden" aria-hidden="true">{sort.dir === 'asc' ? '↑' : '↓'}</span>}
+                  </button>
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map(row => (
+              <tr key={row.model}>
+                <th scope="row">{row.model}</th>
+                <td>{row.time}</td>
+                <td>{row.cost}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="nota">
+        {lang === 'es' ? (
+          <>
+            {t.otherTestsLead}
+            <InternalLink href={OTHER_TEST}>{t.otherTestsLink}</InternalLink>
+            {t.otherTestsTail}
+          </>
+        ) : (
+          t.otherTests
+        )}
+      </p>
     </div>
   )
 }

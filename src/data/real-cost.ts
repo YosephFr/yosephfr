@@ -61,6 +61,11 @@ const COPY = {
     columns: { model: 'Modelo', time: 'Tiempo', cost: 'Costo de lista (USD)' },
     caption: 'Modelo, tiempo y costo de lista en USD. No es lo facturado.',
     sort: 'Ordenar por',
+    taskLabel: 'Tarea: el mismo juego roadster, un intento por modelo, 24 de octubre de 2026. Costo de lista, no lo facturado.',
+    otherTests: 'Otras pruebas del blog usaron tareas distintas y dan cifras distintas.',
+    otherTestsLead: 'Otras pruebas del blog usaron tareas distintas y dan cifras distintas, como ',
+    otherTestsLink: 'esta comparación con el mismo prompt',
+    otherTestsTail: '.',
   },
   en: {
     title: 'List cost of AI models',
@@ -77,6 +82,11 @@ const COPY = {
     columns: { model: 'Model', time: 'Time', cost: 'List cost (USD)' },
     caption: 'Model, time and list cost in USD. Not the amount billed.',
     sort: 'Sort by',
+    taskLabel: 'Task: the same roadster game, one run per model, October 24, 2026. List cost, not the amount billed.',
+    otherTests: 'Other tests on the blog used different tasks and give different numbers.',
+    otherTestsLead: '',
+    otherTestsLink: '',
+    otherTestsTail: '',
   },
 } as const
 
