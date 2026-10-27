@@ -61,6 +61,10 @@ npm install && npm run dev
 
 ---
 
+### UTM
+
+Social links use lowercase parameters: `utm_source` (`x`, `linkedin`, `tiktok`, `instagram` or `facebook`), `utm_medium=social`, `utm_campaign` (article slug or `bio`) and `utm_content` (`cuerpo`, `respuesta`, `bio`, `fijado` or `video`). The first visit in the tab is stored in `sessionStorage` and attached to the GA4 events `newsletter_submit` and `generate_lead`. `article_read` fires once per article per tab, at 75% of the article or after 60 seconds with the tab visible.
+
 ### Get In Touch
 
 | | |

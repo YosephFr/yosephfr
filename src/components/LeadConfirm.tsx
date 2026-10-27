@@ -2,15 +2,10 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { sendEvent } from '@/lib/attribution'
 
 const PENDING_KEY = 'nl_pending'
 const MAX_AGE_MS = 30 * 60 * 1000
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-  }
-}
 
 function readPending(): { lang: 'es' | 'en'; ts: number } | null {
   try {
@@ -37,16 +32,7 @@ function qualifies(pending: { lang: 'es' | 'en'; ts: number }) {
 // gtag loads afterInteractive, and the English redirect unmounts this page.
 // Keep trying briefly without tying the timer to the component lifecycle.
 function fireLead(lang: 'es' | 'en') {
-  const send = () => {
-    if (typeof window.gtag !== 'function') return false
-    window.gtag('event', 'generate_lead', { method: 'newsletter', language: lang })
-    return true
-  }
-  if (send()) return
-  const started = Date.now()
-  const id = window.setInterval(() => {
-    if (send() || Date.now() - started > 5000) window.clearInterval(id)
-  }, 100)
+  sendEvent('generate_lead', { method: 'newsletter', language: lang })
 }
 
 export default function LeadConfirm() {

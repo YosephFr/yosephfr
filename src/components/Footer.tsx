@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import InternalLink from '@/components/InternalLink'
 import { PROFILE } from '@/data/profile'
 import DotIcon from '@/components/dots/DotIcon'
 import { UI, type Lang } from '@/lib/lang'
@@ -15,7 +15,7 @@ export default function Footer({ lang = 'es' }: { lang?: Lang }) {
     <footer className="marco pie" lang={lang === 'en' ? 'en' : undefined}>
       <div className="pie-rejilla">
         <div className="pie-marca">
-          <Link href={t.home} className="marca"><DotIcon name="marca" size={20} />Arncof</Link>
+          <InternalLink href={t.home} className="marca"><DotIcon name="marca" size={20} />Arncof</InternalLink>
           <p>{t.footer.tagline}</p>
           <a href={`mailto:${PROFILE.email}`} data-event="contact_email_click" className="boton boton-tonal">
             <DotIcon name="correo" size={16} />
@@ -25,8 +25,8 @@ export default function Footer({ lang = 'es' }: { lang?: Lang }) {
         <nav aria-label="Secciones">
           <h2>{t.footer.sections}</h2>
           <ul>
-            {sections.map(s => <li key={s.href}><Link href={s.href}>{s.label}</Link></li>)}
-            <li><Link href={t.footer.otherHref} hrefLang={lang === 'en' ? 'es' : 'en'} lang={lang === 'en' ? 'es' : 'en'}>{t.footer.other}</Link></li>
+            {sections.map(s => <li key={s.href}><InternalLink href={s.href}>{s.label}</InternalLink></li>)}
+            <li><InternalLink href={t.footer.otherHref} hrefLang={lang === 'en' ? 'es' : 'en'} lang={lang === 'en' ? 'es' : 'en'}>{t.footer.other}</InternalLink></li>
           </ul>
         </nav>
         <nav aria-label="Perfiles">

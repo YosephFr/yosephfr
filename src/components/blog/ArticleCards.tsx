@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import InternalLink from '@/components/InternalLink'
 import { articlePath, type Article } from '@/data/articles'
 import ArticleCover from './ArticleCover'
 import { UI, type Lang } from '@/lib/lang'
@@ -32,14 +32,14 @@ function Card({ article, level = 'h3', className = '', lang = 'es' }: Props & { 
   const Title = level
   const l = linkProps(article, lang)
   return (
-    <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-tarjeta${className}`}>
+    <InternalLink href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-tarjeta${className}`}>
       <div className="articulo-portada"><CoverArt article={article} /></div>
       <div className="articulo-texto">
         <Title lang={l.textLang}>{article.title}</Title>
         <p lang={l.textLang}>{article.description}</p>
         <span className="meta pie-tarjeta">{meta(article, lang, false)}</span>
       </div>
-    </Link>
+    </InternalLink>
   )
 }
 
@@ -47,14 +47,14 @@ export function FeaturedArticle({ article, level = 'h2', compact = false, lang =
   const Title = level
   const l = linkProps(article, lang)
   return (
-    <Link href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-destacado${compact ? ' compacto' : ''}`}>
+    <InternalLink href={l.href} hrefLang={l.hrefLang} data-event="article_open" className={`lamina articulo-destacado${compact ? ' compacto' : ''}`}>
       <div className="articulo-portada"><CoverArt article={article} cols={compact ? 18 : 16} rows={compact ? 8 : 11} /></div>
       <div className="articulo-texto">
         <Title lang={l.textLang}>{article.title}</Title>
         <p lang={l.textLang}>{article.description}</p>
         <span className="meta pie-tarjeta">{meta(article, lang, true)}</span>
       </div>
-    </Link>
+    </InternalLink>
   )
 }
 

@@ -21,10 +21,8 @@ function inline(text: string): ReactNode[] {
   })
 }
 
-export default function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
-  return <div className="editorial-body">
-    {blocks.map((block, index) => {
-      if (block.type === 'heading') return <h2 id={headingId(block.text!)} key={index}>{inline(block.text!)}</h2>
+function renderBlock(block: ArticleBlock, index: number) {
+  if (block.type === 'heading') return <h2 id={headingId(block.text!)} key={index}>{inline(block.text!)}</h2>
       if (block.type === 'subheading') return <h3 id={headingId(block.text!)} key={index}>{inline(block.text!)}</h3>
       if (block.type === 'bullets') return <ul key={index}>{block.items!.map((item, i) => <li key={i}>{inline(item)}</li>)}</ul>
       if (block.type === 'list') {
@@ -52,7 +50,14 @@ export default function ArticleBody({ blocks }: { blocks: ArticleBlock[] }) {
           </table>
         </div>
       )
-      return <p key={index}>{inline(block.text!)}</p>
-    })}
+  return <p key={index}>{inline(block.text!)}</p>
+}
+
+export default function ArticleBody({ blocks, cut, insert }: { blocks: ArticleBlock[]; cut?: number; insert?: ReactNode }) {
+  const at = cut == null ? blocks.length : Math.max(0, Math.min(cut, blocks.length))
+  return <div className="editorial-body">
+    {blocks.slice(0, at).map((block, index) => renderBlock(block, index))}
+    {insert}
+    {blocks.slice(at).map((block, index) => renderBlock(block, at + index))}
   </div>
 }

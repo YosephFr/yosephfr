@@ -62,7 +62,7 @@ export default function HomeEn() {
         <Experience lang="en" />
         <Skills lang="en" />
         <CTA lang="en" />
-        <NewsletterCTA lang="en" />
+        <NewsletterCTA lang="en" anchor="boletin" />
       </main>
       <Footer lang="en" />
     </>

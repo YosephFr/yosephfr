@@ -10,3 +10,5 @@ Verified deployment record: `state/last-deploy.json`.
 Repository secret: `HOSTINGER_DEPLOY_KEY`. The forced SSH command permits only `deploy <40-character commit>`. No provider API token is used by the workflow.
 
 Keep `.well-known` in the shared state directory. Domain email still receives through iCloud. Contact SMTP changes were explicitly deferred and are not part of this deployment.
+
+After a successful deploy, the workflow compares the previous sitemap with the new one and notifies IndexNow. The key is the public file `public/<key>.txt` (IndexNow keys are public by design). A failed notification does not fail the deploy.

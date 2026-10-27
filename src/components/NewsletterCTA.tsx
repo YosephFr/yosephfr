@@ -1,36 +1,29 @@
 'use client'
 
 import { useId, useRef, type FormEvent } from 'react'
-import { BUTTONDOWN_ACTION, LEAD_MAGNET, NEWSLETTER_CONSENT } from '@/data/real-cost'
+import { defaultOffer, type NewsletterOffer } from '@/data/offers'
+import { BUTTONDOWN_ACTION, NEWSLETTER_CONSENT } from '@/data/real-cost'
+import { sendEvent } from '@/lib/attribution'
 import type { Lang } from '@/lib/lang'
 
 const TEXT = {
   es: {
-    title: 'Recibe la tabla por correo',
     email: 'Correo electrónico',
     placeholder: 'tu@correo.com',
-    button: 'Recibir la tabla',
     helper: 'Si ves una verificación o un error de Buttondown, complétalo ahí.',
   },
   en: {
-    title: 'Get the table by email',
     email: 'Email',
     placeholder: 'you@email.com',
-    button: 'Get the table',
     helper: 'If Buttondown shows a check or an error, finish it there.',
   },
 } as const
 
 const PENDING_KEY = 'nl_pending'
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-  }
-}
-
-export default function NewsletterCTA({ lang = 'es', embedded = false }: { lang?: Lang; embedded?: boolean }) {
+export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, offer }: { lang?: Lang; embedded?: boolean; anchor?: string; offer?: NewsletterOffer }) {
   const t = TEXT[lang]
+  const copy = offer ?? defaultOffer(lang)
   const titleId = useId()
   const emailId = useId()
   const consentId = useId()
@@ -62,16 +55,18 @@ export default function NewsletterCTA({ lang = 'es', embedded = false }: { lang?
       // Private mode can block storage; the form still posts.
     }
 
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'newsletter_submit', { language: lang, page_path: window.location.pathname })
+    try {
+      sendEvent('newsletter_submit', { language: lang, page_path: window.location.pathname })
+    } catch {
+      // Measuring the submit must not block the native POST.
     }
   }
 
   return (
-    <section className={embedded ? 'boletin-seccion boletin-en-cuerpo' : 'marco seccion boletin-seccion'} aria-labelledby={titleId}>
+    <section id={anchor} className={embedded ? 'boletin-seccion boletin-en-cuerpo' : 'marco seccion boletin-seccion'} aria-labelledby={titleId}>
       <div className="boletin">
-        <h2 id={titleId}>{t.title}</h2>
-        <p className="entrada-texto">{LEAD_MAGNET[lang]}</p>
+        <h2 id={titleId}>{copy.title}</h2>
+        <p className="entrada-texto">{copy.text}</p>
         <form action={BUTTONDOWN_ACTION} method="post" onSubmit={onSubmit}>
           <input
             ref={honeypotRef}
@@ -86,7 +81,7 @@ export default function NewsletterCTA({ lang = 'es', embedded = false }: { lang?
             <label className="solo-lector" htmlFor={emailId}>{t.email}</label>
             <input id={emailId} name="email" type="email" required autoComplete="email" placeholder={t.placeholder} aria-describedby={consentId} />
             <input type="hidden" name="embed" value="1" />
-            <button className="boton boton-claro" type="submit">{t.button}</button>
+            <button className="boton boton-claro" type="submit">{copy.button}</button>
             <p className="estado-texto" style={{ flexBasis: '100%' }}>{t.helper}</p>
           </div>
           <p id={consentId} className="meta consentimiento">{NEWSLETTER_CONSENT[lang]}</p>

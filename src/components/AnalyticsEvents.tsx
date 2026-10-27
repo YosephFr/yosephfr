@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import { captureAttribution } from '@/lib/attribution'
 
 export default function AnalyticsEvents() {
   useEffect(() => {
+    captureAttribution()
     const onClick = (event: MouseEvent) => {
       const target = event.target instanceof Element ? event.target.closest<HTMLElement>('a[data-event], button[data-event]') : null
       if (!target) return

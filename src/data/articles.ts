@@ -56,3 +56,48 @@ export function articleDate(date: string, lang: Lang = 'es') {
 export function headingId(value: string) {
   return value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 }
+
+function blockWeight(block: ArticleBlock) {
+  const parts = [block.text, ...(block.items ?? []), ...(block.headers ?? []), ...(block.rows ?? []).flat(), block.alt]
+  const text = parts.filter((part): part is string => typeof part === 'string').join(' ').length
+  if (block.type === 'image') return Math.max(text, 80)
+  if (block.type === 'code') return Math.max(text, 120)
+  return Math.max(text, 1)
+}
+
+// Cuántos bloques van antes del formulario: después de ~40 % del texto, sin cortar un título de su párrafo.
+export function insertAfterShare(blocks: ArticleBlock[], share = 0.4) {
+  if (blocks.length === 0) return 0
+  const weights = blocks.map(blockWeight)
+  const total = weights.reduce((sum, weight) => sum + weight, 0) || 1
+  let covered = 0
+  let index = blocks.length - 1
+  for (let i = 0; i < blocks.length; i++) {
+    covered += weights[i]
+    if (covered / total >= share) {
+      index = i
+      break
+    }
+  }
+  while (index < blocks.length - 1 && (blocks[index].type === 'heading' || blocks[index].type === 'subheading')) index += 1
+  return index + 1
+}
+
+// Recientes y, dentro de esos, una categoría distinta cada uno.
+export function getFeaturedArticles(lang: Lang = 'es', count = 4): Article[] {
+  const all = getPublicArticles(lang)
+  const picked: Article[] = []
+  const seen = new Set<string>()
+  for (const article of all) {
+    if (seen.has(article.category)) continue
+    seen.add(article.category)
+    picked.push(article)
+    if (picked.length === count) return picked
+  }
+  for (const article of all) {
+    if (picked.some(item => item.slug === article.slug)) continue
+    picked.push(article)
+    if (picked.length === count) break
+  }
+  return picked
+}

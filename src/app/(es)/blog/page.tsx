@@ -67,7 +67,7 @@ export default function BlogPage() {
             </div>
           )}
         </section>
-        <NewsletterCTA />
+        <NewsletterCTA anchor="boletin" />
       </main>
       <Footer />
     </>

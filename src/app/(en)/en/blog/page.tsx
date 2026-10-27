@@ -76,7 +76,7 @@ export default function BlogPageEn() {
             <ArticleCards articles={spanishOnly} lang="en" />
           </section>
         )}
-        <NewsletterCTA lang="en" />
+        <NewsletterCTA lang="en" anchor="boletin" />
       </main>
       <Footer lang="en" />
     </>

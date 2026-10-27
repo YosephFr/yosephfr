@@ -53,7 +53,7 @@ export default function Home() {
         <Experience />
         <Skills />
         <CTA />
-        <NewsletterCTA />
+        <NewsletterCTA anchor="boletin" />
       </main>
       <Footer />
     </>

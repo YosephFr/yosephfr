@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { preload } from 'react-dom'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import InternalLink from '@/components/InternalLink'
 import BackButton from '@/components/BackButton'
 import Footer from '@/components/Footer'
+import ArticleRead from '@/components/ArticleRead'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import ArticleBody from '@/components/blog/ArticleBody'
 import ArticleCards from '@/components/blog/ArticleCards'
@@ -11,14 +13,13 @@ import ArticleCover from '@/components/blog/ArticleCover'
 import ArticleToc from '@/components/blog/ArticleToc'
 import CopyLink from '@/components/CopyLink'
 import DotIcon from '@/components/dots/DotIcon'
-import { getArticle, getArticles, getTranslation, articleDate, articlePath, headingId, isEditorialPreview } from '@/data/articles'
+import { getArticle, getArticles, getTranslation, articleDate, articlePath, headingId, insertAfterShare, isEditorialPreview } from '@/data/articles'
+import { extraFaqFor } from '@/data/extra-faq'
+import { offerForArticle } from '@/data/offers'
 import { PROFILE } from '@/data/profile'
 import ProfilePhoto from '@/components/ProfilePhoto'
 import { breadcrumbs, jsonLd, og } from '@/lib/seo'
 import { UI, type Lang } from '@/lib/lang'
-
-// En estos el formulario queda junto al texto, antes de la ficha del autor. El resto lo mantiene al final.
-const NEWSLETTER_IN_BODY = new Set(['que-ve-un-agente-tarjeta-contrasena', 'what-an-ai-agent-sees-card-password', 'anthropic-s1-numeros-reales', 'anthropic-s1-real-numbers'])
 
 const TEXT = {
   es: { home: 'Inicio', articles: 'Artículos', read: 'min de lectura', updated: 'Actualizado', by: 'Escrito por', bio: 'Agentes de IA, software y automatización para el trabajo real.', cv: 'Ver CV', contact: 'Contacto', more: 'Sigue leyendo', other: 'Read in English', locale: 'es_AR' },
@@ -59,6 +60,9 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
   const blog = UI[lang].blog
   const other = getTranslation(article)
   const headings = article.blocks.filter(b => b.type === 'heading').map(b => ({ id: headingId(b.text!), text: b.text! }))
+  const offer = offerForArticle(article, lang)
+  const moreFaq = article.faq?.length ? extraFaqFor(article, lang) : []
+  const faq = [...(article.faq ?? []), ...moreFaq]
   const sameLanguage = getArticles(lang)
     .filter(a => a.slug !== slug)
     .sort((a, b) => Number(b.category === article.category) - Number(a.category === article.category) || Date.parse(b.date) - Date.parse(a.date))
@@ -91,11 +95,11 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
         // La versión en inglés declara de qué artículo es traducción.
         ...(other && lang === 'en' ? { translationOfWork: { '@id': `${PROFILE.url}${articlePath(other)}#articulo` } } : {}),
       },
-      ...(article.faq?.length ? [{
+      ...(faq.length ? [{
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
         inLanguage: lang,
-        mainEntity: article.faq.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })),
+        mainEntity: faq.map(item => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })),
       }] : []),
       breadcrumbs([{ name: t.home, path: UI[lang].home }, { name: t.articles, path: blog }, { name: article.title, path }]),
     ],
@@ -105,6 +109,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
       <main id="contenido" lang={lang} className="acento-azul">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <article>
+          <ArticleRead lang={lang} />
           <header className="marco articulo-cabeza">
             <BackButton href={blog} label={t.articles} />
             <h1>{article.title}</h1>
@@ -114,7 +119,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
               <span className="meta">
                 {article.category} · <Link href={UI[lang].home} rel="author">{PROFILE.name}</Link> · <time dateTime={article.date}>{published}</time> · {article.readingMinutes} {t.read}
                 {updated !== published && <> · {t.updated} <time dateTime={article.updated}>{updated}</time></>}
-                {other && <> · <Link href={articlePath(other)} hrefLang={other.language} lang={other.language} className="enlace">{t.other}</Link></>}
+                {other && <> · <InternalLink href={articlePath(other)} hrefLang={other.language} lang={other.language} className="enlace">{t.other}</InternalLink></>}
               </span>
               <CopyLink url={url} lang={lang} />
             </div>
@@ -130,8 +135,22 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
           <div className="marco articulo-rejilla">
             <div>
               {headings.length > 1 && <ArticleToc headings={headings} variant="movil" lang={lang} />}
-              <ArticleBody blocks={article.blocks} />
-              {NEWSLETTER_IN_BODY.has(article.slug) && <NewsletterCTA lang={lang} embedded />}
+              <ArticleBody
+                blocks={article.blocks}
+                cut={insertAfterShare(article.blocks)}
+                insert={<NewsletterCTA lang={lang} embedded anchor="boletin" offer={offer} />}
+              />
+              {moreFaq.length > 0 && (
+                <section className="faq-extra" aria-labelledby="faq-extra">
+                  <h2 id="faq-extra">{lang === 'en' ? 'One more question' : 'Una pregunta más'}</h2>
+                  {moreFaq.map(item => (
+                    <div key={item.q}>
+                      <h3>{item.q}</h3>
+                      <p>{item.a}</p>
+                    </div>
+                  ))}
+                </section>
+              )}
               <aside className="lamina autor" aria-label={t.by}>
                 <ProfilePhoto size={72} />
                 <div>
@@ -151,12 +170,12 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
           <section className="marco seccion" aria-labelledby="seguir-leyendo">
             <div className="seccion-cabeza">
               <h2 id="seguir-leyendo">{t.more}</h2>
-              <Link href={blog} className="enlace">{UI[lang].articles.all} <DotIcon name="flecha" size={13} /></Link>
+              <InternalLink href={blog} className="enlace">{UI[lang].articles.all} <DotIcon name="flecha" size={13} /></InternalLink>
             </div>
             <ArticleCards articles={related} lang={lang} />
           </section>
         )}
-        {!NEWSLETTER_IN_BODY.has(article.slug) && <NewsletterCTA lang={lang} />}
+        <NewsletterCTA lang={lang} offer={offer} />
       </main>
       <Footer lang={lang} />
     </>

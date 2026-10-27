@@ -35,6 +35,9 @@ jobs:
           printf '{"revision":"%s"}\n' "$GITHUB_SHA" > deploy-package/public/version.json
           printf 'Header set Cache-Control "public, max-age=31536000, immutable"\n' > deploy-package/public/_next/static/.htaccess
           tar -czf deployment.tgz -C deploy-package .
+      - name: Save the live sitemap for IndexNow
+        run: |
+          curl -fsS --retry 2 --max-time 25 -o /tmp/sitemap-before.xml https://yosephfr.com/sitemap.xml || : > /tmp/sitemap-before.xml
       - name: Deploy and verify, with rollback on failure
         env:
           HOSTINGER_DEPLOY_KEY: ${{ secrets.HOSTINGER_DEPLOY_KEY }}
@@ -44,3 +47,7 @@ jobs:
           chmod 600 "$HOME/.ssh/deploy_key"
           trap 'rm -f "$HOME/.ssh/deploy_key"' EXIT
           ssh -i "$HOME/.ssh/deploy_key" -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=deploy/hostinger-known-hosts u381549037@45.152.44.122 "deploy $GITHUB_SHA" < deployment.tgz
+      - name: Notify IndexNow of changed sitemap URLs
+        if: success()
+        continue-on-error: true
+        run: node scripts/indexnow.mjs /tmp/sitemap-before.xml deploy-package/public/sitemap.xml

@@ -21,8 +21,21 @@ export const THANKS_PATH: Record<Lang, string> = {
 }
 
 export const LEAD_MAGNET: Record<Lang, string> = {
-  es: 'Tabla de costo real: tiempo y USD por tarea entre modelos de IA, con mediciones propias',
-  en: 'Real-cost table: time and USD per task across AI models, from my own runs',
+  es: 'Un correo por semana con lo que pruebo y la tabla de costo de lista ya medida: USD de lista, no lo facturado. Tres modelos, una tarea, octubre de 2026.',
+  en: 'One email a week with what I test and the list-cost table already measured: list USD, not the amount billed. Three models, one task, October 2026.',
+}
+
+export const REAL_COST_OFFER: Record<Lang, { title: string; text: string; button: string }> = {
+  es: {
+    title: 'Qué pruebo, cada semana',
+    text: 'La tabla es pública: tres costos de lista de octubre de 2026 (USD de lista, no lo facturado). El newsletter es un correo por semana con lo que pruebo. No incluye cifras que no estén en el sitio.',
+    button: 'Suscribirme',
+  },
+  en: {
+    title: 'What I test, every week',
+    text: 'The table is public: three list costs from October 2026 (list USD, not the amount billed). The newsletter is one email a week with what I test. It does not include figures that are not on the site.',
+    button: 'Subscribe',
+  },
 }
 
 export const NEWSLETTER_CONSENT: Record<Lang, string> = {
@@ -34,35 +47,35 @@ export const BUTTONDOWN_ACTION = 'https://buttondown.com/api/emails/embed-subscr
 
 const COPY = {
   es: {
-    title: 'Costo real de modelos de IA',
-    headline: 'Tabla de costo real: tiempo y USD por tarea entre modelos de IA',
-    h1: 'Tabla de costo real',
-    task: 'La tarea fue construir un juego «roadster». La consigna fue la misma en los tres casos.',
+    title: 'Costo de lista de modelos de IA',
+    headline: 'La misma tarea costó entre 1,14 y 3,10 USD de lista',
+    h1: 'De 1,14 a 3,10 USD de lista',
+    task: 'La tarea fue construir un juego «roadster». La consigna fue la misma y hubo una sola ejecución por modelo.',
     when: 'octubre de 2026',
     other: 'Read in English',
     methodTitle: 'Cómo se midió',
-    method: 'Misma consigna, una sola ejecución, en mi cuenta, octubre de 2026. Los resultados varían.',
-    more: 'Por ahora son tres mediciones de una sola tarea. Van a llegar más. Si quieres las próximas, suscríbete.',
+    method: 'Misma consigna, una sola ejecución, en mi cuenta, octubre de 2026. El USD es de lista, no lo facturado. Los resultados varían.',
+    more: 'Hoy son tres mediciones de una sola tarea. El newsletter semanal cuenta lo que pruebo y recuerda esta tabla. No prometo mediciones que todavía no existen.',
     home: 'Inicio',
     homePath: '/',
-    columns: { model: 'Modelo', time: 'Tiempo', cost: 'Costo (USD)' },
-    caption: 'Modelo, tiempo y costo en USD',
+    columns: { model: 'Modelo', time: 'Tiempo', cost: 'Costo de lista (USD)' },
+    caption: 'Modelo, tiempo y costo de lista en USD. No es lo facturado.',
     sort: 'Ordenar por',
   },
   en: {
-    title: 'Real cost of AI models',
-    headline: 'Real-cost table: time and USD per task across AI models',
-    h1: 'Real-cost table',
-    task: "The task was to build a 'roadster' game. The prompt was the same in all three cases.",
+    title: 'List cost of AI models',
+    headline: 'The same task cost $1.14 to $3.10 at list price',
+    h1: '$1.14 to $3.10 list cost',
+    task: "The task was to build a 'roadster' game. The prompt was the same, with one run per model.",
     when: 'October 2026',
     other: 'Leer en español',
     methodTitle: 'How it was measured',
-    method: 'Same prompt, a single run, on my own account, October 2026. Results vary.',
-    more: 'For now these are three measurements of a single task. More are coming. Subscribe if you want the next ones.',
+    method: 'Same prompt, a single run, on my own account, October 2026. The USD figure is list cost, not the amount billed. Results vary.',
+    more: 'These are three measurements of a single task. The weekly newsletter covers what I test and points back to this table. I do not promise measurements that do not exist yet.',
     home: 'Home',
     homePath: '/en',
-    columns: { model: 'Model', time: 'Time', cost: 'Cost (USD)' },
-    caption: 'Model, time and cost in USD',
+    columns: { model: 'Model', time: 'Time', cost: 'List cost (USD)' },
+    caption: 'Model, time and list cost in USD. Not the amount billed.',
     sort: 'Sort by',
   },
 } as const
@@ -74,7 +87,7 @@ export function realCostCopy(lang: Lang) {
 export function realCostMetadata(lang: Lang): Metadata {
   const t = COPY[lang]
   const path = REAL_COST_PATH[lang]
-  const description = LEAD_MAGNET[lang]
+  const description = t.headline
   return {
     title: t.title,
     description,

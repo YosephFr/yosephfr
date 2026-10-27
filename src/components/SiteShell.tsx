@@ -10,6 +10,7 @@ import JsonLd from "@/components/JsonLd"
 import "@/app/globals.css"
 import { PROFILE } from "@/data/profile"
 import AnalyticsEvents from "@/components/AnalyticsEvents"
+import SocialStickyCta from "@/components/SocialStickyCta"
 import type { Lang } from "@/lib/lang"
 
 // Cada idioma tiene su layout raíz (app/(es) y app/(en)) para que <html lang> sea el correcto; los dos usan este marco.
@@ -72,6 +73,7 @@ export default function SiteShell({ lang, children }: Readonly<{ lang: Lang; chi
         <a href="#contenido" className="skip-link">{COPY[lang].skip}</a>
         <JsonLd />
         <AnalyticsEvents />
+        <SocialStickyCta />
         <ThemeProvider>
           <LocaleProvider>
             <ModalProvider>

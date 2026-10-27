@@ -6,6 +6,9 @@ Perfil: https://yosephfr.com/
 CV: https://yosephfr.com/cv
 Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
+Empieza aquí: https://yosephfr.com/empieza
+Start here: https://yosephfr.com/en/start
+Newsletter semanal: un correo por semana con lo que se prueba y la tabla de costo de lista (USD de lista, no lo facturado). Formulario en https://yosephfr.com/empieza y dentro de los artículos.
 
 # Probé Kimi K3.1 Pro, GPT-6 Astra y Opus 5.5 con el mismo prompt: el precio por token engaña
 

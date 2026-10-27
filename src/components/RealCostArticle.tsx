@@ -3,9 +3,10 @@
 import { useEffect, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
+import InternalLink from '@/components/InternalLink'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import RealCostTable from '@/components/RealCostTable'
-import { LEAD_MAGNET, REAL_COST_PATH, realCostCopy } from '@/data/real-cost'
+import { REAL_COST_OFFER, REAL_COST_PATH, REAL_COST_ROWS, realCostCopy } from '@/data/real-cost'
 import { PROFILE } from '@/data/profile'
 import { breadcrumbs, jsonLd } from '@/lib/seo'
 import type { Lang } from '@/lib/lang'
@@ -79,7 +80,7 @@ export default function RealCostArticle({ lang }: { lang: Lang }) {
         '@type': 'Article',
         '@id': `${url}#articulo`,
         headline: t.headline,
-        description: LEAD_MAGNET[lang],
+        description: t.headline,
         datePublished: '2026-10-24',
         dateModified: '2026-10-24',
         inLanguage: lang,
@@ -90,9 +91,32 @@ export default function RealCostArticle({ lang }: { lang: Lang }) {
         publisher: { '@id': `${PROFILE.url}/#person` },
         isPartOf: { '@id': `${PROFILE.url}/#website` },
       },
-      breadcrumbs([{ name: t.home, path: t.homePath }, { name: t.h1, path }]),
-    ],
-  }
+        breadcrumbs([{ name: t.home, path: t.homePath }, { name: t.h1, path }]),
+        {
+          '@type': 'Dataset',
+          '@id': `${url}#dataset`,
+          name: t.headline,
+          description: `${t.task} ${t.method}`,
+          url,
+          creator: { '@id': `${PROFILE.url}/#person` },
+          author: { '@type': 'Person', '@id': `${PROFILE.url}/#person`, name: PROFILE.name, url: PROFILE.url },
+          datePublished: '2026-10-24',
+          dateModified: '2026-10-24',
+          temporalCoverage: '2026-10',
+          inLanguage: lang,
+          isAccessibleForFree: true,
+          measurementTechnique: t.method,
+          keywords: lang === 'en'
+            ? 'list cost, AI models, Astra, Kimi, Opus'
+            : 'costo de lista, modelos de IA, Astra, Kimi, Opus',
+          variableMeasured: [
+            lang === 'en' ? 'Time' : 'Tiempo',
+            lang === 'en' ? 'List cost (USD), not the amount billed' : 'Costo de lista (USD), no lo facturado',
+          ],
+          distribution: { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: url },
+        },
+      ],
+    }
   return (
     <>
       <main id="contenido" lang={lang} className="acento-azul">
@@ -106,11 +130,18 @@ export default function RealCostArticle({ lang }: { lang: Lang }) {
             {' · '}
             <time dateTime="2026-10">{t.when}</time>
             {' · '}
-            <Link href={REAL_COST_PATH[other]} hrefLang={other} lang={other} className="enlace">{t.other}</Link>
+            <InternalLink href={REAL_COST_PATH[other]} hrefLang={other} lang={other} className="enlace">{t.other}</InternalLink>
           </p>
           <h1>{t.h1}</h1>
-          <p className="entrada-texto">{LEAD_MAGNET[lang]}</p>
           <p className="entrada-texto">{t.task}</p>
+          <ul className="costo-cifras">
+            {REAL_COST_ROWS.map(row => (
+              <li key={row.model}>
+                <strong>{row.cost}</strong>
+                <span>{row.model} · {row.time}</span>
+              </li>
+            ))}
+          </ul>
         </header>
         <section className="marco medicion" aria-labelledby="como-se-midio">
           <RealCostTable lang={lang} />
@@ -118,7 +149,7 @@ export default function RealCostArticle({ lang }: { lang: Lang }) {
           <p className="nota">{t.method}</p>
           <p className="nota">{t.more}</p>
         </section>
-        <NewsletterCTA lang={lang} />
+        <NewsletterCTA lang={lang} anchor="boletin" offer={REAL_COST_OFFER[lang]} />
       </main>
       <Footer lang={lang} />
     </>
