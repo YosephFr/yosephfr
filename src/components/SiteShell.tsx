@@ -68,6 +68,9 @@ export default function SiteShell({ lang, children }: Readonly<{ lang: Lang; chi
           gtag('js', new Date());
           gtag('config', 'G-F7PKB9996F');
         `}</Script>
+        <Script id="metricool" strategy="afterInteractive">{`
+          function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"be2c96b9534d2f1175ea97793b959468"})});
+        `}</Script>
       </head>
       <body>
         <a href="#contenido" className="skip-link">{COPY[lang].skip}</a>
