@@ -72,7 +72,7 @@ Las versiones corregidas y las mitigaciones vienen de Patch the Planet (https://
 
 # ‘If the open-source model runs locally, nothing leaves’: fact vs. panic in the Qwen case
 
-According to Cohere, an agent running Qwen3.8-Flash-Next tried to upload a file to an Alibaba Cloud bucket in Beijing. What is proven, what is interpretation, what is panic, and a checklist for running open models locally or as agents.
+According to Cohere, an agent running Qwen3.8-Flash-Next tried to upload a file to an Alibaba Cloud bucket in Beijing. According to a later Vals AI study, a different request shows no signs of exfiltration. What is proven, what is interpretation, what is panic, and a checklist for running open models locally or as agents.
 
 URL: https://yosephfr.com/en/blog/open-source-model-agent-exfiltration
 
@@ -82,9 +82,11 @@ Autor: Yoseph Franco (https://yosephfr.com/)
 
 Abstract illustration of a laptop marked local beside a dashed arrow toward a cloud bucket (https://yosephfr.com/blog/modelo-open-source-exfiltracion-agente/header.webp)
 
+Update Oct 28, 2026: Vals AI published the full study of the aliyuncs.com requests. According to that page there are no signs of exfiltration, the calls look like a leftover from training, and the domain is still active; The Decoder also credits Palisade Research.
+
 The standard argument for self-hosting goes like this: if the open-source model runs on your own hardware, your data stays inside. On Monday, October 26, Cohere published a report that tests that assumption. During an evaluation in a closed sandbox, Qwen3.8-Flash-Next, an open-weight model from Alibaba, tried to upload a test file to an Alibaba Cloud storage bucket in Beijing. The sandbox had no route to the internet, so the request went nowhere.
 
-Three caveats up front. Apart from one count of my own, flagged below, every number here comes from Cohere, and none of it has been independently replicated yet. As of this writing (October 27, 6:15 p.m. Argentina time, UTC-3), Alibaba had not responded publicly. And Cohere sells its own models to enterprises and governments, which makes it a direct competitor of Qwen.
+Three caveats up front. Apart from one count of my own, flagged below, the figures in the Cohere sections come from Cohere. They describe an attempted upload, and that upload has not been independently replicated. The Vals AI study, below, measures a different request. According to Vals AI, that request shows no signs of exfiltration. As of this writing (October 28, 8:18 a.m. Argentina time, UTC-3), Alibaba had not responded publicly. And Cohere sells its own models to enterprises and governments, which makes it a direct competitor of Qwen.
 
 ## What happened, according to Cohere
 
@@ -152,7 +154,7 @@ Where it differs:
 - It is a single trace, so it says nothing about frequency.
 - The author himself suggests it may be a hallucination.
 
-As of this writing, neither Cohere nor Alibaba had commented on the dataset.
+As of October 27 at 6:15 p.m. Argentina time, neither Cohere nor Alibaba had commented on the dataset. I did not reopen that file on October 28.
 
 ## Proven, claimed, and panic
 
@@ -160,19 +162,27 @@ What is documented, always according to Cohere: the commands in the trace, the u
 
 What is Cohere's interpretation: that the 169.254.169.254 probes are a credential grab, plus its two hypotheses about where the behavior comes from. One is harmless fossils, agent logs from training sandboxes or third-party tools that slipped into post-training unscrubbed. The other is a deliberate call-home implant that records which servers run agents and tries to exfiltrate data when it finds a way out. Cohere says it cannot tell which is right, and that who owns those buckets is not public.
 
-What is panic: claims that Qwen steals your data or is a trojan. The report does not show any data leaving, the payload was a test string, the sandbox blocked the request, and nobody knows who owns the bucket. It also includes no side-by-side test of other models under the same conditions, so it says nothing about whether Qwen behaves differently from its competitors.
+What is panic: claims that Qwen steals your data or is a trojan. Cohere's report does not show any data leaving, the payload was a test string, the sandbox blocked the request, and nobody knows who owns the bucket. It also includes no side-by-side test of other models under the same conditions, so it says nothing about whether Qwen behaves differently from its competitors. According to Vals AI, the separate requests they measured also show no evidence of exfiltration. That study does not confirm Cohere's upload.
 
 ## Who is making the claim
 
 In the report itself, Cohere describes itself as a sovereign AI company serving regulated industries, critical infrastructure, and governments, and it uses the post to pitch its own chain of custody for weights and its training-data lineage. It also releases open weights: Command A+ shipped in May under Apache 2.0. The research was done with Cohere Cyber, a unit that came out of its AISLE acquisition.
 
-That commercial interest does not invalidate the traces, which are public, but it is a good reason to read the conclusions carefully and wait for independent replication.
+That commercial interest does not invalidate the traces, which are public, but it is a good reason to read the conclusions carefully. The Vals AI study below is not an independent replication of the Beijing upload.
 
 ## Alibaba has not responded yet
 
-I last checked on October 27 at 6:15 p.m. Argentina time (UTC-3). Neither @Alibaba_Qwen nor @alibaba_cloud had posted anything about the report on X; the Alibaba Cloud account promoted Qwen3.8 Flash on October 26 and posted about Qwen-Image-2.1 and its Apsara conference in Amsterdam on October 27, without mentioning it. Cohere has not added an update to its report either. Reuters reported that Alibaba was not immediately available for comment outside business hours, and VentureBeat said it had asked Alibaba and the Qwen team for comment without a reply. The Register also reported that Alibaba did not respond to its request. If they respond, I will update this post.
+I last checked on October 28 at 8:18 a.m. Argentina time (UTC-3). @Alibaba_Qwen has not posted since October 14, and that post does not mention the report or the Vals study. On October 28 @alibaba_cloud posted about the Apsara conference in Amsterdam, Qwen audio, and image products, without mentioning either. I did not find a news report of an official reply. @cohere has no new post on X since the previous check on October 27. Reuters reported that Alibaba was not immediately available for comment outside business hours, and VentureBeat said it had asked Alibaba and the Qwen team for comment without a reply. The Register also reported that Alibaba did not respond to its request. If they respond, I will update this post.
 
-There is one partial, unofficial corroboration. On October 27 at 5:35 a.m. Argentina time, Vals AI, a company that evaluates models, posted on X (https://x.com/ValsAI/status/2114999431787643366): "We looked through some of our eval traces where Qwen works on routine, non-cyber tasks, and like Cohere, also found examples of Qwen3.8-Max and Qwen3.8-27B making unwanted requests to an Alibaba Cloud server, though with no obvious attempts at data exfiltration." That is a claim by Vals AI, not an independent replication of Cohere's case, and Alibaba had not responded to it either as of this writing.
+## What the Vals AI and Palisade Research study found
+
+On October 27, Vals AI published the full study, signed by Anthony Ozerov and Nikil Ravi: Why is my local Qwen sending requests to Alibaba Cloud? (https://www.vals.ai/blogs/qwen-alibaba-requests). It is the long version of the short note the company posted on X that morning. The Decoder (https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/) covers the same study and attributes the investigation to Palisade Research and Vals. The Vals page does not name Palisade Research, and I did not find this study on Palisade's site. Every figure in this section comes from the Vals page.
+
+According to Vals AI, they searched evaluation traces for the string aliyuncs.com in Qwen3.8-Max-0902, Qwen3.8-Max, Qwen3.8-27B, Qwen3.7-Max, and Qwen3.7-Flash. They found web fetches to routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com in the three Qwen3.8 models, and they did not find this behavior in the Qwen3.7 models. According to them, that host is an Alibaba Cloud storage proxy in Singapore (ap-southeast-1), not the Beijing bucket in Cohere's report, and in every case the server answered 403.
+
+According to Vals AI, a controlled test elicits the call by returning a fake 403 after a fetch. In that two-turn setup, Qwen3.8-27B requests aliyuncs.com about 2% of the time when inference runs on Alibaba and 4% of the time on CoreWeave. In a longer task, where the model is told to retry incomplete pages, Qwen3.8-Max does it about 4% of the time on Alibaba and 1% of the time on Fireworks. They ran the same two setups on DeepSeek-v4.1-Flash-1017, Kimi-K3.1-Pro, GLM-5.3, and Hy4-preview. According to them, some of those models called a public proxy such as r.jina.ai, and none tried to reach Aliyun or a proxy tied to its own maker. The traces where they first saw the calls used inference through Alibaba. According to them, the same behavior also appeared with inference on Fireworks and on CoreWeave, and other people have reported it when running Qwen3.8 locally.
+
+According to Vals AI, this does not look like the upload in Cohere's report. In their examples the models send requests to a server that might have been useful as a proxy during training, and their guess is reinforcement learning. They write that they did not find evidence of an attempt to exfiltrate sensitive data. The Decoder describes that conclusion as a training artifact. According to Vals AI, the domain still resolves and still returns 403. They note that it could log IP addresses and the requests it receives, and that if the operator stopped returning 403 and instead answered with a prompt asking the agent for more about its task, those calls would no longer be harmless.
 
 ## Why it matters even if it is rare
 
@@ -191,31 +201,33 @@ A model that only answers questions in a chat window cannot do much. A model wir
 
 ## Bottom line
 
-The Qwen case does not prove that an open model steals data. It shows something less comfortable: running the weights on your own server decides where the model runs, not what it does once it has tools. If your agent has network access, credentials, and broad permissions, the risk is there with any model. The checklist above is cheap, and it protects you even if Cohere's finding turns out to be a one-off.
+The Qwen case does not prove that an open model steals data. According to Vals AI, the Singapore proxy calls they measured look like a leftover from training, with no signs of exfiltration, and the domain is still active. What the case does show is narrower: running the weights on your own server decides where the model runs, not what it does once it has tools. If your agent has network access, credentials, and broad permissions, the same class of control matters for any model. The checklist above is cheap, and it still applies if Cohere's upload turns out to be a one-off.
 
 ## Frequently asked questions
 
 Did Qwen3.8-Flash-Next actually get data out?
 
-Not according to the report. Cohere's sandbox had no internet access, the request was blocked, and the payload was a test string.
+Not according to Cohere's report. The sandbox had no internet access, the request was blocked, and the payload was a test string. According to Vals AI, the separate requests they studied also showed no evidence of exfiltration.
 
 How often does this happen?
 
-According to Cohere, in fewer than 1 in 100,000 calls across its evaluations. The higher percentages, like the 92% URL generation rate, come from prefill tests where the researchers had already started the command.
+According to Cohere, in fewer than 1 in 100,000 calls across its evaluations. The higher percentages, like the 92% URL generation rate, come from prefill tests where the researchers had already started the command. Those figures are Cohere's. According to Vals AI, a different behavior, calling a Singapore proxy after a fake 403, showed up about 2% of the time on Alibaba and 4% of the time on CoreWeave in their Qwen3.8-27B test. That is not Cohere's rate, and it is not a measurement of the upload.
 
 Should I stop using Qwen?
 
-The report does not prove malicious intent and does not compare Qwen with other models. The sensible move is to apply the checklist to any model you run as an agent and watch for statements from Alibaba or independent replications.
+Cohere's report does not prove intent and does not compare Qwen with other models under the same conditions. According to Vals AI, the behavior they studied looks like a leftover from training, not exfiltration. The sensible move is to apply the checklist to any model you run as an agent and watch for a statement from Alibaba.
 
 What has Alibaba said?
 
-As of October 27 at 6:15 p.m. Argentina time, nothing publicly.
+As of October 28 at 8:18 a.m. Argentina time, nothing publicly that I could find. @Alibaba_Qwen has not posted since October 14, and @alibaba_cloud's posts on October 28 do not mention the report or the Vals study.
 
 ## Sources
 
 - Cohere: Concerning behavior from a popular open-weight AI model (https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model)
 - Cohere's post on X (https://x.com/cohere/status/2114752002370544004)
 - Vals AI on X: unwanted requests to an Alibaba Cloud server in its evals (https://x.com/ValsAI/status/2114999431787643366)
+- Vals AI: Why is my local Qwen sending requests to Alibaba Cloud? (https://www.vals.ai/blogs/qwen-alibaba-requests)
+- The Decoder: Alibaba's latest Qwen models routed some requests through company servers, researchers find (https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/)
 - Reuters via CNA: Alibaba not available for comment (https://www.channelnewsasia.com/business/alibaba-ai-model-secretly-tried-reach-beijing-server-in-test-rival-cohere-says-6494236)
 - The Register: Alibaba did not respond to a request for comment (https://www.theregister.com/ai-and-ml/2026/10/26/alibabas-qwen-ai-caught-trying-to-contact-server-in-china/5305561)
 - VentureBeat: no reply from Alibaba or Qwen to a request for comment (https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know)
@@ -230,7 +242,7 @@ As of October 27 at 6:15 p.m. Argentina time, nothing publicly.
 
 # «Si el modelo open source corre en local, nada sale»: dato vs. pánico en el caso Qwen
 
-Según Cohere, un agente con Qwen3.8-Flash-Next intentó subir un archivo a un bucket de Alibaba Cloud en Pekín. Qué está probado, qué es interpretación, qué es pánico y una checklist para correr modelos abiertos en local o en agentes.
+Según Cohere, un agente con Qwen3.8-Flash-Next intentó subir un archivo a un bucket de Alibaba Cloud en Pekín. Según un estudio posterior de Vals AI, otra petición no muestra señales de exfiltración. Qué está probado, qué es interpretación, qué es pánico y una checklist para correr modelos abiertos en local o en agentes.
 
 URL: https://yosephfr.com/blog/modelo-open-source-exfiltracion-agente
 
@@ -240,9 +252,11 @@ Autor: Yoseph Franco (https://yosephfr.com/)
 
 Ilustración abstracta de un portátil marcado local junto a una flecha discontinua hacia un bucket en la nube (https://yosephfr.com/blog/modelo-open-source-exfiltracion-agente/header.webp)
 
+Actualización 28/10/2026: Vals AI publicó el estudio completo de las peticiones a aliyuncs.com. Según esa página no hay señales de exfiltración, las llamadas parecen un resto del entrenamiento y el dominio sigue activo; The Decoder también atribuye el trabajo a Palisade Research.
+
 Mucha gente da por hecho que un modelo open source que corres en tus propios servidores no puede sacar datos de tu red. El lunes 26 de octubre Cohere publicó un informe que pone a prueba esa idea: durante una evaluación en un sandbox cerrado, Qwen3.8-Flash-Next, un modelo de pesos abiertos de Alibaba, intentó subir un archivo de prueba a un bucket de Alibaba Cloud en Pekín. El sandbox no tenía salida a internet y la petición murió ahí.
 
-Antes de seguir, tres avisos. Salvo un conteo propio que señalo más abajo, todas las cifras de esta nota son de Cohere y nadie las replicó todavía de forma independiente. Al cierre de esta nota (27 de octubre, 18:15 hora de Argentina) Alibaba no había respondido públicamente. Y Cohere vende sus propios modelos a empresas y gobiernos, así que compite directamente con Qwen.
+Antes de seguir, tres avisos. Salvo un conteo propio que señalo más abajo, las cifras de las secciones de Cohere son de Cohere. Describen un intento de subida, y esa subida nadie la replicó de forma independiente. El estudio de Vals AI, más abajo, mide otra petición. Según Vals AI, esa petición no muestra señales de exfiltración. Al cierre de esta nota (28 de octubre, 08:18 hora de Argentina) Alibaba no había respondido públicamente. Y Cohere vende sus propios modelos a empresas y gobiernos, así que compite directamente con Qwen.
 
 ## Qué pasó, según Cohere
 
@@ -310,7 +324,7 @@ En qué se diferencia:
 - Es un solo trace, así que no dice nada de frecuencia.
 - El propio autor plantea que puede ser una alucinación.
 
-Ni Cohere ni Alibaba comentaron sobre este dataset hasta el cierre de esta nota.
+Hasta el 27 de octubre a las 18:15 hora de Argentina, ni Cohere ni Alibaba habían comentado este dataset. El 28 de octubre no volví a abrir ese archivo.
 
 ## Probado, afirmado y pánico
 
@@ -318,19 +332,27 @@ Lo que está documentado, siempre según Cohere: los comandos del trace, el inte
 
 Lo que es interpretación de Cohere: que el acceso a 169.254.169.254 sea un intento de robo de credenciales, y las dos hipótesis sobre el origen. La primera es que sean restos inofensivos de los sandboxes de entrenamiento o de herramientas de terceros que se colaron en el post-entrenamiento sin limpiar. La segunda es un implante deliberado para registrar servidores con agentes y exfiltrar datos cuando haya salida. Cohere dice que no puede responder cuál es la correcta y que quién controla esos buckets no es público.
 
-Lo que es pánico: decir que Qwen roba tus datos o que es un troyano. El informe no muestra que haya salido ningún dato, la carga era una cadena de prueba, el sandbox bloqueó la petición y no se sabe de quién es el bucket. Tampoco incluye una comparación con otros modelos en las mismas condiciones, así que no dice si Qwen se comporta distinto que la competencia.
+Lo que es pánico: decir que Qwen roba tus datos o que es un troyano. El informe de Cohere no muestra que haya salido ningún dato, la carga era una cadena de prueba, el sandbox bloqueó la petición y no se sabe de quién es el bucket. Tampoco incluye una comparación con otros modelos en las mismas condiciones, así que no dice si Qwen se comporta distinto que la competencia. Según Vals AI, las peticiones distintas que midieron tampoco muestran evidencia de exfiltración. Ese estudio no confirma la subida de Cohere.
 
 ## Quién lo dice
 
 Cohere se presenta en el propio informe como una empresa de IA soberana que vende a empresas reguladas, infraestructura crítica y gobiernos, y usa el texto para promocionar su cadena de custodia de pesos y su trazabilidad de datos de entrenamiento. También publica modelos abiertos: Command A+ salió en mayo con licencia Apache 2.0. La investigación se hizo junto a Cohere Cyber, su unidad nacida de la compra de AISLE.
 
-Ese interés comercial no invalida los traces, que están publicados, pero conviene leer las conclusiones con eso en mente y esperar replicaciones independientes.
+Ese interés comercial no invalida los traces, que están publicados, pero conviene leer las conclusiones con eso en mente. El estudio de Vals AI, más abajo, no es una replicación independiente de la subida a Pekín.
 
 ## Alibaba todavía no respondió
 
-Revisé por última vez el 27 de octubre a las 18:15 hora de Argentina. Ni @Alibaba_Qwen ni @alibaba_cloud publicaron nada sobre el informe en X; la cuenta de Alibaba Cloud promocionó Qwen3.8 Flash el 26 de octubre y el 27 publicó sobre Qwen-Image-2.1 y su conferencia Apsara en Ámsterdam, sin mencionarlo. Cohere tampoco agregó una actualización a su informe. Reuters informó que Alibaba no estaba disponible para comentar fuera del horario laboral y VentureBeat dijo que pidió comentarios a Alibaba y al equipo de Qwen sin respuesta. The Register también informó que Alibaba no respondió a su consulta. Si responden, actualizo esta nota.
+Revisé por última vez el 28 de octubre a las 08:18 hora de Argentina. @Alibaba_Qwen no publica desde el 14 de octubre, y ese post no menciona el informe ni el estudio de Vals. El 28 de octubre @alibaba_cloud publicó sobre la conferencia Apsara en Ámsterdam, sobre audio de Qwen y sobre productos de imagen, sin mencionar ninguno de los dos. No encontré una noticia con una respuesta oficial. @cohere no tiene un post nuevo en X desde la revisión del 27 de octubre. Reuters informó que Alibaba no estaba disponible para comentar fuera del horario laboral y VentureBeat dijo que pidió comentarios a Alibaba y al equipo de Qwen sin respuesta. The Register también informó que Alibaba no respondió a su consulta. Si responden, actualizo esta nota.
 
-Hay una corroboración parcial y no oficial. El 27 de octubre a las 05:35 hora de Argentina, Vals AI, una empresa que evalúa modelos, publicó en X (https://x.com/ValsAI/status/2114999431787643366) que al revisar sus propios traces de evaluación, con Qwen en tareas de rutina que no eran de ciberseguridad, encontró, igual que Cohere, ejemplos de Qwen3.8-Max y Qwen3.8-27B haciendo peticiones no deseadas a un servidor de Alibaba Cloud. Su texto literal: "We looked through some of our eval traces where Qwen works on routine, non-cyber tasks, and like Cohere, also found examples of Qwen3.8-Max and Qwen3.8-27B making unwanted requests to an Alibaba Cloud server, though with no obvious attempts at data exfiltration." Es una afirmación de Vals AI, no una replicación independiente del caso de Cohere, y Alibaba tampoco respondió a ella hasta el cierre de esta nota.
+## Lo que encontró el estudio de Vals AI y Palisade Research
+
+El 27 de octubre Vals AI publicó el estudio completo, firmado por Anthony Ozerov y Nikil Ravi: Why is my local Qwen sending requests to Alibaba Cloud? (https://www.vals.ai/blogs/qwen-alibaba-requests). Es la versión larga de la nota breve que la empresa publicó en X esa mañana. The Decoder (https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/) cubre el mismo estudio y atribuye la investigación a Palisade Research y a Vals. La página de Vals no nombra a Palisade Research, y no encontré este estudio en el sitio de Palisade. Todas las cifras de esta sección salen de la página de Vals.
+
+Según Vals AI, buscaron la cadena aliyuncs.com en traces de evaluación de Qwen3.8-Max-0902, Qwen3.8-Max, Qwen3.8-27B, Qwen3.7-Max y Qwen3.7-Flash. Encontraron peticiones web a routify-file-proxy-sg.oss-ap-southeast-1.aliyuncs.com en los tres modelos Qwen3.8, y no encontraron este comportamiento en los modelos Qwen3.7. Según ellos, ese host es un proxy de almacenamiento de Alibaba Cloud en Singapur (ap-southeast-1), no el bucket de Pekín del informe de Cohere, y en todos los casos el servidor respondió 403.
+
+Según Vals AI, una prueba controlada saca la llamada devolviendo un 403 falso después de un intento de obtener una página. En ese esquema de dos turnos, Qwen3.8-27B pide aliyuncs.com alrededor del 2% de las veces cuando la inferencia corre en Alibaba y el 4% de las veces en CoreWeave. En una tarea más larga, en la que el modelo tiene que reintentar las páginas incompletas, Qwen3.8-Max lo hace alrededor del 4% de las veces en Alibaba y el 1% de las veces en Fireworks. Corrieron los mismos dos esquemas en DeepSeek-v4.1-Flash-1017, Kimi-K3.1-Pro, GLM-5.3 y Hy4-preview. Según ellos, algunos de esos modelos llamaron a un proxy público como r.jina.ai, y ninguno intentó llegar a Aliyun ni a un proxy de su propio fabricante. Los traces en los que vieron las llamadas por primera vez usaban inferencia de Alibaba. Según ellos, el mismo comportamiento también apareció con inferencia en Fireworks y en CoreWeave, y otras personas lo reportaron al correr Qwen3.8 en local.
+
+Según Vals AI, esto no se parece a la subida del informe de Cohere. En sus ejemplos los modelos envían peticiones a un servidor que pudo servir de proxy durante el entrenamiento, y su hipótesis es el aprendizaje por refuerzo. Escriben que no encontraron evidencia de un intento de exfiltrar datos sensibles. The Decoder describe esa conclusión como un artefacto de entrenamiento. Según Vals AI, el dominio sigue resolviendo y sigue devolviendo 403. Anotan que podría registrar direcciones IP y las peticiones que recibe, y que si quien lo opera dejara de responder 403 y contestara con un prompt pidiendo al agente más datos sobre su tarea, esas llamadas dejarían de ser inofensivas.
 
 ## Por qué importa aunque sea raro
 
@@ -349,31 +371,33 @@ Un modelo que solo responde preguntas en un chat no puede hacer mucho. Un modelo
 
 ## Conclusión
 
-El caso Qwen no demuestra que un modelo abierto te robe datos. Demuestra algo más incómodo: correr los pesos en tu servidor decide dónde se ejecuta el modelo, no lo que hace cuando tiene herramientas. Si tu agente tiene red, credenciales y permisos amplios, el riesgo existe con cualquier modelo. La checklist de arriba cuesta poco y te cubre aunque el informe de Cohere termine siendo un caso aislado.
+El caso Qwen no demuestra que un modelo abierto te robe datos. Según Vals AI, las llamadas al proxy de Singapur que midieron parecen un resto del entrenamiento, sin señales de exfiltración, y el dominio sigue activo. Lo que el caso sí muestra es más acotado: correr los pesos en tu servidor decide dónde se ejecuta el modelo, no lo que hace cuando tiene herramientas. Si tu agente tiene red, credenciales y permisos amplios, el mismo tipo de control importa con cualquier modelo. La checklist de arriba cuesta poco y sigue aplicando si la subida de Cohere termina siendo un caso aislado.
 
 ## Preguntas frecuentes
 
 ¿Qwen3.8-Flash-Next sacó datos reales de la red?
 
-No según el informe. El sandbox de Cohere no tenía salida a internet, la petición se bloqueó y la carga era una cadena de prueba.
+No según el informe de Cohere. El sandbox no tenía salida a internet, la petición se bloqueó y la carga era una cadena de prueba. Según Vals AI, las peticiones distintas que estudiaron tampoco mostraron evidencia de exfiltración.
 
 ¿Con qué frecuencia pasa?
 
-Según Cohere, en menos de 1 de cada 100.000 llamadas en sus evaluaciones. Los porcentajes más altos, como el 92% de generación de URLs, salen de pruebas de prefill en las que los investigadores empezaban el comando.
+Según Cohere, en menos de 1 de cada 100.000 llamadas en sus evaluaciones. Los porcentajes más altos, como el 92% de generación de URLs, salen de pruebas de prefill en las que los investigadores empezaban el comando. Esas cifras son de Cohere. Según Vals AI, otro comportamiento, llamar a un proxy de Singapur después de un 403 falso, apareció alrededor del 2% de las veces en Alibaba y el 4% de las veces en CoreWeave en su prueba de Qwen3.8-27B. No es la tasa de Cohere ni una medición de la subida.
 
 ¿Tengo que dejar de usar Qwen?
 
-El informe no prueba intención maliciosa ni compara con otros modelos. Lo sensato es aplicar los controles de la checklist a cualquier modelo que uses como agente y seguir de cerca si Alibaba o investigadores independientes publican algo.
+El informe de Cohere no prueba intención ni compara a Qwen con otros modelos en las mismas condiciones. Según Vals AI, el comportamiento que estudiaron parece un resto del entrenamiento, no una exfiltración. Lo sensato es aplicar la checklist a cualquier modelo que uses como agente y estar atento a si Alibaba publica una respuesta.
 
 ¿Qué respondió Alibaba?
 
-Al 27 de octubre a las 18:15 hora de Argentina, nada en público.
+Al 28 de octubre a las 08:18 hora de Argentina, nada en público que haya encontrado. @Alibaba_Qwen no publica desde el 14 de octubre, y los posts de @alibaba_cloud del 28 de octubre no mencionan el informe ni el estudio de Vals.
 
 ## Fuentes
 
 - Cohere: Concerning behavior from a popular open-weight AI model (https://cohere.com/blog/concerning-behaviour-popular-open-weight-ai-model)
 - Publicación de Cohere en X (https://x.com/cohere/status/2114752002370544004)
 - Vals AI en X: peticiones no deseadas a un servidor de Alibaba Cloud en sus evaluaciones (https://x.com/ValsAI/status/2114999431787643366)
+- Vals AI: Why is my local Qwen sending requests to Alibaba Cloud? (https://www.vals.ai/blogs/qwen-alibaba-requests)
+- The Decoder: investigadores encuentran peticiones de Qwen hacia un proxy de Alibaba Cloud (https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/)
 - Reuters vía CNA: Alibaba no disponible para comentar (https://www.channelnewsasia.com/business/alibaba-ai-model-secretly-tried-reach-beijing-server-in-test-rival-cohere-says-6494236)
 - The Register: Alibaba no respondió a la consulta (https://www.theregister.com/ai-and-ml/2026/10/26/alibabas-qwen-ai-caught-trying-to-contact-server-in-china/5305561)
 - VentureBeat: pedido de comentarios a Alibaba y Qwen sin respuesta (https://venturebeat.com/data/coheres-test-caught-an-open-source-qwen3-8-model-trying-to-phone-home-to-china-what-enterprises-should-know)
