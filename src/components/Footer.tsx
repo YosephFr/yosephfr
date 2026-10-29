@@ -8,6 +8,7 @@ export default function Footer({ lang = 'es' }: { lang?: Lang }) {
   const sections = [
     { href: t.home, label: t.nav.home },
     { href: t.blog, label: t.nav.articles },
+    { href: t.newsletter, label: t.nav.newsletter },
     { href: t.cv, label: t.nav.cv },
     { href: t.contactPath, label: t.nav.contact },
   ]

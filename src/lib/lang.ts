@@ -5,8 +5,8 @@ export const isEnglishPath = (path: string) => path === '/en' || path.startsWith
 
 export const UI = {
   es: {
-    home: '/', blog: '/blog', cv: '/cv', contactPath: '/contacto',
-    nav: { home: 'Inicio', articles: 'Artículos', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio' },
+    home: '/', blog: '/blog', cv: '/cv', contactPath: '/contacto', newsletter: '/newsletter',
+    nav: { home: 'Inicio', articles: 'Artículos', newsletter: 'Newsletter', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio' },
     hero: {
       title: 'IA que llega al trabajo real.',
       text: 'Construyo agentes, software y automatizaciones. Comparto lo que sirve para pasar de una idea a un producto que funciona.',
@@ -32,8 +32,8 @@ export const UI = {
     footer: { tagline: 'Agentes de IA, software y automatización para el trabajo real.', sections: 'Secciones', profiles: 'Perfiles', other: 'English', otherHref: '/en' },
   },
   en: {
-    home: '/en', blog: '/en/blog', cv: '/en/cv', contactPath: '/en/contact',
-    nav: { home: 'Home', articles: 'Articles', cv: 'CV', contact: 'Contact', brand: 'Arncof, home' },
+    home: '/en', blog: '/en/blog', cv: '/en/cv', contactPath: '/en/contact', newsletter: '/en/newsletter',
+    nav: { home: 'Home', articles: 'Articles', newsletter: 'Newsletter', cv: 'CV', contact: 'Contact', brand: 'Arncof, home' },
     hero: {
       title: 'AI that reaches real work.',
       text: 'I build agents, software and automations. I share what helps turn an idea into a product that works.',

@@ -76,7 +76,8 @@ ${link('List-cost table of AI models', `${origin}/en/resources/real-cost-ai-mode
 ## Newsletter
 ${link('Empieza aquí', `${origin}/empieza`, 'página para quien llega desde redes: quién es Yoseph Franco, artículos recientes y el newsletter semanal')}
 ${link('Start here', `${origin}/en/start`, 'short English page for social traffic, with the weekly newsletter and recent articles')}
-${link('Newsletter semanal', `${origin}/empieza`, 'un correo por semana con lo que se prueba y la tabla de costo de lista medida (USD de lista, no lo facturado)')}
+${link('Newsletter', `${origin}/newsletter`, 'notas de Franco sobre agentes de IA, modelos, automatización y herramientas de código, y los artículos nuevos. Un correo por semana')}
+${link('Newsletter', `${origin}/en/newsletter`, "Franco's notes on AI agents, models, automation and coding tools, plus new posts. One email a week")}
 
 ## Artículos
 ${posts(spanish)}
@@ -101,7 +102,8 @@ Contacto: ${origin}/contacto
 English: ${origin}/en
 Empieza aquí: ${origin}/empieza
 Start here: ${origin}/en/start
-Newsletter semanal: un correo por semana con lo que se prueba y la tabla de costo de lista (USD de lista, no lo facturado). Formulario en ${origin}/empieza y dentro de los artículos.
+Newsletter: ${origin}/newsletter
+Newsletter (English): ${origin}/en/newsletter
 
 ${visible.map(articleText).join('\n\n---\n\n')}
 `
