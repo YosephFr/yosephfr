@@ -11,4 +11,6 @@ Repository secret: `HOSTINGER_DEPLOY_KEY`. The forced SSH command permits only `
 
 Keep `.well-known` in the shared state directory. Domain email still receives through iCloud. Contact SMTP changes were explicitly deferred and are not part of this deployment.
 
+Public social videos and covers live in `shared-media/` outside releases. The receiver links each release's `/media/` to that directory so scheduled posts can retrieve the same files after a website deploy. Only approved public media belongs there; do not put private source files or credentials in it. Use versioned filenames and keep them available while any scheduled or published post references them.
+
 After a successful deploy, the workflow compares the previous sitemap with the new one and notifies IndexNow. The key is the public file `public/<key>.txt` (IndexNow keys are public by design). A failed notification does not fail the deploy.
