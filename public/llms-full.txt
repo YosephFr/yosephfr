@@ -21,6 +21,8 @@ Publicado: 2026-10-29T12:35:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
 
+Ilustración abstracta de un medidor de uso que baja hacia un calendario marcado 30/10, junto a un signo de pregunta (https://yosephfr.com/blog/chatgpt-pro-200-10x-codex-limites/header.webp)
+
 Respuesta corta: OpenAI confirma en su centro de ayuda (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) que las suscripciones de Pro 200 que cumplen ciertas condiciones conservan el uso anterior hasta el 29 de octubre de 2026 y que después pasan a un uso incluido menor, con el mismo precio de 200 dólares al mes. Lo que OpenAI no publica es cuánto menor. El "de 20x a 10x" en Codex, el recorte de 200 a 100 mensajes semanales de GPT-6 Pro y los 62.500 créditos de regalo salen de un email que un usuario dice haber recibido y que publicó en Hacker News (https://news.ycombinator.com/item?id=49901067). OpenAI no confirmó esas cifras en público. Abajo tienes la separación completa y una checklist para antes del 30/10.
 
 Desde fines de septiembre circula la misma frase: "Pro 200 baja a 10x". Se repite en X, en foros y en grupos de desarrolladores como si fuera un dato oficial, sobre todo entre quienes usan Codex todo el día. El cambio entra mañana, 30 de octubre, y conviene saber qué parte tiene respaldo de OpenAI y qué parte es un email reenviado.
@@ -158,6 +160,8 @@ URL: https://yosephfr.com/en/blog/chatgpt-pro-200-10x-codex-limits
 Publicado: 2026-10-29T12:35:00-03:00
 
 Autor: Yoseph Franco (https://yosephfr.com/)
+
+Abstract illustration of a usage gauge dropping toward a calendar marked 30/10, next to a question mark (https://yosephfr.com/blog/chatgpt-pro-200-10x-codex-limites/header.webp)
 
 Short answer: OpenAI's help center (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) confirms that eligible Pro 200 subscriptions keep the previous allowance through October 29, 2026, then move to a lower included allowance at the same $200 a month. What OpenAI does not publish is how much lower. The "20x to 10x" figure for Codex, the cut from 200 to 100 weekly GPT-6 Pro messages and the 62,500 bonus credits all come from an email a user says they received and posted on Hacker News (https://news.ycombinator.com/item?id=49901067). OpenAI hasn't confirmed those numbers publicly. Below is the full split, plus a checklist for the hours left before the change.
 

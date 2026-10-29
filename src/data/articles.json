@@ -11,6 +11,12 @@
     "updated": "2026-10-29T12:35:00-03:00",
     "publication": "published",
     "readingMinutes": 12,
+    "cover": {
+      "src": "/blog/chatgpt-pro-200-10x-codex-limites/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Ilustración abstracta de un medidor de uso que baja hacia un calendario marcado 30/10, junto a un signo de pregunta"
+    },
     "blocks": [
       {
         "type": "paragraph",
@@ -241,6 +247,12 @@
     "updated": "2026-10-29T12:35:00-03:00",
     "publication": "published",
     "readingMinutes": 10,
+    "cover": {
+      "src": "/blog/chatgpt-pro-200-10x-codex-limites/header.webp",
+      "width": 1600,
+      "height": 900,
+      "alt": "Abstract illustration of a usage gauge dropping toward a calendar marked 30/10, next to a question mark"
+    },
     "blocks": [
       {
         "type": "paragraph",
