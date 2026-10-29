@@ -3,8 +3,10 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { sendEvent } from '@/lib/attribution'
+import { trackMeta } from '@/lib/meta'
 
 const PENDING_KEY = 'nl_pending'
+const EM_KEY = 'nl_em'
 const MAX_AGE_MS = 30 * 60 * 1000
 
 function readPending(): { lang: 'es' | 'en'; ts: number } | null {
@@ -31,8 +33,20 @@ function qualifies(pending: { lang: 'es' | 'en'; ts: number }) {
 
 // gtag loads afterInteractive, and the English redirect unmounts this page.
 // Keep trying briefly without tying the timer to the component lifecycle.
+function readEm() {
+  try {
+    const value = sessionStorage.getItem(EM_KEY) ?? undefined
+    sessionStorage.removeItem(EM_KEY)
+    return value
+  } catch {
+    return undefined
+  }
+}
+
 function fireLead(lang: 'es' | 'en') {
   sendEvent('generate_lead', { method: 'newsletter', language: lang })
+  // No hash: trackMeta sends the pixel only. The worker rejects a Lead without em.
+  trackMeta('Lead', { form_name: 'newsletter', lang }, { em: readEm() })
 }
 
 export default function LeadConfirm() {

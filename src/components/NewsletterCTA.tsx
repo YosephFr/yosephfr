@@ -4,6 +4,7 @@ import { useId, useRef, type FormEvent } from 'react'
 import { defaultOffer, type NewsletterOffer } from '@/data/offers'
 import { BUTTONDOWN_ACTION, NEWSLETTER_CONSENT } from '@/data/real-cost'
 import { sendEvent } from '@/lib/attribution'
+import { sha256Email } from '@/lib/meta'
 import type { Lang } from '@/lib/lang'
 
 const TEXT = {
@@ -20,6 +21,7 @@ const TEXT = {
 } as const
 
 const PENDING_KEY = 'nl_pending'
+const EM_KEY = 'nl_em'
 
 export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, offer }: { lang?: Lang; embedded?: boolean; anchor?: string; offer?: NewsletterOffer }) {
   const t = TEXT[lang]
@@ -43,6 +45,15 @@ export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, o
         email.reportValidity()
         return
       }
+    }
+
+    if (email instanceof HTMLInputElement && email.value) {
+      // Drop a stale hash first. The new one is stored when the digest resolves, without blocking the POST.
+      try { sessionStorage.removeItem(EM_KEY) } catch { /* storage can be blocked */ }
+      const address = email.value
+      sha256Email(address).then(hash => {
+        try { sessionStorage.setItem(EM_KEY, hash) } catch { /* storage can be blocked */ }
+      }).catch(() => {})
     }
 
     try {

@@ -1,26 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { trackMeta } from '@/lib/meta'
 
-declare global {
-  interface Window {
-    fbq?: (...args: unknown[]) => void
-  }
-}
-
-// The inline pixel already sends PageView on the first load. Client navigations
-// (next/link) do not re-run that script, so those get their own PageView.
+// Replaces the inline PageView so the first load and client navigations
+// share one event_id with the Conversions API. The pixel snippet no longer
+// tracks PageView itself.
 export default function MetaPixelPageView() {
   const pathname = usePathname()
-  const initial = useRef(true)
 
   useEffect(() => {
-    if (initial.current) {
-      initial.current = false
-      return
-    }
-    if (typeof window.fbq === 'function') window.fbq('track', 'PageView')
+    trackMeta('PageView')
   }, [pathname])
 
   return null

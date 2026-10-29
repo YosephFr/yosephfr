@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import ArticleView, { articleMetadata } from '@/components/blog/ArticleView'
-import { getArticleSlugs, EMPTY_SLUG } from '@/data/articles'
+import MetaViewContent from '@/components/MetaViewContent'
+import { getArticle, getArticleSlugs, EMPTY_SLUG } from '@/data/articles'
 
 export const dynamic = 'force-static'
 type Props = { params: Promise<{ slug: string }> }
@@ -16,5 +17,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  return <ArticleView slug={(await params).slug} lang="es" />
+  const slug = (await params).slug
+  const article = getArticle(slug, 'es')
+  return (
+    <>
+      {article ? <MetaViewContent name={article.title} type="article" lang="es" /> : null}
+      <ArticleView slug={slug} lang="es" />
+    </>
+  )
 }

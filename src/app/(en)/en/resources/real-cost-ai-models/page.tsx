@@ -1,8 +1,14 @@
 import RealCostArticle from '@/components/RealCostArticle'
-import { realCostMetadata } from '@/data/real-cost'
+import MetaViewContent from '@/components/MetaViewContent'
+import { realCostCopy, realCostMetadata } from '@/data/real-cost'
 
 export const metadata = realCostMetadata('en')
 
 export default function RealCostPage() {
-  return <RealCostArticle lang="en" />
+  return (
+    <>
+      <MetaViewContent name={realCostCopy('en').title} type="resource" lang="en" />
+      <RealCostArticle lang="en" />
+    </>
+  )
 }
