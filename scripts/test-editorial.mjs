@@ -156,7 +156,8 @@ test('ProfilePage trae una Person con name en mainEntity, y los artículos nuevo
   assert.equal(page.mainEntity['@type'],'Person');
   assert.equal(page.mainEntity.name,'Yoseph Franco');
   assert.equal(page.mainEntity.jobTitle,'AI Engineer');
-  assert.ok(String(page.mainEntity.image.url).endsWith('/yoseph-franco.webp'));
+  assert.equal(page.mainEntity.image.url, new URL(profile.PROFILE.photo, profile.PROFILE.url).href);
+  assert.equal(fs.existsSync(path.join(site,'public',profile.PROFILE.photo)),true);
   assert.ok(page.mainEntity.sameAs.length>=3);
   assert.ok(page.dateModified);
   assert.equal(page.mainEntity['@id'].endsWith('#person'),true);
@@ -173,6 +174,5 @@ test('ProfilePage trae una Person con name en mainEntity, y los artículos nuevo
     for(const broken of ['/blog/precio-api-claude-gpt-gemini','/blog/modelos-ia-pesos-abiertos-2026','/blog/como-crear-agente-ia']) assert.equal(blob.includes(broken),false,broken);
   }
   assert.equal(articles.filter(item=>item.slug==='continuidad-entre-sesiones-de-agentes'||item.slug==='referencias-antes-de-redisenar').length,2);
-  assert.equal(fs.existsSync(path.join(site,'public/yoseph-franco.webp')),true);
   assert.equal(fs.existsSync(path.join(site,'public/avatar-light.png')),false);
 });
