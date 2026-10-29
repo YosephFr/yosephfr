@@ -8,7 +8,284 @@ Contacto: https://yosephfr.com/contacto
 English: https://yosephfr.com/en
 Empieza aquí: https://yosephfr.com/empieza
 Start here: https://yosephfr.com/en/start
-Newsletter semanal: un correo por semana con lo que se prueba y la tabla de costo de lista (USD de lista, no lo facturado). Formulario en https://yosephfr.com/empieza y dentro de los artículos.
+Newsletter: https://yosephfr.com/newsletter
+Newsletter (English): https://yosephfr.com/en/newsletter
+
+# ¿ChatGPT Pro 200 baja a 10x el 30/10? Qué confirma OpenAI y qué dice el email
+
+OpenAI confirma que el uso anterior de ChatGPT Pro 200 termina el 29/10 y que el precio sigue en 200 dólares. El 10x en Codex, los 100 mensajes y los 62.500 créditos salen de un email que un usuario publicó en Hacker News. Qué está confirmado, qué no y qué hacer antes del 30/10 con tus límites.
+
+URL: https://yosephfr.com/blog/chatgpt-pro-200-10x-codex-limites
+
+Publicado: 2026-10-29T12:35:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Respuesta corta: OpenAI confirma en su centro de ayuda (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) que las suscripciones de Pro 200 que cumplen ciertas condiciones conservan el uso anterior hasta el 29 de octubre de 2026 y que después pasan a un uso incluido menor, con el mismo precio de 200 dólares al mes. Lo que OpenAI no publica es cuánto menor. El "de 20x a 10x" en Codex, el recorte de 200 a 100 mensajes semanales de GPT-6 Pro y los 62.500 créditos de regalo salen de un email que un usuario dice haber recibido y que publicó en Hacker News (https://news.ycombinator.com/item?id=49901067). OpenAI no confirmó esas cifras en público. Abajo tienes la separación completa y una checklist para antes del 30/10.
+
+Desde fines de septiembre circula la misma frase: "Pro 200 baja a 10x". Se repite en X, en foros y en grupos de desarrolladores como si fuera un dato oficial, sobre todo entre quienes usan Codex todo el día. El cambio entra mañana, 30 de octubre, y conviene saber qué parte tiene respaldo de OpenAI y qué parte es un email reenviado.
+
+Revisé la página de ayuda de OpenAI sobre los planes Pro el 28 de octubre por la mañana (hora de Argentina; la página decía "actualizada hace 23 horas") y el hilo de Hacker News donde apareció el email. Todo lo que sigue tiene su enlace y, salvo que diga "comprobación propia", es según la fuente citada.
+
+## Lo que OpenAI confirma en su página de ayuda
+
+Todo esto sale de About ChatGPT Pro tiers (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers), la página oficial de OpenAI sobre los planes Pro:
+
+- Tres planes Pro mensuales: Pro 100 a 100 dólares, Pro 200 a 200 dólares y Pro 500 a 500 dólares. Solo Pro 500 incluye Ultrafast. Según la página, Pro 200 incluye más uso que Pro 100 y Pro 500 es el que más uso incluye de los tres.
+- Quién conserva el uso anterior: quien haya tenido una suscripción activa de Pro 200 en algún momento entre el 22 de septiembre de 2026 y las 10:00 hora del Pacífico del 29 de septiembre de 2026 (las 14:00 de Argentina). Esas cuentas pueden usar el uso incluido anterior hasta el 29 de octubre de 2026, mientras la suscripción siga activa.
+- Qué pasa después: "After that date, your subscription will move to the lower included usage allowance" ("después de esa fecha, tu suscripción pasará al uso incluido menor"). El precio sigue en 200 dólares al mes.
+- Quién recibe un email: "Only users affected by this change will receive an email with additional details". Es decir, OpenAI confirma que hay un email para los afectados, pero no publica su contenido.
+- Suscripciones nuevas de Pro 200: se pueden contratar otra vez, pero quien no entra en la ventana de arriba recibe "a lower usage allowance than previously offered" ("un uso menor que el que se ofrecía antes con Pro 200"), que OpenAI atribuye a que sus modelos son cada vez más eficientes.
+- Conservar el uso no cambia el plan: seguir con el uso anterior no te pasa a Pro 500 ni te da Ultrafast.
+- Cancelar y volver: si tu Pro 200 terminó y te suscribes de nuevo con la misma cuenta, conservas el uso anterior hasta el 29 de octubre solo si estabas dentro de la misma ventana del 22 al 29 de septiembre. Programar una cancelación no corta el acceso: sigues hasta el fin del período de facturación y puedes deshacerla antes.
+- Fast y Ultrafast consumen más: frente al modo Standard del mismo modelo, el modo Fast consume tu uso incluido a 2,5 veces la tasa normal. Ultrafast (solo en Pro 500, para GPT-6 Astra y GPT-6.1 Sol) lo consume a 8 veces, y cuando se acaba el uso incluido pasa a tus créditos a 6 veces la tasa Standard. La página aclara que son tasas de consumo, no garantías de más velocidad.
+- Créditos: puedes comprar créditos para seguir después de agotar el uso incluido. Primero se gasta lo incluido y después los créditos. Sirven para Codex, ChatGPT Work y ChatGPT para Word, Excel y PowerPoint, no para todos los modelos ni todas las funciones. Comprar créditos en Pro 100 o Pro 200 no habilita Ultrafast. El saldo está en Settings → Usage en ChatGPT o en Usage & Billing en Codex.
+- Soporte no reinicia límites: "Support cannot reset ChatGPT or Codex limits". Solo investiga si el uso se contó mal o si el acceso no volvió después de un reinicio.
+- Qué gasta tu uso: depende del modelo, del contexto procesado, del razonamiento, del uso de herramientas, de la búsqueda de información, del caché y del modo de velocidad.
+- Facturación solo mensual: Pro no tiene plan anual ni pago adelantado de varios meses. Los cambios de plan se ven en Settings → My Plan.
+
+Comprobación propia: ni esa página ni la página de precios de ChatGPT (https://chatgpt.com/pricing) dan un multiplicador para Pro 200. La de precios solo dice "Your choice of 3 usage tiers" y marca Codex como "Expanded" en Pro.
+
+Estado: el corte del 29/10 y el precio sin cambios están confirmados. El tamaño del recorte, no.
+
+## Lo que dice el email publicado en Hacker News
+
+El 29 de septiembre de 2026 a las 18:42 hora de Argentina, el usuario illuminated abrió en Hacker News el hilo "Tell HN: OpenAI's New Pro 500 subscription, reduced Pro 200 usage" (https://news.ycombinator.com/item?id=49901067) con este texto: "As a Pro subscriber, I've just received the following email from OpenAI". Debajo pegó el email completo. Según ese texto:
+
+- Codex y ChatGPT Work, de 20x a 10x: "Starting October 30, 2026, your included usage in ChatGPT Work and Codex will decrease from 20 times to 10 times the ChatGPT Plus allowance". Es decir, el uso incluido pasaría de 20 a 10 veces el de Plus.
+- GPT-6 Pro en el chat, de 200 a 100 mensajes por semana: "Your GPT-6 Pro limit in Chat will decrease from 200 to 100 messages per week".
+- Mismo precio y límites actuales hasta el 29/10: "Your price remains unchanged and you'll keep your current limits through October 29, 2026".
+- 62.500 créditos de regalo: "a one-time grant of 62,500 usage credits (a $2,500 USD value)", es decir, 62.500 créditos de uso valuados en 2.500 dólares, que aparecerían en Settings > Usage, vencerían el 31 de diciembre de 2026 y se rigen por los "Service Credit Terms".
+- Sin límite de 5 horas: el email dice que OpenAI se compromete a no volver a introducir el límite de 5 horas, para que puedas usar tu cupo semanal cuando quieras.
+- Pro 500: "25 times the usage of Plus" (25 veces el uso de Plus) y Ultrafast con "up to 8 times faster token generation" (generación de tokens hasta 8 veces más rápida).
+- dots: los agentes "dots", basados en GPT-6 Astra, quedarían incluidos en Pro sin descontar del uso de ChatGPT.
+
+### Ahora las salvedades, y pesan
+
+- Es un texto pegado, no una captura ni un enlace de OpenAI. El saludo dice "Hi [FirstName]", así que alguien editó al menos esa línea. No hay forma de verificar desde afuera que el resto esté intacto.
+- El hilo tiene poca tracción: 3 puntos y 2 comentarios. Un usuario respondió con enlaces a otras discusiones del mismo tema. Nadie de OpenAI comentó.
+- La página oficial coincide en lo general: la fecha del 29 de octubre, el precio sin cambios, que existe Pro 500 con Ultrafast y que hay un email para los afectados. Pero no confirma ninguna de las cifras: ni el 20x, ni el 10x, ni los 100 mensajes, ni los 62.500 créditos, ni los 25x de Pro 500.
+- Ojo con el "8 veces" de Ultrafast: el email habla de generación de tokens hasta 8 veces más rápida. La página oficial usa el mismo número para otra cosa: Ultrafast consume tu uso incluido a 8 veces la tasa Standard. No son lo mismo.
+- "10x" es relativo: aunque el email sea auténtico, 10x se mide contra el uso de Plus, y OpenAI no publica ese uso en números absolutos. Nadie puede decirte con precisión cuántas tareas de Codex son.
+
+Estado: un email publicado por un usuario, coherente con la página oficial en fechas y precio, pero con cifras que OpenAI no confirmó en público.
+
+## Confirmado, reportado y sin dato
+
+| Afirmación | Estado | Fuente |
+| :- | :- | :- |
+| El uso anterior de Pro 200 dura hasta el 29/10 para quien estaba suscrito entre el 22 y el 29 de septiembre | Confirmado | Ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Después del 29/10 el uso incluido de Pro 200 es menor | Confirmado | Ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| El precio sigue en 200 dólares al mes | Confirmado | Ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Fast consume 2,5x; Ultrafast 8x (solo Pro 500) | Confirmado | Ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Soporte no puede reiniciar límites de ChatGPT ni de Codex | Confirmado | Ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Codex y ChatGPT Work bajan de 20x a 10x el uso de Plus desde el 30/10 | Reportado (email en HN) | Hilo de Hacker News (https://news.ycombinator.com/item?id=49901067) |
+| GPT-6 Pro en el chat baja de 200 a 100 mensajes por semana | Reportado (email en HN) | Hilo de Hacker News (https://news.ycombinator.com/item?id=49901067) |
+| 62.500 créditos de regalo (2.500 dólares) que vencen el 31/12 | Reportado (email en HN) | Hilo de Hacker News (https://news.ycombinator.com/item?id=49901067) |
+| Pro 500 da 25x el uso de Plus | Reportado (email en HN) | Hilo de Hacker News (https://news.ycombinator.com/item?id=49901067) |
+| Cuántas tareas de Codex entran en "10x" | Sin dato | OpenAI no publica el uso de Plus en números absolutos |
+
+## ¿Y si soy suscriptor de Pro 200?
+
+Lo primero es saber si estás en el grupo que conserva el uso anterior hasta el 29/10: según la página oficial, tenías que tener Pro 200 activo en algún momento entre el 22 de septiembre y el 29 de septiembre a las 14:00 hora de Argentina. Si te suscribiste después, ya estás en el uso nuevo y el 30/10 no cambia nada para ti.
+
+Si estás en el grupo, OpenAI dice que te llega un email con los detalles. Ese email, el tuyo y no el que circula, es la fuente que vale para tu cuenta. Compáralo con el texto de Hacker News: si las cifras coinciden, ya tienes una segunda confirmación; si no coinciden, manda el tuyo.
+
+## Checklist: qué hacer antes del 30/10
+
+1. Confirma si estás en la ventana. Revisa en tu historial de facturación si tenías Pro 200 activo entre el 22 y el 29 de septiembre. Es la condición que pone la página oficial (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) para conservar el uso anterior hasta el 29/10.
+
+2. Busca el email de OpenAI en tu bandeja. Según la página, solo lo reciben los afectados. Revisa también spam y promociones. Si lo tienes, guárdalo: es lo único que te dice tus cifras.
+
+3. Abre Settings → Usage. Es donde la página oficial dice que ves tu saldo de créditos, y donde el email publicado en Hacker News dice que aparecerían los 62.500 créditos. Si aparecen, anota la fecha de vencimiento que te muestre; si no aparecen, no cuentes con ellos.
+
+4. Mide tu consumo actual. Anota cuánto de tu cupo semanal usas hoy en Codex y en ChatGPT Work. Sin ese dato no vas a poder comparar después del 30/10, porque OpenAI no publica límites absolutos.
+
+5. Adelanta lo pesado que tengas planeado. Si tienes refactors largos o sesiones de Codex grandes para esta semana, la página oficial confirma que el uso anterior aplica hasta el 29/10. Después, el cupo es menor.
+
+6. Saca Fast de lo que no es urgente. Fast consume tu uso incluido a 2,5 veces la tasa Standard, según la página oficial (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers). Con un cupo más chico, eso se nota antes.
+
+7. Recorta el contexto. El uso depende del contexto procesado, del razonamiento y de las herramientas. Sesiones más cortas y archivos acotados gastan menos.
+
+8. No canceles para "resetear". Cancelar y volver a suscribirte no estira el uso anterior más allá del 29/10, y solo lo conservas si estabas en la ventana de septiembre.
+
+9. Si te vas a quedar corto, compara antes de pagar. Tus opciones oficiales son comprar créditos (sirven para Codex, ChatGPT Work y los complementos de Office, no para todo), bajar a Pro 100 o subir a Pro 500. Los cambios de plan están en Settings → My Plan.
+
+10. No esperes que soporte te devuelva el cupo. OpenAI dice que soporte no puede reiniciar límites; solo revisa si el uso se contó mal.
+
+## Conclusión
+
+Que Pro 200 cambia después del 29 de octubre no es rumor: OpenAI lo dice en su página de ayuda, con fecha, condiciones y precio. Lo que sigue sin confirmación pública es el número que todos repiten. El 10x, los 100 mensajes y los 62.500 créditos vienen de un email que un usuario pegó en Hacker News. Es coherente con lo oficial, pero no es lo oficial.
+
+Para decidir qué haces el 30/10 no necesitas el email de otro. Necesitas el tuyo, tu pantalla de Usage y una medición de cuánto usas hoy.
+
+## Preguntas frecuentes
+
+¿ChatGPT Pro 200 baja a 10x el 30 de octubre?
+
+OpenAI confirma que el uso anterior termina el 29 de octubre y que después el uso incluido es menor, pero no publica el multiplicador. El "de 20x a 10x el uso de Plus" en Codex y ChatGPT Work sale de un email que un usuario publicó en Hacker News.
+
+¿Sube el precio de Pro 200?
+
+No. Según la página de ayuda de OpenAI (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers), el precio sigue en 200 dólares al mes.
+
+¿Los 62.500 créditos son oficiales?
+
+No están en ninguna página pública de OpenAI. Aparecen en el email publicado en Hacker News, que habla de 62.500 créditos valuados en 2.500 dólares con vencimiento el 31 de diciembre de 2026. Revisa Settings → Usage en tu cuenta para ver si los tienes.
+
+¿Me afecta si me suscribí a Pro 200 en octubre?
+
+Según la página oficial, las suscripciones fuera de la ventana del 22 al 29 de septiembre ya tienen el uso menor. El 30/10 no te cambia nada.
+
+¿Puede soporte de OpenAI reiniciar mis límites de Codex?
+
+No. La página de ayuda dice que soporte no puede reiniciar los límites de ChatGPT ni de Codex. Solo investiga si el uso se contó mal o si el acceso no volvió después de un reinicio.
+
+## Fuentes
+
+- OpenAI: About ChatGPT Pro tiers (centro de ayuda) (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers)
+- OpenAI: página de precios de ChatGPT (https://chatgpt.com/pricing)
+- Hacker News: "Tell HN: OpenAI's New Pro 500 subscription, reduced Pro 200 usage" (29-sep-2026) (https://news.ycombinator.com/item?id=49901067)
+
+---
+
+# Is ChatGPT Pro 200 dropping to 10x on Oct 30? What OpenAI confirms vs. what the email says
+
+OpenAI confirms the old ChatGPT Pro 200 allowance ends October 29 and the price stays at $200. The 10x Codex limit, 100 weekly messages and 62,500 credits come from an email a user posted on Hacker News. What's confirmed, what isn't, and what to do with your limits before October 30.
+
+URL: https://yosephfr.com/en/blog/chatgpt-pro-200-10x-codex-limits
+
+Publicado: 2026-10-29T12:35:00-03:00
+
+Autor: Yoseph Franco (https://yosephfr.com/)
+
+Short answer: OpenAI's help center (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) confirms that eligible Pro 200 subscriptions keep the previous allowance through October 29, 2026, then move to a lower included allowance at the same $200 a month. What OpenAI does not publish is how much lower. The "20x to 10x" figure for Codex, the cut from 200 to 100 weekly GPT-6 Pro messages and the 62,500 bonus credits all come from an email a user says they received and posted on Hacker News (https://news.ycombinator.com/item?id=49901067). OpenAI hasn't confirmed those numbers publicly. Below is the full split, plus a checklist for the hours left before the change.
+
+"Pro 200 drops to 10x" has been making the rounds since late September. It gets repeated on X, in forums and in developer chats as if it were official, especially by people who live in Codex. The change kicks in tomorrow, October 30, so it's worth knowing which parts OpenAI actually stands behind and which parts are a forwarded email.
+
+I read OpenAI's help page on Pro plans on the morning of October 28 (it said "Updated: 23 hours ago") and the Hacker News thread where the email surfaced. Everything below is linked and, unless marked "own check," is according to the cited source. Times are UTC.
+
+## What OpenAI confirms on its help page
+
+All of this is from About ChatGPT Pro tiers (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers), OpenAI's official page on Pro plans:
+
+- Three monthly Pro plans: Pro 100 at $100, Pro 200 at $200 and Pro 500 at $500. Only Pro 500 includes Ultrafast. Per the page, Pro 200 includes more usage than Pro 100, and Pro 500 has the most of the three.
+- Who keeps the old allowance: anyone with an active Pro 200 subscription at any point from September 22, 2026 through 10 a.m. Pacific Time on September 29, 2026 (17:00 UTC). Those accounts can use the previous included allowance through October 29, 2026, as long as the subscription stays active.
+- What happens next: "After that date, your subscription will move to the lower included usage allowance." The price stays at $200 a month.
+- Who gets an email: "Only users affected by this change will receive an email with additional details." So OpenAI confirms an email exists for affected users. It doesn't publish what's in it.
+- New Pro 200 subscriptions: available again, but anyone outside that window gets "a lower usage allowance than previously offered," which OpenAI attributes to its models getting more efficient.
+- Keeping the allowance doesn't change your plan: you stay on Pro 200, with no upgrade to Pro 500 and no Ultrafast.
+- Cancel and come back: if your Pro 200 ended and you resubscribe on the same account, you keep the previous allowance through October 29 only if you were inside that same September window. Scheduling a cancellation doesn't cut you off; you keep access until the end of the billing period and can undo it.
+- Fast and Ultrafast burn faster: compared with Standard mode on the same model, Fast uses your included allowance at 2.5 times the rate. Ultrafast (Pro 500 only, for GPT-6 Astra and GPT-6.1 Sol) uses it at 8 times the rate, then bills credits at 6 times the Standard credit rate. The page notes these are consumption rates, not speed guarantees.
+- Credits: you can buy credits to keep going after the included allowance runs out. Included usage goes first, credits second. They cover Codex, ChatGPT Work and ChatGPT for Word, Excel and PowerPoint, not every model or feature. Buying credits on Pro 100 or Pro 200 doesn't unlock Ultrafast. Your balance lives under Settings → Usage in ChatGPT or Usage & Billing in Codex.
+- Support can't reset limits: "Support cannot reset ChatGPT or Codex limits." It can only investigate miscounted usage or access that didn't come back after a reset.
+- What drives usage: the model, how much context gets processed, reasoning, tool use, information retrieval, caching and speed mode.
+- Monthly billing only: no annual plan, no paying months ahead. Plan changes are under Settings → My Plan.
+
+Own check: neither that page nor ChatGPT's pricing page (https://chatgpt.com/pricing) gives a multiplier for Pro 200. The pricing page just says "Your choice of 3 usage tiers" and lists Codex as "Expanded" on Pro.
+
+Status: the October 29 cutoff and the unchanged price are confirmed. The size of the cut isn't.
+
+## What the email posted on Hacker News says
+
+On September 29, 2026 at 21:42 UTC, user illuminated opened the thread "Tell HN: OpenAI's New Pro 500 subscription, reduced Pro 200 usage" (https://news.ycombinator.com/item?id=49901067) with "As a Pro subscriber, I've just received the following email from OpenAI," followed by the full text. According to that email:
+
+- Codex and ChatGPT Work, 20x to 10x: "Starting October 30, 2026, your included usage in ChatGPT Work and Codex will decrease from 20 times to 10 times the ChatGPT Plus allowance."
+- GPT-6 Pro in Chat, 200 to 100 messages a week: "Your GPT-6 Pro limit in Chat will decrease from 200 to 100 messages per week."
+- Same price, current limits through Oct 29: "Your price remains unchanged and you'll keep your current limits through October 29, 2026."
+- 62,500 bonus credits: "a one-time grant of 62,500 usage credits (a $2,500 USD value)," showing up under Settings > Usage, expiring December 31, 2026, and governed by the "Service Credit Terms."
+- No 5-hour limit: OpenAI commits to not reintroducing the 5-hour limit, so you can use your weekly allowance whenever you want.
+- Pro 500: "25 times the usage of Plus," plus Ultrafast with "up to 8 times faster token generation."
+- dots: always-on "dots" agents powered by GPT-6 Astra, included with Pro and not drawing on your ChatGPT allowance.
+
+### The caveats, and they matter
+
+- It's pasted text, not a screenshot or an OpenAI link. The greeting reads "Hi [FirstName]," so at least that line was edited. There's no way to verify from the outside that the rest is untouched.
+- The thread barely moved: 3 points and 2 comments, one of them pointing to other discussions of the same topic. Nobody from OpenAI weighed in.
+- The official page lines up on the broad strokes: the October 29 date, the unchanged price, Pro 500 with Ultrafast, and an email going to affected users. It confirms none of the numbers: not 20x, not 10x, not 100 messages, not 62,500 credits, not Pro 500's 25x.
+- Watch the "8x" on Ultrafast: the email means token generation up to 8 times faster. The help page uses the same number for something else: Ultrafast eats your included allowance at 8 times the Standard rate. Different things.
+- "10x" is relative: even if the email is genuine, 10x is measured against the Plus allowance, and OpenAI doesn't publish that in absolute terms. Nobody can tell you exactly how many Codex tasks it buys.
+
+Status: an email posted by a user, consistent with the official page on dates and price, with numbers OpenAI hasn't confirmed publicly.
+
+## Confirmed, reported, no data
+
+| Claim | Status | Source |
+| :- | :- | :- |
+| Old Pro 200 allowance lasts through Oct 29 for anyone subscribed Sep 22–29 | Confirmed | OpenAI Help (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| After Oct 29, Pro 200's included allowance is lower | Confirmed | OpenAI Help (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Price stays at $200/month | Confirmed | OpenAI Help (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Fast burns 2.5x; Ultrafast 8x (Pro 500 only) | Confirmed | OpenAI Help (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Support can't reset ChatGPT or Codex limits | Confirmed | OpenAI Help (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) |
+| Codex and ChatGPT Work drop from 20x to 10x the Plus allowance on Oct 30 | Reported (email on HN) | Hacker News thread (https://news.ycombinator.com/item?id=49901067) |
+| GPT-6 Pro in Chat drops from 200 to 100 messages a week | Reported (email on HN) | Hacker News thread (https://news.ycombinator.com/item?id=49901067) |
+| 62,500 bonus credits ($2,500) expiring Dec 31 | Reported (email on HN) | Hacker News thread (https://news.ycombinator.com/item?id=49901067) |
+| Pro 500 gives 25x the Plus allowance | Reported (email on HN) | Hacker News thread (https://news.ycombinator.com/item?id=49901067) |
+| How many Codex tasks fit in "10x" | No data | OpenAI doesn't publish the Plus allowance in absolute terms |
+
+## So I'm on Pro 200. Does this hit me?
+
+Start with whether you're in the group that keeps the old allowance through October 29. Per the official page, you needed an active Pro 200 subscription at some point between September 22 and 17:00 UTC on September 29. If you subscribed later, you're already on the new allowance and October 30 changes nothing for you.
+
+If you are in the group, OpenAI says you'll get an email with the details. That email, yours rather than the one going around, is the source that counts for your account. Compare it with the Hacker News text. If the numbers match, that's a second confirmation; if they don't, trust yours.
+
+## Checklist: what to do before October 30
+
+1. Check whether you're in the window. Look at your billing history for an active Pro 200 subscription between September 22 and 29. That's the condition on the official page (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers) for keeping the old allowance through October 29.
+
+2. Find OpenAI's email. Per the help page, only affected users get one. Check spam and promotions too. If you have it, keep it: it's the only thing that tells you your numbers.
+
+3. Open Settings → Usage. That's where the official page says your credit balance lives, and where the email posted on Hacker News says the 62,500 credits would appear. If they're there, note the expiration date shown. If they aren't, don't count on them.
+
+4. Measure what you use today. Write down how much of your weekly allowance you burn in Codex and ChatGPT Work right now. Without that baseline you won't be able to compare after October 30, because OpenAI doesn't publish absolute limits.
+
+5. Pull heavy work forward. If you have long refactors or big Codex sessions planned for this week, the official page confirms the old allowance applies through October 29. After that, there's less of it.
+
+6. Turn off Fast for anything that isn't urgent. Fast uses your included allowance at 2.5 times the Standard rate, per the official page (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers). On a smaller allowance you'll feel that sooner.
+
+7. Trim context. Usage depends on how much context gets processed, on reasoning and on tool calls. Shorter sessions and tightly scoped files cost less.
+
+8. Don't cancel to "reset." Canceling and resubscribing doesn't stretch the old allowance past October 29, and you only keep it at all if you were in the September window.
+
+9. If you'll run short, compare before you pay. Your official options are buying credits (they cover Codex, ChatGPT Work and the Office add-ins, not everything), dropping to Pro 100 or moving up to Pro 500. Plan changes are under Settings → My Plan.
+
+10. Don't expect support to give you allowance back. OpenAI says support can't reset limits; it only checks for miscounted usage.
+
+## Bottom line
+
+Pro 200 changing after October 29 isn't a rumor. OpenAI says so on its help page, with a date, eligibility rules and a price. What's still not publicly confirmed is the number everyone keeps quoting. The 10x, the 100 messages and the 62,500 credits come from an email a user pasted on Hacker News. It's consistent with the official page, but it isn't the official page.
+
+To decide what to do on October 30, you don't need someone else's email. You need yours, your Usage screen and a baseline of what you use today.
+
+## FAQ
+
+Is ChatGPT Pro 200 dropping to 10x on October 30?
+
+OpenAI confirms the previous allowance ends October 29 and the included allowance is lower afterward, but it doesn't publish a multiplier. The "20x to 10x the Plus allowance" for Codex and ChatGPT Work comes from an email a user posted on Hacker News.
+
+Is the Pro 200 price going up?
+
+No. Per OpenAI's help page (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers), it stays at $200 a month.
+
+Are the 62,500 credits official?
+
+They aren't on any public OpenAI page. They appear in the email posted on Hacker News, which describes 62,500 credits worth $2,500 expiring December 31, 2026. Check Settings → Usage on your own account to see whether you have them.
+
+Does this affect me if I subscribed to Pro 200 in October?
+
+Per the official page, subscriptions outside the September 22–29 window already have the lower allowance. October 30 changes nothing for you.
+
+Can OpenAI support reset my Codex limits?
+
+No. The help page says support can't reset ChatGPT or Codex limits. It only investigates miscounted usage or access that didn't return after a reset.
+
+## Sources
+
+- OpenAI: About ChatGPT Pro tiers (help center) (https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers)
+- OpenAI: ChatGPT pricing (https://chatgpt.com/pricing)
+- Hacker News: "Tell HN: OpenAI's New Pro 500 subscription, reduced Pro 200 usage" (Sep 29, 2026) (https://news.ycombinator.com/item?id=49901067)
+
+---
 
 # Si usas Node.js, Bun o Envoy, revisa Brotli: el fallo que encontraron los agentes de OpenAI
 
