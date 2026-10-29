@@ -48,6 +48,10 @@ try:
   acme=state/'well-known';acme.mkdir(exist_ok=True)
   if (candidate/'public/.well-known').exists():shutil.rmtree(str(candidate/'public/.well-known'))
   (candidate/'public/.well-known').symlink_to(acme)
+  # Scheduled social posts fetch their media later, across website releases.
+  media=root/'shared-media';media.mkdir(exist_ok=True);media.chmod(0o755)
+  if (candidate/'public/media').exists():raise RuntimeError('media is reserved for shared social assets')
+  (candidate/'public/media').symlink_to(media)
  previous=os.readlink(str(active)) if active.is_symlink() else None
  previous_release=(active.parent/previous).resolve() if previous else None
  configuration=root/'public_html/.htaccess'
