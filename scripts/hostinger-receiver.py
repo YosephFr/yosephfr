@@ -81,6 +81,19 @@ try:
    success=page.returncode==0 and len(page.stdout)>1000
   if success:break
  if not success:
+  # Diagnostics must never prevent the rollback, even if storage is full.
+  try:
+   diagnostic=state/('deploy-failure-'+revision+'.json')
+   with os.fdopen(os.open(str(diagnostic),os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600),'w') as saved:
+    json.dump({'revision':revision,'health_returncode':result.returncode,'health_body':result.stdout[:1000],'health_error':result.stderr[:1000]},saved)
+   for log in [candidate/'stderr.log',candidate/'runtime/stderr.log']:
+    if log.is_file():
+     target=state/('deploy-failure-'+revision+'-'+log.parent.name+'.log')
+     with log.open('rb') as source,os.fdopen(os.open(str(target),os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600),'wb') as saved:
+      source.seek(max(0,log.stat().st_size-65536));saved.write(source.read(65536))
+  except OSError:
+   print('Could not save deployment diagnostics; continuing rollback',flush=True)
+  print('Health check failed; restoring previous release',flush=True)
   if previous:
    temporary.symlink_to(previous);os.replace(str(temporary),str(active))
    if site=='indebooks.lat':
