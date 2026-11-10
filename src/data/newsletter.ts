@@ -145,7 +145,7 @@ export const NUMEROS: Numero[] = [
       {
         title: 'Dos órdenes que se pelean',
         paragraphs: [
-          'Lo que más rompe a un agente son las contradicciones dentro de sus propias instrucciones: «responde corto» arriba y «explica cada paso con detalle» abajo. No es que no haga caso. Le hace caso a las dos.',
+          'Lo que más rompe a un agente son las contradicciones dentro de sus propias instrucciones: «responde corto» arriba y «explica cada paso con detalle» abajo. Desde afuera parece que no te hace caso. Le está haciendo caso a las dos.',
         ],
         link: { label: 'Cómo las encuentro y las arreglo', href: '/blog/lo-que-mas-rompe-a-un-agente-de-ia' },
       },
