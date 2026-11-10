@@ -937,7 +937,7 @@ html { font-synthesis: none; }
 .proposito .entrada-texto { max-width: 46ch; color: var(--texto); }
 .proposito .enlace { margin-top: 4px; }
 @media (min-width: 900px) { .proposito { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; column-gap: 48px; padding: 56px 48px; } .proposito .enlace { grid-column: 2; } }
-@media (min-width: 900px) { .quien { padding: 0; } .quien-cifras { grid-template-columns: repeat(3, minmax(0, 1fr)); } .quien-cifras li.ancha { grid-column: auto; } }
+@media (min-width: 900px) { .quien { padding: 0; } .quien-cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); } .quien-cifras li.ancha { grid-column: auto; } }
 
 /* Artículos en la portada: cuatro en una fila en escritorio, sin tarjetas gigantes */
 @media (min-width: 1100px) {

@@ -44,10 +44,9 @@ export default function CV() {
             <ProfilePhoto size={96} priority />
             <div>
             <h1 className="display">Yoseph Franco</h1>
-            <p className="entrada-texto">Cofundador y único programador de una startup con muchos clientes en producción. Más de diez años programando y trabajando en informática; hoy trabajo con agentes de IA, en un equipo reducido de alto rendimiento.</p>
+            <p className="entrada-texto">Cofundador y único programador de una startup con cientos de clientes activos. Más de diez años programando y trabajando en informática; hoy trabajo con agentes de IA, en un equipo reducido de alto rendimiento.</p>
             <ul className="cv-cifras">
               <li><strong>+10</strong><span>años programando</span></li>
-              <li><strong>+30</strong><span>clientes activos</span></li>
               <li><strong>14.000</strong><span>conversaciones al mes atendidas con IA en producción</span></li>
             </ul>
             <div className="acciones-cv"><ContactActions extra={<PrintButton />} /></div>

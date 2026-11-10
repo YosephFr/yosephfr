@@ -74,8 +74,7 @@ export default function Home() {
             </div>
             <ul className="quien-cifras">
               <li><strong>14.000</strong><span>conversaciones al mes atendidas con IA en lo que tengo en producción</span></li>
-              <li><strong>+30</strong><span>clientes activos</span></li>
-              <li className="ancha"><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
+              <li><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
             </ul>
           </div>
         </section>
