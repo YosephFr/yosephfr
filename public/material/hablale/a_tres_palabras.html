@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova · Impulsa tus ideas</title>
+<style>
+  :root {
+    --bg: #0b0d17;
+    --bg-alt: #121527;
+    --text: #e8eaf6;
+    --muted: #9aa0c3;
+    --accent: #6c63ff;
+    --accent-2: #00d4ff;
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: inherit; text-decoration: none; }
+  .container { width: min(1100px, 90%); margin: 0 auto; }
+
+  /* Navegación */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(11, 13, 23, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 0;
+  }
+  .logo {
+    font-size: 1.5rem; font-weight: 800; letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a { color: var(--muted); transition: color .2s; }
+  nav ul a:hover { color: var(--text); }
+
+  .btn {
+    display: inline-block;
+    padding: .8rem 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(108, 99, 255, .35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(108, 99, 255, .5); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,.2); }
+  .btn-ghost:hover { background: rgba(255,255,255,.06); }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 7rem 0 6rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: -40% 10% auto;
+    height: 600px;
+    background: radial-gradient(circle, rgba(108,99,255,.35), transparent 65%);
+    filter: blur(40px);
+    z-index: -1;
+  }
+  .badge {
+    display: inline-block;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+    background: rgba(108,99,255,.15);
+    color: var(--accent-2);
+    font-size: .85rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p {
+    max-width: 620px; margin: 0 auto 2.5rem;
+    color: var(--muted); font-size: 1.15rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* Secciones */
+  section { padding: 5rem 0; }
+  .section-title { text-align: center; margin-bottom: 3rem; }
+  .section-title h2 { font-size: 2.2rem; margin-bottom: .5rem; }
+  .section-title p { color: var(--muted); }
+
+  /* Características */
+  .features { background: var(--bg-alt); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: transform .25s, border-color .25s;
+  }
+  .card:hover { transform: translateY(-6px); border-color: rgba(108,99,255,.5); }
+  .icon {
+    width: 52px; height: 52px;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, rgba(108,99,255,.25), rgba(0,212,255,.2));
+    margin-bottom: 1.2rem;
+  }
+  .card h3 { margin-bottom: .5rem; }
+  .card p { color: var(--muted); }
+
+  /* Estadísticas */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+  .stat strong {
+    display: block;
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .stat span { color: var(--muted); }
+
+  /* Testimonios */
+  .testimonials { background: var(--bg-alt); }
+  .quote p { font-style: italic; color: var(--text); margin-bottom: 1.2rem; }
+  .author { display: flex; align-items: center; gap: .8rem; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+  .author small { color: var(--muted); display: block; }
+
+  /* CTA */
+  .cta-box {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(108,99,255,.25), rgba(0,212,255,.15));
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .cta-box h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+  .cta-box p { color: var(--muted); margin-bottom: 2rem; }
+  .form { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+  .form input {
+    padding: .8rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(0,0,0,.3);
+    color: var(--text);
+    min-width: 260px;
+    font-size: 1rem;
+  }
+  .form input:focus { outline: 2px solid var(--accent); }
+  .form button { border: none; cursor: pointer; font-size: 1rem; }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255,255,255,.06);
+    color: var(--muted);
+  }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-inner ul { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-inner a:hover { color: var(--text); }
+
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+    .hero { padding: 5rem 0 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">NOVA</a>
+      <ul>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+      </ul>
+      <a href="#contacto" class="btn btn-primary">Empezar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">✨ Nuevo: versión 2.0 disponible</span>
+      <h1>Convierte tus ideas en <span>proyectos reales</span></h1>
+      <p>Nova es la plataforma que te ayuda a planificar, crear y lanzar tus proyectos más rápido, con herramientas simples y un diseño pensado para ti.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-primary">Pruébalo gratis</a>
+        <a href="#caracteristicas" class="btn btn-ghost">Saber más</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="caracteristicas" class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Todo lo que necesitas</h2>
+        <p>Herramientas potentes en una interfaz sencilla.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Rápido</h3>
+          <p>Carga instantánea y una experiencia fluida en cualquier dispositivo.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Seguro</h3>
+          <p>Tus datos protegidos con cifrado de extremo a extremo.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🤝</div>
+          <h3>Colaborativo</h3>
+          <p>Trabaja en equipo en tiempo real, estés donde estés.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📊</div>
+          <h3>Analítico</h3>
+          <p>Métricas claras para tomar mejores decisiones cada día.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultados">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resultados que hablan</h2>
+        <p>Miles de personas ya confían en nosotros.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>50K+</strong><span>Usuarios activos</span></div>
+        <div class="stat"><strong>120+</strong><span>Países</span></div>
+        <div class="stat"><strong>99,9%</strong><span>Disponibilidad</span></div>
+        <div class="stat"><strong>4,9★</strong><span>Valoración media</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="opiniones" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Lo que dicen de nosotros</h2>
+        <p>Opiniones reales de nuestra comunidad.</p>
+      </div>
+      <div class="grid">
+        <div class="card quote">
+          <p>"Nova cambió por completo la forma en que organizamos nuestro trabajo. Ahorramos horas cada semana."</p>
+          <div class="author"><div class="avatar">L</div><div>Laura Gómez<small>Diseñadora</small></div></div>
+        </div>
+        <div class="card quote">
+          <p>"La herramienta más intuitiva que he usado. Mi equipo la adoptó en un solo día."</p>
+          <div class="author"><div class="avatar">C</div><div>Carlos Ruiz<small>Jefe de producto</small></div></div>
+        </div>
+        <div class="card quote">
+          <p>"Excelente soporte y funciones que realmente marcan la diferencia. Totalmente recomendable."</p>
+          <div class="author"><div class="avatar">M</div><div>María López<small>Emprendedora</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="cta-box">
+        <h2>¿Listo para empezar?</h2>
+        <p>Suscríbete y recibe acceso anticipado a todas las novedades.</p>
+        <form class="form" onsubmit="event.preventDefault(); this.innerHTML='<p>¡Gracias por suscribirte! 🎉</p>';">
+          <input type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© 2026 Nova. Todos los derechos reservados.</span>
+    <ul>
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Términos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -759,26 +759,6 @@ main { animation: pagina 0.45s var(--entrada) both; }
   body:has(.cta-social) .avisos-logros { bottom: calc(150px + env(safe-area-inset-bottom)) !important; }
 }
 
-/* v3 · Portada para quien llega desde un video */
-.portada { padding-block: 28px 8px; }
-.portada-identidad { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
-.portada-foto { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--carbon-3); }
-.portada-nombre { font-size: 17px; font-weight: 800; line-height: 1.2; color: var(--texto); }
-.portada-usuario { font-size: 15px; color: var(--texto-3); line-height: 1.3; }
-.portada h1 { max-width: 15ch; font-size: clamp(38px, 6vw, 84px); line-height: 1.02; }
-.portada .entrada-texto { margin-top: 18px; }
-.portada-redes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-.portada-redes a { display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); font-size: 14px; font-weight: 700; color: var(--texto); transition: box-shadow 0.2s ease, transform 0.15s ease; }
-.portada-redes a:hover { box-shadow: var(--sombra-alta); }
-.portada-redes a:active { transform: scale(0.97); }
-@media (min-width: 900px) {
-  .portada { padding-block: 64px 24px; }
-  .portada-identidad { margin-bottom: 32px; }
-  .portada-foto { width: 76px; height: 76px; }
-  .portada .entrada-texto { margin-top: 26px; }
-  .portada-redes { margin-top: 30px; }
-}
-
 /* Cabecera de sección en una fila: título a la izquierda, enlace a la derecha */
 .seccion-fila { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
 .seccion-fila h2 { font-size: clamp(26px, 3.2vw, 44px); line-height: 1.05; }
@@ -870,26 +850,6 @@ main { animation: pagina 0.45s var(--entrada) both; }
 .articulo-portada .campo-particulas circle { fill: var(--celeste); }
 .articulo-portada .campo-particulas { filter: none; }
 
-/* Portada en escritorio: quién es a la izquierda y el newsletter a la derecha; el material debajo, a todo el ancho.
-   En el teléfono el orden es quién es, el material y después el newsletter. */
-.inicio { display: flex; flex-direction: column; }
-.inicio > .portada { order: 1; }
-.inicio > .seccion-material { order: 2; }
-.inicio > .boletin-seccion { order: 3; }
-.inicio > .resto { order: 4; }
-@media (min-width: 1000px) {
-  .inicio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); width: min(1280px, calc(100% - 2 * var(--margen))); margin-inline: auto; column-gap: 56px; }
-  .inicio > .portada, .inicio > .boletin-seccion { width: auto; margin: 0; }
-  .inicio > .portada { grid-column: 1; grid-row: 1; padding-bottom: 48px; }
-  .inicio > .boletin-seccion { grid-column: 2; grid-row: 1; align-self: end; padding: 0 0 48px; }
-  .inicio > .boletin-seccion .boletin { padding: 40px 40px 32px; }
-  .inicio > .boletin-seccion .boletin h2 { font-size: clamp(30px, 2.6vw, 40px); }
-  .inicio > .seccion-material, .inicio > .resto { grid-column: 1 / -1; width: auto; margin: 0; }
-}
-@media (min-width: 1000px) { .inicio > .resto > .marco { width: auto; margin: 0; } }
-@media (max-width: 759px) { .boletin-form .boton { flex: 1 1 100%; } }
-@media (min-width: 1000px) { .inicio > .portada h1 { font-size: clamp(44px, 4.4vw, 68px); max-width: 13ch; } .inicio > .boletin-seccion { align-self: center; padding-top: 48px; } }
-
 .material-texto :is(h2, h3), .quien h2, .boletin h2, .seccion-fila h2 { font-family: var(--font-heading); }
 .articulo-portada > svg.campo { position: absolute; inset: 0; }
 /* Los rótulos chicos van en Manrope: Be Vietnam Pro solo está en 800 y el navegador no debe inventar otros pesos. */
@@ -897,3 +857,133 @@ html { font-synthesis: none; }
 .indice h2, .indice-movil summary, .pie h2, .trayectoria h2, .autor h2 { font-family: var(--font-sans); }
 @media (max-width: 759px) { .portada-redes { gap: 6px; } .portada-redes a { height: 36px; padding: 0 12px; font-size: 13px; } }
 .pagina-cabeza .titulo { margin-top: 6px; }
+
+/* v4 · Portada: el personaje en partículas, la frase y el newsletter a mano.
+   Referencias: el retrato hecho de piezas de Vadim Carazan, las portadas verticales de OmniAgent,
+   el campo de partículas del logo de Simplifies. */
+.portada { display: grid; gap: 20px; padding-block: 12px 4px; }
+.retrato { position: relative; overflow: hidden; border-radius: var(--r); background: var(--negro); aspect-ratio: 2 / 1; box-shadow: var(--sombra); }
+.retrato-img, .retrato-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; }
+.retrato-img { object-fit: cover; object-position: 50% 28%; transition: opacity 0.6s ease; }
+.retrato-lienzo { touch-action: pan-y; cursor: crosshair; }
+.retrato[data-vivo] .retrato-img { opacity: 0; }
+.portada-quien { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-size: 15px; line-height: 1.3; color: var(--texto-3); }
+.portada-quien strong { font-size: 16px; font-weight: 800; color: var(--texto); }
+.portada h1 { margin-top: 10px; max-width: 15ch; font-size: clamp(32px, 8.4vw, 72px); line-height: 1.03; }
+.portada .entrada-texto { margin-top: 14px; max-width: 34em; font-size: 16px; }
+.portada-redes { display: none; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.portada-redes a { display: inline-flex; align-items: center; height: 36px; padding: 0 12px; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); font-size: 13px; font-weight: 700; color: var(--texto); transition: box-shadow 0.2s ease, transform 0.15s ease; }
+.portada-redes a:hover { box-shadow: var(--sombra-alta); }
+.portada-redes a:active { transform: scale(0.97); }
+.solo-ancho { display: none; }
+@media (min-width: 900px) {
+  .solo-ancho { display: block; }
+  .solo-telefono { display: none; }
+  .portada { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); align-items: center; gap: 56px; padding-block: 24px 0; }
+  .retrato { aspect-ratio: auto; height: clamp(400px, calc(100vh - 400px), 580px); }
+  .portada-redes { display: flex; }
+  .portada h1 { font-size: clamp(44px, 4.6vw, 70px); max-width: 13ch; margin-top: 14px; }
+  .portada .entrada-texto { margin-top: 20px; font-size: 18px; }
+  .portada-redes { margin-top: 22px; }
+  .portada-redes a { height: 40px; padding: 0 14px; font-size: 14px; }
+}
+
+/* Newsletter compacto dentro de la portada: campo y botón a la misma altura, en una fila */
+.boletin-compacto { margin-top: 28px; max-width: 520px; }
+.boletin-compacto .boletin-form { margin: 0; flex-wrap: nowrap; }
+.boletin-compacto .boletin-form input[type="email"] { flex: 1 1 auto; min-width: 0; background: var(--capa); box-shadow: var(--sombra); color: var(--texto); }
+.boletin-compacto .boletin-form .boton { flex: none; background: var(--negro); color: #fff; }
+.boletin-compacto .consentimiento { margin-top: 10px; font-size: 13.5px; }
+.boton[aria-busy="true"] { opacity: 0.85; cursor: progress; }
+.girando { width: 16px; height: 16px; margin-right: 8px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: girar 0.7s linear infinite; }
+@keyframes girar { to { transform: rotate(1turn); } }
+
+/* El estante: las portadas que se vieron en las redes, en dos columnas en el teléfono y en una fila en escritorio */
+.seccion-material { padding-top: 26px; }
+.seccion-material .seccion-fila { margin-bottom: 14px; }
+.estante { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.pieza { display: flex; flex-direction: column; height: 100%; overflow: hidden; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); transition: box-shadow 0.25s ease, transform 0.25s var(--entrada); }
+.pieza:hover { box-shadow: var(--sombra-alta); transform: translateY(-3px); }
+.pieza:active { transform: scale(0.98); }
+.pieza-portada { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #12141f; }
+.pieza-portada img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; transition: transform 0.6s var(--entrada); }
+.pieza:hover .pieza-portada img { transform: scale(1.04); }
+.pieza-texto { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px 14px; }
+.pieza-texto .meta { font-size: 12.5px; }
+.pieza-texto :is(h2, h3) { font-family: var(--font-heading); font-size: 15.5px; line-height: 1.18; font-weight: 800; color: var(--texto); }
+@media (prefers-reduced-motion: no-preference) {
+  .estante > li { animation: subir 0.7s var(--entrada) both; animation-delay: calc(var(--i, 0) * 60ms + 120ms); }
+}
+@keyframes subir { from { transform: translateY(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (min-width: 760px) { .estante { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 1100px) {
+  .seccion-material { padding-top: 36px; }
+  .seccion-material .seccion-fila h2 { font-size: 36px; }
+  .estante { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .pieza-texto { padding: 12px 14px 16px; }
+  .pieza-texto :is(h2, h3) { font-size: 16.5px; }
+}
+.estante.ancho { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 760px) { .estante.ancho { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .estante.ancho { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } .estante.ancho .pieza-texto :is(h2, h3) { font-size: 19px; } }
+
+/* Quién te lo cuenta, sin caja dentro de caja: el texto y las cifras sobre superficies tonales */
+.quien { display: grid; gap: 20px; padding: 0; }
+.quien-cifras li { background: var(--capa); box-shadow: var(--sombra); }
+.quien-cifras li:last-child { grid-column: auto; }
+.quien-cifras li.ancha { grid-column: 1 / -1; }
+@media (min-width: 900px) { .quien { padding: 0; } .quien-cifras { grid-template-columns: repeat(3, minmax(0, 1fr)); } .quien-cifras li.ancha { grid-column: auto; } }
+
+/* Artículos en la portada: cuatro en una fila en escritorio, sin tarjetas gigantes */
+@media (min-width: 1100px) {
+  .inicio-articulos .articulos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .inicio-articulos .articulos > .articulo-tarjeta { grid-column: auto !important; }
+  .inicio-articulos .articulo-portada { aspect-ratio: 16 / 10 !important; }
+  .inicio-articulos .articulo-texto :is(h2, h3) { font-size: 18px; line-height: 1.22; }
+  .inicio-articulos .articulo-texto p { display: none; }
+}
+@media (max-width: 899px) { .retrato { aspect-ratio: 1.8 / 1; } }
+
+/* Una pieza: la portada que se vio en la red a un lado (fija en escritorio) y lo prometido al otro */
+.material-pieza { display: grid; gap: 18px; }
+.pieza-lado { display: none; }
+.pieza-cartel { display: block; width: 100%; height: auto; border-radius: var(--r); box-shadow: var(--sombra-alta); background: #12141f; }
+.pieza-cuerpo { min-width: 0; max-width: 720px; }
+.pieza-ver { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.pieza-ver a { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); font-size: 14px; font-weight: 700; color: var(--texto); transition: box-shadow 0.2s ease, transform 0.15s ease; }
+.pieza-ver a:hover { box-shadow: var(--sombra-alta); }
+.pieza-ver a:active { transform: scale(0.97); }
+@media (min-width: 900px) {
+  .material-pieza { grid-template-columns: 300px minmax(0, 1fr); gap: 64px; align-items: start; }
+  .pieza-lado { display: block; position: sticky; top: 104px; }
+}
+.pieza-cuerpo .vista-imagen { max-width: 520px; }
+.pieza-cuerpo .vista-imagen img { max-height: 640px; object-fit: cover; object-position: top; }
+.pieza-cuerpo > .meta { margin-top: 18px; }
+.pieza-cuerpo > h1 { margin-top: 6px; }
+.pieza-cuerpo > .entrada-texto { margin-top: 16px; }
+
+/* Archivo del newsletter */
+.numeros-titulo { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.1; margin-bottom: 14px; }
+.numeros { display: grid; gap: 12px; }
+.numero-tarjeta { display: flex; flex-direction: column; gap: 6px; padding: 20px; }
+.numero-tarjeta strong { font-family: var(--font-heading); font-size: 22px; line-height: 1.15; font-weight: 800; color: var(--texto); }
+.numero-resumen { font-size: 15.5px; line-height: 1.5; color: var(--texto-2); }
+@media (min-width: 900px) { .numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } .numero-tarjeta { padding: 28px; } .numero-tarjeta strong { font-size: 28px; } }
+.carta { padding-block: 16px 24px; }
+.carta > .meta { margin-top: 18px; }
+.carta h1 { margin-top: 6px; }
+.numero-cuerpo { margin-top: 26px; display: grid; gap: 18px; }
+.numero-cuerpo p { font-size: 18px; line-height: 1.7; color: var(--texto-2); }
+.numero-cuerpo section { display: grid; gap: 12px; margin-top: 18px; }
+.numero-cuerpo h2 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; }
+.numero-cuerpo .enlace-tarjeta { display: flex; margin-top: 4px; }
+.numero-cierre { margin-top: 14px; display: grid; gap: 10px; }
+.numero-cierre p:first-child { color: var(--texto); font-weight: 700; }
+@media (min-width: 900px) { .carta { padding-block: 48px 32px; } }
+@media (max-width: 759px) { .boletin-form .boton { flex: 1 1 100%; } .boletin-compacto .boletin-form .boton { flex: none; } }
+.boletin-leer { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; margin-top: 8px; font-size: 15px; font-weight: 700; color: #fff; }
+.boletin-leer:hover { color: var(--celeste); }
+.boletin-compacto .boletin-leer { margin-top: 2px; font-size: 14px; color: var(--texto); }
+.boletin-compacto .boletin-leer:hover { color: var(--azul); }
+.boletin-compacto .consentimiento { display: inline; margin-right: 10px; }

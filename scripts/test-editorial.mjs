@@ -46,10 +46,10 @@ test('Lote ampliable: tres publicados, borrador y futuro; RSS/sitemap usan la mi
     assert(xml.includes('&lt;prueba&gt; &amp; utilidad'));
     assert(!xml.includes('borrador-privado')&&!xml.includes('futuro-publicado'));
     assert.equal((xml.match(/<item>/g)||[]).length,3);
-    const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]}}).default();
+    const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]},'@/data/material':{materialByDate:()=>[]},'@/data/newsletter':{NUMEROS:[]}}).default();
     assert.deepEqual(sitemap.filter(a=>a.url.includes('/blog/')).map(a=>a.url.split('/').at(-1)),['tercero-reciente','medio','antiguo']);
     data.find(a=>a.slug==='antiguo').updated='2026-10-23T12:45:00-03:00';
-    const modified=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]}}).default();
+    const modified=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]},'@/data/material':{materialByDate:()=>[]},'@/data/newsletter':{NUMEROS:[]}}).default();
     assert.equal(modified.find(a=>a.url==='https://yosephfr.com/blog').lastModified.toISOString(),'2026-10-23T15:45:00.000Z');
     assert.equal(modified.find(a=>a.url==='https://yosephfr.com/blog/antiguo').lastModified.toISOString(),'2026-10-23T15:45:00.000Z');
     delete process.env.ARNCOF_PREVIEW;
@@ -141,7 +141,7 @@ test('Versión en inglés: parejas recíprocas, rutas /en/blog, feed propio y hr
     const feed=loadTs('src/app/(en)/en/feed.xml/route.ts',{'@/data/articles':articles,'@/lib/rss':rss});
     const xml=await feed.GET().text();
     assert(xml.includes('<link>https://yosephfr.com/en/blog/guide</link>')&&xml.includes('<language>en</language>')&&!xml.includes('guia'));
-    const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]}}).default();
+    const sitemap=loadTs('src/app/sitemap.ts',{'@/data/articles':articles,'@/data/profile':{PROFILE:{url:'https://yosephfr.com',updated:'2026-10-23T10:00:00-03:00'}},'@/data/experience':{EXPERIENCE:[]},'@/data/skills':{SKILLS:[]},'@/data/material':{materialByDate:()=>[]},'@/data/newsletter':{NUMEROS:[]}}).default();
     const guide=sitemap.find(a=>a.url==='https://yosephfr.com/en/blog/guide');
     assert.deepEqual(guide.alternates.languages,{en:'https://yosephfr.com/en/blog/guide',es:'https://yosephfr.com/blog/guia','x-default':'https://yosephfr.com/blog/guia'});
     assert.equal(sitemap.find(a=>a.url==='https://yosephfr.com/blog/solo-espanol').alternates,undefined);

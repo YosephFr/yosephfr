@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Espiga Dorada · Panadería de barrio desde hace 30 años</title>
+  <meta name="description" content="La Espiga Dorada: pan de masa madre, galletas de chocolate y más. Abierto de martes a domingo, de 6:00 a 14:00. Pedidos por WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --crema: #fbf3e4;
+      --crema-oscura: #f3e4c8;
+      --marron: #5a3a22;
+      --marron-oscuro: #3b2414;
+      --marron-suave: #8a6142;
+      --dorado: #c9962b;
+      --dorado-claro: #e6bf5f;
+      --sombra: 0 10px 30px rgba(90, 58, 34, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Lora", Georgia, serif;
+      background-color: var(--crema);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(230, 191, 95, 0.18), transparent 45%),
+        radial-gradient(circle at 85% 60%, rgba(201, 150, 43, 0.12), transparent 50%);
+      color: var(--marron-oscuro);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ---------- Encabezado ---------- */
+    header {
+      text-align: center;
+      padding: 3.5rem 1.25rem 3rem;
+      background: linear-gradient(180deg, var(--crema-oscura) 0%, var(--crema) 100%);
+      border-bottom: 3px double var(--dorado);
+      position: relative;
+    }
+
+    .espiga {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1rem;
+      color: var(--dorado);
+    }
+
+    .desde {
+      font-style: italic;
+      color: var(--marron-suave);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 11vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--marron);
+      text-shadow: 2px 2px 0 var(--dorado-claro);
+    }
+
+    h1 span {
+      display: block;
+      color: var(--dorado);
+      text-shadow: 2px 2px 0 var(--marron-oscuro);
+    }
+
+    .lema {
+      margin: 1.25rem auto 0;
+      max-width: 34rem;
+      font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+      color: var(--marron);
+    }
+
+    .horario {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.9rem;
+      margin-top: 1.75rem;
+      padding: 0.8rem 1.4rem;
+      background: var(--marron);
+      color: var(--crema);
+      border-radius: 999px;
+      font-size: 0.95rem;
+      box-shadow: var(--sombra);
+    }
+
+    .horario strong { color: var(--dorado-claro); font-weight: 600; }
+
+    /* ---------- Productos ---------- */
+    main {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 3.5rem 1.25rem 2rem;
+    }
+
+    h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      text-align: center;
+      color: var(--marron);
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitulo {
+      text-align: center;
+      font-style: italic;
+      color: var(--marron-suave);
+      margin-bottom: 2.5rem;
+    }
+
+    .separador {
+      display: block;
+      width: 90px;
+      height: 3px;
+      margin: 0.75rem auto 1rem;
+      background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 720px) {
+      .productos { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .producto {
+      background: #fffaf0;
+      border: 1px solid var(--crema-oscura);
+      border-radius: 18px;
+      padding: 2rem 1.5rem 1.75rem;
+      text-align: center;
+      box-shadow: var(--sombra);
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(90, 58, 34, 0.22);
+    }
+
+    .icono {
+      font-size: 3.2rem;
+      line-height: 1;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 1rem;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle, var(--crema-oscura) 0%, #fffaf0 75%);
+      border: 2px solid var(--dorado-claro);
+      border-radius: 50%;
+    }
+
+    .producto h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.45rem;
+      color: var(--marron);
+      margin-bottom: 0.5rem;
+    }
+
+    .producto p {
+      color: var(--marron-suave);
+      font-size: 0.98rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .precio {
+      display: inline-block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--marron-oscuro);
+      background: linear-gradient(135deg, var(--dorado-claro), var(--dorado));
+      padding: 0.3rem 1.2rem;
+      border-radius: 999px;
+    }
+
+    .precio small {
+      font-family: "Lora", Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
+
+    .etiqueta {
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      background: var(--marron);
+      color: var(--dorado-claro);
+      font-size: 0.78rem;
+      font-style: italic;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      box-shadow: 0 4px 10px rgba(59, 36, 20, 0.25);
+    }
+
+    /* ---------- Pedidos ---------- */
+    .pedidos {
+      text-align: center;
+      margin: 3.5rem auto 0;
+      padding: 2.5rem 1.5rem;
+      max-width: 640px;
+      background: var(--marron);
+      color: var(--crema);
+      border-radius: 22px;
+      box-shadow: var(--sombra);
+      border: 3px solid var(--dorado);
+    }
+
+    .pedidos h2 { color: var(--crema); }
+
+    .pedidos p {
+      margin: 0.5rem 0 1.75rem;
+      color: var(--crema-oscura);
+    }
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      width: 100%;
+      max-width: 340px;
+      padding: 1.05rem 1.5rem;
+      font-family: "Lora", Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--marron-oscuro);
+      background: linear-gradient(135deg, var(--dorado-claro), var(--dorado));
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .boton-whatsapp:hover,
+    .boton-whatsapp:focus-visible {
+      transform: scale(1.03);
+      filter: brightness(1.06);
+    }
+
+    .boton-whatsapp:focus-visible {
+      outline: 3px solid var(--crema);
+      outline-offset: 4px;
+    }
+
+    .boton-whatsapp svg { width: 26px; height: 26px; flex-shrink: 0; }
+
+    /* ---------- Pie ---------- */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1.25rem 3rem;
+      color: var(--marron-suave);
+      font-size: 0.92rem;
+    }
+
+    footer .firma {
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--marron);
+      margin-bottom: 0.4rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <svg class="espiga" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+      <path d="M31 62V22h2v40z"/>
+      <ellipse cx="32" cy="10" rx="4" ry="8"/>
+      <ellipse cx="25" cy="20" rx="3.5" ry="7.5" transform="rotate(-30 25 20)"/>
+      <ellipse cx="39" cy="20" rx="3.5" ry="7.5" transform="rotate(30 39 20)"/>
+      <ellipse cx="25" cy="32" rx="3.5" ry="7.5" transform="rotate(-30 25 32)"/>
+      <ellipse cx="39" cy="32" rx="3.5" ry="7.5" transform="rotate(30 39 32)"/>
+      <ellipse cx="25" cy="44" rx="3.5" ry="7.5" transform="rotate(-30 25 44)"/>
+      <ellipse cx="39" cy="44" rx="3.5" ry="7.5" transform="rotate(30 39 44)"/>
+    </svg>
+    <p class="desde">Panadería de barrio · Hace 30 años</p>
+    <h1>La Espiga <span>Dorada</span></h1>
+    <p class="lema">Pan hecho a mano, como en casa, desde que el barrio tiene memoria.</p>
+    <div class="horario">
+      <span><strong>Martes a domingo</strong></span>
+      <span>6:00 a 14:00</span>
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-productos">
+      <h2 id="titulo-productos">Lo que más se lleva el barrio</h2>
+      <span class="separador"></span>
+      <p class="subtitulo">Recién salido del horno, todas las mañanas</p>
+
+      <div class="productos">
+        <!-- Ajusta los precios según corresponda -->
+        <article class="producto">
+          <div class="icono" aria-hidden="true">🍞</div>
+          <h3>Pan de masa madre</h3>
+          <p>Fermentación lenta, corteza crujiente y miga suave. El de siempre, el de toda la vida.</p>
+          <span class="precio">$4.500 <small>/ unidad</small></span>
+        </article>
+
+        <article class="producto">
+          <span class="etiqueta">¡Vuelan antes de las 10!</span>
+          <div class="icono" aria-hidden="true">🍪</div>
+          <h3>Galletas de chocolate</h3>
+          <p>Doradas por fuera, tiernas por dentro y con trozos generosos de chocolate.</p>
+          <span class="precio">$1.200 <small>/ unidad</small></span>
+        </article>
+
+        <article class="producto">
+          <div class="icono" aria-hidden="true">🥐</div>
+          <h3>Medialunas de manteca</h3>
+          <p>Hojaldradas y brillantes, perfectas para acompañar el café de la mañana.</p>
+          <span class="precio">$900 <small>/ unidad</small></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="pedidos" aria-labelledby="titulo-pedidos">
+      <h2 id="titulo-pedidos">¿Quieres apartar tu pedido?</h2>
+      <p>Escríbenos y te lo tenemos listo para que no te quedes sin tus galletas.</p>
+      <!-- Reemplaza 5490000000000 por el número de WhatsApp de la panadería (con código de país, sin + ni espacios) -->
+      <a class="boton-whatsapp"
+         href="https://wa.me/5490000000000?text=Hola%2C%20quisiera%20hacer%20un%20pedido%20en%20La%20Espiga%20Dorada"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.6l-.4-.3-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.1 16 5.1s11 4.8 11 10.7-4.9 10.6-11 10.6zm6-7.9c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.2-.3-.3-.6-.4z"/>
+        </svg>
+        Pedir por WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p class="firma">Con cariño, desde nuestro horno al tuyo</p>
+    <p>La Espiga Dorada · Martes a domingo, de 6:00 a 14:00</p>
+  </footer>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ export const UI = {
     nav: { home: 'Inicio', articles: 'Artículos', newsletter: 'Newsletter', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio', material: 'Material', subscribe: 'Suscribirme' },
     hero: {
       title: 'Programo todo con IA y te cuento cómo, sin humo.',
-      text: 'Soy el único programador detrás de mis proyectos, de punta a punta. Aquí dejo el material de cada video y lo que voy aprendiendo.',
+      text: 'Soy el único programador detrás de mis proyectos, de punta a punta. En menos de dos años pasé de copiar y pegar de ChatGPT a no abrir ni la terminal.',
       caption: 'De una consulta a una tarea resuelta.',
       agents: 'Así trabajo con agentes',
     },

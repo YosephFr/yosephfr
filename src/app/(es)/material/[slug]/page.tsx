@@ -53,11 +53,22 @@ export default async function MaterialItem({ params }: Props) {
     <>
       <main id="contenido" lang="es">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
-        <article className="lectura material-pieza">
-          <Link href="/material" className="enlace enlace-suave volver"><DotIcon name="volver" size={13} />Material</Link>
+        <article className="marco material-pieza">
+          <aside className="pieza-lado">
+            <img src={m.poster.src} width={m.poster.width} height={m.poster.height} alt={m.cover.alt} className="pieza-cartel" fetchPriority="high" />
+          </aside>
+          <div className="pieza-cuerpo">
+          <Link href="/material" className="enlace enlace-suave volver"><DotIcon name="volver" size={13} />Lo de los videos</Link>
           <p className="meta">{m.where} · {fecha(m.date)}</p>
           <h1 className="titulo">{m.title}</h1>
           <p className="entrada-texto">{m.summary}</p>
+          {m.watch && m.watch.length > 0 && (
+            <ul className="pieza-ver" aria-label="Dónde verlo">
+              {m.watch.map(l => (
+                <li key={l.href}><a href={l.href} target="_blank" rel="noopener noreferrer" data-event="material_watch" data-channel={l.label}>Verlo en {l.label} <DotIcon name="salida" size={11} /></a></li>
+              ))}
+            </ul>
+          )}
           <div className="material-bloques">
             {m.blocks.map((b, i) => {
               if (b.type === 'texto') return <p key={i} className="material-parrafo">{b.text}</p>
@@ -82,9 +93,9 @@ export default async function MaterialItem({ params }: Props) {
                   <ul>
                     {b.links.map(l => (
                       <li key={l.href}>
-                        <a href={l.href} target="_blank" rel="noopener noreferrer" className="lamina enlace-tarjeta">
+                        <a href={l.href} {...(l.href.startsWith('/') ? {} : { target: '_blank', rel: 'noopener noreferrer' })} className="lamina enlace-tarjeta">
                           <span><strong>{l.label}</strong>{l.note && <span className="meta">{l.note}</span>}</span>
-                          <DotIcon name="salida" size={12} />
+                          <DotIcon name={l.href.startsWith('/') ? 'flecha' : 'salida'} size={12} />
                         </a>
                       </li>
                     ))}
@@ -93,8 +104,9 @@ export default async function MaterialItem({ params }: Props) {
               )
             })}
           </div>
+          </div>
         </article>
-        <NewsletterCTA anchor="boletin" />
+        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Cada domingo, lo que probé con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
       </main>
       <Footer />
     </>

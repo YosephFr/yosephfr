@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useRef, type FormEvent } from 'react'
+import { useId, useRef, useState, type FormEvent } from 'react'
 import { defaultOffer, type NewsletterOffer } from '@/data/offers'
 import { BUTTONDOWN_ACTION, NEWSLETTER_CONSENT } from '@/data/real-cost'
 import { sendEvent } from '@/lib/attribution'
@@ -11,19 +11,18 @@ const TEXT = {
   es: {
     email: 'Correo electrónico',
     placeholder: 'tu@correo.com',
-    helper: 'Si ves una verificación o un error de Buttondown, complétalo ahí.',
   },
   en: {
     email: 'Email',
     placeholder: 'you@email.com',
-    helper: 'If Buttondown shows a check or an error, finish it there.',
   },
 } as const
 
 const PENDING_KEY = 'nl_pending'
 const EM_KEY = 'nl_em'
 
-export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, offer }: { lang?: Lang; embedded?: boolean; anchor?: string; offer?: NewsletterOffer }) {
+export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, offer, variant = 'banda', className = '', children }: { lang?: Lang; embedded?: boolean; anchor?: string; offer?: NewsletterOffer; variant?: 'banda' | 'compacto'; className?: string; children?: React.ReactNode }) {
+  const [enviando, setEnviando] = useState(false)
   const t = TEXT[lang]
   const copy = offer ?? defaultOffer(lang)
   const titleId = useId()
@@ -66,6 +65,10 @@ export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, o
       // Private mode can block storage; the form still posts.
     }
 
+    setEnviando(true)
+    // Si la persona vuelve con el botón Atrás, el formulario queda listo otra vez.
+    window.addEventListener('pageshow', () => setEnviando(false), { once: true })
+
     try {
       sendEvent('newsletter_submit', { language: lang, page_path: window.location.pathname })
     } catch {
@@ -73,29 +76,46 @@ export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, o
     }
   }
 
+  const formulario = (
+    <form action={BUTTONDOWN_ACTION} method="post" onSubmit={onSubmit}>
+      <input
+        ref={honeypotRef}
+        type="text"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        defaultValue=""
+        style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}
+      />
+      <div className="boletin-form">
+        <label className="solo-lector" htmlFor={emailId}>{t.email}</label>
+        <input id={emailId} name="email" type="email" required autoComplete="email" placeholder={t.placeholder} aria-describedby={consentId} />
+        <input type="hidden" name="embed" value="1" />
+        <button className={variant === 'compacto' ? 'boton' : 'boton boton-claro'} type="submit" aria-busy={enviando} disabled={enviando}>
+          {enviando ? <span className="girando" aria-hidden="true" /> : null}
+          {enviando ? (lang === 'en' ? 'Sending' : 'Enviando') : copy.button}
+        </button>
+      </div>
+      <p id={consentId} className="meta consentimiento">{NEWSLETTER_CONSENT[lang]}</p>
+    </form>
+  )
+
+  if (variant === 'compacto') {
+    return (
+      <div id={anchor} className={`boletin-compacto ${className}`} role="group" aria-label={copy.title}>
+        {formulario}
+        {children}
+      </div>
+    )
+  }
+
   return (
-    <section id={anchor} className={embedded ? 'boletin-seccion boletin-en-cuerpo' : 'marco seccion boletin-seccion'} aria-labelledby={titleId}>
+    <section id={anchor} className={`${embedded ? 'boletin-seccion boletin-en-cuerpo' : 'marco seccion boletin-seccion'} ${className}`} aria-labelledby={titleId}>
       <div className="boletin">
         <h2 id={titleId}>{copy.title}</h2>
         <p className="entrada-texto">{copy.text}</p>
-        <form action={BUTTONDOWN_ACTION} method="post" onSubmit={onSubmit}>
-          <input
-            ref={honeypotRef}
-            type="text"
-            tabIndex={-1}
-            autoComplete="off"
-            aria-hidden="true"
-            defaultValue=""
-            style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}
-          />
-          <div className="boletin-form">
-            <label className="solo-lector" htmlFor={emailId}>{t.email}</label>
-            <input id={emailId} name="email" type="email" required autoComplete="email" placeholder={t.placeholder} aria-describedby={consentId} />
-            <input type="hidden" name="embed" value="1" />
-            <button className="boton boton-claro" type="submit">{copy.button}</button>
-          </div>
-          <p id={consentId} className="meta consentimiento">{NEWSLETTER_CONSENT[lang]}</p>
-        </form>
+        {formulario}
+        {children}
       </div>
     </section>
   )

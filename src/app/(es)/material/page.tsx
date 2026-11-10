@@ -40,12 +40,11 @@ export default function MaterialPage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <header className="marco pagina-cabeza">
           <h1 className="titulo">Lo de los videos</h1>
-          <p className="entrada-texto">Lo que muestro en cada video, listo para que lo pruebes.</p>
-        </header>
+                  </header>
         <section className="marco seccion seccion-material" aria-label="Material">
-          <MaterialCards items={items} level="h2" />
+          <MaterialCards items={items} level="h2" className="ancho" />
         </section>
-        <NewsletterCTA anchor="boletin" />
+        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Cada domingo, lo que probé con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
       </main>
       <Footer />
     </>

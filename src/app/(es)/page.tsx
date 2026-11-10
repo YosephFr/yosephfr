@@ -46,15 +46,16 @@ export default function Home() {
           <section id="material" className="marco seccion seccion-material" aria-labelledby="material-titulo">
             <div className="seccion-fila">
               <h2 id="material-titulo">Lo de los videos</h2>
-              {material.length > 4 && <Link href="/material" className="enlace">Todo el material <DotIcon name="flecha" size={13} /></Link>}
+              {material.length > 6 && <Link href="/material" className="enlace">Todo <DotIcon name="flecha" size={13} /></Link>}
             </div>
-            <MaterialCards items={material.slice(0, 4)} />
+            <MaterialCards items={material.slice(0, 6)} />
           </section>
         )}
-        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Un correo por semana con lo que pruebo con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
-        <div className="resto">
+        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Cada domingo, lo que probé con IA y el material nuevo de los videos.', button: 'Suscribirme' }}>
+          <Link href="/newsletter/1" className="boletin-leer">Lee el número 1: La IA no adivina <DotIcon name="flecha" size={12} /></Link>
+        </NewsletterCTA>
         {articles.length > 0 && (
-          <section className="marco seccion" aria-labelledby="articulos-titulo">
+          <section className="marco seccion inicio-articulos" aria-labelledby="articulos-titulo">
             <div className="seccion-fila">
               <h2 id="articulos-titulo">Artículos</h2>
               <Link href="/blog" className="enlace">Todos <DotIcon name="flecha" size={13} /></Link>
@@ -63,8 +64,8 @@ export default function Home() {
           </section>
         )}
         <section className="marco seccion" aria-labelledby="quien-titulo">
-          <div className="quien lamina">
-            <div>
+          <div className="quien">
+            <div className="quien-texto">
               <h2 id="quien-titulo">Quién te lo cuenta</h2>
               <p className="entrada-texto">Empecé copiando y pegando de ChatGPT. Hoy ni abro la terminal: trabajo hablando con agentes, con rondas de preguntas, planes grandes y todo directo a producción.</p>
               <Link href="/cv" className="enlace">Mi CV <DotIcon name="flecha" size={13} /></Link>
@@ -72,11 +73,10 @@ export default function Home() {
             <ul className="quien-cifras">
               <li><strong>14.000</strong><span>conversaciones al mes atendidas con IA en lo que tengo en producción</span></li>
               <li><strong>+30</strong><span>clientes activos</span></li>
-              <li><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
+              <li className="ancha"><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
             </ul>
           </div>
         </section>
-        </div>
       </main>
       <Footer />
     </>

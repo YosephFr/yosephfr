@@ -39,8 +39,8 @@ export const REAL_COST_OFFER: Record<Lang, { title: string; text: string; button
 }
 
 export const NEWSLETTER_CONSENT: Record<Lang, string> = {
-  es: 'Te suscribes al newsletter de Yoseph Franco (vía Buttondown). Puedes darte de baja cuando quieras.',
-  en: "You subscribe to Yoseph Franco's newsletter (via Buttondown). You can unsubscribe whenever you want.",
+  es: 'Un correo cada domingo. Te das de baja con un clic.',
+  en: 'One email every Sunday. Unsubscribe in one click.',
 }
 
 export const BUTTONDOWN_ACTION = 'https://buttondown.com/api/emails/embed-subscribe/yosephfr'
