@@ -1,3 +1,5 @@
+import { yaSalio } from '@/lib/desde'
+
 // Archivo del newsletter: cada número que sale por correo queda aquí para quien llega después.
 // El texto es el mismo que se envía; los enlaces llevan al material de cada pieza.
 
@@ -72,6 +74,15 @@ export const NUMEROS: Numero[] = [
     ],
   },
 ]
+
+// Solo lo que ya salió por correo tiene página y enlace; lo programado entra con el despliegue de su hora (publicar-a-su-hora).
+export function numerosPublicados() {
+  return NUMEROS.filter(n => yaSalio(n.date))
+}
+
+export function ultimoNumero() {
+  return numerosPublicados().at(-1)
+}
 
 export function getNumero(n: number) {
   return NUMEROS.find(x => x.numero === n)

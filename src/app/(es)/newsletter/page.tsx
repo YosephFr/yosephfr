@@ -4,8 +4,7 @@ import InternalLink from '@/components/InternalLink'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import { PROFILE } from '@/data/profile'
 import Link from 'next/link'
-import { NUMEROS } from '@/data/newsletter'
-import { desde } from '@/lib/desde'
+import { numerosPublicados } from '@/data/newsletter'
 import { alternates } from '@/lib/lang'
 import { jsonLd, og } from '@/lib/seo'
 
@@ -46,11 +45,11 @@ export default function NewsletterPage() {
           <h1 className="titulo">{title}</h1>
         </header>
         <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Cada domingo, lo que probé con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
-        <section className="marco seccion" aria-labelledby="numeros-titulo" {...desde(NUMEROS[0].date)}>
+        {numerosPublicados().length > 0 && <section className="marco seccion" aria-labelledby="numeros-titulo">
           <h2 id="numeros-titulo" className="numeros-titulo">Números</h2>
           <ul className="numeros">
-            {NUMEROS.slice().reverse().map(n => (
-              <li key={n.numero} {...desde(n.date)}>
+            {numerosPublicados().slice().reverse().map(n => (
+              <li key={n.numero}>
                 <Link href={`/newsletter/${n.numero}`} className="lamina numero-tarjeta">
                   <span className="meta">Número {n.numero}</span>
                   <strong>{n.title}</strong>
@@ -59,7 +58,7 @@ export default function NewsletterPage() {
               </li>
             ))}
           </ul>
-        </section>
+        </section>}
       </main>
       <Footer />
     </>

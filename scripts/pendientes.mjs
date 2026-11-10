@@ -1,5 +1,5 @@
 // Lo que ya llegó a su hora y todavía no está en el sitio publicado.
-// Compara los artículos y el material con fecha cumplida contra el sitemap en vivo.
+// Compara los artículos, el material y los números del newsletter con fecha cumplida contra el sitemap en vivo.
 // Imprime una ruta por línea; vacío si no falta nada. Lo usa .github/workflows/publicar-a-su-hora.yml.
 import fs from 'node:fs'
 import path from 'node:path'
@@ -16,6 +16,11 @@ const rutas = articles
 const material = fs.readFileSync(path.join(site, 'src/data/material.ts'), 'utf8')
 for (const m of material.matchAll(/slug: '([a-z0-9-]+)',[\s\S]*?date: '([^']+)'/g)) {
   if (Date.parse(m[2]) <= now) rutas.push(`/material/${m[1]}`)
+}
+
+const newsletter = fs.readFileSync(path.join(site, 'src/data/newsletter.ts'), 'utf8')
+for (const m of newsletter.matchAll(/numero: (\d+),[\s\S]*?date: '([^']+)'/g)) {
+  if (Date.parse(m[2]) <= now) rutas.push(`/newsletter/${m[1]}`)
 }
 
 const res = await fetch(`${origin}/sitemap.xml`, { headers: { 'cache-control': 'no-cache' } })

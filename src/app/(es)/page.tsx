@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { articlePath, getPublicArticles } from '@/data/articles'
 import { materialEnSitio } from '@/data/material'
-import { NUMEROS } from '@/data/newsletter'
-import { desde } from '@/lib/desde'
+import { ultimoNumero } from '@/data/newsletter'
 import { PROFILE } from '@/data/profile'
 import { jsonLd, profilePage } from '@/lib/seo'
 import ArticleCards from '@/components/blog/ArticleCards'
@@ -20,6 +19,7 @@ export const metadata: Metadata = {
 
 // Quien llega desde un video viene a buscar algo: primero el material, después el newsletter.
 export default function Home() {
+  const ultimo = ultimoNumero()
   const articles = getPublicArticles()
   const material = materialEnSitio()
   const schema = {
@@ -54,7 +54,7 @@ export default function Home() {
           </section>
         )}
         <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Cada domingo, lo que probé con IA y el material nuevo de los videos.', button: 'Suscribirme' }}>
-          <Link href="/newsletter/1" className="boletin-leer" {...desde(NUMEROS[0].date)}>Lee el número 1: La IA no adivina <DotIcon name="flecha" size={12} /></Link>
+          {ultimo && <Link href={`/newsletter/${ultimo.numero}`} className="boletin-leer">Lee el número {ultimo.numero}: {ultimo.title} <DotIcon name="flecha" size={12} /></Link>}
         </NewsletterCTA>
         {articles.length > 0 && (
           <section className="marco seccion inicio-articulos" aria-labelledby="articulos-titulo">
