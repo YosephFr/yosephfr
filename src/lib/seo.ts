@@ -46,7 +46,7 @@ export function personNode() {
     alternateName: PROFILE.brand,
     url: PROFILE.url,
     email: PROFILE.email,
-    jobTitle: 'AI Engineer',
+    jobTitle: 'Cofundador y único programador de una startup',
     description: PROFILE.description,
     image: {
       '@type': 'ImageObject',

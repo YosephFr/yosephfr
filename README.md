@@ -76,3 +76,20 @@ Social links use lowercase parameters: `utm_source` (`x`, `linkedin`, `tiktok`, 
 ---
 
 <sub>This portfolio was built with Next.js, Tailwind CSS, and an unhealthy amount of attention to detail. Try pressing Cmd+K.</sub>
+
+## Publicación a su hora
+
+El sitio es estático: un artículo, una entrada de material o un número del newsletter con fecha futura entra recién en el primer despliegue después de esa fecha. Nadie tiene que desplegar a mano:
+
+1. `scripts/pendientes.mjs` compara lo que ya cumplió su fecha (`src/data/articles.json`, `src/data/material.ts`, `src/data/newsletter.ts`) con el sitemap en vivo y lista lo que falta.
+2. El workflow `.github/workflows/publicar-a-su-hora.yml` corre ese script; si falta algo, deja un commit vacío «Publica a su hora: …» en `main` (Hostinger no acepta volver a desplegar el mismo commit) y lanza `deploy-hostinger.yml`. Si no falta nada, no hace nada. No corre si hay un despliegue en curso o si el último falló.
+3. Quién lo lanza: el cron del propio workflow (:23 y :53, de 9 a 23 de Buenos Aires) y, como respaldo porque ese cron no disparó nunca en este repo, un launchd en la Mac de Franco que lo lanza a los :05 de cada hora de 9 a 23 (`~/Library/LaunchAgents/com.yosephfr.publicar.plist`, que corre `~/.local/bin/yosephfr-publicar.sh`, copia de `scripts/publicar-a-su-hora-mac.sh`; registro en `~/Library/Logs/yosephfr-publicar.log`). Necesita la Mac encendida y `gh` con sesión.
+
+Para programar algo nuevo basta con ponerle su fecha y hacer push a `main`. Para comprobar: `gh run list -R YosephFr/yosephfr -w publicar-a-su-hora.yml`.
+
+Quitar el respaldo de la Mac:
+
+```bash
+launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.yosephfr.publicar.plist
+rm ~/Library/LaunchAgents/com.yosephfr.publicar.plist ~/.local/bin/yosephfr-publicar.sh
+```

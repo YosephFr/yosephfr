@@ -9,7 +9,7 @@ export const PROFILE = {
   photoWidth: 480,
   photoHeight: 480,
   updated: '2026-11-10T00:00:00-03:00',
-  description: 'Agentes de IA, software y automatización para el trabajo real. Experiencia, guías y análisis de Yoseph Franco, Arncof.',
+  description: 'Cofundador y único programador de una startup con cientos de clientes activos. Programa todo con IA y explica cómo se hace, sin humo.',
   socials: [
     { name: 'X', href: 'https://x.com/arncof' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/arncof/' },

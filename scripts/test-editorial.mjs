@@ -155,7 +155,7 @@ test('ProfilePage trae una Person con name en mainEntity, y los artículos nuevo
   assert.equal(page['@type'],'ProfilePage');
   assert.equal(page.mainEntity['@type'],'Person');
   assert.equal(page.mainEntity.name,'Yoseph Franco');
-  assert.equal(page.mainEntity.jobTitle,'AI Engineer');
+  assert.equal(page.mainEntity.jobTitle,'Cofundador y único programador de una startup');
   assert.equal(page.mainEntity.image.url, new URL(profile.PROFILE.photo, profile.PROFILE.url).href);
   assert.equal(fs.existsSync(path.join(site,'public',profile.PROFILE.photo)),true);
   assert.ok(page.mainEntity.sameAs.length>=3);

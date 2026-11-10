@@ -48,9 +48,9 @@ export function writeLlms(articles, directory, now = Date.now()) {
   const posts = items => items.map(article => link(article.title, articleUrl(article), article.description)).join('\n')
   const llms = `# Yoseph Franco
 
-> AI Engineer en Buenos Aires. Diseña agentes de IA, software y automatizaciones, y escribe sobre agentes, modelos, automatización y herramientas de código con IA.
+> Cofundador y único programador de una startup con cientos de clientes activos, en Buenos Aires. Más de diez años programando; trabaja con agentes de IA en un equipo reducido de alto rendimiento y explica cómo se hace, sin humo: programar con IA, dirigir agentes, qué modelo usar.
 
-Datos clave: AI Engineer · idiomas: español e inglés · contacto: ${origin}/contacto
+Datos clave: cofundador y único programador de una startup · más de diez años programando · idiomas: español e inglés · contacto: ${origin}/contacto
 
 ## Español
 ${link('Inicio', `${origin}/`, 'perfil profesional, áreas de trabajo y artículos recientes')}
@@ -73,7 +73,9 @@ ${link('Articles', `${origin}/en/blog`, 'English articles, plus Spanish original
 ${link('RSS', `${origin}/en/feed.xml`, 'English feed')}
 ${link('List-cost table of AI models', `${origin}/en/resources/real-cost-ai-models`, 'time and list USD (not the amount billed) per task to build a roadster game, October 2026')}
 
-## Newsletter
+## Material de los videos y newsletter
+${link('Lo de los videos', `${origin}/material`, 'el material de cada video y carrusel: los pedidos exactos para copiar, las páginas que salieron y las fuentes')}
+${link('Archivo del newsletter', `${origin}/newsletter`, 'cada número que ya salió por correo, con sus enlaces')}
 ${link('Empieza aquí', `${origin}/empieza`, 'página para quien llega desde redes: quién es Yoseph Franco, artículos recientes y el newsletter semanal')}
 ${link('Start here', `${origin}/en/start`, 'short English page for social traffic, with the weekly newsletter and recent articles')}
 ${link('Newsletter', `${origin}/newsletter`, 'notas de Franco sobre agentes de IA, modelos, automatización y herramientas de código, y los artículos nuevos. Un correo por semana')}
@@ -94,7 +96,7 @@ ${english.length ? posts(english) : '- No English originals yet. Spanish article
 `
   const full = `# Yoseph Franco
 
-AI Engineer en Buenos Aires. Diseña agentes de IA, software y automatizaciones. Escribe sobre agentes, modelos, automatización y herramientas de código con IA.
+Cofundador y único programador de una startup con cientos de clientes activos, en Buenos Aires. Más de diez años programando; trabaja con agentes de IA en un equipo reducido de alto rendimiento y explica cómo se hace, sin humo: programar con IA, dirigir agentes, qué modelo usar.
 
 Perfil: ${origin}/
 CV: ${origin}/cv
