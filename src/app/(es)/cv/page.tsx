@@ -44,7 +44,11 @@ export default function CV() {
             <ProfilePhoto size={96} priority />
             <div>
             <h1 className="display">Yoseph Franco</h1>
-            <p className="entrada-texto">Diseño flujos de trabajo con agentes para investigar, construir y revisar productos. Organizo el contexto, las herramientas y la continuidad del trabajo, y compruebo el resultado con casos reales.</p>
+            <p className="entrada-texto">Soy el único programador detrás de mis proyectos, de punta a punta, y trabajo con agentes de IA: rondas de preguntas, planes grandes y todo directo a producción.</p>
+            <ul className="cv-cifras">
+              <li><strong>14.000</strong><span>conversaciones al mes atendidas con IA en producción</span></li>
+              <li><strong>+30</strong><span>clientes activos</span></li>
+            </ul>
             <div className="acciones-cv"><ContactActions extra={<PrintButton />} /></div>
             </div>
           </div>
@@ -73,9 +77,8 @@ export default function CV() {
         <section className="marco seccion" aria-labelledby="practicas">
           <div className="seccion-cabeza"><h2 id="practicas">Prácticas actuales</h2></div>
           <div className="practicas">
-            {PRACTICES.map((p, i) => (
+            {PRACTICES.map(p => (
               <div key={p.title} className="lamina practica">
-                <span className="numero" aria-hidden="true">{i + 1}</span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </div>

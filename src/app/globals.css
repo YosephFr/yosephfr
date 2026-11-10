@@ -991,3 +991,48 @@ html { font-synthesis: none; }
 [hidden] { display: none !important; }
 .retrato-img { object-position: 50% 40%; }
 @media (max-width: 899px) { .retrato { aspect-ratio: 1.45 / 1; } }
+
+/* Portada tipográfica de los artículos: el dato en grande y la palabra clave en la caja celeste.
+   Escala con su contenedor (tarjeta cuadrada, ancha o banda del artículo). */
+.articulo-portada, .banda-tipo { container-type: size; }
+.banda-tipo { position: relative; overflow: hidden; border-radius: var(--r); aspect-ratio: 16 / 8 !important; }
+@media (min-width: 900px) { .banda-tipo { aspect-ratio: 40 / 12 !important; } }
+.tipo-portada { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 4cqmin; padding: 8cqmin; background: var(--negro); color: #fff; overflow: hidden; }
+.tipo-portada.tono-claro { background: #e6e7ea; color: var(--negro); }
+.tipo-portada.tono-celeste { background: #dcecfd; color: var(--negro); }
+.tipo-sujeto { font-family: var(--font-sans); font-weight: 700; font-size: max(11px, min(3.4cqw, 7cqmin)); line-height: 1.2; opacity: 0.78; }
+.tipo-dato { font-family: var(--font-heading); font-weight: 800; font-size: min(12cqw, 17cqmin); line-height: 1.14; text-wrap: balance; max-width: 15ch; }
+.tipo-dato mark { background: var(--celeste); color: var(--negro); padding: 0 0.14em; border-radius: 0.16em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.tono-celeste .tipo-dato mark, .tono-claro .tipo-dato mark { background: var(--negro); color: #fff; }
+.articulo-tarjeta:hover .tipo-portada { transform: scale(1.02); }
+.tipo-portada { transition: transform 0.6s var(--entrada); }
+.articulo-texto p { overflow-wrap: anywhere; }
+
+/* Movimiento: la página entra al navegar, las secciones de abajo suben al llegar y el título de la portada se acomoda.
+   Solo transform y opacidad, cortos; nada con «reducir movimiento». */
+@media (prefers-reduced-motion: no-preference) {
+  .entrada-pagina { animation: pagina-entra 0.45s var(--entrada) both; }
+  .por-revelar { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.7s var(--entrada); }
+  .por-revelar.revelado { opacity: 1; transform: none; }
+  .estante > li.por-revelar { animation: none; }
+  .portada h1 { animation: titulo-entra 0.8s var(--entrada) both; }
+  .portada .entrada-texto, .portada .boletin-compacto, .portada .portada-redes { animation: titulo-entra 0.8s var(--entrada) 0.08s both; }
+}
+@keyframes pagina-entra { from { transform: translateY(10px); } to { transform: none; } }
+@keyframes titulo-entra { from { transform: translateY(16px); } to { transform: none; } }
+.boton, .pieza, .lamina, .portada-redes a, .pieza-ver a { -webkit-tap-highlight-color: transparent; }
+.boton:active { transform: scale(0.97); }
+.boletin-form input[type="email"] { transition: box-shadow 0.2s ease; }
+.boletin-form input[type="email"]:focus { outline: none; box-shadow: 0 0 0 3px var(--celeste); }
+
+/* CV y secciones heredadas: títulos a la izquierda como el resto del sitio, un solo realce */
+.seccion-cabeza { align-items: flex-start; text-align: left; }
+.seccion-cabeza h2 { max-width: 22ch; }
+.acento-verde, .acento-naranja, .acento-morado, .acento-azul { --acento: var(--negro); }
+.trayectoria-grupo .trayectoria-puntos i.lleno.ahora { background: var(--celeste); }
+.cv-cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; max-width: 520px; }
+.cv-cifras li { padding: 14px 16px; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); }
+.cv-cifras strong { display: block; font-family: var(--font-heading); font-size: 28px; line-height: 1; font-weight: 800; }
+.cv-cifras span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.4; color: var(--texto-2); }
+@media print { .por-revelar { opacity: 1 !important; transform: none !important; } .entrada-pagina { animation: none !important; } }
+.practica h3, .practica h3:first-child { margin-top: 0 !important; }

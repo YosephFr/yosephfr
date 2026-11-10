@@ -1,4 +1,3 @@
-import { LEAD_MAGNET } from '@/data/real-cost'
 import type { Lang } from '@/lib/lang'
 
 export type NewsletterOffer = { title: string; text: string; button: string }
@@ -121,8 +120,8 @@ export function clusterFor(article: { category?: string; slug?: string }): Clust
 
 export function defaultOffer(lang: Lang): NewsletterOffer {
   return {
-    title: lang === 'en' ? 'The weekly newsletter' : 'El newsletter semanal',
-    text: LEAD_MAGNET[lang],
+    title: lang === 'en' ? 'What I learn, every week' : 'Lo que aprendo, cada semana',
+    text: lang === 'en' ? 'Every Sunday, what I tried with AI that week and the new material from the videos.' : 'Cada domingo, lo que probé con IA y el material nuevo de los videos.',
     button: lang === 'en' ? 'Subscribe' : 'Suscribirme',
   }
 }

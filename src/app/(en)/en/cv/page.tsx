@@ -72,9 +72,8 @@ export default function CVEn() {
         <section className="marco seccion" aria-labelledby="practicas">
           <div className="seccion-cabeza"><h2 id="practicas">Current practices</h2></div>
           <div className="practicas">
-            {PRACTICES_EN.map((p, i) => (
+            {PRACTICES_EN.map(p => (
               <div key={p.title} className="lamina practica">
-                <span className="numero" aria-hidden="true">{i + 1}</span>
                 <h3>{p.title}</h3>
                 <p>{p.text}</p>
               </div>
