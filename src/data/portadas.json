@@ -1,5 +1,11 @@
 {
   "_": "Portada tipográfica de cada artículo: de qué habla (sujeto), el dato en grande y la parte que va en la caja celeste (realce, tal cual aparece en el dato). Tono: negro, claro o celeste. La imagen para compartir se genera con node scripts/portadas.mjs.",
+  "lo-que-mas-rompe-a-un-agente-de-ia": { "sujeto": "Agentes de IA", "dato": "Dos órdenes que se pelean", "realce": "se pelean", "tono": "claro" },
+  "entrevista-con-opciones-antes-de-pedirle-algo-a-la-ia": { "sujeto": "Antes de pedirle algo", "dato": "Una entrevista con opciones", "realce": "con opciones", "tono": "celeste" },
+  "ia-800-millones-de-empleos": { "sujeto": "La IA y el trabajo", "dato": "¿800 millones de empleos?", "realce": "800 millones", "tono": "negro" },
+  "esfuerzo-de-razonamiento-ia-la-perilla": { "sujeto": "La perilla de la IA", "dato": "La mejor, en medio, ganó", "realce": "en medio", "tono": "celeste" },
+  "pago-400-dolares-ia-uso-30-mil": { "sujeto": "Lo que pago de IA", "dato": "Pago 400. Uso 30 mil.", "realce": "30 mil", "tono": "claro" },
+  "te-fallo-la-ia-fuiste-tu": { "sujeto": "Errores de la IA", "dato": "¿Te falló? Fuiste tú", "realce": "Fuiste tú", "tono": "negro" },
   "por-que-la-ia-te-da-la-razon": { "sujeto": "La IA y tus preguntas", "dato": "¿Por qué te da la razón?", "realce": "la razón", "tono": "negro" },
   "hablale-a-la-ia-nota-de-voz": { "sujeto": "Háblale a la IA", "dato": "37 segundos de voz", "realce": "de voz", "tono": "celeste" },
   "pagina-hecha-con-ia-referencias-dribbble": { "sujeto": "Diseño con IA", "dato": "Referencias antes que prompts", "realce": "Referencias", "tono": "claro" },

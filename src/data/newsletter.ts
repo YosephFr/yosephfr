@@ -1,3 +1,5 @@
+import { yaSalio } from '@/lib/desde'
+
 // Archivo del newsletter: cada número que sale por correo queda aquí para quien llega después.
 // El texto es el mismo que se envía; los enlaces llevan al material de cada pieza.
 
@@ -71,7 +73,104 @@ export const NUMEROS: Numero[] = [
       'Franco',
     ],
   },
+  {
+    numero: 2,
+    title: 'Antes de culpar a la IA',
+    summary: 'Las tres cosas que reviso cuando algo sale mal, la perilla que muevo en vez de cambiar de modelo y lo que pago de verdad.',
+    date: '2026-11-22T10:00:00-03:00',
+    intro: [
+      'Cuando una IA hace algo mal, lo primero que hace casi todo el mundo es culparla o cambiarse a otra. Yo hago lo contrario: reviso lo que le di.',
+      'Esta semana te dejo cómo lo reviso, qué ajusto cuando quiero que vaya más rápido y cuánto me cuesta trabajar así.',
+    ],
+    sections: [
+      {
+        title: 'Si te falló, revisa esto primero',
+        paragraphs: [
+          'En mi experiencia, el 99 % de las veces no es culpa de la IA. Reviso tres cosas: lo que le dije, las reglas que lee y lo que le mezclé en la conversación.',
+          'Una instrucción que se contradice, un archivo de reglas de hace meses o un chat lleno de cosas que no tienen nada que ver alcanzan para que el mejor modelo se equivoque.',
+        ],
+        link: { label: 'Las tres cosas y dos pedidos para copiar', href: '/blog/te-fallo-la-ia-fuiste-tu' },
+      },
+      {
+        title: 'Bájale la perilla, no el modelo',
+        paragraphs: [
+          'Le di a la mejor IA y a una más chica la misma compra, con cupones y envíos: encontrar el total más bajo entre 960 millones de combinaciones. La mejor, pensando en medio, acertó las dos veces en un minuto. En máximo dio la misma respuesta tardando entre cinco y diez veces más.',
+          'Por eso no me paso a un modelo barato para ir rápido. Uso el mejor y cambio cuánto piensa.',
+        ],
+        link: { label: 'La prueba completa, para que la hagas tú', href: '/blog/esfuerzo-de-razonamiento-ia-la-perilla' },
+      },
+      {
+        title: 'Cómo mido lo que uso',
+        paragraphs: [
+          'Pago dos suscripciones de 200 dólares, Claude y Codex. Con CodexBar, una app gratis para la Mac, veo cuánto costaría mi uso a precio de API: entre 18 y 30 mil dólares al mes.',
+        ],
+        link: { label: 'Pago 400 y uso hasta 30 mil', href: '/blog/pago-400-dolares-ia-uso-30-mil' },
+      },
+      {
+        title: 'El número de la semana',
+        paragraphs: [
+          '9 horas y 24 minutos: lo que llevó, del guion al video final, un video mío de 32 segundos. Siete frases, treinta tomas de voz y tres escenarios. ¿Está hecho con IA? Obvio que sí, pero hay un gran trabajo detrás.',
+        ],
+      },
+    ],
+    close: [
+      'Esta semana, la próxima vez que la IA te falle, no la cambies: abre lo que le escribiste y busca dos órdenes que se peleen. Y si conoces a alguien que le echa la culpa de todo a la IA, reenvíale este correo.',
+      'Franco',
+    ],
+  },
+  {
+    numero: 3,
+    title: 'Ve a la fuente',
+    summary: 'De dónde sale la cifra de los 800 millones de empleos, la frase que le escribo a la IA antes de algo grande y lo que más rompe a un agente.',
+    date: '2026-11-29T10:00:00-03:00',
+    intro: [
+      '«La IA va a destruir 800 millones de empleos.» Esa frase la viste mil veces. Esta semana fui a leer de dónde sale, y no dice eso.',
+    ],
+    sections: [
+      {
+        title: 'Los 800 millones',
+        paragraphs: [
+          'Salen de un informe de McKinsey de 2017, cinco años antes de ChatGPT. Son el techo de su escenario más rápido y cuentan personas que tendrían que cambiar de trabajo, no personas sin trabajo. El mismo informe dice que en la mayoría de los escenarios puede haber trabajo para todos.',
+          'Usar IA no te deja sin trabajo. Multiplica lo que puedes hacer. Lo que te deja atrás es no usarla.',
+        ],
+        link: { label: 'Lo que dice el informe y lo que veo yo', href: '/blog/ia-800-millones-de-empleos' },
+      },
+      {
+        title: 'Una frase antes de algo grande',
+        paragraphs: [
+          '«Hazme una entrevista con opciones para saber qué quiero hacer y qué no quiero hacer.» Ella pregunta, te marca la opción que recomienda y tú eliges A, B o C. Así decides tú y no inventa lo que no le dijiste.',
+        ],
+        link: { label: 'La frase y cómo se ve la entrevista', href: '/blog/entrevista-con-opciones-antes-de-pedirle-algo-a-la-ia' },
+      },
+      {
+        title: 'Dos órdenes que se pelean',
+        paragraphs: [
+          'Lo que más rompe a un agente son las contradicciones dentro de sus propias instrucciones: «responde corto» arriba y «explica cada paso con detalle» abajo. No es que no haga caso. Le hace caso a las dos.',
+        ],
+        link: { label: 'Cómo las encuentro y las arreglo', href: '/blog/lo-que-mas-rompe-a-un-agente-de-ia' },
+      },
+      {
+        title: 'El número de la semana',
+        paragraphs: [
+          'Menos del 5 %: las ocupaciones que, según ese mismo informe, se pueden automatizar por completo. En la mayoría cambia una parte del trabajo, no el trabajo entero.',
+        ],
+      },
+    ],
+    close: [
+      'Esta semana, antes de tu próximo pedido grande, pégale la frase de la entrevista y elige. Y si tienes a alguien cerca que repite lo de los 800 millones, reenvíale este correo.',
+      'Franco',
+    ],
+  },
 ]
+
+// Solo lo que ya salió por correo tiene página y enlace; lo programado entra con el despliegue de su hora (publicar-a-su-hora).
+export function numerosPublicados() {
+  return NUMEROS.filter(n => yaSalio(n.date))
+}
+
+export function ultimoNumero() {
+  return numerosPublicados().at(-1)
+}
 
 export function getNumero(n: number) {
   return NUMEROS.find(x => x.numero === n)

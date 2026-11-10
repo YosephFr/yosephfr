@@ -4,18 +4,21 @@ import { notFound } from 'next/navigation'
 import Footer from '@/components/Footer'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import DotIcon from '@/components/dots/DotIcon'
-import { NUMEROS, getNumero } from '@/data/newsletter'
+import { numerosPublicados } from '@/data/newsletter'
 import { PROFILE } from '@/data/profile'
 import { breadcrumbs, jsonLd, social } from '@/lib/seo'
 
 type Props = { params: Promise<{ numero: string }> }
 
 export function generateStaticParams() {
-  return NUMEROS.map(n => ({ numero: String(n.numero) }))
+  // El export estático exige al menos una ruta: antes del primer envío, /newsletter/1 sale como «no encontrado».
+  const salidos = numerosPublicados().map(n => ({ numero: String(n.numero) }))
+  return salidos.length ? salidos : [{ numero: '1' }]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const n = getNumero(Number((await params).numero))
+  const numero = Number((await params).numero)
+  const n = numerosPublicados().find(x => x.numero === numero)
   if (!n) return {}
   const title = `${n.title} · Newsletter ${n.numero}`
   return {
@@ -27,7 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function NumeroPage({ params }: Props) {
-  const n = getNumero(Number((await params).numero))
+  const numero = Number((await params).numero)
+  const n = numerosPublicados().find(x => x.numero === numero)
   if (!n) notFound()
   const schema = {
     '@context': 'https://schema.org',

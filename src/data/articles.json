@@ -1,5 +1,546 @@
 [
   {
+    "slug": "lo-que-mas-rompe-a-un-agente-de-ia",
+    "title": "Lo que más rompe a un agente de IA: dos órdenes que se pelean",
+    "seoTitle": "Lo que más rompe a un agente de IA (y cómo arreglarlo)",
+    "description": "Cuando tu agente no hace caso, casi siempre tiene dos instrucciones que chocan. Cómo encontrar la pelea, decidir cuál gana y dejar menos reglas, como lo hago yo con mis agentes.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-27T12:00:00-03:00",
+    "updated": "2026-11-27T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "keyword": "mi agente de IA no hace caso",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** las contradicciones dentro de sus propias instrucciones. Si le escribiste «responde corto» y más abajo «explica cada paso con detalle», no puede cumplir las dos bien. Se arregla leyendo todo, decidiendo cuál gana y borrando la otra."
+      },
+      {
+        "type": "paragraph",
+        "text": "En octubre, explicándole a alguien por qué sus agentes respondían mal, se lo dije así: «lo que más afecta a estos agentes, lo que más los rompe, son las contradicciones dentro de las mismas instrucciones»."
+      },
+      {
+        "type": "heading",
+        "text": "Qué son sus instrucciones"
+      },
+      {
+        "type": "paragraph",
+        "text": "Un agente es una IA que hace tareas por ti, además de responderte. Antes de trabajar lee lo que le dejaste escrito: las instrucciones de tu proyecto, las de tu GPT o un archivo. Los que programamos usamos [AGENTS.md](https://agents.md/), un archivo de texto con las reglas del proyecto que leen agentes como Codex. Lo que dice ahí lo aplica en cada tarea."
+      },
+      {
+        "type": "paragraph",
+        "text": "Por eso, cuando algo sale mal, en mi experiencia el 99 % de las veces no fue la IA. Fue que no le diste una buena instrucción o que no actualizaste su entorno, tu setup."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo nace la pelea"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nadie escribe dos reglas que chocan a propósito. Pasa así: algo falla y agregas una regla. Falla otra cosa y agregas otra. Diez renglones más abajo, la nueva pide lo contrario que una de arriba. Dos ejemplos de todos los días:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "«Responde corto» y «Explica cada paso con detalle».",
+          "«No toques nada sin preguntarme» y «Arréglalo todo sin molestarme»."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Con las dos delante, el agente cumple una a veces, la otra otras veces, o un poco de cada una. Desde afuera parece que no hace caso. En realidad está haciéndole caso a las dos."
+      },
+      {
+        "type": "paragraph",
+        "text": "Y hay otra forma de la misma pelea: la instrucción vieja. A veces parece que se le olvidan las instrucciones, y es porque no las actualizamos. Lo que valía hace un mes choca con lo que le pides hoy."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo la encuentro y la arreglo"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Léelo entero, de corrido.** No solo lo que agregaste ayer. Buscas dos reglas que pidan cosas opuestas.",
+          "**Decide tú cuál gana y borra la otra.** Arregla la contradicción. No agregues otra regla encima para explicar la primera.",
+          "**Deja menos reglas.** Dale el objetivo y deja que el modelo encuentre la forma de cumplirlo."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Yo no les pongo tantos límites a mis agentes, pero cuido mucho su entorno. Limpio constantemente el AGENTS.md, y cada vez que hay un salto grande en los modelos rehago mi setup completo, porque cada modelo nuevo piensa distinto. Siempre con el mejor que haya: lo que ajusto es el razonamiento."
+      },
+      {
+        "type": "paragraph",
+        "text": "Si lo que le falta a tu agente es contexto y no reglas, cuéntaselo hablando, como muestro en [lo de los videos](/material/hablale)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tu agente lee lo que le escribiste. Si se pelea, es porque tú lo pusiste a pelear."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Cuántas reglas son demasiadas?",
+        "a": "Las que ya no puedes leer de corrido sin perderte. Si tú no encuentras la pelea, el agente tampoco sabe cuál cumplir."
+      },
+      {
+        "q": "¿Y si las dos reglas me sirven?",
+        "a": "Júntalas en una sola que diga cuándo va cada cosa, por ejemplo «responde corto, salvo que te pida el paso a paso»."
+      }
+    ]
+  },
+  {
+    "slug": "entrevista-con-opciones-antes-de-pedirle-algo-a-la-ia",
+    "title": "Escríbele esto a la IA antes de pedirle algo grande",
+    "seoTitle": "Entrevista con opciones: qué escribirle a la IA primero",
+    "description": "Antes de un pedido grande le escribo una frase a la IA: que me haga una entrevista con opciones. La frase para copiar, cómo se ve la entrevista y por qué así decides tú y no ella.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-25T12:00:00-03:00",
+    "updated": "2026-11-25T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 3,
+    "keyword": "cómo pedirle algo a la IA",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** pídele que te haga una entrevista con opciones. Ella pregunta, te marca la opción que recomienda y tú solo eliges A, B o C. Así las decisiones las tomas tú y no se inventa lo que no le dijiste."
+      },
+      {
+        "type": "paragraph",
+        "text": "Así se lo enseñé a personas que empezaban a trabajar con agentes, y así trabajo yo: en rondas de entrevista, antes de armar cualquier plan grande."
+      },
+      {
+        "type": "heading",
+        "text": "La frase"
+      },
+      {
+        "type": "pedido",
+        "label": "Para copiar",
+        "text": "Hazme una entrevista con opciones para saber qué quiero hacer y qué no quiero hacer."
+      },
+      {
+        "type": "paragraph",
+        "text": "Pégala junto a lo que quieres hacer, antes de que empiece a trabajar. Con una o dos frases sobre el pedido alcanza: el resto sale de las preguntas."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo se ve la entrevista"
+      },
+      {
+        "type": "paragraph",
+        "text": "Va lanzando preguntas, y cada una trae opciones: la recomendada y otras. Tú contestas con una letra. Si ninguna te sirve, lo dices con tus palabras. Un ejemplo, si le pides una presentación para el trabajo:"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**¿Para quién es?** A) Tu jefe. B) Tu equipo (recomendada). C) Un cliente.",
+          "**¿Cuánto tiene que durar?** A) Cinco minutos (recomendada). B) Quince. C) Media hora.",
+          "**¿Qué no puede faltar?** A) Los números del mes. B) Los próximos pasos (recomendada). C) Las dos.",
+          "**¿Qué tono?** A) Formal. B) Directo y corto (recomendada). C) Con humor."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuatro letras y ya sabe lo que de otra forma habría adivinado."
+      },
+      {
+        "type": "heading",
+        "text": "Por qué decides tú"
+      },
+      {
+        "type": "paragraph",
+        "text": "Con un pedido grande y poco contexto, la IA llena los huecos ella sola, y los llena con lo de siempre. Con la entrevista, cada hueco aparece como una pregunta y lo llenas tú. Lo importante es que nosotros seamos los que decidimos qué hacer, para que la IA no se tome atribuciones."
+      },
+      {
+        "type": "paragraph",
+        "text": "Tampoco le pidas permiso. Si le preguntas «¿está bien así?», lo más probable es que te diga que sí, porque está hecha para servir ([por qué la IA te da la razón](/blog/por-que-la-ia-te-da-la-razon)). En la entrevista no le preguntas si está bien: le pides opciones y eliges."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que le sumo yo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Antes de la entrevista le doy mucho contexto: grabo notas de voz, videos y audios, y se los paso. Mientras más sabe, mejores son las opciones que te propone. Cómo le hablo en vez de escribirle está en [lo de los videos](/material/hablale)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Y lo hago siempre con el mejor modelo que haya. Lo que cambio es el razonamiento, nunca el modelo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Guarda la frase. La próxima vez que sientas que la IA «entendió otra cosa», te faltaba esta."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Funciona en ChatGPT o solo en Claude?",
+        "a": "Es una instrucción en palabras normales. Yo la uso con Claude y con Codex, y cualquier asistente de chat la entiende."
+      },
+      {
+        "q": "¿No es más lento?",
+        "a": "Son un par de minutos contestando con letras. Lo lento es rehacer algo que salió distinto a lo que querías."
+      }
+    ]
+  },
+  {
+    "slug": "ia-800-millones-de-empleos",
+    "title": "¿La IA va a quitar 800 millones de empleos? Lo que dice el informe y lo que veo yo",
+    "seoTitle": "800 millones de empleos y la IA: lo que dice el informe",
+    "description": "La cifra de los 800 millones de empleos sale de un informe de McKinsey de 2017. Qué dice de verdad, por qué el miedo a perder el trabajo está al revés y cómo la IA me multiplica a mí.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-23T12:00:00-03:00",
+    "updated": "2026-11-23T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "keyword": "la IA me va a quitar el trabajo",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** no. Los 800 millones salen de un informe de McKinsey de 2017, son el techo de su escenario más rápido y cuentan personas que tendrían que cambiar de trabajo. El mismo informe calcula que en la mayoría de los escenarios puede haber trabajo para todos. Y lo que yo veo todos los días va más lejos: usar IA multiplica lo que una persona puede hacer."
+      },
+      {
+        "type": "paragraph",
+        "text": "Esa cifra la viste mil veces, en videos y en posts, casi siempre como «la IA va a destruir 800 millones de empleos». Fui a leer de dónde sale."
+      },
+      {
+        "type": "heading",
+        "text": "Qué dice el informe de verdad"
+      },
+      {
+        "type": "paragraph",
+        "text": "Se llama [«Jobs lost, jobs gained»](https://www.mckinsey.com/featured-insights/future-of-work/jobs-lost-jobs-gained-what-the-future-of-work-will-mean-for-jobs-skills-and-wages) y lo publicó el McKinsey Global Institute el 28 de noviembre de 2017. Habla de automatización en general, y es de cinco años antes de ChatGPT, que [OpenAI presentó el 30 de noviembre de 2022](https://openai.com/index/chatgpt/)."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**800 millones es el máximo.** Dice que entre 400 y 800 millones de personas en el mundo podrían ser desplazadas por la automatización y tener que buscar un trabajo nuevo para 2030. Los 400 son su escenario intermedio; los 800, el de adopción más rápida.",
+          "**Habla de cambiar de trabajo.** Desplazada quiere decir que una máquina pasa a hacer tu tarea y te mueves a otra. En ningún lado dice 800 millones de personas sin trabajo.",
+          "**Casi ninguna profesión desaparece entera.** Según el informe, menos del 5 % de las ocupaciones están hechas de actividades que se pueden automatizar por completo. En cerca del 60 %, lo que se puede automatizar es al menos un tercio de lo que se hace.",
+          "**Su conclusión principal:** puede haber trabajo suficiente para mantener el pleno empleo hasta 2030 en la mayoría de los escenarios. Y no lo endulza: dice que las transiciones van a ser muy difíciles."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "O sea, el número que asusta es el techo de un escenario, de un estudio de hace años, que termina diciendo que va a haber trabajo. El número se comparte. La fuente casi nadie la lee. Para mí esto va de no ser ignorante y de no tener creencias sin fundamento: ve y lee."
+      },
+      {
+        "type": "heading",
+        "text": "El miedo está al revés"
+      },
+      {
+        "type": "paragraph",
+        "text": "Odio que la gente diga que la IA nos va a reemplazar o que nos va a quitar el trabajo, porque eso significa que no entiendes que tienes que ponerte al día y usar las herramientas que van saliendo. Las cosas hoy cambian mes tras mes."
+      },
+      {
+        "type": "paragraph",
+        "text": "Usar IA te hace mucho más productivo y multiplica la habilidad de las personas. Piensa en cortar el césped con tijera o con máquina. A la máquina igual la tienes que manejar tú, pero vas más rápido y cortas muchas más casas. El de la tijerita trabaja más y produce menos."
+      },
+      {
+        "type": "paragraph",
+        "text": "Estar en contra de la IA hoy está al mismo nivel que creer que la Tierra es plana o que nunca fuimos a la Luna. Lo digo así porque no me gusta la tibieza: las cosas son como son."
+      },
+      {
+        "type": "heading",
+        "text": "Mi caso: lo que antes hacía un equipo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Soy el único programador de todos mis proyectos. Las personas con las que trabajo no son técnicas. Yo me encargo de todo, de principio a fin. Hoy son más de 30 clientes activos y unas 14.000 conversaciones al mes que atiende la IA. Hace dos años y medio, sacar adelante algo así requería mucho tiempo, mucho esfuerzo y un equipo técnico muy cualificado."
+      },
+      {
+        "type": "paragraph",
+        "text": "Empecé copiando y pegando desde ChatGPT y Gemini. Después pasé a Gemini CLI, después a Codex y después a Claude Code. Hoy ya ni abro la terminal: le hablo a la computadora, armamos planes gigantes y los subimos a producción. Lo hice en menos de dos años."
+      },
+      {
+        "type": "heading",
+        "text": "Para qué hace falta una persona"
+      },
+      {
+        "type": "paragraph",
+        "text": "Al programador que sigue escribiendo todo a mano le digo lo mismo: se está quedando atrás. El código está bien, pero probarlo, pulirlo, perfeccionarlo y cuidarlo es donde más necesitamos personas. Teclear ya no."
+      },
+      {
+        "type": "paragraph",
+        "text": "Y esto va más allá de producirle más a tu jefe. «Comienza a emprender, comienza a crear, comienza a imaginar. Tienes todo a tu alcance.» Cosas que antes solo podían hacer unos pocos en el mundo hoy las puedes hacer con Claude."
+      },
+      {
+        "type": "paragraph",
+        "text": "La próxima cifra que te asuste, búscala en su fuente antes de repetirla. Y mientras otros cuentan empleos perdidos, usa la IA hoy en una tarea real de tu trabajo."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿McKinsey dijo que la IA va a eliminar 800 millones de empleos?",
+        "a": "No. Dijo que entre 400 y 800 millones de personas podrían tener que buscar un trabajo nuevo para 2030 por la automatización, según lo rápido que se adopte, y que en la mayoría de los escenarios puede haber trabajo suficiente para el pleno empleo."
+      },
+      {
+        "q": "¿Entonces la IA no cambia nada en el trabajo?",
+        "a": "Cambia muchísimo y rápido. Justamente por eso el que la usa va adelante y el que no la usa se queda atrás."
+      }
+    ]
+  },
+  {
+    "slug": "esfuerzo-de-razonamiento-ia-la-perilla",
+    "title": "La mejor IA, pensando menos, le ganó a la chica: la prueba de la perilla",
+    "seoTitle": "Esfuerzo de razonamiento en IA: la mejor en medio ganó",
+    "description": "Le di la misma compra a una IA chica y a la mejor en esfuerzo medio y máximo, con un reloj corriendo. Los tiempos reales, quién acertó, el pedido para que lo pruebes y dónde dejo yo la perilla.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-20T12:00:00-03:00",
+    "updated": "2026-11-20T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 5,
+    "keyword": "esfuerzo de razonamiento IA",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** para ir más rápido, no te pases a una IA más chica. Usa la mejor y bájale cuánto piensa. En mi prueba, la mejor en esfuerzo medio acertó las dos veces y fue la más rápida, la chica tardó más y una vez se equivocó, y en máximo dio lo mismo tardando entre cinco y diez veces más."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mucha gente cree que tiene dos caminos: pasarse a una IA más barata para que conteste rápido, o ponerle todo al máximo para que salga mejor. Yo siempre uso el mejor modelo, no me gustan los modelos baratos. Lo que cambio es el razonamiento."
+      },
+      {
+        "type": "heading",
+        "text": "Qué es la perilla"
+      },
+      {
+        "type": "paragraph",
+        "text": "Los modelos de hoy piensan antes de contestar, y cuánto piensan se puede ajustar. Anthropic lo llama [esfuerzo](https://platform.claude.com/docs/en/build-with-claude/effort) y le da cinco niveles: bajo, medio, alto, extra alto y máximo. Más esfuerzo es más tiempo pensando y más uso de tu límite. En Claude Code se cambia con el comando /effort o con las flechas al elegir el modelo, según [su documentación](https://code.claude.com/docs/en/model-config)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mi orquestador, el agente que coordina a los demás, va en máximo. Los demás van en alto o en medio."
+      },
+      {
+        "type": "heading",
+        "text": "La prueba: la compra más barata"
+      },
+      {
+        "type": "paragraph",
+        "text": "Un problema de todos los días con una respuesta que se puede comprobar: te mudas y tienes que comprar 14 productos repartidos entre 5 tiendas en línea, con precios distintos, un envío por tienda y cupones que solo valen si llegas a un mínimo. ¿Cuál es la compra más barata?"
+      },
+      {
+        "type": "paragraph",
+        "text": "Antes de preguntarle a ninguna IA, un programa calculó el mínimo exacto: 206.400 pesos, y un solo plan llega a ese número entre 960 millones de combinaciones posibles. Después le di la misma instrucción a tres configuraciones, sin herramientas, cada una con la conversación limpia y dos intentos cada una: una IA chica (Claude Haiku 5.5, con su forma de pensar por defecto) y la mejor de hoy (Claude Fable 5.2) en esfuerzo medio y en máximo."
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**La mejor, en medio:** 1:00 y justa. La segunda vez, 0:54 y justa.",
+          "**La chica:** 2:30 y se pasó por 1.000 pesos (207.400). La segunda vez, 3:57 y justa.",
+          "**La mejor, en máximo:** 5:29 y justa. La segunda vez, 9:10 y justa."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "En máximo dio exactamente la misma compra que en medio, cinco veces más lento la primera vez y diez la segunda. La [guía de Anthropic](https://platform.claude.com/docs/en/build-with-claude/effort) para Fable 5.2 dice lo mismo: en máximo corre más lento y cuesta más, muchas veces para una mejora chica, y lo reserva para lo raro donde el tiempo no importa."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que esta prueba no dice"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**No dice que el máximo no sirva.** Lo uso para el que manda a los demás, que hace trabajos largos y con herramientas. Para la tarea de todos los días es tiempo perdido.",
+          "**No da porcentajes.** Son dos intentos por configuración. Lo que muestra es quién llegó primero y bien, las dos veces.",
+          "**No dice que medio siempre alcance.** La versión anterior del mismo modelo, Fable 5.1, falló esta misma compra en medio las dos veces, por 400 y por 2.600 pesos. La de hoy acertó las dos. Por eso uso el modelo más nuevo el día que sale, y lo dejo en medio o en alto según el trabajo."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Pruébala tú"
+      },
+      {
+        "type": "paragraph",
+        "text": "Esta es la compra exacta que les di, palabra por palabra. Pégala en tu IA y compara con el mínimo: 206.400 pesos."
+      },
+      {
+        "type": "pedido",
+        "label": "La compra más barata",
+        "text": "Te mudas y quieres equipar la casa gastando lo menos posible. Tienes que comprar estos 14 productos (una unidad de cada uno) y puedes repartir la compra entre 5 tiendas en línea: A, B, C, D y E. Cada producto se compra en una sola tienda.\nPrecios en pesos («no tiene» significa que esa tienda no vende ese producto):\n- licuadora: A 26400 · B 23900 · C 25500 · D 27600 · E 27600\n- tostadora: A no tiene · B 15400 · C 16700 · D 15800 · E 13700\n- plancha: A 19900 · B 16700 · C 18000 · D 19600 · E no tiene\n- cafetera: A 31000 · B 32200 · C 32000 · D 24300 · E 26700\n- hervidor: A no tiene · B 10600 · C 11400 · D 11700 · E no tiene\n- ventilador: A no tiene · B 28600 · C 34700 · D 33000 · E 36200\n- lámpara: A 8100 · B 10100 · C 8800 · D 9000 · E no tiene\n- sartén: A 13000 · B 15300 · C 14600 · D 16000 · E 14400\n- juego de sábanas: A 23300 · B 19100 · C 20100 · D 18900 · E 19600\n- juego de toallas: A 11600 · B 11700 · C no tiene · D 9600 · E 12200\n- par de almohadas: A 9100 · B 8700 · C 7700 · D 8000 · E 8800\n- cortina de baño: A 6900 · B 5900 · C 6100 · D 6300 · E 5200\n- espejo: A 15200 · B 16000 · C 15400 · D 15500 · E 14700\n- alfombra: A 24800 · B 23400 · C no tiene · D 22600 · E 24200\nEnvío y cupón de cada tienda. El envío se paga una sola vez por cada tienda en la que compres al menos un producto, sin importar cuántos le compres. El cupón descuenta un monto fijo si la suma de los precios de los productos que le compras a esa tienda llega al mínimo (el envío no cuenta para llegar al mínimo):\n- Tienda A: envío 3500 · cupón de 5000 de descuento si le compras 30000 o más\n- Tienda B: envío 2500 · cupón de 7000 de descuento si le compras 60000 o más\n- Tienda C: envío 1500 · cupón de 3500 de descuento si le compras 25000 o más\n- Tienda D: envío 3000 · cupón de 7500 de descuento si le compras 65000 o más\n- Tienda E: envío 5000 · cupón de 9500 de descuento si le compras 60000 o más\nEl total a pagar es la suma de los precios de los productos, más los envíos de las tiendas que uses, menos los cupones que se apliquen.\n¿Cuál es el total más bajo posible y qué compras en cada tienda?\nResponde solo con este JSON, con el total en números y la letra de la tienda donde compras cada producto:\n{\"total\": 0, \"compra\": {\"licuadora\": \"\", \"tostadora\": \"\", \"plancha\": \"\", \"cafetera\": \"\", \"hervidor\": \"\", \"ventilador\": \"\", \"lampara\": \"\", \"sarten\": \"\", \"sabanas\": \"\", \"toallas\": \"\", \"almohadas\": \"\", \"cortina\": \"\", \"espejo\": \"\", \"alfombra\": \"\"}}"
+      },
+      {
+        "type": "paragraph",
+        "text": "Yo uso siempre la mejor. Lo que muevo es la perilla. Si quieres los números del modelo y por qué el máximo rinde menos de lo que parece, están en [Claude Fable 5.2: los números](/material/claude-fable-5-2)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿En qué nivel de esfuerzo dejo la IA?",
+        "a": "Para el trabajo de todos los días, en medio o en alto según lo difícil que sea. En máximo solo el agente que coordina a los demás."
+      },
+      {
+        "q": "¿Una IA más chica no es más rápida?",
+        "a": "En esta prueba no. La chica tardó 2:30 y 3:57; la mejor en medio, 1:00 y 0:54. Y la chica se equivocó una de las dos veces."
+      }
+    ]
+  },
+  {
+    "slug": "pago-400-dolares-ia-uso-30-mil",
+    "title": "Pago 400 dólares de IA al mes y uso hasta 30 mil",
+    "seoTitle": "Pago 400 dólares de IA al mes y uso hasta 30 mil",
+    "description": "Pago dos suscripciones de 200 dólares, Claude y Codex, y lo que uso valdría entre 18 y 30 mil dólares al mes a precio de API. Cómo lo mido y por qué conviene pagarla y usarla para todo.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-18T12:00:00-03:00",
+    "updated": "2026-11-18T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "keyword": "cuánto cuesta usar IA",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** pago dos suscripciones de 200 dólares, una de Claude y otra de Codex. Si me cobraran por lo que uso, a precio de API, serían entre 18 y 30 mil dólares al mes. Lo medí. La suscripción rinde muchísimo más de lo que cuesta: págala como pagas Netflix y úsala para todo."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo he dicho en reuniones de trabajo y lo repito aquí: yo no les salgo para nada rentable a las empresas de IA. Te lo juro."
+      },
+      {
+        "type": "heading",
+        "text": "Dos formas de pagar la misma IA"
+      },
+      {
+        "type": "paragraph",
+        "text": "La primera es la suscripción: pagas un monto fijo al mes y tienes un límite de uso que se reinicia cada tanto. El [plan de 200 dólares de Claude](https://claude.com/pricing) da diez veces el uso semanal del plan Pro."
+      },
+      {
+        "type": "paragraph",
+        "text": "La segunda es la API, que es como la usan los programas y las empresas: pagas por lo que la IA lee y escribe, medido en tokens, que son pedacitos de texto. Según la [página de precios de Claude](https://claude.com/pricing), Claude Fable 5.2 cuesta 8 dólares por cada millón de tokens que lee y 40 por cada millón que escribe. Un día entero programando con agentes son muchos millones."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo lo mido"
+      },
+      {
+        "type": "paragraph",
+        "text": "Uso [CodexBar](https://github.com/steipete/CodexBar), una app de código abierto para la barra de menú de la Mac. Te muestra cuánto te queda de cada límite y cuándo se reinicia, y estima lo que gastaste leyendo los registros que quedan en tu computadora."
+      },
+      {
+        "type": "paragraph",
+        "text": "Con mi uso, esa cuenta me da de 18 mil a 30 mil dólares al mes. Pago 400. Es decir, uso entre 45 y 75 veces lo que pago. Y no es para jugar: no existe otro programador en mis proyectos, yo me encargo de todo, de principio a fin."
+      },
+      {
+        "type": "paragraph",
+        "text": "Todos sabemos que nos están subsidiando con los planes de suscripción, y a nadie realmente le importa el precio de la API."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que hago con eso"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Me peleo con los límites.** Tengo muchísimos hilos abiertos a la vez y voy de uno a otro buscando cómo avanzar lo más rápido que pueda.",
+          "**Cuando avisan que reinician, lo gasto todo.** A veces avisan con una o dos horas de anticipación que van a reiniciar el límite, y yo me voy de una vez a quemar lo que me queda.",
+          "**La uso para todo.** En el trabajo, en las reuniones, en la vida. Si la pagas y la usas con miedo a gastarla, pagas lo mismo y te llevas menos."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Si se te acaba antes del reinicio, lo que cambio yo para que me alcance está en [este video](/material/se-acabo-tu-limite)."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para acceder a la IA buena hay que pagar. Si trabajas en programación, edición de video o redes sociales y no tienes una suscripción a Claude, estás siendo irresponsable con tu trabajo y contigo mismo. Descarga las aplicaciones más actualizadas, suscríbete y paga como si pagaras un Netflix."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Qué es CodexBar?",
+        "a": "Una app de código abierto para la Mac que vive en la barra de menú. Muestra cuánto te queda de los límites de Codex y Claude, cuándo se reinician y una estimación de lo que gastaste."
+      },
+      {
+        "q": "¿Vale la pena pagar 200 dólares al mes por una IA?",
+        "a": "Sí. Con 400 dólares en dos suscripciones uso lo que a precio de API valdría entre 18 y 30 mil al mes. Si trabajas con la computadora, no tenerla te sale más caro."
+      }
+    ]
+  },
+  {
+    "slug": "te-fallo-la-ia-fuiste-tu",
+    "title": "¿Te falló la IA? Fuiste tú: las tres cosas que reviso antes de culparla",
+    "seoTitle": "¿Te falló la IA? Tres cosas que revisar antes de culparla",
+    "description": "Cuando la IA se equivoca, casi siempre faltó algo de tu lado. Las tres cosas que reviso yo antes de culparla, la vez que me borró un emulador y dos pedidos para copiar.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-16T12:00:00-03:00",
+    "updated": "2026-11-16T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "keyword": "la IA se equivoca",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** si la IA te falla seguido, el problema eres tú. Lo digo por experiencia: el 99 % de las veces no es culpa de ella. Le diste una instrucción que se contradice, trabaja con reglas viejas o le mezclaste cosas que no tienen nada que ver."
+      },
+      {
+        "type": "paragraph",
+        "text": "Mucha gente le tiene miedo por historias del tipo «ay, la IA me borró todo». ¿Por qué va a borrar el disco duro un modelo de lenguaje al que le pediste atender clientes? Nunca lo va a hacer. Los modelos de hoy son demasiado inteligentes para meter la pata así de feo, a menos que tú los vuelvas locos y los confundas entre una cosa y otra."
+      },
+      {
+        "type": "heading",
+        "text": "Las tres cosas que reviso"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Lo que le dijiste.** Lo que más rompe a un agente son las contradicciones dentro de sus propias instrucciones. Si en un mensaje le pides «hazlo rápido» y en otro «revisa todo dos veces», alguna de las dos va a quedar sin cumplir.",
+          "**Las reglas que lee.** Los agentes que programan leen un archivo con las reglas de tu proyecto, casi siempre llamado AGENTS.md. Es [un formato abierto](https://agents.md/) que usan Codex, Cursor, Gemini CLI, GitHub Copilot y muchos más. Si ese archivo tiene cuatro meses, la IA trabaja con reglas de hace cuatro meses. Yo lo limpio constantemente, y cada vez que sale un modelo que cambia mucho cómo piensa, reinicio mi setup completo.",
+          "**Lo que le mezclas.** Todo lo que no tiene nada que ver la confunde, porque siguen siendo modelos de lenguaje y cada palabra que entra al chat pesa. Anthropic, la empresa de Claude, [lo explica así](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents): a medida que se llena la conversación, al modelo le cuesta más recordar con precisión lo que hay en ella. Cuando yo mezclé cosas personales con los agentes de mi trabajo, se volvieron poco eficientes."
+        ]
+      },
+      {
+        "type": "heading",
+        "text": "Dos pedidos que uso"
+      },
+      {
+        "type": "paragraph",
+        "text": "Para la primera y la segunda, le pido que revise sus propias reglas y que me pregunte a mí antes de cambiar nada:"
+      },
+      {
+        "type": "pedido",
+        "label": "Para limpiar las reglas",
+        "text": "Lee el AGENTS.md de este proyecto y lo que te pedí en esta conversación. Hazme una lista de lo que se contradice entre sí y de lo que ya no aplica. Después hazme una entrevista con opciones para decidir qué se queda: la que recomiendas y las otras."
+      },
+      {
+        "type": "paragraph",
+        "text": "Para la tercera, cuando un chat ya está contaminado, me mudo. Se lo digo así, literalmente:"
+      },
+      {
+        "type": "pedido",
+        "label": "Para mudarte de chat",
+        "text": "Me voy a mudar de chat. Créame un archivo con toda la conversación y todo lo que conversamos aquí."
+      },
+      {
+        "type": "paragraph",
+        "text": "En el chat nuevo le pido que lea ese archivo y sigo desde ahí, sin arrastrar lo que no sirve. Y uso siempre el mejor modelo, porque sé que no va a fallar. Si lo que te pasa es que la IA no te entiende, mira [la prueba de la nota de voz](/material/hablale)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿La IA puede borrar mis archivos por su cuenta?",
+        "a": "De la nada, no. Si borra algo es porque entendió que era la solución a lo que le pediste y nadie le dijo qué no podía tocar. Por eso importa lo que le dices y las reglas que lee."
+      },
+      {
+        "q": "¿Qué es AGENTS.md?",
+        "a": "Un archivo de texto con las reglas de tu proyecto que los agentes de programación leen antes de trabajar. Es un formato abierto que usan Codex, Cursor, GitHub Copilot y otros. Si está viejo, el agente trabaja con reglas viejas."
+      }
+    ]
+  },
+  {
     "slug": "por-que-la-ia-te-da-la-razon",
     "title": "¿Por qué la IA te da la razón en todo? Está hecha para caerte bien",
     "seoTitle": "Por qué la IA te da la razón en todo (y qué hago yo)",
