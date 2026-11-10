@@ -1,5 +1,8 @@
 {
   "_": "Portada tipográfica de cada artículo: de qué habla (sujeto), el dato en grande y la parte que va en la caja celeste (realce, tal cual aparece en el dato). Tono: negro, claro o celeste. La imagen para compartir se genera con node scripts/portadas.mjs.",
+  "por-que-la-ia-te-da-la-razon": { "sujeto": "La IA y tus preguntas", "dato": "¿Por qué te da la razón?", "realce": "la razón", "tono": "negro" },
+  "hablale-a-la-ia-nota-de-voz": { "sujeto": "Háblale a la IA", "dato": "37 segundos de voz", "realce": "de voz", "tono": "celeste" },
+  "pagina-hecha-con-ia-referencias-dribbble": { "sujeto": "Diseño con IA", "dato": "Referencias antes que prompts", "realce": "Referencias", "tono": "claro" },
   "chatgpt-pro-200-10x-codex-limites": { "sujeto": "ChatGPT Pro 200", "dato": "¿10x el 30/10?", "realce": "30/10", "tono": "negro" },
   "chatgpt-pro-200-10x-codex-limits": { "sujeto": "ChatGPT Pro 200", "dato": "10x on Oct 30?", "realce": "Oct 30", "tono": "negro" },
   "brotli-actualizar-node-bun-envoy": { "sujeto": "Node.js, Bun y Envoy", "dato": "Revisa Brotli", "realce": "Brotli", "tono": "claro" },

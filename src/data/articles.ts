@@ -3,7 +3,7 @@ import type { Lang } from '@/lib/lang'
 
 export type ArticleBlock = {
   type: string; text?: string; items?: string[]; headers?: string[]; rows?: string[][]; lang?: string; start?: number
-  src?: string; width?: number; height?: number; alt?: string; href?: string
+  src?: string; width?: number; height?: number; alt?: string; href?: string; label?: string
 }
 export type ArticleFaq = { q: string; a: string }
 export type ArticleCover = { src: string; width: number; height: number; alt: string }
@@ -80,6 +80,8 @@ export function insertAfterShare(blocks: ArticleBlock[], share = 0.4) {
     }
   }
   while (index < blocks.length - 1 && (blocks[index].type === 'heading' || blocks[index].type === 'subheading')) index += 1
+  // Un pedido no se separa de lo que salió.
+  if (index < blocks.length - 1 && (blocks[index].type === 'pedido' || blocks[index].type === 'code') && blocks[index + 1].type === 'image') index += 1
   return index + 1
 }
 

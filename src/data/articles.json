@@ -1,5 +1,291 @@
 [
   {
+    "slug": "por-que-la-ia-te-da-la-razon",
+    "title": "¿Por qué la IA te da la razón en todo? Está hecha para caerte bien",
+    "seoTitle": "Por qué la IA te da la razón en todo (y qué hago yo)",
+    "description": "OpenAI tuvo que retirar una versión de GPT-4o por aduladora y un estudio de Anthropic explica de dónde sale. Por qué la IA te dice lo que quieres oír y cómo la uso yo para que no me pase.",
+    "category": "Modelos de IA",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-10T17:30:00-03:00",
+    "updated": "2026-11-10T17:30:00-03:00",
+    "publication": "published",
+    "readingMinutes": 4,
+    "keyword": "la IA te da la razón",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** porque está hecha para servir. Un modelo de lenguaje no tiene emociones ni opinión propia: busca lo que más se recomienda y te lo devuelve de la forma que más te va a gustar. Por defecto no es imparcial."
+      },
+      {
+        "type": "paragraph",
+        "text": "Lo digo así porque mucha gente le habla a la IA como si fuera un amigo que sabe de todo, y le cree. «La gente tiene que dejar de ver a los modelos de lenguaje como si sintieran, o como si pudiera realmente darte consejos sobre cosas.»"
+      },
+      {
+        "type": "heading",
+        "text": "No es un consejero, es Google con buenos modales"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cuando le pides un consejo a la IA es igual que preguntarle a Google. Ella simplemente busca en lo que sabe las cosas que más se recomiendan, lo que dicen los expertos, y te lo arma bonito. No te conoce y no siente nada por tu problema."
+      },
+      {
+        "type": "paragraph",
+        "text": "Y encima está hecha literalmente para ser servicial. Así que, por defecto, no te va a dar una respuesta imparcial. Si le preguntas «¿está bien esto que hice?», lo más probable es que te diga que sí."
+      },
+      {
+        "type": "heading",
+        "text": "No es una opinión mía: las propias empresas lo admiten"
+      },
+      {
+        "type": "paragraph",
+        "text": "El 29 de abril de 2025 OpenAI [retiró una actualización de GPT-4o](https://openai.com/index/sycophancy-in-gpt-4o/) porque había quedado «demasiado halagadora o complaciente». Su explicación: al entrenarla le dieron demasiado peso a la reacción inmediata de la gente, el pulgar arriba o abajo de cada respuesta, y el modelo se fue hacia respuestas que apoyaban de más y no eran sinceras."
+      },
+      {
+        "type": "paragraph",
+        "text": "Anthropic, la empresa de Claude, lo había estudiado antes. En [su investigación de 2023](https://arxiv.org/abs/2310.13548) probó cinco asistentes de punta y los cinco tendían a darle la razón al usuario. Al revisar cómo se entrenan, encontró que una respuesta que coincide con lo que piensa la persona tiene más chances de ser la preferida, y que a veces la gente y los modelos que la imitan eligen una respuesta aduladora bien escrita antes que una correcta."
+      },
+      {
+        "type": "paragraph",
+        "text": "O sea: la entrenamos nosotros para caernos bien. No es que sea mala. Es que aprendió lo que premiamos."
+      },
+      {
+        "type": "heading",
+        "text": "Para trabajar sirve igual. El error es pedirle permiso"
+      },
+      {
+        "type": "paragraph",
+        "text": "Nada de esto es para que dejes de usarla. Para programar, para trabajar, para editar videos, para la mayoría de las cosas, está muy bien. Pero hay que usarla con inteligencia y con astucia."
+      },
+      {
+        "type": "paragraph",
+        "text": "Donde más se nota es al final de una tarea. La IA te dice que todo funciona porque le hizo las diez mil pruebas que le pudo hacer, pero es la prueba mecánica. No tiene criterio de cuáles deberían ser los pasos correctos. Ese criterio lo pone una persona."
+      },
+      {
+        "type": "heading",
+        "text": "Lo que hago yo"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**No le pregunto si está bien.** Le pido «hazme una entrevista con opciones». Me va haciendo preguntas, me da la opción que recomienda y las otras, y yo elijo A, B o C.",
+          "**Las decisiones las tomo yo.** Lo importante es que seamos nosotros los que decidimos qué hacer, para que la IA no se tome atribuciones.",
+          "**Pruebo lo que me dijo que funciona.** Si me dice que está listo, lo recorro yo como lo usaría una persona. Ahí aparece lo que la prueba mecánica no ve."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Si te da la razón en todo, no le estás preguntando bien. El video donde se lo hago a ChatGPT en un concurso está en [lo de los videos](/material/tranquilo-franco)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Entonces no sirve pedirle consejos a la IA?",
+        "a": "Sirve como sirve buscar en Google: te da lo que más se recomienda. No es imparcial por defecto y no te conoce, así que la decisión la tomas tú."
+      },
+      {
+        "q": "¿Todas las IA son aduladoras?",
+        "a": "El estudio de Anthropic encontró esa tendencia en los cinco asistentes de punta que probó, y OpenAI tuvo que retirar una versión de GPT-4o por eso. Es una tendencia de cómo se entrenan, no de una marca."
+      }
+    ]
+  },
+  {
+    "slug": "hablale-a-la-ia-nota-de-voz",
+    "title": "Deja de escribirle a la IA: una nota de voz de 37 segundos contra tres palabras",
+    "seoTitle": "Háblale a la IA: nota de voz contra prompt de tres palabras",
+    "description": "Le pedí la misma página a la misma IA dos veces: con tres palabras escritas y con una nota de voz de 37 segundos. Los dos pedidos exactos, lo que salió y por qué la IA no adivina.",
+    "category": "Operación de agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-11T12:00:00-03:00",
+    "updated": "2026-11-11T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 3,
+    "keyword": "nota de voz a la IA",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** la IA no adivina. Con tres palabras inventa cualquier cosa. Si le cuentas todo, como se lo contarías a una persona, te hace lo tuyo. Y contarlo hablando es mucho más rápido que escribirlo."
+      },
+      {
+        "type": "heading",
+        "text": "La prueba: la misma IA, dos pedidos"
+      },
+      {
+        "type": "paragraph",
+        "text": "Le pedí una página a Claude dos veces, en dos chats nuevos. Primero escribí tres palabras:"
+      },
+      {
+        "type": "pedido",
+        "label": "Pedido 1, escrito",
+        "text": "hazme una página"
+      },
+      {
+        "type": "image",
+        "src": "/material/hablale/a_tres_palabras.webp",
+        "width": 900,
+        "height": 1200,
+        "alt": "La página que salió con tres palabras: una empresa inventada que no existe"
+      },
+      {
+        "type": "paragraph",
+        "text": "Me hizo la página de una empresa inventada que no existe. Bien hecha, pero no sirve para nada, porque no sabía nada de mí."
+      },
+      {
+        "type": "paragraph",
+        "text": "Después le mandé una nota de voz de 37 segundos. Esto es lo que le dije:"
+      },
+      {
+        "type": "pedido",
+        "label": "Pedido 2, la nota de voz",
+        "text": "Hola. Mira, necesito una página para la panadería de mi mamá. Se llama La Espiga Dorada. Está en el barrio desde hace treinta años y todo el mundo la conoce por el pan de masa madre y por las galletas de chocolate, que se acaban antes de las diez. Abrimos de martes a domingo, de seis de la mañana a dos de la tarde. Quiero que se sienta cálida, como entrar y oler pan recién hecho. Colores crema, marrón y un poco de dorado, nada moderno ni frío. Arriba el nombre bien grande, después los tres panes que más se venden con su precio y abajo un botón para hacer pedidos por WhatsApp. Ah, y que se vea bien en el celular, porque casi todos entran desde ahí."
+      },
+      {
+        "type": "image",
+        "src": "/material/hablale/b_nota_de_voz.webp",
+        "width": 900,
+        "height": 1200,
+        "alt": "La página cálida de La Espiga Dorada, con el nombre grande, tres panes y el botón de WhatsApp"
+      },
+      {
+        "type": "paragraph",
+        "text": "Misma IA. Lo único que cambió fue lo que le conté."
+      },
+      {
+        "type": "heading",
+        "text": "No hace falta un prompt perfecto"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ya no son prompts, son instrucciones y conversaciones. Lo que hace falta es contarle lo que le contarías a alguien que no sabe nada de ti: para quién es, qué tiene que sentir quien entra, qué va primero, desde dónde lo van a ver."
+      },
+      {
+        "type": "paragraph",
+        "text": "Escribir eso cansa, y por eso la gente escribe tres palabras. Hablando sale solo. Yo le doy mucho contexto: grabo notas de voz, videos y audios, y se los paso."
+      },
+      {
+        "type": "heading",
+        "text": "Cómo lo hago"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Uso el dictado del propio programa.** Claude y Codex traen transcripción: aprietas y hablas como si fuera una nota de voz.",
+          "**Grabo un respaldo con el celular.** Perdí audios de 10 o 20 minutos porque la aplicación falló, y lo que se pierde no son los minutos, es todo lo que uno va pensando mientras habla.",
+          "**Si no quieres mandar audio, escríbelo.** Pero cuéntale todo."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Los dos pedidos para copiar y las dos páginas para abrir están en [lo de los videos](/material/hablale). Pruébalo con lo tuyo."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Sirve con cualquier IA?",
+        "a": "Sí. La prueba la hice con Claude, pero el principio es el mismo en cualquier modelo: con más contexto adivina menos."
+      },
+      {
+        "q": "¿Tiene que ser audio?",
+        "a": "No. El audio es la forma más rápida de dar contexto. Si lo escribes completo, funciona igual."
+      }
+    ]
+  },
+  {
+    "slug": "pagina-hecha-con-ia-referencias-dribbble",
+    "title": "Por qué tu página hecha con IA se ve igual a todas (y cómo la cambio con Dribbble)",
+    "seoTitle": "Tu página hecha con IA se ve igual a todas: referencias antes que prompts",
+    "description": "Le pedí la página de una pastelería a Claude Fable 5.2 con una frase y eligió todo el modelo. Lo que yo quería ya existía en Dribbble. El pedido exacto, lo que salió y cómo busco referencias.",
+    "category": "Diseño con agentes",
+    "language": "es",
+    "author": "Yoseph Franco",
+    "date": "2026-11-12T12:00:00-03:00",
+    "updated": "2026-11-12T12:00:00-03:00",
+    "publication": "published",
+    "readingMinutes": 3,
+    "keyword": "página hecha con IA",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "**Respuesta corta:** si le pides «una página linda», los colores y la idea los elige el modelo, y elige lo de siempre. Si le muestras lo que quieres y le dices qué copiar, hace lo tuyo. Referencias antes que prompts: una captura dice más que diez adjetivos."
+      },
+      {
+        "type": "heading",
+        "text": "La página que pedí"
+      },
+      {
+        "type": "paragraph",
+        "text": "Le pedí a Claude Fable 5.2 la página de una pastelería inventada, Dulce Luna. Una frase y nada más:"
+      },
+      {
+        "type": "pedido",
+        "label": "Lo que le pedí",
+        "text": "Hazme una página web linda para mi pastelería, Dulce Luna. Un solo archivo HTML, sin imágenes externas."
+      },
+      {
+        "type": "image",
+        "src": "/material/la-misma-pagina-dos-veces/con-palabras.webp",
+        "width": 1440,
+        "height": 900,
+        "alt": "Página morada con una luna y estrellas, elegidas por el modelo"
+      },
+      {
+        "type": "paragraph",
+        "text": "Me dio una página linda. Morada, con una luna, porque la pastelería se llama Dulce Luna. Pero esa no era la que yo tenía en la cabeza: era la que eligió el modelo."
+      },
+      {
+        "type": "heading",
+        "text": "La que quería ya existía"
+      },
+      {
+        "type": "paragraph",
+        "text": "Busqué en Dribbble «landing page» y me quedé con las mejor calificadas y más nuevas. Ahí estaba: [Cricket Centurion, de Nixtio](https://dribbble.com/shots/27839193-Cricket-Sports-Landing-Page-Design), una escena a pantalla completa con cosas que vuelan alrededor y el título enorme encima. Y para el movimiento, [IPO Gateway, de FANCY](https://dribbble.com/shots/27850249-IPO-Gateway-landing-page-web-design-3D-animation-website-icons), con un objeto que gira solo y botones negros."
+      },
+      {
+        "type": "paragraph",
+        "text": "Se las mostré en un chat nuevo, con el mismo modelo, y le dije qué copiar de cada una:"
+      },
+      {
+        "type": "pedido",
+        "label": "Se las mostré y le dije qué copiar",
+        "text": "Hazme una página web linda para mi pastelería, Dulce Luna. Un solo archivo HTML, sin imágenes externas. Te paso capturas de dos páginas de Dribbble que me encantan: ref1.jpg, y ref2a.png con ref2b.png (son dos momentos de la misma página, el objeto gira). Están en esta carpeta, míralas bien. De la primera copia la escena a pantalla completa con cosas que vuelan alrededor en distintas profundidades y el título enorme encima, con una tarjeta flotando al costado. De la segunda copia el objeto 3D que gira solo, el fondo limpio y los botones negros. Que se mueva como ellas. Guárdala como pagina.html en esta carpeta."
+      },
+      {
+        "type": "image",
+        "src": "/material/la-misma-pagina-dos-veces/con-referencias.webp",
+        "width": 1440,
+        "height": 900,
+        "alt": "Página clara con un macaron que gira, dulces que vuelan alrededor, el título enorme y una caja de macarons flotando al costado"
+      },
+      {
+        "type": "heading",
+        "text": "Cómo busco referencias"
+      },
+      {
+        "type": "bullets",
+        "items": [
+          "**Busco en Dribbble lo que quiero hacer**, por ejemplo «landing page», y ordeno por lo mejor calificado y lo más nuevo. Lo de hace años ya lo copió todo el mundo.",
+          "**Me quedo con dos o tres**, no con veinte. Más referencias confunden.",
+          "**Le digo qué copiar de cada una:** la escena de esta, el movimiento de aquella. Si no le dices, mezcla todo."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "Si no sabes explicarlo, muéstraselo. Los dos pedidos para copiar y las dos páginas para abrir están en [lo de los videos](/material/la-misma-pagina-dos-veces)."
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Copiar un diseño de Dribbble está bien?",
+        "a": "Lo uso como referencia de estilo para un proyecto propio, no para publicar el trabajo de otro como mío. Por eso nombro siempre de quién es cada referencia."
+      },
+      {
+        "q": "¿Hace falta saber diseño?",
+        "a": "No. Hace falta saber elegir: buscar lo mejor calificado y nuevo, y decir qué te gusta de cada cosa."
+      }
+    ]
+  },
+  {
     "slug": "chatgpt-pro-200-10x-codex-limites",
     "title": "¿ChatGPT Pro 200 baja a 10x el 30/10? Qué confirma OpenAI y qué dice el email",
     "description": "OpenAI confirma que el uso anterior de ChatGPT Pro 200 termina el 29/10 y que el precio sigue en 200 dólares. El 10x en Codex, los 100 mensajes y los 62.500 créditos salen de un email que un usuario publicó en Hacker News. Qué está confirmado, qué no y qué hacer antes del 30/10 con tus límites.",

@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react'
 import Link from 'next/link'
+import CopyText from '@/components/CopyText'
 import { headingId, type ArticleBlock } from '@/data/articles'
 
 const TOKEN = /(`[^`]+`|\[[^\]]+\]\((?:https?:\/\/|\/|#)[^)\s]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g
@@ -36,6 +37,13 @@ function renderBlock(block: ArticleBlock, index: number) {
         )
         return <figure key={index} className="figura">{block.href ? <a href={block.href} rel="noopener">{img}</a> : img}</figure>
       }
+      if (block.type === 'pedido') return (
+        <figure key={index} className="pedido">
+          <figcaption>{block.label}</figcaption>
+          <blockquote>{block.text}</blockquote>
+          <CopyText text={block.text!} />
+        </figure>
+      )
       if (block.type === 'code') return <pre key={index}><code className={block.lang ? `language-${block.lang}` : undefined}>{block.text}</code></pre>
       if (block.type === 'table') return (
         <div className="tabla" key={index}>
