@@ -38,7 +38,7 @@ export const NUMEROS: Numero[] = [
       {
         title: 'Si no sabes explicarlo, muéstraselo',
         paragraphs: [
-          'Con el diseño pasa lo mismo. Le pedí a Claude Fable 5.2 la página de una pastelería inventada, en dos chats nuevos. En el segundo le pasé dos capturas de páginas que me gustan y le dije qué copiar de cada una.',
+          'Con el diseño pasa lo mismo. Le pedí a Claude Fable 5.2 la página de una pastelería inventada, en dos chats nuevos. En el segundo le pasé capturas de dos páginas de Dribbble que me encantan y le dije qué copiar de cada una.',
           'Mismo modelo, mismo pedido, otra página. Antes de pedir un diseño junto capturas de lo que me gusta.',
         ],
         link: { label: 'Los dos pedidos y lo que salió', href: '/material/la-misma-pagina-dos-veces' },
