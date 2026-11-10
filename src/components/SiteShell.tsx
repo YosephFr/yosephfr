@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider"
 import { ModalProvider } from "@/providers/ModalProvider"
 import { EasterEggProvider } from "@/providers/EasterEggProvider"
 import Navbar from "@/components/Navbar"
+import Desde from "@/components/Desde"
 import CommandPalette from "@/components/CommandPalette"
 import JsonLd from "@/components/JsonLd"
 import "@/app/globals.css"
@@ -90,6 +91,7 @@ export default function SiteShell({ lang, children }: Readonly<{ lang: Lang; chi
               <EasterEggProvider>
                 <Navbar />
                 {children}
+                <Desde />
                 <CommandPalette />
               </EasterEggProvider>
             </ModalProvider>

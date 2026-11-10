@@ -1,29 +1,34 @@
 import Link from 'next/link'
-import ContactActions from './ContactActions'
-import ProcessWindow from './dots/ProcessWindow'
-import DotIcon from './dots/DotIcon'
-import ProfilePhoto from './ProfilePhoto'
+import DotIcon from '@/components/dots/DotIcon'
+import { PROFILE } from '@/data/profile'
+import { NUMEROS } from '@/data/newsletter'
+import { desde } from '@/lib/desde'
 import { UI, type Lang } from '@/lib/lang'
+import NewsletterCTA from '@/components/NewsletterCTA'
+import ParticlePortrait from '@/components/ParticlePortrait'
 
+const RETRATO = { src: '/franco-retrato.webp', width: 600, height: 800 }
+
+// Portada: su personaje armado con partículas, lo que hace en una frase y el newsletter a mano.
 export default function Hero({ lang = 'es' }: { lang?: Lang }) {
   const t = UI[lang].hero
   return (
-    <section id="inicio" className="marco portada-hero">
-      <div className="portada-hero-texto">
-        <div className="hero-identidad">
-          <ProfilePhoto size={72} priority egg="avatar" />
-          <p className="hero-nombre">{lang === 'en' ? 'Yoseph Franco · AI Engineer' : 'Yoseph Franco · Ingeniero de IA'}</p>
-        </div>
+    <section id="inicio" className="marco portada">
+      <ParticlePortrait {...RETRATO} alt={lang === 'en' ? 'Franco, the character of his videos' : 'Franco, el personaje de sus videos'} className="portada-retrato" />
+      <div className="portada-texto">
+        <p className="portada-quien"><strong>{PROFILE.name}</strong> <span>@arncof</span></p>
         <h1 className="display">{t.title}</h1>
         <p className="entrada-texto">{t.text}</p>
-        <ContactActions lang={lang} />
-      </div>
-      <div className="portada-hero-ventana">
-        <ProcessWindow caption={t.caption} lang={lang} />
-        <Link href="/skills/ai-agents" className="enlace hero-enlace" hrefLang={lang === 'en' ? 'es' : undefined}>
-          {t.agents}
-          <DotIcon name="flecha" size={13} />
-        </Link>
+        {lang === 'es' && (
+          <NewsletterCTA variant="compacto" className="solo-ancho" offer={{ title: 'Newsletter', text: '', button: 'Suscribirme' }}>
+            <Link href="/newsletter/1" className="boletin-leer" {...desde(NUMEROS[0].date)}>Lee el número 1 <DotIcon name="flecha" size={12} /></Link>
+          </NewsletterCTA>
+        )}
+        <ul className="portada-redes" aria-label={lang === 'en' ? 'Profiles' : 'Perfiles'}>
+          {PROFILE.socials.filter(s => s.name !== 'GitHub').map(s => (
+            <li key={s.name}><a href={s.href} target="_blank" rel="noopener noreferrer" data-event="social_profile_click" data-channel={s.name}>{s.name}</a></li>
+          ))}
+        </ul>
       </div>
     </section>
   )

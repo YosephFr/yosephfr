@@ -3,6 +3,8 @@ import { articlePath, getPublicArticles, getTranslation, type Article } from '@/
 import { PROFILE } from '@/data/profile'
 import { EXPERIENCE } from '@/data/experience'
 import { SKILLS } from '@/data/skills'
+import { materialByDate } from '@/data/material'
+import { NUMEROS } from '@/data/newsletter'
 export const dynamic='force-static'
 export default function sitemap(): MetadataRoute.Sitemap {
   const articles=[...getPublicArticles('es'),...getPublicArticles('en')]
@@ -13,5 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const languages=(route:string)=>pairs[route]?{alternates:{languages:{es:PROFILE.url+pairs[route].es,en:PROFILE.url+pairs[route].en,'x-default':PROFILE.url+pairs[route].es}}}:{}
   // Pareja traducida: hreflang recíproco y x-default en español. Un original solo en inglés declara hreflang en, sin x-default.
   const articleLanguages=(a:Article)=>{const other=getTranslation(a);if(!other)return a.language==='en'?{alternates:{languages:{en:PROFILE.url+articlePath(a)}}}:{};const es=a.language==='es'?a:other;const en=a.language==='en'?a:other;return {alternates:{languages:{es:PROFILE.url+articlePath(es),en:PROFILE.url+articlePath(en),'x-default':PROFILE.url+articlePath(es)}}}}
-  return [...paths.map(route=>({url:PROFILE.url+route,lastModified:route.endsWith('/blog')?blogUpdated:new Date(PROFILE.updated),...languages(route)})),...articles.map(a=>({url:PROFILE.url+articlePath(a),lastModified:new Date(a.updated),...articleLanguages(a)}))]
+  const material=materialByDate()
+  const materialUpdated=material.length?new Date(Date.parse(material[0].date)):new Date(PROFILE.updated)
+  return [...paths.map(route=>({url:PROFILE.url+route,lastModified:route.endsWith('/blog')?blogUpdated:new Date(PROFILE.updated),...languages(route)})),...(material.length?[{url:PROFILE.url+'/material',lastModified:materialUpdated},...material.map(m=>({url:`${PROFILE.url}/material/${m.slug}`,lastModified:new Date(m.date)}))]:[]),...NUMEROS.map(n=>({url:`${PROFILE.url}/newsletter/${n.numero}`,lastModified:new Date(Math.min(Date.now(),Date.parse(n.date)))})),...articles.map(a=>({url:PROFILE.url+articlePath(a),lastModified:new Date(a.updated),...articleLanguages(a)}))]
 }
