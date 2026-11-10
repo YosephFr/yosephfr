@@ -1,10 +1,10 @@
 name: Publicar a su hora
 # El sitio es estático: un artículo o material con fecha futura entra recién en el primer despliegue después de esa fecha.
-# Cada hora, de 9 a 23 de Buenos Aires, mira si algo ya cumplió su hora y no está en el sitio publicado.
+# Dos veces por hora (:23 y :53, fuera de la hora en punto, que GitHub posterga o salta), de 9 a 23 de Buenos Aires, mira si algo ya cumplió su hora y no está en el sitio publicado.
 # Si falta algo, deja un commit vacío en main (Hostinger no acepta volver a desplegar el mismo commit) y lanza el despliegue.
 on:
   schedule:
-    - cron: '7 12-23,0-2 * * *'
+    - cron: '23,53 12-23,0-2 * * *'
   workflow_dispatch:
 permissions:
   contents: write
