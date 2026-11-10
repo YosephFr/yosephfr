@@ -1,0 +1,45 @@
+name: Publicar a su hora
+# El sitio es estático: un artículo o material con fecha futura entra recién en el primer despliegue después de esa fecha.
+# Cada hora, de 9 a 23 de Buenos Aires, mira si algo ya cumplió su hora y no está en el sitio publicado.
+# Si falta algo, deja un commit vacío en main (Hostinger no acepta volver a desplegar el mismo commit) y lanza el despliegue.
+on:
+  schedule:
+    - cron: '7 12-23,0-2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: publicar-a-su-hora
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '22.23.4'
+      - name: Ver qué falta publicar
+        id: faltan
+        run: |
+          node scripts/pendientes.mjs > faltan.txt
+          cat faltan.txt
+          echo "n=$(grep -c . faltan.txt || true)" >> "$GITHUB_OUTPUT"
+      - name: Desplegar si hace falta
+        if: steps.faltan.outputs.n != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          activos=$(gh run list -w deploy-hostinger.yml -L 5 --json status -q '[.[] | select(.status != "completed")] | length')
+          if [ "$activos" != "0" ]; then echo "Ya hay un despliegue en curso"; exit 0; fi
+          ultimo=$(gh run list -w deploy-hostinger.yml -L 1 --json conclusion -q '.[0].conclusion')
+          if [ "$ultimo" = "failure" ]; then echo "::warning::El último despliegue falló; no se reintenta solo"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Publica a su hora: $(paste -sd ' ' faltan.txt)"
+          git push origin HEAD:main
+          gh workflow run deploy-hostinger.yml --ref main
