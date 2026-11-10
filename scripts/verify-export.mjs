@@ -46,7 +46,7 @@ export function verifyPublicExport({root='out',articles=JSON.parse(fs.readFileSy
   const sitemapUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>decodeXml(m[1])).filter(url=>url.startsWith(`${origin}/blog/`)||url.startsWith(`${origin}/en/blog/`)).sort();
   for(const [label,actual,expected] of [['RSS',itemUrls('feed.xml'),urls('es')],['RSS en',itemUrls('en/feed.xml'),urls('en')],['sitemap',sitemapUrls,[...urls('es'),...urls('en')].sort()]]) if(JSON.stringify(actual)!==JSON.stringify(expected)) throw new Error(`${label} no coincide con los artículos elegibles`);
   const blockValues=b=>[b.text,...(b.items||[]),...(b.headers||[]),...((b.rows||[]).flat())].filter(value=>typeof value==='string');
-  const needles=hidden.flatMap(a=>[a.slug,a.title,...a.blocks.filter(b=>b.type!=='heading'&&b.type!=='subheading').flatMap(blockValues).filter(value=>value.length>=80)].filter(value=>value.length>=16).flatMap(value=>[value,JSON.stringify(value).slice(1,-1)]));
+  const needles=hidden.flatMap(a=>[a.slug,a.title,...a.blocks.filter(b=>b.type!=='heading'&&b.type!=='subheading'&&b.type!=='pedido').flatMap(blockValues).filter(value=>value.length>=80)].filter(value=>value.length>=16).flatMap(value=>[value,JSON.stringify(value).slice(1,-1)]));
   for(const file of files) {
     if(/(^|\/)(\.env(?:\.|$)|[^/]+\.(?:pem|key)$)/i.test(file)) throw new Error(`Archivo privado en exportación: ${file}`);
     if(!/\.(?:html?|js|mjs|cjs|json|txt|xml|map|css|svg|rsc)$/i.test(file)) continue;
