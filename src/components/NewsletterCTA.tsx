@@ -93,7 +93,6 @@ export default function NewsletterCTA({ lang = 'es', embedded = false, anchor, o
             <input id={emailId} name="email" type="email" required autoComplete="email" placeholder={t.placeholder} aria-describedby={consentId} />
             <input type="hidden" name="embed" value="1" />
             <button className="boton boton-claro" type="submit">{copy.button}</button>
-            <p className="estado-texto" style={{ flexBasis: '100%' }}>{t.helper}</p>
           </div>
           <p id={consentId} className="meta consentimiento">{NEWSLETTER_CONSENT[lang]}</p>
         </form>

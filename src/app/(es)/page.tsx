@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { articlePath, getPublicArticles } from '@/data/articles'
+import { materialByDate } from '@/data/material'
 import { PROFILE } from '@/data/profile'
 import { jsonLd, profilePage } from '@/lib/seo'
 import ArticleCards from '@/components/blog/ArticleCards'
 import Hero from '@/components/Hero'
-import Experience from '@/components/Experience'
-import Skills from '@/components/Skills'
-import CTA from '@/components/CTA'
+import MaterialCards from '@/components/MaterialCards'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import Footer from '@/components/Footer'
 import DotIcon from '@/components/dots/DotIcon'
@@ -17,8 +16,10 @@ export const metadata: Metadata = {
   alternates: { canonical: '/', languages: alternates('/', '/en'), types: { 'application/rss+xml': '/feed.xml' } },
 }
 
+// Quien llega desde un video viene a buscar algo: primero el material, después el newsletter.
 export default function Home() {
   const articles = getPublicArticles()
+  const material = materialByDate()
   const schema = {
     '@context': 'https://schema.org',
     ...profilePage({
@@ -38,22 +39,44 @@ export default function Home() {
   }
   return (
     <>
-      <main id="contenido" className="acento-verde">
+      <main id="contenido" className="inicio">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <Hero />
-        {articles.length > 0 && (
-          <section className="marco seccion acento-azul">
-            <div className="seccion-cabeza">
-              <h2>Ideas para trabajar mejor</h2>
-              <Link href="/blog" className="enlace">Todos los artículos <DotIcon name="flecha" size={13} /></Link>
+        {material.length > 0 && (
+          <section id="material" className="marco seccion seccion-material" aria-labelledby="material-titulo">
+            <div className="seccion-fila">
+              <h2 id="material-titulo">Lo de los videos</h2>
+              {material.length > 4 && <Link href="/material" className="enlace">Todo el material <DotIcon name="flecha" size={13} /></Link>}
             </div>
-            <ArticleCards articles={articles.slice(0, 3)} />
+            <MaterialCards items={material.slice(0, 4)} />
           </section>
         )}
-        <Experience />
-        <Skills />
-        <CTA />
-        <NewsletterCTA anchor="boletin" />
+        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Un correo por semana con lo que pruebo con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
+        <div className="resto">
+        {articles.length > 0 && (
+          <section className="marco seccion" aria-labelledby="articulos-titulo">
+            <div className="seccion-fila">
+              <h2 id="articulos-titulo">Artículos</h2>
+              <Link href="/blog" className="enlace">Todos <DotIcon name="flecha" size={13} /></Link>
+            </div>
+            <ArticleCards articles={articles.slice(0, 4)} />
+          </section>
+        )}
+        <section className="marco seccion" aria-labelledby="quien-titulo">
+          <div className="quien lamina">
+            <div>
+              <h2 id="quien-titulo">Quién te lo cuenta</h2>
+              <p className="entrada-texto">Empecé copiando y pegando de ChatGPT. Hoy ni abro la terminal: trabajo hablando con agentes, con rondas de preguntas, planes grandes y todo directo a producción.</p>
+              <Link href="/cv" className="enlace">Mi CV <DotIcon name="flecha" size={13} /></Link>
+            </div>
+            <ul className="quien-cifras">
+              <li><strong>14.000</strong><span>conversaciones al mes atendidas con IA en lo que tengo en producción</span></li>
+              <li><strong>+30</strong><span>clientes activos</span></li>
+              <li><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
+            </ul>
+          </div>
+        </section>
+        </div>
       </main>
       <Footer />
     </>

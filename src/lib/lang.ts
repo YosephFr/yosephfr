@@ -5,11 +5,11 @@ export const isEnglishPath = (path: string) => path === '/en' || path.startsWith
 
 export const UI = {
   es: {
-    home: '/', blog: '/blog', cv: '/cv', contactPath: '/contacto', newsletter: '/newsletter',
-    nav: { home: 'Inicio', articles: 'Artículos', newsletter: 'Newsletter', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio' },
+    home: '/', blog: '/blog', cv: '/cv', contactPath: '/contacto', newsletter: '/newsletter', material: '/material',
+    nav: { home: 'Inicio', articles: 'Artículos', newsletter: 'Newsletter', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio', material: 'Material', subscribe: 'Suscribirme' },
     hero: {
-      title: 'IA que llega al trabajo real.',
-      text: 'Construyo agentes, software y automatizaciones. Comparto lo que sirve para pasar de una idea a un producto que funciona.',
+      title: 'Programo todo con IA y te cuento cómo, sin humo.',
+      text: 'Soy el único programador detrás de mis proyectos, de punta a punta. Aquí dejo el material de cada video y lo que voy aprendiendo.',
       caption: 'De una consulta a una tarea resuelta.',
       agents: 'Así trabajo con agentes',
     },
@@ -32,11 +32,11 @@ export const UI = {
     footer: { tagline: 'Agentes de IA, software y automatización para el trabajo real.', sections: 'Secciones', profiles: 'Perfiles', other: 'English', otherHref: '/en' },
   },
   en: {
-    home: '/en', blog: '/en/blog', cv: '/en/cv', contactPath: '/en/contact', newsletter: '/en/newsletter',
-    nav: { home: 'Home', articles: 'Articles', newsletter: 'Newsletter', cv: 'CV', contact: 'Contact', brand: 'Arncof, home' },
+    home: '/en', blog: '/en/blog', cv: '/en/cv', contactPath: '/en/contact', newsletter: '/en/newsletter', material: '/material',
+    nav: { home: 'Home', articles: 'Articles', newsletter: 'Newsletter', cv: 'CV', contact: 'Contact', brand: 'Arncof, home', material: 'Material', subscribe: 'Subscribe' },
     hero: {
-      title: 'AI that reaches real work.',
-      text: 'I build agents, software and automations. I share what helps turn an idea into a product that works.',
+      title: 'I build everything with AI and show you how, no hype.',
+      text: 'I am the only programmer behind my projects, end to end. Here I share what I learn about working with AI.',
       caption: 'From a request to a finished task.',
       agents: 'How I work with agents',
     },

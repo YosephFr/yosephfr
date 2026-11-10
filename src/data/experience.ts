@@ -43,7 +43,7 @@ export const EXPERIENCE: ExperienceRole[] = [
   {
     slug: "fullstack-cloud",
     title: "Software e infraestructura cloud",
-    company: "Freelance / Enigma Developers",
+    company: "Independiente",
     period: "2019–2024",
     badge: "Freelance",
     shortDescription:

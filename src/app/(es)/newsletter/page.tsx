@@ -40,10 +40,9 @@ export default function NewsletterPage() {
             {' · '}
             <InternalLink href="/en/newsletter" hrefLang="en" lang="en" className="enlace">Read in English</InternalLink>
           </p>
-          <h1>{title}</h1>
-          <p className="entrada-texto">{description}</p>
+          <h1 className="titulo">{title}</h1>
         </header>
-        <NewsletterCTA anchor="boletin" />
+        <NewsletterCTA anchor="boletin" offer={{ title: 'Lo que aprendo, cada semana', text: 'Un correo por semana con lo que pruebo con IA y el material nuevo de los videos.', button: 'Suscribirme' }} />
       </main>
       <Footer />
     </>

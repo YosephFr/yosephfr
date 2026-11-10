@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dulce Luna · Pastelería artesanal</title>
+<meta name="description" content="Dulce Luna, pastelería artesanal: tartas, medialunas, macarons y pan horneados cada mañana en tandas pequeñas.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d1836'/%3E%3Cpath d='M21 5.5a11 11 0 1 0 6.4 14.9A8.9 8.9 0 0 1 21 5.5z' fill='%23e8bd6d'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --noche: #1d1836;
+    --noche-2: #2b2250;
+    --crema: #fcf5ea;
+    --crema-2: #f6ead9;
+    --rosa: #f6d5d3;
+    --rosa-fuerte: #d9727f;
+    --oro: #e8bd6d;
+    --oro-oscuro: #b98432;
+    --lavanda: #e4dcf3;
+    --cacao: #3b2a2c;
+    --cacao-suave: #6f5a5a;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --ancho: 1120px;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--cacao);
+    background: var(--crema);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.12; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+
+  .contenedor { width: min(100% - 40px, var(--ancho)); margin-inline: auto; }
+
+  .antetitulo {
+    font-size: .78rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--oro-oscuro);
+  }
+  .seccion { padding: clamp(64px, 9vw, 112px) 0; }
+  .seccion-cabecera { max-width: 620px; margin: 0 auto clamp(36px, 5vw, 56px); text-align: center; }
+  .seccion-cabecera h2 { font-size: clamp(2rem, 4.4vw, 3rem); margin: 12px 0 14px; }
+  .seccion-cabecera p { color: var(--cacao-suave); }
+
+  .boton {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    font-weight: 600; font-size: .98rem;
+    text-decoration: none;
+    border: 1.5px solid transparent;
+    transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .boton:hover { transform: translateY(-2px); }
+  .boton:focus-visible, .nav a:focus-visible, .pie a:focus-visible, .dato a:focus-visible {
+    outline: 2px solid var(--oro); outline-offset: 3px; border-radius: 6px;
+  }
+  .boton-oro { background: var(--oro); color: var(--noche); }
+  .boton-oro:hover { background: #f1cd88; }
+  .boton-linea { border-color: rgba(252, 245, 234, .45); color: var(--crema); }
+  .boton-linea:hover { border-color: var(--crema); }
+  .boton-noche { background: var(--noche); color: var(--crema); }
+  .boton-noche:hover { background: var(--noche-2); }
+
+  /* ---------- Portada ---------- */
+  .portada {
+    position: relative;
+    overflow: hidden;
+    color: var(--crema);
+    background:
+      radial-gradient(900px 620px at 78% 42%, #3f3270 0%, rgba(63, 50, 112, 0) 65%),
+      linear-gradient(180deg, #17132c 0%, var(--noche) 45%, #2a2150 100%);
+  }
+  .portada::before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    width: 2px; height: 2px; border-radius: 50%;
+    box-shadow:
+      6vw 14vh 0 0 rgba(255,255,255,.7), 14vw 62vh 0 0 rgba(255,255,255,.45),
+      22vw 9vh 0 .5px rgba(255,255,255,.55), 31vw 78vh 0 0 rgba(255,255,255,.4),
+      38vw 22vh 0 0 rgba(255,255,255,.6), 47vw 6vh 0 .5px rgba(255,255,255,.5),
+      55vw 70vh 0 0 rgba(255,255,255,.35), 63vw 12vh 0 0 rgba(255,255,255,.6),
+      71vw 84vh 0 .5px rgba(255,255,255,.4), 82vw 8vh 0 0 rgba(255,255,255,.65),
+      90vw 58vh 0 0 rgba(255,255,255,.45), 96vw 24vh 0 .5px rgba(255,255,255,.55),
+      3vw 44vh 0 0 rgba(255,255,255,.4), 44vw 48vh 0 0 rgba(255,255,255,.3);
+    pointer-events: none;
+  }
+
+  .nav {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 22px 0;
+  }
+  .marca {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--serif); font-size: 1.45rem; font-weight: 600; font-style: italic;
+    text-decoration: none; letter-spacing: .01em;
+  }
+  .marca svg { width: 26px; height: 26px; color: var(--oro); }
+  .nav-enlaces { display: flex; align-items: center; gap: 30px; list-style: none; margin: 0; padding: 0; }
+  .nav-enlaces a { text-decoration: none; font-size: .95rem; opacity: .85; transition: opacity .2s; }
+  .nav-enlaces a:hover { opacity: 1; }
+  .nav .boton { padding: 9px 20px; font-size: .9rem; }
+
+  .portada-cuerpo {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 24px;
+    padding: clamp(28px, 5vw, 64px) 0 clamp(96px, 12vw, 150px);
+  }
+  .portada .antetitulo { color: var(--oro); }
+  .portada h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); margin: 18px 0 22px; letter-spacing: -.01em; }
+  .portada h1 em { color: var(--oro); font-style: italic; }
+  .portada-texto p { max-width: 30em; font-size: 1.12rem; color: rgba(252, 245, 234, .82); }
+  .portada-acciones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .portada-arte { justify-self: center; width: min(100%, 470px); }
+  .portada-arte svg { width: 100%; height: auto; animation: flotar 7s ease-in-out infinite; }
+
+  .ola { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(40px, 6vw, 84px); }
+
+  .titila { animation: titilar 3.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  .titila.b { animation-delay: -1.1s; animation-duration: 4.2s; }
+  .titila.c { animation-delay: -2.3s; animation-duration: 2.8s; }
+  @keyframes titilar { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+  @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* ---------- Especialidades ---------- */
+  .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 26px; }
+  .tarjeta {
+    background: #fff;
+    border-radius: 22px;
+    padding: 14px 14px 24px;
+    box-shadow: 0 1px 2px rgba(59, 42, 44, .06), 0 12px 32px -18px rgba(59, 42, 44, .28);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .tarjeta:hover { transform: translateY(-6px); box-shadow: 0 1px 2px rgba(59, 42, 44, .06), 0 24px 40px -20px rgba(59, 42, 44, .38); }
+  .tarjeta-arte { border-radius: 14px; display: grid; place-items: center; height: 200px; }
+  .tarjeta-arte svg { width: 156px; height: 156px; transition: transform .35s ease; }
+  .tarjeta:hover .tarjeta-arte svg { transform: scale(1.06) rotate(-2deg); }
+  .t-rosa { background: var(--rosa); }
+  .t-oro { background: #f7e4bd; }
+  .t-lavanda { background: var(--lavanda); }
+  .tarjeta-texto { padding: 20px 10px 0; }
+  .etiqueta {
+    display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--oro-oscuro); margin-bottom: 6px;
+  }
+  .tarjeta h3 { font-size: 1.5rem; margin-bottom: 8px; }
+  .tarjeta p { color: var(--cacao-suave); font-size: .98rem; }
+  .nota { text-align: center; margin-top: 38px; color: var(--cacao-suave); font-family: var(--serif); font-style: italic; font-size: 1.1rem; }
+
+  /* ---------- Nosotros ---------- */
+  .nosotros { background: var(--crema-2); }
+  .nosotros-rejilla { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .panel-noche {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--noche-2), var(--noche));
+    color: var(--crema);
+    border-radius: 28px;
+    padding: clamp(36px, 5vw, 56px) clamp(28px, 4vw, 44px);
+    text-align: center;
+  }
+  .panel-noche .fases { width: min(100%, 280px); margin: 0 auto 30px; }
+  .panel-noche blockquote { margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.25; }
+  .panel-noche small { display: block; margin-top: 18px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--oro); }
+  .nosotros h2 { font-size: clamp(2rem, 4.2vw, 2.9rem); margin: 12px 0 18px; }
+  .nosotros-texto > p { color: var(--cacao-suave); max-width: 34em; }
+  .valores { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 18px; }
+  .valores li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+  .valores .icono { width: 40px; height: 40px; border-radius: 50%; background: var(--rosa); display: grid; place-items: center; color: var(--rosa-fuerte); }
+  .valores .icono svg { width: 20px; height: 20px; }
+  .valores strong { display: block; font-family: var(--serif); font-size: 1.18rem; font-weight: 600; }
+  .valores span { color: var(--cacao-suave); font-size: .97rem; }
+
+  /* ---------- Encargos ---------- */
+  .pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; counter-reset: paso; }
+  .paso { text-align: center; padding: 8px 14px; }
+  .paso svg { width: 64px; height: 64px; margin: 0 auto 18px; }
+  .paso h3 { font-size: 1.4rem; margin-bottom: 8px; }
+  .paso p { color: var(--cacao-suave); font-size: .98rem; max-width: 22em; margin-inline: auto; }
+  .encargos-cta { text-align: center; margin-top: 44px; }
+
+  /* ---------- Visítanos ---------- */
+  .visitanos { padding-top: 0; }
+  .visita-caja {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    background: #fff; border-radius: 28px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(59, 42, 44, .06), 0 18px 44px -24px rgba(59, 42, 44, .32);
+  }
+  .dato { padding: clamp(28px, 4vw, 44px); }
+  .dato + .dato { border-left: 1px solid var(--crema-2); }
+  .dato h3 { font-size: 1.35rem; margin: 10px 0 14px; }
+  .dato dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-size: .98rem; }
+  .dato dt { color: var(--cacao-suave); }
+  .dato dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .dato p { color: var(--cacao-suave); font-size: .98rem; }
+  .dato p + p { margin-top: 6px; }
+  .dato a { color: var(--cacao); font-weight: 600; text-decoration-color: var(--oro); text-underline-offset: 3px; }
+  .dato a:hover { color: var(--oro-oscuro); }
+  .dato-icono { width: 30px; height: 30px; color: var(--rosa-fuerte); }
+
+  /* ---------- Pie ---------- */
+  .pie { background: var(--noche); color: rgba(252, 245, 234, .75); padding: 54px 0 34px; text-align: center; }
+  .pie .marca { color: var(--crema); font-size: 1.7rem; }
+  .pie .marca svg { width: 30px; height: 30px; }
+  .pie-lema { margin-top: 10px; font-family: var(--serif); font-style: italic; }
+  .pie-enlaces { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px; list-style: none; padding: 0; margin: 26px 0 0; font-size: .93rem; }
+  .pie-enlaces a { text-decoration: none; }
+  .pie-enlaces a:hover { color: var(--oro); }
+  .pie-legal { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(252, 245, 234, .12); font-size: .82rem; }
+
+  /* ---------- Aparición al hacer scroll ---------- */
+  .js .aparece { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .js .aparece.visible { opacity: 1; transform: none; }
+
+  /* ---------- Adaptación ---------- */
+  @media (max-width: 880px) {
+    .portada-cuerpo { grid-template-columns: 1fr; text-align: center; }
+    .portada-texto p { margin-inline: auto; }
+    .portada-acciones { justify-content: center; }
+    .portada-arte { width: min(78%, 360px); order: -1; }
+    .nosotros-rejilla { grid-template-columns: 1fr; }
+    .pasos { grid-template-columns: 1fr; gap: 34px; }
+    .visita-caja { grid-template-columns: 1fr; }
+    .dato + .dato { border-left: 0; border-top: 1px solid var(--crema-2); }
+  }
+  @media (max-width: 700px) {
+    .nav-enlaces li:not(.fijo) { display: none; }
+    body { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Símbolos SVG reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-luna" viewBox="0 0 32 32">
+      <path d="M21 3.5a13 13 0 1 0 7.5 17.6A10.5 10.5 0 0 1 21 3.5z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-estrella" viewBox="-10 -10 20 20">
+      <path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ PORTADA ============ -->
+<header class="portada" id="inicio">
+  <div class="contenedor">
+    <nav class="nav" aria-label="Principal">
+      <a class="marca" href="#inicio" aria-label="Dulce Luna, inicio">
+        <svg aria-hidden="true"><use href="#i-luna"/></svg>
+        Dulce Luna
+      </a>
+      <ul class="nav-enlaces">
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#visitanos">Visítanos</a></li>
+        <li class="fijo"><a class="boton boton-oro" href="#encargos">Encargos</a></li>
+      </ul>
+    </nav>
+
+    <div class="portada-cuerpo">
+      <div class="portada-texto">
+        <span class="antetitulo">Pastelería artesanal</span>
+        <h1>Dulces hechos a mano, con un toque de <em>luna</em>.</h1>
+        <p>Tartas, medialunas y pequeños caprichos horneados cada mañana, en tandas pequeñas y sin prisa.</p>
+        <div class="portada-acciones">
+          <a class="boton boton-oro" href="#especialidades">Ver especialidades</a>
+          <a class="boton boton-linea" href="#encargos">Encargar una tarta</a>
+        </div>
+      </div>
+
+      <div class="portada-arte">
+        <svg viewBox="0 0 480 480" role="img" aria-label="Una luna creciente con un cupcake sentado en su curva, rodeada de estrellas">
+          <defs>
+            <radialGradient id="g-halo">
+              <stop offset="0" stop-color="#f6d58f" stop-opacity=".34"/>
+              <stop offset=".6" stop-color="#f6d58f" stop-opacity=".08"/>
+              <stop offset="1" stop-color="#f6d58f" stop-opacity="0"/>
+            </radialGradient>
+            <mask id="m-luna">
+              <rect width="480" height="480" fill="#fff"/>
+              <circle cx="306" cy="196" r="132" fill="#000"/>
+            </mask>
+          </defs>
+          <circle cx="240" cy="240" r="238" fill="url(#g-halo)"/>
+          <g mask="url(#m-luna)">
+            <circle cx="240" cy="240" r="152" fill="#fdeecb"/>
+            <circle cx="130" cy="250" r="15" fill="#f2dcae"/>
+            <circle cx="160" cy="322" r="9" fill="#f2dcae"/>
+            <circle cx="122" cy="188" r="7" fill="#f2dcae"/>
+            <circle cx="216" cy="364" r="11" fill="#f2dcae"/>
+          </g>
+          <!-- cupcake -->
+          <g>
+            <path d="M266 288h68l-9 44h-50z" fill="#e8bd6d"/>
+            <path d="M279 290l4 42M293 290l2 42M307 290l-2 42M321 290l-4 42" stroke="#c9953f" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="300" cy="284" rx="40" ry="14" fill="#efaab1"/>
+            <ellipse cx="300" cy="269" rx="30" ry="12" fill="#f4bcc1"/>
+            <ellipse cx="300" cy="255" rx="19" ry="10" fill="#f9cfd2"/>
+            <circle cx="300" cy="241" r="8" fill="#d9727f"/>
+            <circle cx="297.500" cy="238.500" r="2.200" fill="#fff" opacity=".6"/>
+          </g>
+          <!-- estrellas -->
+          <g color="#f6d58f">
+            <use class="titila" href="#i-estrella" x="336" y="96" width="32" height="32"/>
+            <use class="titila b" href="#i-estrella" x="398" y="186" width="18" height="18"/>
+            <use class="titila c" href="#i-estrella" x="56" y="78" width="20" height="20"/>
+            <use class="titila b" href="#i-estrella" x="410" y="330" width="22" height="22"/>
+            <use class="titila" href="#i-estrella" x="78" y="396" width="15" height="15"/>
+            <use class="titila c" href="#i-estrella" x="262" y="150" width="13" height="13"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <svg class="ola" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40c240 40 480 40 720 20s480-40 720-10v30H0z" fill="#fcf5ea"/>
+  </svg>
+</header>
+
+<main>
+
+<!-- ============ ESPECIALIDADES ============ -->
+<section class="seccion" id="especialidades">
+  <div class="contenedor">
+    <div class="seccion-cabecera aparece">
+      <span class="antetitulo">Del horno al mostrador</span>
+      <h2>Nuestras especialidades</h2>
+      <p>Recetas de siempre, buena mantequilla y el tiempo que cada masa necesita.</p>
+    </div>
+
+    <div class="rejilla">
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-rosa">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <ellipse cx="60" cy="104" rx="26" ry="4" fill="#c9a36c"/>
+            <rect x="56.500" y="88" width="7" height="16" fill="#d8b47c"/>
+            <ellipse cx="60" cy="88" rx="44" ry="5.500" fill="#ecd3a6"/>
+            <path d="M26 50h68v32a4 4 0 0 1-4 4H30a4 4 0 0 1-4-4z" fill="#fbecd2"/>
+            <path d="M26 50h68v10c0 5-6 5-6 0 0 9-9 9-9 0 0 6-8 6-8 0 0 11-10 11-10 0 0 5-7 5-7 0 0 8-9 8-9 0 0 6-8 6-8 0 0 4-5 4-5 0 0 7-6 7-6 0z" fill="#d9727f"/>
+            <ellipse cx="60" cy="50" rx="34" ry="6" fill="#e78c97"/>
+            <g transform="translate(47 17) scale(.82)" color="#e8bd6d"><use href="#i-luna" width="32" height="32"/></g>
+            <circle cx="40" cy="47" r="3.500" fill="#fbecd2"/>
+            <circle cx="80" cy="47" r="3.500" fill="#fbecd2"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">La insignia</span>
+          <h3>Tarta Luna Llena</h3>
+          <p>Bizcocho de vainilla, crema suave y un baño de frutos rojos. La que nunca falta en las celebraciones.</p>
+        </div>
+      </article>
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-oro">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M14 82C16 48 46 30 60 30s44 18 46 52c-8-12-18-16-24-14-6-8-14-10-22-10s-16 2-22 10c-6-2-16 2-24 14z" fill="#dc9a48"/>
+            <path d="M47 32c7-3 19-3 26 0 3 10 3 18 1 27-9-2-19-2-28 0-2-9-2-17 1-27z" fill="#e9b062"/>
+            <path d="M47 32c-3 10-3 18-1 27M73 32c3 10 3 18 1 27M29 46c2 8 6 16 10 21M91 46c-2 8-6 16-10 21" fill="none" stroke="#b27329" stroke-width="2.500" stroke-linecap="round"/>
+            <path d="M54 37c4-1.500 8-1.500 12 0" fill="none" stroke="#f6d49a" stroke-width="2.500" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">Cada mañana</span>
+          <h3>Medialunas de mantequilla</h3>
+          <p>Hojaldradas, doradas y todavía tibias. Salen del horno a primera hora y vuelan.</p>
+        </div>
+      </article>
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-lavanda">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <rect x="32" y="77" width="56" height="13" rx="6.500" fill="#a98fd6"/>
+            <rect x="32" y="92" width="56" height="13" rx="6.500" fill="#a98fd6"/>
+            <rect x="35" y="88" width="50" height="6" rx="3" fill="#fff7ea"/>
+            <rect x="24" y="49" width="56" height="13" rx="6.500" fill="#b5c88f"/>
+            <rect x="24" y="64" width="56" height="13" rx="6.500" fill="#b5c88f"/>
+            <rect x="27" y="60" width="50" height="6" rx="3" fill="#fff7ea"/>
+            <rect x="36" y="21" width="56" height="13" rx="6.500" fill="#e78c97"/>
+            <rect x="36" y="36" width="56" height="13" rx="6.500" fill="#e78c97"/>
+            <rect x="39" y="32" width="50" height="6" rx="3" fill="#fff7ea"/>
+            <path d="M44 26h18" stroke="#fff" stroke-width="2.500" stroke-linecap="round" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">Para regalar</span>
+          <h3>Macarons</h3>
+          <p>Frambuesa, pistacho y lavanda. Crujientes por fuera, tiernos por dentro.</p>
+        </div>
+      </article>
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-lavanda">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M34 68h52l-8 40H42z" fill="#e8bd6d"/>
+            <path d="M45 70l3 38M55 70l1.500 38M65 70l-1.500 38M75 70l-3 38" stroke="#c9953f" stroke-width="2.500" stroke-linecap="round"/>
+            <ellipse cx="60" cy="65" rx="31" ry="11" fill="#f3e2c8"/>
+            <ellipse cx="60" cy="53" rx="23" ry="10" fill="#f9ecd8"/>
+            <ellipse cx="60" cy="42" rx="15" ry="8.500" fill="#fff7ea"/>
+            <g color="#d9727f"><use href="#i-estrella" x="50" y="14" width="20" height="20"/></g>
+            <circle cx="44" cy="62" r="2" fill="#d9727f"/>
+            <circle cx="72" cy="52" r="2" fill="#a98fd6"/>
+            <circle cx="56" cy="50" r="2" fill="#e8bd6d"/>
+            <circle cx="76" cy="66" r="2" fill="#e8bd6d"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">De temporada</span>
+          <h3>Cupcakes de la casa</h3>
+          <p>Esponjosos, con crema batida al momento y sabores que cambian con la estación.</p>
+        </div>
+      </article>
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-rosa">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <path d="M12 80c0-27 21-44 48-44s48 17 48 44c0 8-6 13-14 13H26c-8 0-14-5-14-13z" fill="#cf8f47"/>
+            <path d="M18 76c2-22 20-35 42-35s40 13 42 35c-12-10-26-14-42-14S30 66 18 76z" fill="#dea257"/>
+            <path d="M38 50c7 6 10 14 10 24M58 44c6 8 9 18 8 30M78 48c5 7 7 16 6 26" fill="none" stroke="#f8e2b6" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">Fermentación lenta</span>
+          <h3>Pan de masa madre</h3>
+          <p>Corteza crujiente, miga tierna y el sabor que solo da la paciencia.</p>
+        </div>
+      </article>
+
+      <article class="tarjeta aparece">
+        <div class="tarjeta-arte t-oro">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <mask id="m-galleta">
+                <rect width="120" height="120" fill="#fff"/>
+                <circle cx="93" cy="33" r="17" fill="#000"/>
+                <circle cx="76" cy="24" r="8" fill="#000"/>
+              </mask>
+            </defs>
+            <g mask="url(#m-galleta)">
+              <circle cx="58" cy="64" r="40" fill="#c98a45"/>
+              <circle cx="58" cy="62" r="38" fill="#dba664"/>
+            </g>
+            <circle cx="43" cy="52" r="5.500" fill="#5d3824"/>
+            <circle cx="67" cy="70" r="6.500" fill="#5d3824"/>
+            <circle cx="47" cy="83" r="4.500" fill="#5d3824"/>
+            <circle cx="76" cy="89" r="4" fill="#5d3824"/>
+            <circle cx="31" cy="70" r="4" fill="#5d3824"/>
+            <circle cx="60" cy="46" r="4" fill="#5d3824"/>
+            <circle cx="84" cy="62" r="3.500" fill="#5d3824"/>
+            <circle cx="100" cy="56" r="2.500" fill="#dba664"/>
+            <circle cx="106" cy="45" r="1.800" fill="#dba664"/>
+          </svg>
+        </div>
+        <div class="tarjeta-texto">
+          <span class="etiqueta">Para el camino</span>
+          <h3>Galletas lunares</h3>
+          <p>Mantequilla tostada y trozos de chocolate. Imposible comerse solo una.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="nota aparece">La vitrina cambia cada día: pregunta en tienda por lo recién salido del horno.</p>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section class="seccion nosotros" id="nosotros">
+  <div class="contenedor nosotros-rejilla">
+
+    <div class="panel-noche aparece">
+      <svg class="fases" viewBox="0 0 260 44" aria-hidden="true">
+        <g fill="none" stroke="#e8bd6d" stroke-opacity=".45" stroke-width="1.500">
+          <circle cx="22" cy="22" r="16"/><circle cx="76" cy="22" r="16"/><circle cx="184" cy="22" r="16"/><circle cx="238" cy="22" r="16"/>
+        </g>
+        <g fill="#e8bd6d">
+          <path d="M22 6a16 16 0 0 1 0 32a22 22 0 0 0 0-32z"/>
+          <path d="M76 6a16 16 0 0 1 0 32z"/>
+          <circle cx="130" cy="22" r="17"/>
+          <path d="M184 6a16 16 0 0 0 0 32z"/>
+          <path d="M238 6a16 16 0 0 0 0 32a22 22 0 0 1 0-32z"/>
+        </g>
+      </svg>
+      <blockquote>«Lo bueno se hornea despacio.»</blockquote>
+      <small>Nuestra única regla</small>
+    </div>
+
+    <div class="nosotros-texto aparece">
+      <span class="antetitulo">Nuestra historia</span>
+      <h2>Una pastelería pequeña, con mucho horno</h2>
+      <p>En Dulce Luna empezamos el día cuando todavía hay luna en el cielo. Amasamos, batimos y horneamos a mano, en tandas pequeñas, para que todo lo que llega al mostrador esté recién hecho.</p>
+      <ul class="valores">
+        <li>
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-8-6.500-8-11a4.500 4.500 0 0 1 8-2.800A4.500 4.500 0 0 1 20 10c0 4.500-4 8-8 11z"/></svg>
+          </span>
+          <div><strong>Ingredientes de verdad</strong><span>Mantequilla, huevos frescos, fruta de temporada. Nada que no usarías en casa.</span></div>
+        </li>
+        <li>
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <div><strong>Horneado del día</strong><span>Lo que ves en la vitrina salió del horno esta misma mañana.</span></div>
+        </li>
+        <li>
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.200 6 4 8.800 10 10-6 1.200-8.800 4-10 10-1.200-6-4-8.800-10-10 6-1.200 8.800-4 10-10z"/></svg>
+          </span>
+          <div><strong>Hecho a mano</strong><span>Cada tarta se decora una a una. Ninguna sale igual que la anterior.</span></div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ ENCARGOS ============ -->
+<section class="seccion" id="encargos">
+  <div class="contenedor">
+    <div class="seccion-cabecera aparece">
+      <span class="antetitulo">Tartas por encargo</span>
+      <h2>Tu celebración, a tu medida</h2>
+      <p>Cumpleaños, bodas o un martes cualquiera que merece tarta. Así de fácil:</p>
+    </div>
+
+    <div class="pasos">
+      <div class="paso aparece">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" fill="#f6d5d3"/>
+          <path d="M32 12a20 20 0 0 1 0 40a27.500 27.500 0 0 0 0-40z" fill="#d9727f"/>
+        </svg>
+        <h3>1. Cuéntanos tu idea</h3>
+        <p>Sabores, tamaño, fecha y cualquier detalle especial. Te ayudamos a elegir.</p>
+      </div>
+      <div class="paso aparece">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" fill="#f6d5d3"/>
+          <path d="M32 12a20 20 0 0 1 0 40z" fill="#d9727f"/>
+        </svg>
+        <h3>2. La horneamos para ti</h3>
+        <p>Preparamos tu tarta desde cero el mismo día, con el diseño que acordamos.</p>
+      </div>
+      <div class="paso aparece">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" fill="#f6d5d3"/>
+          <circle cx="32" cy="32" r="20" fill="#d9727f"/>
+        </svg>
+        <h3>3. Recógela recién hecha</h3>
+        <p>Pasa por la tienda y llévatela lista para soplar las velas.</p>
+      </div>
+    </div>
+
+    <div class="encargos-cta aparece">
+      <!-- EDITA: cambia el correo por el tuyo -->
+      <a class="boton boton-noche" href="mailto:hola@dulceluna.example?subject=Quiero%20encargar%20una%20tarta">Hacer un encargo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISÍTANOS ============ -->
+<section class="seccion visitanos" id="visitanos">
+  <div class="contenedor">
+    <div class="seccion-cabecera aparece">
+      <span class="antetitulo">Te esperamos</span>
+      <h2>Visítanos</h2>
+    </div>
+
+    <div class="visita-caja aparece">
+      <div class="dato">
+        <svg class="dato-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Horario</h3>
+        <!-- EDITA: tus horarios reales -->
+        <dl>
+          <dt>Martes a viernes</dt><dd>8:00 – 19:00</dd>
+          <dt>Sábados</dt><dd>9:00 – 20:00</dd>
+          <dt>Domingos</dt><dd>9:00 – 14:00</dd>
+          <dt>Lunes</dt><dd>Cerrado</dd>
+        </dl>
+      </div>
+      <div class="dato">
+        <svg class="dato-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.200-7-11.500a7 7 0 0 1 14 0C19 14.800 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg>
+        <h3>Dónde estamos</h3>
+        <!-- EDITA: tu dirección real -->
+        <p>Calle de la Luna 123</p>
+        <p>Tu ciudad</p>
+      </div>
+      <div class="dato">
+        <svg class="dato-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+        <h3>Escríbenos</h3>
+        <!-- EDITA: tu teléfono y correo reales -->
+        <p><a href="tel:+000000000000">+00 000 000 000</a></p>
+        <p><a href="mailto:hola@dulceluna.example">hola@dulceluna.example</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIE ============ -->
+<footer class="pie">
+  <div class="contenedor">
+    <a class="marca" href="#inicio">
+      <svg aria-hidden="true" style="color:#e8bd6d"><use href="#i-luna"/></svg>
+      Dulce Luna
+    </a>
+    <p class="pie-lema">Horneado con cariño, cada mañana.</p>
+    <ul class="pie-enlaces">
+      <li><a href="#especialidades">Especialidades</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#encargos">Encargos</a></li>
+      <li><a href="#visitanos">Visítanos</a></li>
+    </ul>
+    <p class="pie-legal">© <span id="anio">2026</span> Dulce Luna · Pastelería artesanal</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('js');
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.aparece').forEach(function (el) { obs.observe(el); });
+  })();
+</script>
+</body>
+</html>
