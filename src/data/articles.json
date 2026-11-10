@@ -249,15 +249,15 @@
       },
       {
         "type": "heading",
-        "text": "Mi caso: lo que antes hacía un equipo"
+        "text": "Mi caso: lo que antes pedía un equipo"
       },
       {
         "type": "paragraph",
-        "text": "Soy el único programador de todos mis proyectos. Las personas con las que trabajo no son técnicas. Yo me encargo de todo, de principio a fin. Hoy son más de 30 clientes activos y unas 14.000 conversaciones al mes que atiende la IA. Hace dos años y medio, sacar adelante algo así requería mucho tiempo, mucho esfuerzo y un equipo técnico muy cualificado."
+        "text": "En la startup donde estoy, soy el único programador. Manejamos muchos clientes en producción: más de 30 activos y unas 14.000 conversaciones al mes que atiende la IA. Antes esto requería un equipo multidisciplinario."
       },
       {
         "type": "paragraph",
-        "text": "Empecé copiando y pegando desde ChatGPT y Gemini. Después pasé a Gemini CLI, después a Codex y después a Claude Code. Hoy ya ni abro la terminal: le hablo a la computadora, armamos planes gigantes y los subimos a producción. Lo hice en menos de dos años."
+        "text": "Llevo más de diez años programando. Desde hace dos, cuando los modelos de lenguaje empezaron a programar directo en la computadora, lanzo diez veces más proyectos a producción. Hoy le hablo a la computadora, armamos planes gigantes y los subimos a producción."
       },
       {
         "type": "heading",
@@ -430,7 +430,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Con mi uso, esa cuenta me da de 18 mil a 30 mil dólares al mes. Pago 400. Es decir, uso entre 45 y 75 veces lo que pago. Y no es para jugar: no existe otro programador en mis proyectos, yo me encargo de todo, de principio a fin."
+        "text": "Con mi uso, esa cuenta me da de 18 mil a 30 mil dólares al mes. Pago 400. Es decir, uso entre 45 y 75 veces lo que pago. Y no es para jugar: en la startup donde estoy, soy el único programador."
       },
       {
         "type": "paragraph",

@@ -69,7 +69,7 @@ export default function Home() {
           <div className="quien">
             <div className="quien-texto">
               <h2 id="quien-titulo">Quién te lo cuenta</h2>
-              <p className="entrada-texto">Empecé copiando y pegando de ChatGPT. Hoy ni abro la terminal: trabajo hablando con agentes, con rondas de preguntas, planes grandes y todo directo a producción.</p>
+              <p className="entrada-texto">Llevo más de diez años programando y trabajando en informática. Desde que los modelos de lenguaje empezaron a programar directo en la computadora, lanzo diez veces más proyectos a producción. Lo que antes pedía un equipo multidisciplinario hoy lo saca un equipo reducido de alto rendimiento.</p>
               <Link href="/cv" className="enlace">Mi CV <DotIcon name="flecha" size={13} /></Link>
             </div>
             <ul className="quien-cifras">
@@ -77,6 +77,13 @@ export default function Home() {
               <li><strong>+30</strong><span>clientes activos</span></li>
               <li className="ancha"><strong>400 USD</strong><span>al mes en Claude y Codex, que a precio de API serían entre 18 y 30 mil</span></li>
             </ul>
+          </div>
+        </section>
+        <section className="marco seccion" aria-labelledby="proposito-titulo">
+          <div className="proposito">
+            <h2 id="proposito-titulo">Que seamos muchísimos más</h2>
+            <p className="entrada-texto">A todos nos conviene que no sea yo solo lanzando startups, sino muchísimos más, y que en Latinoamérica avancemos todos juntos. Por eso explico aquí cómo lo hago: para que mejores tus habilidades y tu entendimiento, y la pasemos bien en el camino.</p>
+            <Link href="/material" className="enlace">Empieza por lo de los videos <DotIcon name="flecha" size={13} /></Link>
           </div>
         </section>
       </main>

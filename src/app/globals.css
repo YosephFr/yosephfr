@@ -932,6 +932,11 @@ html { font-synthesis: none; }
 .quien-cifras li { background: var(--capa); box-shadow: var(--sombra); }
 .quien-cifras li:last-child { grid-column: auto; }
 .quien-cifras li.ancha { grid-column: 1 / -1; }
+.proposito { display: grid; gap: 12px; padding: 28px 20px; border-radius: var(--r); background: var(--celeste-suave); }
+.proposito h2 { font-family: var(--font-heading); font-size: clamp(28px, 3.6vw, 52px); line-height: 1.04; max-width: 14ch; }
+.proposito .entrada-texto { max-width: 46ch; color: var(--texto); }
+.proposito .enlace { margin-top: 4px; }
+@media (min-width: 900px) { .proposito { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; column-gap: 48px; padding: 56px 48px; } .proposito .enlace { grid-column: 2; } }
 @media (min-width: 900px) { .quien { padding: 0; } .quien-cifras { grid-template-columns: repeat(3, minmax(0, 1fr)); } .quien-cifras li.ancha { grid-column: auto; } }
 
 /* Artículos en la portada: cuatro en una fila en escritorio, sin tarjetas gigantes */
@@ -1032,6 +1037,7 @@ html { font-synthesis: none; }
 .trayectoria-grupo .trayectoria-puntos i.lleno.ahora { background: var(--celeste); }
 .cv-cifras { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; max-width: 520px; }
 .cv-cifras li { padding: 14px 16px; border-radius: var(--r); background: var(--capa); box-shadow: var(--sombra); }
+.cv-cifras li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .cv-cifras strong { display: block; font-family: var(--font-heading); font-size: 28px; line-height: 1; font-weight: 800; }
 .cv-cifras span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.4; color: var(--texto-2); }
 @media print { .por-revelar { opacity: 1 !important; transform: none !important; } .entrada-pagina { animation: none !important; } }

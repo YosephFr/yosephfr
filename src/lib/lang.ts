@@ -9,7 +9,7 @@ export const UI = {
     nav: { home: 'Inicio', articles: 'Artículos', newsletter: 'Newsletter', cv: 'CV', contact: 'Contacto', brand: 'Arncof, inicio', material: 'Material', subscribe: 'Suscribirme' },
     hero: {
       title: 'Programo todo con IA y te cuento cómo, sin humo.',
-      text: 'Soy el único programador detrás de mis proyectos, de punta a punta. En menos de dos años pasé de copiar y pegar de ChatGPT a no abrir ni la terminal.',
+      text: 'Soy cofundador de una startup con muchos clientes en producción, y ahí el único programador soy yo. Llevo más de diez años en esto.',
       caption: 'De una consulta a una tarea resuelta.',
       agents: 'Así trabajo con agentes',
     },
@@ -36,7 +36,7 @@ export const UI = {
     nav: { home: 'Home', articles: 'Articles', newsletter: 'Newsletter', cv: 'CV', contact: 'Contact', brand: 'Arncof, home', material: 'Material', subscribe: 'Subscribe' },
     hero: {
       title: 'I build everything with AI and show you how, no hype.',
-      text: 'I am the only programmer behind my projects, end to end. Here I share what I learn about working with AI.',
+      text: 'I am a cofounder of a startup with many clients in production, and its only developer. Over ten years in the craft.',
       caption: 'From a request to a finished task.',
       agents: 'How I work with agents',
     },

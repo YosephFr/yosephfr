@@ -50,6 +50,12 @@ export default function HomeEn() {
       <main id="contenido" lang="en" className="acento-verde">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} />
         <Hero lang="en" />
+        <section className="marco seccion" aria-labelledby="purpose-title">
+          <div className="proposito">
+            <h2 id="purpose-title">So many more of us can build</h2>
+            <p className="entrada-texto">It works better for all of us if it is not just me launching startups but many more of us, and if Latin America moves forward together. That is why I show here how I do it: so you sharpen your skills and your understanding, and we have a good time along the way.</p>
+          </div>
+        </section>
         {articles.length > 0 && (
           <section className="marco seccion acento-azul">
             <div className="seccion-cabeza">

@@ -40,7 +40,7 @@ export default function CVEn() {
             <ProfilePhoto size={96} priority />
             <div>
             <h1 className="display">Yoseph Franco</h1>
-            <p className="entrada-texto">I design workflows with agents to research, build and review products. I organize the context, the tools and the continuity of the work, and I check the result against real cases.</p>
+            <p className="entrada-texto">Cofounder and only developer of a startup with many clients in production. Over ten years programming and working in IT; today I work with AI agents, in a small, high-performance team.</p>
             <div className="acciones-cv"><ContactActions lang="en" extra={<PrintButton lang="en" />} /></div>
             </div>
           </div>
