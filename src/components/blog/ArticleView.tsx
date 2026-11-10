@@ -10,6 +10,7 @@ import NewsletterCTA from '@/components/NewsletterCTA'
 import ArticleBody from '@/components/blog/ArticleBody'
 import ArticleCards from '@/components/blog/ArticleCards'
 import ArticleCover from '@/components/blog/ArticleCover'
+import { getPortada } from '@/components/blog/TypeCover'
 import ArticleToc from '@/components/blog/ArticleToc'
 import CopyLink from '@/components/CopyLink'
 import DotIcon from '@/components/dots/DotIcon'
@@ -27,6 +28,13 @@ const TEXT = {
 }
 
 // Canonical propio y, si la otra versión ya es visible, hreflang recíproco con x-default en español.
+
+// Con portada tipográfica, la imagen para compartir es su versión exportada (scripts/portadas.mjs).
+function shareCover(a: { slug: string; title: string; cover?: { src: string; width: number; height: number; alt: string } }) {
+  if (getPortada(a.slug)) return { src: `/blog/${a.slug}/portada.webp`, width: 1600, height: 900, alt: a.title }
+  return a.cover
+}
+
 export function articleMetadata(slug: string, lang: Lang): Metadata {
   const a = getArticle(slug, lang)
   if (!a) return {}
@@ -40,13 +48,14 @@ export function articleMetadata(slug: string, lang: Lang): Metadata {
       : undefined
   const socialTitle = a.ogTitle || a.seoTitle || a.title
   const socialDescription = a.ogDescription || a.description
-  const coverImage = a.cover ? [{ url: a.cover.src, width: a.cover.width, height: a.cover.height, alt: a.cover.alt, type: 'image/webp' as const }] : undefined
+  const shared = shareCover(a)
+  const coverImage = shared ? [{ url: shared.src, width: shared.width, height: shared.height, alt: shared.alt, type: 'image/webp' as const }] : undefined
   return {
     title: a.seoTitle ? { absolute: a.seoTitle } : a.title,
     description: a.description,
     alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: og({ title: socialTitle, description: socialDescription, url: path, type: 'article', publishedTime: a.date, modifiedTime: a.updated, authors: [PROFILE.name], section: a.category, locale: TEXT[lang].locale, ...(coverImage ? { images: coverImage } : {}) }),
-    twitter: { card: 'summary_large_image', title: socialTitle, description: socialDescription, images: [a.cover?.src ?? '/og-arncof-v2.jpg'], creator: '@arncof' },
+    twitter: { card: 'summary_large_image', title: socialTitle, description: socialDescription, images: [shared?.src ?? '/og-arncof-v2.jpg'], creator: '@arncof' },
     robots: isEditorialPreview ? { index: false, follow: false } : { index: true, follow: true },
   }
 }
@@ -67,7 +76,9 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
     .filter(a => a.slug !== slug)
     .sort((a, b) => Number(b.category === article.category) - Number(a.category === article.category) || Date.parse(b.date) - Date.parse(a.date))
   const related = (sameLanguage.length ? sameLanguage : lang === 'en' ? getArticles('es') : []).slice(0, 2)
-  if (article.cover) preload(article.cover.src, { as: 'image', fetchPriority: 'high' })
+  const portada = getPortada(article.slug)
+  const shared = shareCover(article)
+  if (article.cover && !portada) preload(article.cover.src, { as: 'image', fetchPriority: 'high' })
   const published = articleDate(article.date, lang)
   const updated = articleDate(article.updated, lang)
   const schema = {
@@ -82,8 +93,8 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
         datePublished: article.date,
         dateModified: article.updated,
         inLanguage: lang,
-        image: article.cover
-          ? { '@type': 'ImageObject', url: `${PROFILE.url}${article.cover.src}`, width: article.cover.width, height: article.cover.height, caption: article.cover.alt }
+        image: shared
+          ? { '@type': 'ImageObject', url: `${PROFILE.url}${shared.src}`, width: shared.width, height: shared.height, caption: shared.alt }
           : `${PROFILE.url}/og-arncof-v2.jpg`,
         url,
         mainEntityOfPage: url,
@@ -124,7 +135,7 @@ export default function ArticleView({ slug, lang }: { slug: string; lang: Lang }
               <CopyLink url={url} lang={lang} />
             </div>
           </header>
-          {article.cover ? (
+          {portada ? null : article.cover ? (
             <figure className="marco articulo-banda con-portada">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={article.cover.src} width={article.cover.width} height={article.cover.height} alt={article.cover.alt} decoding="async" fetchPriority="high" />

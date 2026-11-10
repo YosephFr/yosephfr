@@ -1,6 +1,7 @@
 import InternalLink from '@/components/InternalLink'
 import { articlePath, type Article } from '@/data/articles'
 import ArticleCover from './ArticleCover'
+import TypeCover, { getPortada } from './TypeCover'
 import { UI, type Lang } from '@/lib/lang'
 
 export function shortDate(date: string, lang: Lang = 'es') {
@@ -21,6 +22,8 @@ function meta(article: Article, lang: Lang, withCategory: boolean) {
 }
 
 function CoverArt({ article, cols, rows }: { article: Article; cols?: number; rows?: number }) {
+  const portada = getPortada(article.slug)
+  if (portada) return <TypeCover portada={portada} lang={article.language} />
   if (!article.cover) return <ArticleCover slug={article.slug} cols={cols} rows={rows} />
   return (
     // eslint-disable-next-line @next/next/no-img-element
