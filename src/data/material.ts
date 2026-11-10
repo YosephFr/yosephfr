@@ -148,6 +148,11 @@ export function materialByDate(now = process.env.MATERIAL_HASTA ? Date.parse(pro
   return MATERIAL.filter(m => Date.parse(m.date) <= now).sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
 }
 
+// Lo que se dibuja en el sitio: lo que ya salió y lo programado para los próximos ocho días (oculto hasta su hora).
+export function materialEnSitio() {
+  return materialByDate(Date.now() + 8 * 24 * 3600 * 1000)
+}
+
 export function getMaterial(slug: string) {
-  return materialByDate().find(m => m.slug === slug)
+  return MATERIAL.find(m => m.slug === slug)
 }

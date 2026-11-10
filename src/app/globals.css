@@ -988,3 +988,6 @@ html { font-synthesis: none; }
 .boletin-compacto .boletin-leer:hover { color: var(--azul); }
 .boletin-compacto .consentimiento { display: inline; margin-right: 10px; }
 .pagina-cabeza + .seccion-material { padding-top: 0; }
+[hidden] { display: none !important; }
+.retrato-img { object-position: 50% 40%; }
+@media (max-width: 899px) { .retrato { aspect-ratio: 1.45 / 1; } }

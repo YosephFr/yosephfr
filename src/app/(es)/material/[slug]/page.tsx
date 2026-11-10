@@ -5,7 +5,7 @@ import CopyText from '@/components/CopyText'
 import DotIcon from '@/components/dots/DotIcon'
 import Footer from '@/components/Footer'
 import NewsletterCTA from '@/components/NewsletterCTA'
-import { getMaterial, materialByDate } from '@/data/material'
+import { MATERIAL, getMaterial } from '@/data/material'
 import { PROFILE } from '@/data/profile'
 import { breadcrumbs, jsonLd, social } from '@/lib/seo'
 
@@ -13,7 +13,7 @@ export const dynamic = 'force-static'
 type Props = { params: Promise<{ slug: string }> }
 
 export function generateStaticParams() {
-  return materialByDate().map(m => ({ slug: m.slug }))
+  return MATERIAL.map(m => ({ slug: m.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

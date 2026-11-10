@@ -9,6 +9,8 @@ import { useEffect, useRef } from 'react'
 type Props = { src: string; alt: string; width: number; height: number; className?: string }
 
 const CELDA = 6 // px CSS entre partículas
+// Altura del foco: la cara entera, también en el recorte bajo del teléfono
+const FOCO_Y = 0.4
 const NIVELES = 6 // tamaños de punto, del más chico al más grande
 const DIAMETRO = 5 // px CSS del punto más grande
 
@@ -64,7 +66,7 @@ export default function ParticlePortrait({ src, alt, width, height, className }:
       const escala = Math.max(cols / fuente.naturalWidth, filas / fuente.naturalHeight)
       const dw = fuente.naturalWidth * escala
       const dh = fuente.naturalHeight * escala
-      m.drawImage(fuente, (cols - dw) / 2, (filas - dh) * 0.28, dw, dh)
+      m.drawImage(fuente, (cols - dw) / 2, (filas - dh) * FOCO_Y, dw, dh)
       const datos = m.getImageData(0, 0, cols, filas).data
       const prev = { px, py }
       const ox = (w - cols * CELDA) / 2 + CELDA / 2

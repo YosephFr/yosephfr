@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Material } from '@/data/material'
+import { desde } from '@/lib/desde'
 
 const fecha = (d: string) => new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short', timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date(d)).replace('.', '')
 
@@ -9,7 +10,7 @@ export default function MaterialCards({ items, level = 'h3', className = '' }: {
   return (
     <ul className={`estante ${className}`}>
       {items.map((m, i) => (
-        <li key={m.slug} style={{ ['--i' as string]: i }}>
+        <li key={m.slug} style={{ ['--i' as string]: i }} {...desde(m.date)}>
           <Link href={`/material/${m.slug}`} className="pieza" data-event="material_open" data-slug={m.slug}>
             <span className="pieza-portada">
               <img src={m.poster.src} width={m.poster.width} height={m.poster.height} alt="" loading={i < 4 ? 'eager' : 'lazy'} style={m.poster.focus ? { objectPosition: m.poster.focus } : undefined} />

@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import DotIcon from '@/components/dots/DotIcon'
 import { PROFILE } from '@/data/profile'
+import { NUMEROS } from '@/data/newsletter'
+import { desde } from '@/lib/desde'
 import { UI, type Lang } from '@/lib/lang'
 import NewsletterCTA from '@/components/NewsletterCTA'
 import ParticlePortrait from '@/components/ParticlePortrait'
@@ -19,7 +21,7 @@ export default function Hero({ lang = 'es' }: { lang?: Lang }) {
         <p className="entrada-texto">{t.text}</p>
         {lang === 'es' && (
           <NewsletterCTA variant="compacto" className="solo-ancho" offer={{ title: 'Newsletter', text: '', button: 'Suscribirme' }}>
-            <Link href="/newsletter/1" className="boletin-leer">Lee el número 1 <DotIcon name="flecha" size={12} /></Link>
+            <Link href="/newsletter/1" className="boletin-leer" {...desde(NUMEROS[0].date)}>Lee el número 1 <DotIcon name="flecha" size={12} /></Link>
           </NewsletterCTA>
         )}
         <ul className="portada-redes" aria-label={lang === 'en' ? 'Profiles' : 'Perfiles'}>

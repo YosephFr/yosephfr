@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 import MaterialCards from '@/components/MaterialCards'
 import NewsletterCTA from '@/components/NewsletterCTA'
-import { materialByDate } from '@/data/material'
+import { materialEnSitio } from '@/data/material'
 import { PROFILE } from '@/data/profile'
 import { breadcrumbs, jsonLd, social } from '@/lib/seo'
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 export default function MaterialPage() {
-  const items = materialByDate()
+  const items = materialEnSitio()
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [

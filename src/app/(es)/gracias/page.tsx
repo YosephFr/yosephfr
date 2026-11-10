@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import LeadConfirm from '@/components/LeadConfirm'
 import { REAL_COST_PATH } from '@/data/real-cost'
+import { NUMEROS } from '@/data/newsletter'
+import { desde } from '@/lib/desde'
 
 export const metadata: Metadata = {
   title: 'Confirma tu suscripción',
@@ -20,7 +22,7 @@ export default function GraciasPage() {
           <h1>Te llegó un correo para confirmar</h1>
           <p className="entrada-texto">Ábrelo y toca el enlace. Desde ahí, cada domingo te llega lo que probé con IA en la semana.</p>
           <div className="acciones">
-            <Link href="/newsletter/1" className="boton boton-claro">Lee el número 1</Link>
+            <Link href="/newsletter/1" className="boton boton-claro" {...desde(NUMEROS[0].date)}>Lee el número 1</Link>
             <Link href={REAL_COST_PATH.es} className="boton boton-tonal">Tabla de costo real</Link>
           </div>
         </header>

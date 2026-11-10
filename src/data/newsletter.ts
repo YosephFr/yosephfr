@@ -67,7 +67,7 @@ export const NUMEROS: Numero[] = [
       },
     ],
     close: [
-      '¿Qué le vas a contar distinto a tu IA esta semana? Respóndeme este correo. Lo leo yo.',
+      'Esta semana, antes de escribirle a tu IA, mándale un audio de un minuto contándole todo lo que necesitas. Y si conoces a alguien que sigue peleándose con el teclado, reenvíale este correo.',
       'Franco',
     ],
   },
