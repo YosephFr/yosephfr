@@ -987,3 +987,4 @@ html { font-synthesis: none; }
 .boletin-compacto .boletin-leer { margin-top: 2px; font-size: 14px; color: var(--texto); }
 .boletin-compacto .boletin-leer:hover { color: var(--azul); }
 .boletin-compacto .consentimiento { display: inline; margin-right: 10px; }
+.pagina-cabeza + .seccion-material { padding-top: 0; }
