@@ -79,7 +79,7 @@ export const MATERIAL: Material[] = [
     kind: 'video',
     title: 'El primer día de la IA más avanzada',
     summary: 'Salió Claude Fable 5.2 y lo primero que hicimos todos fue pedirle lo de siempre. Los números de verdad, aquí.',
-    date: '2026-11-16T10:12:00-03:00',
+    date: '2026-11-22T10:12:00-03:00',
     where: 'Video',
     cover: { src: '/material/primer-dia-fable/portada.webp', width: 540, height: 960, alt: 'Franco con Fable 5.2, empleado del mes, en su primer día' },
     poster: { src: '/material/primer-dia-fable/portada.webp', width: 540, height: 960 },
